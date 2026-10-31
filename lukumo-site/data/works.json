@@ -1,0 +1,71 @@
+{
+  "emptyLots": 2,
+  "works": [
+    {
+      "id": "jinsei-receipt",
+      "title": "人生のレシート",
+      "nameTag": "人生のレシート",
+      "status": "released",
+      "building": "shop",
+      "accent": "#c8302c",
+      "description": "生まれる国も家庭もランダム。公的な統計データで、一生ぶんのお金の流れを約20分で体験するブラウザゲーム。無料・登録なし・スマホでそのまま遊べる。",
+      "playTime": "約20分",
+      "devices": "スマホ・PC",
+      "playUrl": "https://jinsei-receipt.vercel.app/",
+      "lpUrl": "https://jinsei-receipt.vercel.app/lp/",
+      "screenshots": [
+        {
+          "src": "assets/works/jinsei-receipt/01-title.png",
+          "alt": "「人生のレシート」のタイトルと生まれる場所の選択画面"
+        },
+        {
+          "src": "assets/works/jinsei-receipt/03-birth.png",
+          "alt": "0歳で生まれた場面。家族の人物と最初の記録が並ぶ"
+        },
+        {
+          "src": "assets/works/jinsei-receipt/04-play.png",
+          "alt": "6歳までの出来事が年ごとに並ぶプレイ中の画面"
+        },
+        {
+          "src": "assets/works/jinsei-receipt/05-crossroad.png",
+          "alt": "中学卒業後の進路を4択で選ぶ最初の分かれ道"
+        }
+      ]
+    },
+    {
+      "id": "mogiten-tantei",
+      "title": "模擬店探偵 〜文化祭のお金の事件簿〜",
+      "nameTag": "模擬店探偵",
+      "status": "released",
+      "building": "stall",
+      "accent": "#d9480f",
+      "description": "文化祭の模擬店で起きたお金の「事件」を、帳簿を調べて解決する簿記・FP体験ゲーム。無料・登録なし・インストール不要。",
+      "playTime": "2つの事件で約40分",
+      "devices": "パソコン・タブレット・スマホ",
+      "playUrl": "https://mogiten-tantei.github.io/play/index.html",
+      "lpUrl": "https://mogiten-tantei.github.io/",
+      "screenshots": [
+        {
+          "src": "assets/works/mogiten-tantei/sort.png",
+          "alt": "割り箸500円などのカードを「入ったお金」「出たお金」に仕分ける画面"
+        },
+        {
+          "src": "assets/works/mogiten-tantei/gap.png",
+          "alt": "帳簿22,500円と実際19,500円を比べ、3,000円のズレを示す画面"
+        },
+        {
+          "src": "assets/works/mogiten-tantei/clues.png",
+          "alt": "3,000円不足の謎について、手がかりカードを1枚開いた画面"
+        },
+        {
+          "src": "assets/works/mogiten-tantei/truth.png",
+          "alt": "手がかりをもとに3択から真相を選び、正解が表示された画面"
+        },
+        {
+          "src": "assets/works/mogiten-tantei/record.png",
+          "alt": "仕入3,000円・現金3,000円の正しい仕訳を左右に示す画面"
+        }
+      ]
+    }
+  ]
+}

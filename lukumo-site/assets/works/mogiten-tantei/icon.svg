@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="t">
+  <title id="t">模擬店探偵 公式アイコン</title>
+  <!-- 背景：探偵ノートのクラフト紙 -->
+  <rect x="16" y="16" width="480" height="480" rx="104" fill="#f6efe2"/>
+  <rect x="16" y="16" width="480" height="480" rx="104" fill="none" stroke="#1f2a44" stroke-width="16"/>
+  <path d="M60 150h392M60 230h392M60 310h392M60 390h392" stroke="#e4d6bd" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- レシート（下がギザギザ） -->
+  <g transform="rotate(-8 214 250)">
+    <path d="M118 84h192v312l-24-16-24 16-24-16-24 16-24-16-24 16-24-16-24 16z"
+          fill="#fffdf8" stroke="#1f2a44" stroke-width="16" stroke-linejoin="round"/>
+    <path d="M150 140h128M150 186h96M150 232h112" stroke="#5a6378" stroke-width="16" stroke-linecap="round"/>
+    <!-- 赤ペンの線：記録のズレ -->
+    <path d="M150 290h116" stroke="#d9480f" stroke-width="18" stroke-linecap="round"/>
+  </g>
+
+  <!-- 虫めがね -->
+  <path d="M352 352l84 84" stroke="#1f2a44" stroke-width="56" stroke-linecap="round"/>
+  <path d="M356 356l76 76" stroke="#c99a2e" stroke-width="28" stroke-linecap="round"/>
+  <circle cx="300" cy="300" r="96" fill="#fffdf8" stroke="#1f2a44" stroke-width="24"/>
+  <circle cx="300" cy="300" r="74" fill="none" stroke="#c99a2e" stroke-width="6" stroke-dasharray="10 12"/>
+  <!-- レンズの中の「！」：見つけたズレ -->
+  <path d="M300 250v52" stroke="#d9480f" stroke-width="24" stroke-linecap="round"/>
+  <circle cx="300" cy="344" r="14" fill="#d9480f"/>
+</svg>

@@ -1,0 +1,19 @@
+{
+  "_note": "確認用の仮データです。公開用の works.json には入れないでください。index.html?demo=1 のときだけ、works.json の後ろに追加して表示します。",
+  "works": [
+    {
+      "id": "demo-coming",
+      "title": "確認用の作品（仮）",
+      "nameTag": "確認用（仮）",
+      "status": "coming",
+      "building": "house",
+      "accent": "#236ca8",
+      "description": "「準備中」の見た目を確認するための仮データです。",
+      "playTime": "（仮）",
+      "devices": "（仮）",
+      "playUrl": "",
+      "lpUrl": "",
+      "screenshots": []
+    }
+  ]
+}
