@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>よろず提案所</title>
+  <meta name="description" content="依頼者の話を聞いて、ぴったりの提案書をつくるゲーム。">
+  <meta name="theme-color" content="#e6eef2">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="よろず提案所">
+  <meta property="og:description" content="人も、いきものも、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲーム。">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f7a933'/%3E%3Crect x='10' y='22' width='44' height='30' rx='6' fill='%23fff7e8'/%3E%3Cpath d='M8 22h48l-4-10H12z' fill='%234a8fd8'/%3E%3Ccircle cx='32' cy='37' r='7' fill='%234a8fd8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <noscript><p style="padding:16px;font-family:sans-serif">このゲームを遊ぶには、ブラウザの JavaScript を有効にしてください。</p></noscript>
+  <div id="app" class="app" data-time="朝">
+    <!-- 上の帯：時間帯と1日の進み具合 -->
+    <header class="topbar">
+      <div class="pill" data-testid="time-pill"><span class="time-icon" id="time-icon" aria-hidden="true"></span><span id="day-label">1日目</span>・<span id="time-label">朝</span></div>
+      <div class="pill progress-pill" aria-label="今日の依頼の進み具合"><span id="progress-label">1/3件</span><span class="bar"><span id="progress-bar"></span></span></div>
+    </header>
+
+    <!-- タイトル：始まりの区切りと所長になる一言 -->
+    <section id="screen-title" class="screen" data-testid="screen-title" hidden>
+      <div class="title-bg" id="title-bg" aria-hidden="true"></div>
+      <div class="title-card">
+        <h1 class="logo title-logo" id="title-logo">よろず提案所</h1>
+        <p class="title-tag">人もいきものも、相談にやってくる街。</p>
+        <p class="title-intro" data-testid="title-intro">今日から、あなたはこの街の提案所の所長です。依頼者の話をよく聞いて、本音にぴったりの提案書をつくりましょう。</p>
+        <button class="btn primary title-start" id="start" data-testid="start">はじめる</button>
+        <small class="title-note">試作版：4日間・依頼12件</small>
+      </div>
+    </section>
+
+    <!-- 事務所：依頼者の入場と会話 -->
+    <section id="screen-office" class="screen" data-testid="screen-office" hidden>
+      <div class="col-a">
+      <div class="scene" id="office-scene">
+        <div class="office-bg" id="office-bg" aria-hidden="true">
+          <div class="window"></div><div class="map"></div><div class="photo"></div><div class="shelf"></div>
+          <div class="chair big"></div><div class="chair small"></div>
+        </div>
+        <div class="client" id="client" data-testid="client"><div class="client-figure" id="client-figure"></div><div class="client-name" id="client-name"></div></div>
+        <div class="counter" id="counter" aria-hidden="true"></div>
+      </div>
+      </div>
+      <div class="col-b">
+      <div class="panel office-card pc-only"><b id="office-card-name"></b><span id="office-card-profile"></span></div>
+      <ol class="talk-history pc-only" id="talk-history" aria-label="これまでの話"></ol>
+      <div class="memo" id="client-memo" data-testid="client-memo" hidden></div>
+      <button class="bubble talk" id="talk-bubble" data-testid="talk-bubble" aria-live="polite">
+        <span id="talk-text"></span><span class="talk-count" id="talk-count"></span>
+      </button>
+      <div class="actions"><button class="btn primary" id="talk-next" data-testid="talk-next">つぎへ</button></div>
+      </div>
+    </section>
+
+    <!-- 提案書づくり -->
+    <section id="screen-proposal" class="screen" data-testid="screen-proposal" hidden>
+      <div class="col-a">
+      <button class="bubble mini" id="reread" data-testid="reread" aria-label="会話をもう一度読む">
+        <span class="mini-face client-figure" id="mini-face" aria-hidden="true"></span>
+        <span class="mini-text"><b id="mini-name"></b><span id="mini-line"></span><small>タップで会話を全文読む</small></span>
+        <ol class="mini-lines pc-only" id="mini-lines"></ol>
+      </button>
+      <div class="budget" id="budget" data-testid="budget"><span>合計 <b id="sum-cost">0</b></span><span class="sep">／</span><span>予算 <b id="budget-amount"></b><span class="bonus" id="budget-bonus"></span>・<span id="budget-duration"></span></span><span class="left" id="budget-left" data-testid="budget-left"></span></div>
+      <button class="btn small ghost score-help-btn" id="open-score-help" data-testid="open-score-help">点数について</button>
+      </div>
+      <div class="col-b">
+      <div class="panel">
+        <h2 class="panel-title">提案書</h2>
+        <div class="slots" id="slots" data-testid="slots"></div>
+      </div>
+      <div class="panel">
+        <h2 class="panel-title" id="cards-title">候補</h2>
+        <div class="cards" id="cards" data-testid="cards"></div>
+      </div>
+      <div class="actions"><button class="btn primary" id="submit" data-testid="submit" disabled>提出する</button></div>
+      </div>
+    </section>
+
+    <!-- 結果 -->
+    <section id="screen-result" class="screen" data-testid="screen-result" hidden>
+      <div class="col-a">
+      <div class="result-head">
+        <div class="client-figure result-face" id="result-face" aria-hidden="true"></div>
+        <div class="score-ring"><span id="score-total" data-testid="score-total"></span><small>点</small></div>
+        <div class="stars" id="stars" data-testid="stars"></div>
+        <div class="reaction" id="reaction" data-testid="reaction"></div>
+      </div>
+      </div>
+      <div class="col-b">
+      <div class="bubble said" id="after-line" data-testid="after-line"></div>
+      <dl class="breakdown" data-testid="breakdown">
+        <div><dt>本音に合うか</dt><dd><b id="bd-honne"></b>／50</dd></div>
+        <div><dt>予算を守るか</dt><dd><b id="bd-budget"></b>／30</dd></div>
+        <div><dt>依頼者に合うか</dt><dd><b id="bd-fit"></b>／20</dd></div>
+      </dl>
+      <div class="panel picks-panel">
+        <h2 class="panel-title">選んだカード</h2>
+        <ul class="result-picks" id="result-picks" data-testid="result-picks"></ul>
+        <p class="picks-legend"><span class="mk m-hit">◎</span>本音に合った <span class="mk m-miss">△</span>本音とは別 <span class="mk m-bad">×</span>苦手なもの</p>
+      </div>
+      <p class="cost-note" id="cost-note"></p>
+      <div class="regular-note" id="regular-note" data-testid="regular-note" hidden>
+        <span><b id="regular-name"></b>が常連さんになりました！</span>
+        <button class="btn blue small" id="open-detail" data-testid="open-detail">くわしく</button>
+      </div>
+      <div class="actions"><button class="btn blue" id="close-result" data-testid="close-result">閉じる</button></div>
+      </div>
+    </section>
+
+    <!-- ホーム：街を見下ろして会社を選ぶ（絵はフェーズ4でSVGに差しかえ） -->
+    <section id="screen-home" class="screen" data-testid="screen-home" hidden>
+      <div class="col-b col-home-side">
+      <h1 class="logo" id="logo" data-testid="logo">よろず提案所</h1>
+      <p class="home-note" id="home-note"></p>
+      <div class="panel today pc-only"><h2 class="panel-title">今日の依頼</h2><ul class="today-list" id="today-list"></ul></div>
+      <div class="actions"><button class="btn blue small" id="open-regulars" data-testid="open-regulars" hidden>常連さん</button></div>
+      </div>
+      <div class="col-a">
+      <div class="city" id="city" data-testid="city">
+        <div class="city-bg" aria-hidden="true">
+          <div class="hills"></div><div class="rail"></div><div class="station">駅</div>
+          <div class="river"></div><div class="bridge"></div><div class="park">公園</div><div class="school">学校</div>
+          <div class="house h1"></div><div class="house h2"></div><div class="house h3"></div><div class="house h4"></div>
+          <div class="house h5"></div><div class="house h6"></div><div class="mansion m1"></div><div class="mansion m2"></div>
+          <div class="shops">商店街</div>
+        </div>
+        <button class="company c-travel" id="company-travel" data-company="travel" data-testid="company-travel"><span class="sign">✈</span><span class="cname">旅行・デート</span><span class="waiting" data-testid="waiting-travel" hidden></span></button>
+        <button class="company c-life" data-company="life" data-testid="company-life" disabled aria-disabled="true"><span class="sign">⌂</span><span class="cname">ライフプラン</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-life" hidden></span></button>
+        <button class="company c-invest" data-company="invest" data-testid="company-invest" disabled aria-disabled="true"><span class="sign">¥</span><span class="cname">投資</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-invest" hidden></span></button>
+        <button class="company c-town" data-company="town" data-testid="company-town" disabled aria-disabled="true"><span class="sign">⚑</span><span class="cname">町おこし</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-town" hidden></span></button>
+        <button class="company c-event" data-company="event" data-testid="company-event" disabled aria-disabled="true"><span class="sign">◎</span><span class="cname">イベント</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-event" hidden></span></button>
+      </div>
+      </div>
+    </section>
+
+    <!-- 1日の集計 -->
+    <section id="screen-summary" class="screen" data-testid="screen-summary" hidden>
+      <div class="col-a">
+      <div class="panel">
+        <h2 class="ribbon" id="summary-title">1日目のまとめ</h2>
+        <ul class="summary-rows" id="summary-rows"></ul>
+        <div class="summary-avg"><span>今日の平均</span><b id="summary-avg" data-testid="summary-avg"></b><small>点</small></div>
+      </div>
+      </div>
+      <div class="col-b">
+      <div class="panel rank">
+          <div class="rank-label"><span>ランクアップまで（連続日数）</span><span id="rank-text"></span></div>
+          <div class="bar"><span id="rank-bar"></span></div>
+          <small>平均70点以上の日を5日連続で続けるとランクアップ。途中で70点を下回ると0日にもどる。</small>
+          <small class="rank-trial" data-testid="rank-trial">※ 試作版は4日目までなので、ランクアップはまだありません（進み具合だけ表示）。</small>
+      </div>
+      <div class="actions"><button class="btn primary" id="next-day" data-testid="next-day">次の日へ</button></div>
+      </div>
+    </section>
+
+    <!-- 常連さんの一覧 -->
+    <section id="screen-regulars" class="screen" data-testid="screen-regulars" hidden>
+      <div class="col-a">
+        <div class="panel"><h2 class="ribbon">常連さん</h2><ul class="regular-list" id="regular-list" data-testid="regular-list"></ul></div>
+      </div>
+      <div class="col-b">
+        <p class="home-note">名前をタップすると、好みとこれまでの提案が見られます。</p>
+        <div class="actions"><button class="btn blue" id="regulars-back" data-testid="regulars-back">もどる</button></div>
+      </div>
+    </section>
+
+    <!-- 常連のキャラ詳細 -->
+    <section id="screen-detail" class="screen" data-testid="screen-detail" hidden>
+      <div class="col-a">
+      <div class="panel detail-head">
+        <div class="client-figure" id="detail-face" aria-hidden="true"></div>
+        <div><h2 id="detail-name"></h2><p id="detail-profile"></p><span class="badge">常連さん</span></div>
+      </div>
+      <div class="panel"><h3 class="panel-title">好み（わかったこと）</h3><ul class="tags" id="detail-likes" data-testid="detail-likes"></ul></div>
+      </div>
+      <div class="col-b">
+      <div class="panel"><h3 class="panel-title">これまでの提案と点数</h3><ol class="visits" id="detail-visits" data-testid="detail-visits"></ol></div>
+      <div class="actions"><button class="btn blue" id="detail-back" data-testid="detail-back">もどる</button></div>
+      </div>
+    </section>
+
+    <!-- チュートリアルの案内（1日目だけ） -->
+    <div class="coach" id="coach" data-testid="coach" role="status" hidden>
+      <p><span id="coach-text"></span><small class="coach-hint" id="coach-hint"></small><button class="coach-skip" id="coach-skip" data-testid="coach-skip" hidden>案内をとばす</button></p><button class="coach-ok" id="coach-ok" data-testid="coach-ok">わかった</button>
+    </div>
+
+    <!-- 会話の全文 -->
+    <dialog id="talk-log" class="dialog" data-testid="talk-log">
+      <h2 class="panel-title" id="log-title">会話</h2>
+      <ol id="log-lines"></ol>
+      <div class="actions"><button class="btn blue" id="log-close" data-testid="log-close">閉じる</button></div>
+    </dialog>
+    <!-- 点数の決まり（提案書からいつでも見られる） -->
+    <dialog id="score-help" class="dialog" data-testid="score-help">
+      <h2 class="panel-title">点数について（100点満点）</h2>
+      <dl class="breakdown help">
+        <div><dt>本音に合うか</dt><dd><b>50</b>点</dd></div>
+        <div><dt>予算を守るか</dt><dd><b>30</b>点</dd></div>
+        <div><dt>依頼者に合うか</dt><dd><b>20</b>点</dd></div>
+      </dl>
+      <ul class="help-notes">
+        <li>本音に合うカード1枚ごとに12.5点。</li>
+        <li>合計が予算以内なら30点、こえると0点。</li>
+        <li>依頼者の苦手なものが入ったカード1枚ごとに5点減る。</li>
+        <li>80点以上で大喜び、50〜79点でまあまあ、49点以下でいまいち。</li>
+      </ul>
+      <div class="actions"><button class="btn blue" id="score-help-close" data-testid="score-help-close">閉じる</button></div>
+    </dialog>
+  </div>
+
+  <script src="svg/city.js"></script>
+  <script src="svg/office.js"></script>
+  <script src="svg/characters.js"></script>
+  <script src="svg/ui.js"></script>
+  <script src="svg/cards-a.js"></script>
+  <script src="svg/cards-b.js"></script>
+  <script src="svg/cards-c.js"></script>
+  <script src="js/score.js"></script>
+  <script src="data/requests.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

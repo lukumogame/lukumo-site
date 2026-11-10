@@ -1,5 +1,5 @@
 {
-  "emptyLots": 2,
+  "emptyLots": 1,
   "works": [
     {
       "id": "jinsei-receipt",
@@ -64,6 +64,37 @@
         {
           "src": "assets/works/mogiten-tantei/record.png",
           "alt": "仕入3,000円・現金3,000円の正しい仕訳を左右に示す画面"
+        }
+      ]
+    },
+    {
+      "id": "yorozu-teian",
+      "title": "よろず提案所",
+      "nameTag": "よろず提案所",
+      "status": "released",
+      "building": "house",
+      "accent": "#f7a933",
+      "description": "人も、いきものも、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくるブラウザゲーム。無料・登録なし・スマホでそのまま遊べる。",
+      "playTime": "1日5〜10分×4日",
+      "devices": "スマホ・PC",
+      "playUrl": "https://lukumo-site.vercel.app/games/yorozu-teian/",
+      "lpUrl": "",
+      "screenshots": [
+        {
+          "src": "assets/works/yorozu-teian/01-title.png",
+          "alt": "「よろず提案所」のタイトルと「今日から、あなたはこの街の提案所の所長です。」の一言"
+        },
+        {
+          "src": "assets/works/yorozu-teian/02-office.png",
+          "alt": "事務所で依頼者のさくらさんが旅行の相談を話している画面"
+        },
+        {
+          "src": "assets/works/yorozu-teian/03-proposal.png",
+          "alt": "行き先・過ごし方・食事・サプライズの4つの欄に候補カードを選ぶ提案書の画面"
+        },
+        {
+          "src": "assets/works/yorozu-teian/04-result.png",
+          "alt": "100点・星3つの結果と、選んだ4枚に本音に合った印が付いた画面"
         }
       ]
     }
