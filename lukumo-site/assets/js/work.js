@@ -28,6 +28,7 @@
 
   function render(w) {
     var coming = w.status === 'coming';
+    var prototype = w.status === 'prototype'; // 試作版：遊べるが完成品ではない
     document.title = w.title + '｜Lukumo';
     var desc = document.querySelector('meta[name="description"]');
     if (desc) desc.setAttribute('content', w.description);
@@ -47,7 +48,7 @@
       '<div class="work-hero">' +
         '<div class="work-art">' + LukumoBuildings.draw(w) + '</div>' +
         '<div>' +
-          '<span class="status">' + (coming ? '準備中' : '公開中') + '</span>' +
+          '<span class="status">' + (coming ? '準備中' : prototype ? '試作版を公開中' : '公開中') + '</span>' +
           '<h1>' + esc(w.title) + '</h1>' +
           '<p class="work-desc">' + esc(w.description) + '</p>' +
           '<dl class="facts">' +
@@ -56,6 +57,7 @@
             '<dt>作</dt><dd>Lukumo</dd>' +
           '</dl>' +
           (coming ? '<p class="notice">この建物は工事中です。完成したら、ここから遊べるようになります。</p>' : '') +
+          (prototype ? '<p class="notice">この作品は試作版です。今遊べるのは一部だけで、これから作り足していきます。</p>' : '') +
           (actions ? '<div class="actions">' + actions + '</div>' : '') +
         '</div>' +
       '</div>';
