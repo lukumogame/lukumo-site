@@ -63,13 +63,28 @@
     return s;
   }
 
-  function office(time) {
+  // 飾る場所（事務所の絵の座標。js/game.js の飾りつけ画面でも同じ位置にボタンを置く）
+  // 棚：パンフレット棚の右の列の3段／壁：写真の額の上（天井のランプから離す）と、パンフレット棚の上（どちらも依頼者に隠れない）
+  var DECO_SPOTS = {
+    shelf: [{ x: 347, y: 125, w: 22, h: 23 }, { x: 347, y: 157, w: 22, h: 25 }, { x: 347, y: 189, w: 22, h: 25 }],
+    wall: [{ x: 262, y: 38, w: 38, h: 38 }, { x: 324, y: 70, w: 42, h: 42 }]
+  };
+  // opts = { rank: 1〜3, deco: { shelf: [svg|null ×3], wall: [svg|null ×2] }, fit: "meet" }
+  //   deco の中身は品の絵（viewBox 0 0 64 64 の <svg>）。棚の段にはそのまま、壁は額に入れて飾る
+  function office(time, opts) {
+    opts = opts || {};
+    var rank = opts.rank === 2 || opts.rank === 3 ? opts.rank : 1, deco = opts.deco || {};
     var t = PAL[time] ? time : "昼";
     var k = PAL[t];
-    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">';
+    var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" preserveAspectRatio="xMidYMid ' + (opts.fit === "meet" ? "meet" : "slice") + '" aria-hidden="true" focusable="false">';
 
     // 天井・壁・床
     s += r(-40, -40, 480, 380, k.wall);
+    // 壁紙（ランク2：細いしま模様／ランク3：小さな花柄）。均一な塗りの細い線と小さな丸だけ
+    if (rank === 2) for (var sx = -36; sx < 440; sx += 18) s += r(sx, 32, 3, 204, k.wallShade);
+    if (rank === 3) for (var fy = 44; fy < 232; fy += 26) for (var fx = -30 + ((fy / 26) % 2) * 13; fx < 440; fx += 26) {
+      s += c(fx, fy - 3, 2.2, k.wallShade) + c(fx + 3, fy, 2.2, k.wallShade) + c(fx, fy + 3, 2.2, k.wallShade) + c(fx - 3, fy, 2.2, k.wallShade) + c(fx, fy, 1.6, "#f2c94c");
+    }
     s += r(-40, -40, 480, 70, k.ceil);
     s += r(-40, 28, 480, 4, k.ceilLine);
     s += r(-40, 236, 480, 6, k.wallShade);
@@ -143,6 +158,20 @@
     s += r(347, 190, 20, 24, "#e7eef3") + r(350, 194, 14, 3, "#8fb8de") + r(350, 200, 10, 3, "#8fb8de");
     s += r(325, 220, 20, 20, "#f3c94f") + r(347, 220, 20, 20, "#9ccfe8");
 
+    // 飾った品：棚は段の右の列（もとの冊子の上に台を置いて飾る）、壁は額に入れて
+    (deco.shelf || []).forEach(function (art, i) {
+      var q = DECO_SPOTS.shelf[i];
+      if (!q || !art) return;
+      s += r(q.x, q.y, q.w, q.h, "#b3763d");
+      s += nest(art, q.x - 1, q.y - 2, q.w + 2, q.h + 2);
+    });
+    (deco.wall || []).forEach(function (art, i) {
+      var q = DECO_SPOTS.wall[i];
+      if (!q || !art) return;
+      s += r(q.x, q.y, q.w, q.h, "#b98a5a", 3) + r(q.x + 3, q.y + 3, q.w - 6, q.h - 6, "#fffaf0", 2);
+      s += nest(art, q.x + 4, q.y + 4, q.w - 8, q.h - 8);
+    });
+
     // ドア（右端・切れてもよい）
     s += r(378, 40, 40, 202, "#8d949c") + r(382, 46, 36, 196, "#a7aeb6") + r(386, 132, 3, 16, "#e3e6ea", 1.5);
 
@@ -164,6 +193,13 @@
     return s + "</svg>";
   }
 
+  // 品の絵（<svg viewBox="0 0 64 64">）を、指定の場所の大きさに入れる
+  function nest(svgText, x, y, w, h) {
+    return String(svgText).replace(/^<svg\b([^>]*)>/, function (m, attrs) {
+      return '<svg x="' + x + '" y="' + y + '" width="' + w + '" height="' + h + '"' + attrs.replace(/\s(x|y|width|height)="[^"]*"/g, "") + ">";
+    });
+  }
+
   function chair(cx, sc) {
     var w = 64 * sc, h = 52 * sc, top = 236 - h;
     var x0 = cx - w / 2;
@@ -176,7 +212,8 @@
     return s;
   }
 
-  function counter() {
+  // rank：2 前に青い布／3 前に看板と同じオレンジの布（ふち飾りつき）
+  function counter(rank) {
     var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 60" width="100%" height="100%" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">';
     s += r(-40, 0, 480, 16, "#eaa962");
     s += r(-40, 0, 480, 3, "#f3c286");
@@ -190,8 +227,14 @@
     var g2 = ' fill="none" stroke="#cd8746" stroke-width="1.4" stroke-linecap="round"';
     s += p("M10 32c60-2 110 2 170 0", "none", g2) + p("M230 38c50 2 100-1 150 1", "none", g2) +
       p("M60 43c40 1 80-1 120 0", "none", g2);
+    if (rank === 2 || rank === 3) {
+      var cloth = rank === 3 ? "#f7a933" : "#4a8fd8", edge = rank === 3 ? "#e08a14" : "#2f6fb6";
+      s += r(-40, 20, 480, 34, cloth) + r(-40, 50, 480, 4, edge);
+      for (var bx = -36; bx < 440; bx += 24) s += p("M" + bx + " 54h16l-8 6z", edge);
+      if (rank === 3) s += r(-40, 26, 480, 3, "#fff7e6") + r(-40, 44, 480, 3, "#fff7e6");
+    }
     return s + "</svg>";
   }
 
-  root.YorozuArt = Object.assign(root.YorozuArt || {}, { office: office, counter: counter });
+  root.YorozuArt = Object.assign(root.YorozuArt || {}, { office: office, counter: counter, DECO_SPOTS: DECO_SPOTS });
 })(typeof globalThis !== "undefined" ? globalThis : this);

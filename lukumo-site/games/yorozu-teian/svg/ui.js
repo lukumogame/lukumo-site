@@ -23,9 +23,21 @@
       '" stroke-linecap="round" stroke-linejoin="round"/>';
   }
 
+  function starShape(cx, cy, R, fill) {
+    var d = "";
+    for (var i = 0; i < 10; i++) {
+      var a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? R * 0.45 : R;
+      d += (i ? "L" : "M") + (cx + rr * Math.cos(a)).toFixed(1) + " " + (cy + rr * Math.sin(a)).toFixed(1);
+    }
+    return p(d + "Z", fill, ' stroke="#34414f" stroke-width="2" stroke-linejoin="round"');
+  }
   /* ---------- ロゴ ---------- */
-  function logo() {
+  // rank：1 街の提案所（今の看板）／2 評判の提案所（星1つの飾り板）／3 街いちばんの提案所（星3つの飾り板・看板が少し大きい）
+  function logo(rank) {
+    rank = rank === 2 || rank === 3 ? rank : 1;
     var b = "";
+    // ランク3：看板のまわりにオレンジのふちを足して、ひとまわり大きく見せる
+    if (rank === 3) b += r(1, 37, 398, 94, ORANGE, 20);
     // 看板
     b += r(8, 44, 384, 80, BLUE, 16);
     b += r(15, 51, 370, 66, CREAM, 10);
@@ -39,7 +51,14 @@
     // 文字と下線
     b += '<text x="200" y="102" text-anchor="middle" font-family="\'M PLUS Rounded 1c\', sans-serif" font-weight="800" font-size="42" fill="' + BLUE + '" letter-spacing="2">よろず提案所</text>';
     b += r(120, 110, 160, 5, ORANGE, 2.5);
-    return svg("0 0 400 130", b, 'role="img" aria-label="よろず提案所"');
+    if (rank === 1) return svg("0 0 400 130", b, 'role="img" aria-label="よろず提案所"');
+    // 飾り板：看板の下につるす（星は均一な塗り）
+    var n = rank === 3 ? 3 : 1, w = rank === 3 ? 132 : 64, x0 = 200 - w / 2;
+    b += r(150, 122, 4, 12, BLUE) + r(246, 122, 4, 12, BLUE);
+    b += r(x0, 130, w, 34, ORANGE, 10) + r(x0 + 4, 134, w - 8, 26, CREAM, 7);
+    for (var k = 0; k < n; k++) b += starShape(200 + (k - (n - 1) / 2) * 38, 147, 11, ORANGE);
+    var vb = "0 0 400 170";
+    return svg(vb, b, 'role="img" aria-label="よろず提案所（' + (rank === 3 ? "街いちばんの提案所" : "評判の提案所") + '）"');
   }
 
   /* ---------- アイコン ---------- */

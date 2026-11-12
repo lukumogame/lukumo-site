@@ -15,7 +15,8 @@ window.YOROZU_DATA = {
     "静か",
     "星",
     "家族"
-   ]
+   ],
+   "thanks": "いつも本当にありがとうございます。また来ますね。"
   },
   "yuto": {
    "name": "ゆうとさん",
@@ -43,7 +44,8 @@ window.YOROZU_DATA = {
     "水辺",
     "寒い",
     "鳥"
-   ]
+   ],
+   "thanks": "いつもありがとう！家族みんな、ここが大好きよ。"
   },
   "miyuki": {
    "name": "みゆきさん",
@@ -71,7 +73,8 @@ window.YOROZU_DATA = {
     "人里",
     "大きな音",
     "暑い"
-   ]
+   ],
+   "thanks": "いつもありがとな。この子も、ここが大好きなんだ。"
   },
   "shota": {
    "name": "しょうたさん",
@@ -99,6 +102,49 @@ window.YOROZU_DATA = {
    "species": "human",
    "unusual": false,
    "memo": []
+  },
+  "akira": {
+   "name": "あきらさん",
+   "kind": "人",
+   "profile": "60代。先月、長年勤めた会社を退職した",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "mitsue": {
+   "name": "みつえさん",
+   "kind": "ミツバチ",
+   "profile": "働きもののミツバチ。はじめてのお休み",
+   "species": "bee",
+   "unusual": true,
+   "memo": [
+    "雨",
+    "煙",
+    "クモの巣"
+   ]
+  },
+  "fuwari": {
+   "name": "ふわりさん",
+   "kind": "ウサギ",
+   "profile": "ウサギのおばあちゃん。孫が6匹いる",
+   "species": "rabbit",
+   "unusual": true,
+   "memo": [
+    "キツネ",
+    "大きな音",
+    "水ぬれ"
+   ]
+  },
+  "miru": {
+   "name": "ミルさん",
+   "kind": "宇宙からの研究者",
+   "profile": "遠い星から来た研究者。調査は今日まで",
+   "species": "alien_scholar",
+   "unusual": true,
+   "memo": [
+    "強いにおい",
+    "ゆれる乗り物"
+   ]
   }
  },
  "requests": [
@@ -254,7 +300,7 @@ window.YOROZU_DATA = {
       "tags": [
        "のんびり"
       ],
-      "art": "ticket"
+      "art": "massageticket"
      },
      {
       "name": "写真スタジオで撮影",
@@ -886,7 +932,7 @@ window.YOROZU_DATA = {
       "tags": [
        "癒やし"
       ],
-      "art": "kaiseki"
+      "art": "yakuzen"
      },
      {
       "name": "山頂でおにぎり",
@@ -916,7 +962,7 @@ window.YOROZU_DATA = {
       "tags": [
        "癒やし"
       ],
-      "art": "ticket"
+      "art": "stonebathticket"
      },
      {
       "name": "新しい登山靴",
@@ -2097,6 +2143,1558 @@ window.YOROZU_DATA = {
       "cost": 4000,
       "tags": [],
       "art": "cake"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r13",
+   "day": 5,
+   "time": "朝",
+   "clientId": "hoshina",
+   "visit": 2,
+   "regularId": "hoshina",
+   "bonusBudget": 40,
+   "returnGreeting": {
+    "great": "前回のごはん、夫婦でまだ話してるの！またお願いね。",
+    "ok": "こんにちは。この前はありがとう！",
+    "poor": "今度こそ…。夫は、お日さまの当たる場所が大好きなの。"
+   },
+   "lines": [
+    "今度は夫の誕生日なの。もうすぐ卵もかえるし、にぎやかにお祝いしたいわ。",
+    "でも夫ったら、朝が冷えるって、このごろ葉っぱの下で丸まってばかり。",
+    "予算は花粉260粒、半日でお願い！"
+   ],
+   "surfaceWish": "にぎやか",
+   "honneTags": [
+    "日なた"
+   ],
+   "dislikeTags": [
+    "水辺",
+    "寒い",
+    "鳥"
+   ],
+   "budget": {
+    "amount": 260,
+    "unit": "花粉の粒",
+    "duration": "半日"
+   },
+   "aftermath": {
+    "great": "夫ったら、体がぽかぽかで元気いっぱい！最高の誕生日よ。",
+    "ok": "にぎやかで楽しかったわ。夫は少し寒そうだったけど。",
+    "poor": "お祝いはにぎやかで楽しかったわ。…でも本当は、夫をお日さまで温めてあげたかったの"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "朝日の当たる丘",
+      "cost": 120,
+      "tags": [
+       "日なた"
+      ],
+      "art": "sunrise"
+     },
+     {
+      "name": "浮き草の大広場",
+      "cost": 100,
+      "tags": [
+       "にぎやか",
+       "水辺"
+      ],
+      "art": "flowerpond"
+     },
+     {
+      "name": "日だまりの花だん",
+      "cost": 110,
+      "tags": [
+       "日なた",
+       "のんびり"
+      ],
+      "art": "flowerbed"
+     },
+     {
+      "name": "夜の植物園の集会",
+      "cost": 90,
+      "tags": [
+       "にぎやか",
+       "寒い"
+      ],
+      "art": "nightgarden"
+     }
+    ],
+    "activity": [
+     {
+      "name": "葉っぱで日なたぼっこ",
+      "cost": 30,
+      "tags": [
+       "日なた",
+       "のんびり"
+      ],
+      "art": "leafsun"
+     },
+     {
+      "name": "虫たちのダンス会",
+      "cost": 60,
+      "tags": [
+       "にぎやか"
+      ],
+      "art": "bugparty"
+     },
+     {
+      "name": "夜風の散歩",
+      "cost": 40,
+      "tags": [
+       "寒い"
+      ],
+      "art": "nightbreeze"
+     },
+     {
+      "name": "鳥の巣の見学",
+      "cost": 50,
+      "tags": [
+       "鳥"
+      ],
+      "art": "birdsong"
+     }
+    ],
+    "food": [
+     {
+      "name": "日なたのアブラムシ",
+      "cost": 70,
+      "tags": [
+       "日なた",
+       "食"
+      ],
+      "art": "aphids"
+     },
+     {
+      "name": "パーティーの大皿",
+      "cost": 80,
+      "tags": [
+       "にぎやか"
+      ],
+      "art": "buffet"
+     },
+     {
+      "name": "冷たい朝つゆ",
+      "cost": 30,
+      "tags": [
+       "寒い"
+      ],
+      "art": "dewdrop"
+     },
+     {
+      "name": "花の蜜のデザート",
+      "cost": 50,
+      "tags": [],
+      "art": "nectar"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "パーティーの風船",
+      "cost": 60,
+      "tags": [
+       "にぎやか"
+      ],
+      "art": "balloons"
+     },
+     {
+      "name": "ぽかぽか葉っぱの毛布",
+      "cost": 40,
+      "tags": [
+       "日なた"
+      ],
+      "art": "blanket"
+     },
+     {
+      "name": "小鳥の歌のプレゼント",
+      "cost": 50,
+      "tags": [
+       "鳥"
+      ],
+      "art": "birdphoto"
+     },
+     {
+      "name": "四つ葉の冠",
+      "cost": 40,
+      "tags": [],
+      "art": "clover"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r14",
+   "day": 5,
+   "time": "昼",
+   "clientId": "akira",
+   "visit": 1,
+   "lines": [
+    "長く勤めた会社を先月退職しまして。妻に旅行を贈りたいんです。",
+    "南の島のリゾートなんてどうでしょう。きっと妻も喜ぶかと。",
+    "妻とは昔、夜行列車でたまたま隣の席になったのが縁でしてね。",
+    "予算は4万5千円、2泊3日でお願いします。"
+   ],
+   "surfaceWish": "リゾート",
+   "honneTags": [
+    "鉄道"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 45000,
+    "unit": "円",
+    "duration": "2泊3日"
+   },
+   "aftermath": {
+    "great": "妻が窓の外をながめながら、出会った日の話をしてくれました！",
+    "ok": "のんびりできました。妻もくつろいでいたようです。",
+    "poor": "すてきな旅でした。…でも本当は、妻ともう一度列車の旅をしたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "南の島のリゾート",
+      "cost": 30000,
+      "tags": [
+       "リゾート"
+      ],
+      "art": "palmbeach"
+     },
+     {
+      "name": "寝台列車の旅",
+      "cost": 26000,
+      "tags": [
+       "鉄道"
+      ],
+      "art": "sleepertrain"
+     },
+     {
+      "name": "海辺の高級ホテル",
+      "cost": 28000,
+      "tags": [
+       "リゾート"
+      ],
+      "art": "hotel"
+     },
+     {
+      "name": "ローカル線の終点の町",
+      "cost": 16000,
+      "tags": [
+       "鉄道",
+       "のんびり"
+      ],
+      "art": "localtrain"
+     }
+    ],
+    "activity": [
+     {
+      "name": "ビーチでマリン体験",
+      "cost": 8000,
+      "tags": [
+       "リゾート"
+      ],
+      "art": "kayak"
+     },
+     {
+      "name": "リゾートのエステ",
+      "cost": 9000,
+      "tags": [
+       "リゾート"
+      ],
+      "art": "aroma"
+     },
+     {
+      "name": "鉄道の博物館",
+      "cost": 4000,
+      "tags": [
+       "鉄道"
+      ],
+      "art": "museum"
+     },
+     {
+      "name": "美術館めぐり",
+      "cost": 4000,
+      "tags": [],
+      "art": "artframe"
+     }
+    ],
+    "food": [
+     {
+      "name": "リゾートのディナー",
+      "cost": 12000,
+      "tags": [
+       "リゾート"
+      ],
+      "art": "cloche"
+     },
+     {
+      "name": "食堂車のコース",
+      "cost": 14000,
+      "tags": [
+       "鉄道"
+      ],
+      "art": "diningcar"
+     },
+     {
+      "name": "駅弁の食べくらべ",
+      "cost": 3000,
+      "tags": [
+       "鉄道"
+      ],
+      "art": "bento"
+     },
+     {
+      "name": "地元の定食屋",
+      "cost": 2000,
+      "tags": [],
+      "art": "teishoku"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "記念の切符セット",
+      "cost": 3000,
+      "tags": [
+       "鉄道"
+      ],
+      "art": "trainticket"
+     },
+     {
+      "name": "思い出の列車の模型",
+      "cost": 8000,
+      "tags": [
+       "鉄道",
+       "思い出"
+      ],
+      "art": "trainmodel"
+     },
+     {
+      "name": "南国の花の首飾り",
+      "cost": 3000,
+      "tags": [
+       "リゾート"
+      ],
+      "art": "lei"
+     },
+     {
+      "name": "夫婦の記念写真",
+      "cost": 5000,
+      "tags": [],
+      "art": "familyphoto"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r15",
+   "day": 5,
+   "time": "夜",
+   "clientId": "kumada",
+   "visit": 2,
+   "regularId": "kumada",
+   "bonusBudget": 25,
+   "returnGreeting": {
+    "great": "この前は最高だった！この子、魚とりが得意になったよ。",
+    "ok": "やあ、また来たよ。今日もたのむよ。",
+    "poor": "今度こそ…。この子、ぼくの背中によじのぼって遠くを見るのが好きでな。"
+   },
+   "lines": [
+    "この子、食べざかりでな。腹いっぱいごちそうを食べさせたい。",
+    "この子、ひと回り大きくなってな。高い木のてっぺんばかり見てるよ。",
+    "予算はどんぐり150個、3日間でたのむよ。"
+   ],
+   "surfaceWish": "ごちそう",
+   "honneTags": [
+    "木登り"
+   ],
+   "dislikeTags": [
+    "人里",
+    "大きな音",
+    "暑い"
+   ],
+   "budget": {
+    "amount": 150,
+    "unit": "どんぐり",
+    "duration": "3日間"
+   },
+   "aftermath": {
+    "great": "この子が高いところから、得意そうに手をふってたよ！",
+    "ok": "腹いっぱい食べたよ。この子は少し退屈そうだったな。",
+    "poor": "ごちそう、うまかったよ。…でも本当は、この子に木登りを教えてやりたかったんだ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "春の山菜の森",
+      "cost": 60,
+      "tags": [
+       "ごちそう"
+      ],
+      "art": "vegetables"
+     },
+     {
+      "name": "大きな木のある森",
+      "cost": 60,
+      "tags": [
+       "木登り"
+      ],
+      "art": "tree"
+     },
+     {
+      "name": "人里の果樹園",
+      "cost": 50,
+      "tags": [
+       "ごちそう",
+       "人里"
+      ],
+      "art": "orchard"
+     },
+     {
+      "name": "古い大木の谷",
+      "cost": 70,
+      "tags": [
+       "木登り"
+      ],
+      "art": "gorge"
+     }
+    ],
+    "activity": [
+     {
+      "name": "はちみつさがし",
+      "cost": 30,
+      "tags": [
+       "ごちそう"
+      ],
+      "art": "honey"
+     },
+     {
+      "name": "木登りのお手本",
+      "cost": 20,
+      "tags": [
+       "木登り"
+      ],
+      "art": "treeclimb"
+     },
+     {
+      "name": "川で春の魚とり",
+      "cost": 25,
+      "tags": [
+       "ごちそう"
+      ],
+      "art": "fish"
+     },
+     {
+      "name": "祭りの太鼓見物",
+      "cost": 30,
+      "tags": [
+       "大きな音",
+       "人里"
+      ],
+      "art": "drum"
+     }
+    ],
+    "food": [
+     {
+      "name": "山盛りのたけのこ",
+      "cost": 40,
+      "tags": [
+       "ごちそう"
+      ],
+      "art": "bamboo"
+     },
+     {
+      "name": "木の上の山ぶどう",
+      "cost": 25,
+      "tags": [
+       "木登り"
+      ],
+      "art": "grapes"
+     },
+     {
+      "name": "焼きたての川魚",
+      "cost": 40,
+      "tags": [
+       "ごちそう"
+      ],
+      "art": "grilledfish"
+     },
+     {
+      "name": "木の実のスープ",
+      "cost": 15,
+      "tags": [],
+      "art": "cookpot"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "木の上の秘密基地",
+      "cost": 40,
+      "tags": [
+       "木登り"
+      ],
+      "art": "treehouse"
+     },
+     {
+      "name": "春のごちそうかご",
+      "cost": 35,
+      "tags": [
+       "ごちそう"
+      ],
+      "art": "giftbox"
+     },
+     {
+      "name": "冬眠用の毛布",
+      "cost": 20,
+      "tags": [],
+      "art": "blanket"
+     },
+     {
+      "name": "人里の花火見物",
+      "cost": 30,
+      "tags": [
+       "大きな音",
+       "人里"
+      ],
+      "art": "fireworks"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r16",
+   "day": 6,
+   "time": "朝",
+   "clientId": "mitsue",
+   "visit": 1,
+   "lines": [
+    "はじめてのお休みをもらったの！1日だけだけど、出かけたいわ。",
+    "いろんな花の蜜を集めて回りたいの。いつもの仕事より、たくさんね。",
+    "…この前、花の上でついうとうとして、気づいたら夕方だったけど。",
+    "予算はみつのしずく190、1日でお願いね。"
+   ],
+   "surfaceWish": "花",
+   "honneTags": [
+    "休む"
+   ],
+   "dislikeTags": [
+    "雨",
+    "煙",
+    "クモの巣"
+   ],
+   "budget": {
+    "amount": 190,
+    "unit": "みつのしずく",
+    "duration": "1日"
+   },
+   "aftermath": {
+    "great": "羽がこんなに軽いの、はじめて！明日からまたがんばれるわ。",
+    "ok": "たくさんの花を回れたわ。ちょっと疲れちゃったけど。",
+    "poor": "花はとってもきれいだった。…でも本当は、何もしないでゆっくり休みたかったの"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "一面の花畑",
+      "cost": 90,
+      "tags": [
+       "花"
+      ],
+      "art": "flowerfield"
+     },
+     {
+      "name": "木かげの静かな野原",
+      "cost": 70,
+      "tags": [
+       "休む"
+      ],
+      "art": "meadow"
+     },
+     {
+      "name": "雨の多い花の谷",
+      "cost": 60,
+      "tags": [
+       "花",
+       "雨"
+      ],
+      "art": "gorge"
+     },
+     {
+      "name": "森の奥の休み小屋",
+      "cost": 80,
+      "tags": [
+       "休む"
+      ],
+      "art": "hut"
+     }
+    ],
+    "activity": [
+     {
+      "name": "花の蜜あつめ大会",
+      "cost": 50,
+      "tags": [
+       "花"
+      ],
+      "art": "nectar"
+     },
+     {
+      "name": "花びらの上でお昼寝",
+      "cost": 30,
+      "tags": [
+       "休む",
+       "花"
+      ],
+      "art": "beenap"
+     },
+     {
+      "name": "羽のマッサージ",
+      "cost": 40,
+      "tags": [
+       "休む"
+      ],
+      "art": "aroma"
+     },
+     {
+      "name": "焚き火を囲む会",
+      "cost": 30,
+      "tags": [
+       "煙"
+      ],
+      "art": "campfire"
+     }
+    ],
+    "food": [
+     {
+      "name": "百の花のはちみつ",
+      "cost": 50,
+      "tags": [
+       "花"
+      ],
+      "art": "honey"
+     },
+     {
+      "name": "ゆっくり朝ごはん",
+      "cost": 40,
+      "tags": [
+       "休む"
+      ],
+      "art": "breakfast"
+     },
+     {
+      "name": "煙の香りのバーベキュー",
+      "cost": 40,
+      "tags": [
+       "煙"
+      ],
+      "art": "bbq"
+     },
+     {
+      "name": "朝つゆのジュース",
+      "cost": 20,
+      "tags": [],
+      "art": "dewdrop"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "花の冠",
+      "cost": 40,
+      "tags": [
+       "花"
+      ],
+      "art": "clover"
+     },
+     {
+      "name": "ふかふかの花びら布団",
+      "cost": 50,
+      "tags": [
+       "休む"
+      ],
+      "art": "blanket"
+     },
+     {
+      "name": "花束",
+      "cost": 30,
+      "tags": [
+       "花"
+      ],
+      "art": "bouquet"
+     },
+     {
+      "name": "クモの糸のブランコ",
+      "cost": 30,
+      "tags": [
+       "クモの巣"
+      ],
+      "art": "spiderweb"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r17",
+   "day": 6,
+   "time": "昼",
+   "clientId": "pururu",
+   "visit": 2,
+   "regularId": "pururu",
+   "profile": "地球が気に入って、また来た旅人",
+   "bonusBudget": 15,
+   "returnGreeting": {
+    "great": "地球のふつうの毎日、星のみんなに大人気でした！",
+    "ok": "こんにちは。また地球に来ました。",
+    "poor": "今度こそ…。商店街で見た手編みのセーター、ずっと気になっています。"
+   },
+   "lines": [
+    "星の友だちに、地球の珍しいおみやげを持って帰りたいです。",
+    "わたしの星では、物はみんな機械が作ります。地球の人の指は器用ですね。",
+    "予算は星のかけら100個、地球時間で1日です。"
+   ],
+   "surfaceWish": "珍しい",
+   "honneTags": [
+    "手作り"
+   ],
+   "dislikeTags": [
+    "しょっぱい",
+    "まぶしい"
+   ],
+   "budget": {
+    "amount": 100,
+    "unit": "星のかけら",
+    "duration": "地球時間で1日"
+   },
+   "aftermath": {
+    "great": "自分の手で作ったおみやげです！星の友だちも、きっと喜びます。",
+    "ok": "珍しいものをたくさん見られました。ありがとう。",
+    "poor": "珍しいおみやげが買えました。…でも本当は、自分の手で何か作ってみたかったのです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "宝石の博物館",
+      "cost": 45,
+      "tags": [
+       "珍しい"
+      ],
+      "art": "museum"
+     },
+     {
+      "name": "焼き物の里",
+      "cost": 30,
+      "tags": [
+       "手作り"
+      ],
+      "art": "pottery"
+     },
+     {
+      "name": "不思議な鍾乳洞",
+      "cost": 40,
+      "tags": [
+       "珍しい"
+      ],
+      "art": "cave"
+     },
+     {
+      "name": "真夏の白い砂浜",
+      "cost": 30,
+      "tags": [
+       "まぶしい"
+      ],
+      "art": "palmbeach"
+     }
+    ],
+    "activity": [
+     {
+      "name": "編み物教室",
+      "cost": 15,
+      "tags": [
+       "手作り"
+      ],
+      "art": "knitting"
+     },
+     {
+      "name": "郷土料理づくり",
+      "cost": 25,
+      "tags": [
+       "手作り"
+      ],
+      "art": "cookpot"
+     },
+     {
+      "name": "珍しい生き物の水族館",
+      "cost": 30,
+      "tags": [
+       "珍しい"
+      ],
+      "art": "aquarium"
+     },
+     {
+      "name": "夜のイルミネーション",
+      "cost": 25,
+      "tags": [
+       "まぶしい",
+       "珍しい"
+      ],
+      "art": "lightup"
+     }
+    ],
+    "food": [
+     {
+      "name": "おにぎりづくり",
+      "cost": 10,
+      "tags": [
+       "手作り"
+      ],
+      "art": "onigiri"
+     },
+     {
+      "name": "世界の珍味の店",
+      "cost": 35,
+      "tags": [
+       "珍しい"
+      ],
+      "art": "cloche"
+     },
+     {
+      "name": "塩からい干物",
+      "cost": 15,
+      "tags": [
+       "しょっぱい"
+      ],
+      "art": "grilledfish"
+     },
+     {
+      "name": "商店街の焼きそば",
+      "cost": 10,
+      "tags": [],
+      "art": "yakisoba"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "手編みのマフラー",
+      "cost": 25,
+      "tags": [
+       "手作り"
+      ],
+      "art": "scarf"
+     },
+     {
+      "name": "珍しい色の宝石",
+      "cost": 40,
+      "tags": [
+       "珍しい"
+      ],
+      "art": "gem"
+     },
+     {
+      "name": "夜空の花火",
+      "cost": 30,
+      "tags": [
+       "まぶしい"
+      ],
+      "art": "fireworks"
+     },
+     {
+      "name": "ご当地のおみやげ",
+      "cost": 15,
+      "tags": [],
+      "art": "giftbox"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r18",
+   "day": 6,
+   "time": "夜",
+   "clientId": "hoshina",
+   "visit": 3,
+   "regularId": "hoshina",
+   "bonusBudget": 40,
+   "becomesRegular": true,
+   "returnGreeting": {
+    "great": "また来ちゃった！ここの提案、うちの家族の自慢なの。",
+    "ok": "こんにちは。今日は大事なお願いなの。",
+    "poor": "今度こそ…。この子たち、葉っぱから葉っぱへ少しずつ飛ぶのが好きなの。"
+   },
+   "lines": [
+    "卵からかえった子どもたちが、羽を広げられるようになったの！",
+    "遠くの有名な花畑へ…。でもこの子たち、まだ少し飛ぶとすぐ休むの。",
+    "予算は花粉270粒、半日でお願い！"
+   ],
+   "surfaceWish": "遠く",
+   "honneTags": [
+    "近く",
+    "練習"
+   ],
+   "dislikeTags": [
+    "水辺",
+    "寒い",
+    "鳥"
+   ],
+   "budget": {
+    "amount": 270,
+    "unit": "花粉の粒",
+    "duration": "半日"
+   },
+   "aftermath": {
+    "great": "子どもたち、少しずつ上手に飛べるようになったの！もう立派ね。",
+    "ok": "花畑はきれいだったわ。子どもたちは少し疲れたみたい。",
+    "poor": "景色はすばらしかったわ。…でも本当は、近くで子どもたちの飛ぶ練習をしたかったの"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "遠くの大きな花畑",
+      "cost": 130,
+      "tags": [
+       "遠く"
+      ],
+      "art": "flowerfield"
+     },
+     {
+      "name": "雪の残る山の花畑",
+      "cost": 120,
+      "tags": [
+       "遠く",
+       "寒い"
+      ],
+      "art": "mountain"
+     },
+     {
+      "name": "おうちのそばの菜園",
+      "cost": 80,
+      "tags": [
+       "近く"
+      ],
+      "art": "vegetables"
+     },
+     {
+      "name": "となりの低い花だん",
+      "cost": 90,
+      "tags": [
+       "近く",
+       "練習"
+      ],
+      "art": "flowerbed"
+     }
+    ],
+    "activity": [
+     {
+      "name": "葉っぱ渡りの練習",
+      "cost": 40,
+      "tags": [
+       "練習",
+       "近く"
+      ],
+      "art": "leafhop"
+     },
+     {
+      "name": "遠くまで競争飛行",
+      "cost": 70,
+      "tags": [
+       "遠く"
+      ],
+      "art": "mappin"
+     },
+     {
+      "name": "鳥の背中で空の旅",
+      "cost": 80,
+      "tags": [
+       "遠く",
+       "鳥"
+      ],
+      "art": "birdsong"
+     },
+     {
+      "name": "家族で日なたぼっこ",
+      "cost": 30,
+      "tags": [],
+      "art": "leafsun"
+     }
+    ],
+    "food": [
+     {
+      "name": "遠い国の花の蜜",
+      "cost": 80,
+      "tags": [
+       "遠く"
+      ],
+      "art": "nectar"
+     },
+     {
+      "name": "近くの畑のアブラムシ",
+      "cost": 60,
+      "tags": [
+       "近く"
+      ],
+      "art": "aphids"
+     },
+     {
+      "name": "雲の上のピクニック",
+      "cost": 70,
+      "tags": [
+       "遠く",
+       "寒い"
+      ],
+      "art": "picnic"
+     },
+     {
+      "name": "朝つゆのジュース",
+      "cost": 30,
+      "tags": [],
+      "art": "dewdrop"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "遠くの景色の写真集",
+      "cost": 50,
+      "tags": [
+       "遠く"
+      ],
+      "art": "photobook"
+     },
+     {
+      "name": "初飛行のメダル",
+      "cost": 40,
+      "tags": [
+       "練習"
+      ],
+      "art": "medal"
+     },
+     {
+      "name": "家族の記念写真",
+      "cost": 50,
+      "tags": [],
+      "art": "camera"
+     },
+     {
+      "name": "小鳥のお迎え",
+      "cost": 60,
+      "tags": [
+       "鳥"
+      ],
+      "art": "birdphoto"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r19",
+   "day": 7,
+   "time": "朝",
+   "clientId": "fuwari",
+   "visit": 1,
+   "lines": [
+    "孫たちがずいぶん大きくなってね。みんなで夜のお出かけがしたいの。",
+    "若い子は、にぎやかな遊び場のほうが喜ぶのかしらねえ。",
+    "わたしの若いころは、まんまるの月の夜に、みんなでお餅をついたものよ。",
+    "予算はにんじん110本、ひと晩でお願いね。"
+   ],
+   "surfaceWish": "遊び",
+   "honneTags": [
+    "月",
+    "お餅"
+   ],
+   "dislikeTags": [
+    "キツネ",
+    "大きな音",
+    "水ぬれ"
+   ],
+   "budget": {
+    "amount": 110,
+    "unit": "にんじん",
+    "duration": "ひと晩"
+   },
+   "aftermath": {
+    "great": "孫たちと、昔みたいな夜を過ごせたわ。最高のひと晩よ！",
+    "ok": "孫たちは楽しそうだったわ。少しにぎやかすぎたけどね。",
+    "poor": "孫たちは楽しそうだったわ。…でも本当は、みんなで月を見ながらお餅をつきたかったの"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "夜の遊園地",
+      "cost": 60,
+      "tags": [
+       "遊び",
+       "大きな音"
+      ],
+      "art": "ferriswheel"
+     },
+     {
+      "name": "満月の見える丘",
+      "cost": 40,
+      "tags": [
+       "月"
+      ],
+      "art": "moonhill"
+     },
+     {
+      "name": "森のアスレチック",
+      "cost": 35,
+      "tags": [
+       "遊び"
+      ],
+      "art": "climbing"
+     },
+     {
+      "name": "川辺のキャンプ場",
+      "cost": 30,
+      "tags": [
+       "水ぬれ"
+      ],
+      "art": "tent"
+     }
+    ],
+    "activity": [
+     {
+      "name": "昔ながらの餅つき",
+      "cost": 25,
+      "tags": [
+       "お餅"
+      ],
+      "art": "mochitsuki"
+     },
+     {
+      "name": "お月見の夜さんぽ",
+      "cost": 15,
+      "tags": [
+       "月"
+      ],
+      "art": "nightgarden"
+     },
+     {
+      "name": "川で水あそび",
+      "cost": 20,
+      "tags": [
+       "遊び",
+       "水ぬれ"
+      ],
+      "art": "splash"
+     },
+     {
+      "name": "キツネと宝さがし",
+      "cost": 25,
+      "tags": [
+       "遊び",
+       "キツネ"
+      ],
+      "art": "treasuremap"
+     }
+    ],
+    "food": [
+     {
+      "name": "お月見だんご",
+      "cost": 25,
+      "tags": [
+       "月",
+       "お餅"
+      ],
+      "art": "dango"
+     },
+     {
+      "name": "遊園地のポップコーン",
+      "cost": 20,
+      "tags": [
+       "遊び"
+      ],
+      "art": "popcorn"
+     },
+     {
+      "name": "山盛りの野菜",
+      "cost": 15,
+      "tags": [],
+      "art": "vegetables"
+     },
+     {
+      "name": "にんじんのケーキ",
+      "cost": 30,
+      "tags": [],
+      "art": "cake"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "打ち上げ花火",
+      "cost": 30,
+      "tags": [
+       "遊び",
+       "大きな音"
+      ],
+      "art": "fireworks"
+     },
+     {
+      "name": "月の形のランタン",
+      "cost": 20,
+      "tags": [
+       "月"
+      ],
+      "art": "lantern"
+     },
+     {
+      "name": "孫たちと記念写真",
+      "cost": 20,
+      "tags": [],
+      "art": "camera"
+     },
+     {
+      "name": "風船のプレゼント",
+      "cost": 25,
+      "tags": [
+       "遊び"
+      ],
+      "art": "balloons"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r20",
+   "day": 7,
+   "time": "昼",
+   "clientId": "kumada",
+   "visit": 3,
+   "regularId": "kumada",
+   "bonusBudget": 25,
+   "becomesRegular": true,
+   "returnGreeting": {
+    "great": "また来たよ！この子が「あのお店がいい」って聞かなくてな。",
+    "ok": "やあ。今日もよろしくたのむよ。",
+    "poor": "今度こそ…。この子、ぼくと同じことをするのが一番うれしいらしい。"
+   },
+   "lines": [
+    "この子がもうすぐ2歳なんだ。誕生日に、うんと特別な体験をさせたい。",
+    "この子、ぼくのまねばかりするんだ。昼寝のかっこうまでそっくりでな。",
+    "予算はどんぐり160個、3日間でたのむよ。"
+   ],
+   "surfaceWish": "特別",
+   "honneTags": [
+    "いっしょ",
+    "おそろい"
+   ],
+   "dislikeTags": [
+    "人里",
+    "大きな音",
+    "暑い"
+   ],
+   "budget": {
+    "amount": 160,
+    "unit": "どんぐり",
+    "duration": "3日間"
+   },
+   "aftermath": {
+    "great": "この子とずっと同じことをして笑ってたよ。いい誕生日だ！",
+    "ok": "特別な体験に、この子も目を丸くしてたよ。",
+    "poor": "特別な一日だったよ。…でも本当は、この子と同じことをして過ごしたかったんだ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "秘密の滝つぼ",
+      "cost": 70,
+      "tags": [
+       "特別"
+      ],
+      "art": "waterfall"
+     },
+     {
+      "name": "火山の温泉",
+      "cost": 80,
+      "tags": [
+       "特別",
+       "暑い"
+      ],
+      "art": "volcano"
+     },
+     {
+      "name": "親子で昼寝の丘",
+      "cost": 50,
+      "tags": [
+       "いっしょ"
+      ],
+      "art": "naphill"
+     },
+     {
+      "name": "親子の釣り場の川",
+      "cost": 60,
+      "tags": [
+       "いっしょ"
+      ],
+      "art": "salmonriver"
+     }
+    ],
+    "activity": [
+     {
+      "name": "熱気球の空の旅",
+      "cost": 60,
+      "tags": [
+       "特別"
+      ],
+      "art": "balloons"
+     },
+     {
+      "name": "親子で魚とり",
+      "cost": 20,
+      "tags": [
+       "いっしょ"
+      ],
+      "art": "fish"
+     },
+     {
+      "name": "おそろいで昼寝",
+      "cost": 15,
+      "tags": [
+       "いっしょ",
+       "おそろい"
+      ],
+      "art": "pairnap"
+     },
+     {
+      "name": "人里の大花火",
+      "cost": 30,
+      "tags": [
+       "特別",
+       "大きな音",
+       "人里"
+      ],
+      "art": "fireworks"
+     }
+    ],
+    "food": [
+     {
+      "name": "誕生日の特大ケーキ",
+      "cost": 40,
+      "tags": [
+       "特別"
+      ],
+      "art": "cake"
+     },
+     {
+      "name": "鮭を半分こ",
+      "cost": 30,
+      "tags": [
+       "いっしょ"
+      ],
+      "art": "grilledfish"
+     },
+     {
+      "name": "人里のごちそう",
+      "cost": 50,
+      "tags": [
+       "特別",
+       "人里"
+      ],
+      "art": "buffet"
+     },
+     {
+      "name": "山ぶどう",
+      "cost": 15,
+      "tags": [],
+      "art": "grapes"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "おそろいの帽子",
+      "cost": 30,
+      "tags": [
+       "おそろい"
+      ],
+      "art": "caps"
+     },
+     {
+      "name": "金色のメダル",
+      "cost": 40,
+      "tags": [
+       "特別"
+      ],
+      "art": "medal"
+     },
+     {
+      "name": "太鼓の演奏会",
+      "cost": 30,
+      "tags": [
+       "特別",
+       "大きな音"
+      ],
+      "art": "drum"
+     },
+     {
+      "name": "手作りの釣り竿",
+      "cost": 25,
+      "tags": [
+       "いっしょ"
+      ],
+      "art": "fishingrod"
+     }
+    ]
+   }
+  },
+  {
+   "id": "r21",
+   "day": 7,
+   "time": "夜",
+   "clientId": "miru",
+   "visit": 1,
+   "lines": [
+    "地球の調査に来た研究者です。今日が最後の調査日なのです。",
+    "地球でいちばん新しい技術を見て、星に報告したいのです。",
+    "わたしの星はとても静か。昨日、公園で聞いた鼻歌が耳から離れません。",
+    "予算は月の石100個、地球時間で半日です。"
+   ],
+   "surfaceWish": "最新",
+   "honneTags": [
+    "音楽"
+   ],
+   "dislikeTags": [
+    "強いにおい",
+    "ゆれる乗り物"
+   ],
+   "budget": {
+    "amount": 100,
+    "unit": "月の石",
+    "duration": "地球時間で半日"
+   },
+   "aftermath": {
+    "great": "地球の音楽、すばらしい！星のみんなに歌って聞かせます。",
+    "ok": "新しい技術をたくさん見ました。報告書が書けそうです。",
+    "poor": "新しい技術はすごかったです。…でも本当は、地球の音楽をもっと聞いてみたかったのです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "最新のロボット工場",
+      "cost": 45,
+      "tags": [
+       "最新"
+      ],
+      "art": "robot"
+     },
+     {
+      "name": "未来の科学館",
+      "cost": 40,
+      "tags": [
+       "最新"
+      ],
+      "art": "museum"
+     },
+     {
+      "name": "森の野外音楽祭",
+      "cost": 35,
+      "tags": [
+       "音楽"
+      ],
+      "art": "guitar"
+     },
+     {
+      "name": "魚市場の見学",
+      "cost": 20,
+      "tags": [
+       "強いにおい"
+      ],
+      "art": "fishmarket"
+     }
+    ],
+    "activity": [
+     {
+      "name": "最新のゲーム体験",
+      "cost": 25,
+      "tags": [
+       "最新"
+      ],
+      "art": "gamepad"
+     },
+     {
+      "name": "自動運転のバス",
+      "cost": 20,
+      "tags": [
+       "最新",
+       "ゆれる乗り物"
+      ],
+      "art": "bus"
+     },
+     {
+      "name": "楽器づくり体験",
+      "cost": 20,
+      "tags": [
+       "音楽"
+      ],
+      "art": "drum"
+     },
+     {
+      "name": "子どもたちの合唱会",
+      "cost": 15,
+      "tags": [
+       "音楽"
+      ],
+      "art": "music"
+     }
+    ],
+    "food": [
+     {
+      "name": "ロボットの料理店",
+      "cost": 30,
+      "tags": [
+       "最新"
+      ],
+      "art": "robot"
+     },
+     {
+      "name": "にんにく焼肉",
+      "cost": 25,
+      "tags": [
+       "強いにおい"
+      ],
+      "art": "yakiniku"
+     },
+     {
+      "name": "歌声の聞こえる食堂",
+      "cost": 20,
+      "tags": [
+       "音楽"
+      ],
+      "art": "singingdiner"
+     },
+     {
+      "name": "公園でおにぎり",
+      "cost": 10,
+      "tags": [],
+      "art": "onigiri"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "最新のスマート時計",
+      "cost": 35,
+      "tags": [
+       "最新"
+      ],
+      "art": "watch"
+     },
+     {
+      "name": "手回しのオルゴール",
+      "cost": 25,
+      "tags": [
+       "音楽"
+      ],
+      "art": "musicbox"
+     },
+     {
+      "name": "遊覧船のチケット",
+      "cost": 20,
+      "tags": [
+       "ゆれる乗り物"
+      ],
+      "art": "ship"
+     },
+     {
+      "name": "ご当地のおみやげ",
+      "cost": 15,
+      "tags": [],
+      "art": "giftbox"
      }
     ]
    }

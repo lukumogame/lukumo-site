@@ -8,8 +8,13 @@
   <meta name="theme-color" content="#e6eef2">
   <meta property="og:type" content="website">
   <meta property="og:title" content="よろず提案所（試作版）">
-  <meta property="og:description" content="人も、生き物も、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲームの試作版（4日間・依頼12件）。">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:description" content="人も、生き物も、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲームの試作版（7日間・依頼21件、その後も続けて遊べる）。">
+  <!-- SNS で共有したときの画像（tools/make-og-image.js で作る）。公開先の URL で指す -->
+  <meta property="og:image" content="https://lukumo-site.vercel.app/games/yorozu-teian/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="よろず提案所：朝の街と看板、依頼者たち">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23f7a933'/%3E%3Crect x='10' y='22' width='44' height='30' rx='6' fill='%23fff7e8'/%3E%3Cpath d='M8 22h48l-4-10H12z' fill='%234a8fd8'/%3E%3Ccircle cx='32' cy='37' r='7' fill='%234a8fd8'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,8 +26,11 @@
   <div id="app" class="app" data-time="朝">
     <!-- 上の帯：時間帯と1日の進み具合 -->
     <header class="topbar">
+      <span class="me-icon" id="me-icon" data-testid="me-icon" role="img" aria-label="自分のアイコン"></span>
       <div class="pill" data-testid="time-pill"><span class="time-icon" id="time-icon" aria-hidden="true"></span><span id="day-label">1日目</span>・<span id="time-label">朝</span></div>
       <div class="pill progress-pill" aria-label="今日の依頼の進み具合"><span id="progress-label">1/3件</span><span class="bar"><span id="progress-bar"></span></span></div>
+      <!-- 保存したときだけ少しのあいだ出る小さな印（文字の通知は出さない） -->
+      <span class="save-mark" id="save-mark" data-testid="save-mark" role="img" aria-label="保存しました" hidden></span>
     </header>
 
     <!-- タイトル：始まりの区切りと所長になる一言 -->
@@ -32,8 +40,12 @@
         <h1 class="logo title-logo" id="title-logo">よろず提案所</h1>
         <p class="title-tag">人も生き物も、相談にやってくる街。</p>
         <p class="title-intro" data-testid="title-intro">今日から、あなたはこの街の提案所の所長です。依頼者の話をよく聞いて、本音にぴったりの提案書をつくりましょう。</p>
+        <div class="continue-me" id="continue-me" data-testid="continue-me" hidden><span class="me-icon big" id="continue-icon" aria-hidden="true"></span><b id="continue-name"></b></div>
+        <button class="btn blue title-start" id="continue" data-testid="continue" hidden>つづきから</button>
+        <small class="continue-info" id="continue-info" data-testid="continue-info"></small>
         <button class="btn primary title-start" id="start" data-testid="start">はじめる</button>
-        <small class="title-note">試作版：4日間・依頼12件</small>
+        <p class="save-note" id="save-note" data-testid="save-note" role="status" hidden></p>
+        <small class="title-note">試作版：7日間・依頼21件</small>
       </div>
     </section>
 
@@ -53,6 +65,7 @@
       <div class="panel office-card pc-only"><b id="office-card-name"></b><span id="office-card-profile"></span></div>
       <ol class="talk-history pc-only" id="talk-history" aria-label="これまでの話"></ol>
       <div class="memo" id="client-memo" data-testid="client-memo" hidden></div>
+      <p class="again-note" id="again-note" data-testid="again-note" hidden>また相談に来てくれました</p>
       <button class="bubble talk" id="talk-bubble" data-testid="talk-bubble" aria-live="polite">
         <span id="talk-text"></span><span class="talk-count" id="talk-count"></span>
       </button>
@@ -92,6 +105,19 @@
         <div class="score-ring"><span id="score-total" data-testid="score-total"></span><small>点</small></div>
         <div class="stars" id="stars" data-testid="stars"></div>
         <div class="reaction" id="reaction" data-testid="reaction"></div>
+        <!-- 依頼者の本音：当てた好み／外れた好み（点数の枠の中の下） -->
+        <div class="honne-row" id="honne-row" data-testid="honne-row"><span class="honne-label">依頼者の本音</span><ul class="honne-tags" id="honne-tags" data-testid="honne-tags"></ul></div>
+      </div>
+      <!-- もらった品・常連になったお知らせは、点数のすぐ下（PCでは左の列） -->
+      <div class="result-notes">
+        <div class="reward-note" id="reward-note" data-testid="reward-note" hidden>
+          <span class="reward-icon" id="reward-icon" aria-hidden="true"></span>
+          <span class="reward-text" id="reward-text"></span>
+        </div>
+        <div class="regular-note" id="regular-note" data-testid="regular-note" hidden>
+          <span><b id="regular-name"></b>が常連さんになりました！</span>
+          <button class="btn blue small" id="open-detail" data-testid="open-detail">くわしく</button>
+        </div>
       </div>
       </div>
       <div class="col-b">
@@ -107,10 +133,6 @@
         <p class="picks-legend"><span class="mk m-hit">◎</span>本音に合った <span class="mk m-miss">△</span>本音とは別 <span class="mk m-bad">×</span>苦手なもの</p>
       </div>
       <p class="cost-note" id="cost-note"></p>
-      <div class="regular-note" id="regular-note" data-testid="regular-note" hidden>
-        <span><b id="regular-name"></b>が常連さんになりました！</span>
-        <button class="btn blue small" id="open-detail" data-testid="open-detail">くわしく</button>
-      </div>
       <div class="actions"><button class="btn blue" id="close-result" data-testid="close-result">閉じる</button></div>
       </div>
     </section>
@@ -121,7 +143,7 @@
       <h1 class="logo" id="logo" data-testid="logo">よろず提案所</h1>
       <p class="home-note" id="home-note"></p>
       <div class="panel today pc-only"><h2 class="panel-title">今日の依頼</h2><ul class="today-list" id="today-list"></ul></div>
-      <div class="actions"><button class="btn blue small" id="open-regulars" data-testid="open-regulars" hidden>常連さん</button></div>
+      <div class="actions"><button class="btn blue small menu-btn" id="open-menu" data-testid="open-menu" aria-haspopup="dialog">メニュー<span class="new-dot" id="menu-new" data-testid="menu-new" aria-label="新しい品があります" hidden></span></button></div>
       </div>
       <div class="col-a">
       <div class="city" id="city" data-testid="city">
@@ -132,6 +154,7 @@
           <div class="house h5"></div><div class="house h6"></div><div class="mansion m1"></div><div class="mansion m2"></div>
           <div class="shops">商店街</div>
         </div>
+        <div class="walker" id="walker" data-testid="walker" aria-hidden="true"></div>
         <button class="company c-travel" id="company-travel" data-company="travel" data-testid="company-travel"><span class="sign">✈</span><span class="cname">旅行・デート</span><span class="waiting" data-testid="waiting-travel" hidden></span></button>
         <button class="company c-life" data-company="life" data-testid="company-life" disabled aria-disabled="true"><span class="sign">⌂</span><span class="cname">ライフプラン</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-life" hidden></span></button>
         <button class="company c-invest" data-company="invest" data-testid="company-invest" disabled aria-disabled="true"><span class="sign">¥</span><span class="cname">投資</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-invest" hidden></span></button>
@@ -148,27 +171,111 @@
         <h2 class="ribbon" id="summary-title">1日目のまとめ</h2>
         <ul class="summary-rows" id="summary-rows"></ul>
         <div class="summary-avg"><span>今日の平均</span><b id="summary-avg" data-testid="summary-avg"></b><small>点</small></div>
+        <div class="summary-avg week-avg" id="week-avg-row" data-testid="week-avg-row" hidden><span>この7日間の平均</span><b id="week-avg" data-testid="week-avg"></b><small>点</small></div>
       </div>
       </div>
       <div class="col-b">
       <div class="panel rank">
-          <div class="rank-label"><span>ランクアップまで（連続日数）</span><span id="rank-text"></span></div>
+          <div class="rank-up" id="rank-up" data-testid="rank-up" hidden>
+            <b>ランクアップ！</b><span id="rank-up-name"></span>
+            <div class="rank-up-logo" id="rank-up-logo" aria-hidden="true"></div>
+          </div>
+          <div class="rank-label"><span>ランク：<b id="rank-name" data-testid="rank-name"></b></span><span id="rank-text" data-testid="rank-text"></span></div>
           <div class="bar"><span id="rank-bar"></span></div>
           <small>平均70点以上の日を5日連続で続けるとランクアップ。途中で70点を下回ると0日にもどる。</small>
-          <small class="rank-trial" data-testid="rank-trial">※ 試作版は4日目までなので、ランクアップはまだありません（進み具合だけ表示）。</small>
       </div>
       <div class="actions"><button class="btn primary" id="next-day" data-testid="next-day">次の日へ</button></div>
       </div>
     </section>
 
     <!-- 常連さんの一覧 -->
-    <section id="screen-regulars" class="screen" data-testid="screen-regulars" hidden>
+    <!-- キャラ作り：はじめからの直後と、着せ替えの「見た目」から -->
+    <section id="screen-create" class="screen" data-testid="screen-create" hidden>
       <div class="col-a">
-        <div class="panel"><h2 class="ribbon">常連さん</h2><ul class="regular-list" id="regular-list" data-testid="regular-list"></ul></div>
+        <div class="panel create-preview">
+          <h2 class="ribbon" id="create-title">所長のキャラを作ろう</h2>
+          <div class="player-figure" id="create-figure" data-testid="create-figure" aria-hidden="true"></div>
+          <div class="create-icon-row"><span class="me-icon big" id="create-icon" data-testid="create-icon" aria-hidden="true"></span><small>アイコン</small></div>
+        </div>
       </div>
       <div class="col-b">
-        <p class="home-note">名前をタップすると、好みとこれまでの提案が見られます。</p>
-        <div class="actions"><button class="btn blue" id="regulars-back" data-testid="regulars-back">もどる</button></div>
+        <div class="panel create-options" id="create-options" data-testid="create-options"></div>
+        <label class="name-row">名前<input id="create-name" data-testid="create-name" maxlength="8" placeholder="所長" autocomplete="off"></label>
+        <div class="actions create-actions">
+          <button class="btn ghost small" id="create-random" data-testid="create-random">おまかせ</button>
+          <button class="btn primary small" id="create-ok" data-testid="create-ok">けってい</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 着せ替え：頭・服・手に持つもの -->
+    <section id="screen-dress" class="screen" data-testid="screen-dress" hidden>
+      <div class="col-a">
+        <div class="panel create-preview">
+          <h2 class="ribbon">着せ替え</h2>
+          <div class="player-figure" id="dress-figure" data-testid="dress-figure" aria-hidden="true"></div>
+        </div>
+      </div>
+      <div class="col-b">
+        <div class="panel">
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" data-part="head" data-testid="dress-tab-head">頭</button>
+            <button class="tab" role="tab" data-part="body" data-testid="dress-tab-body">服</button>
+            <button class="tab" role="tab" data-part="hand" data-testid="dress-tab-hand">手</button>
+          </div>
+          <ul class="wear-list" id="wear-list" data-testid="wear-list"></ul>
+          <p class="zukan-empty" id="wear-empty" hidden>まだ身につけられる品がありません。依頼者が大喜びすると、品をもらえることがあります。</p>
+        </div>
+        <div class="actions create-actions">
+          <button class="btn ghost small" id="dress-look" data-testid="dress-look">見た目</button>
+          <button class="btn blue small" id="dress-back" data-testid="dress-back">もどる</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 飾りつけ：事務所の棚3か所・壁2か所に、もらった品を飾る -->
+    <section id="screen-deco" class="screen" data-testid="screen-deco" hidden>
+      <div class="col-a">
+        <div class="panel">
+          <h2 class="ribbon">事務所を飾る</h2>
+          <div class="deco-scene" id="deco-scene" data-testid="deco-scene">
+            <div class="deco-bg" id="deco-bg" aria-hidden="true"></div>
+            <div class="deco-counter" id="deco-counter" aria-hidden="true"></div>
+          </div>
+          <div class="deco-spots" id="deco-spots" data-testid="deco-spots" role="group" aria-label="飾る場所"></div>
+        </div>
+      </div>
+      <div class="col-b">
+        <div class="panel">
+          <p class="deco-help" id="deco-help">飾る場所をタップして、品を選んでね。</p>
+          <ul class="wear-list" id="deco-list" data-testid="deco-list"></ul>
+          <p class="zukan-empty" id="deco-empty" hidden>まだ飾れる品がありません。依頼者が大喜びすると、品をもらえることがあります。</p>
+        </div>
+        <div class="actions"><button class="btn blue" id="deco-back" data-testid="deco-back">もどる</button></div>
+      </div>
+    </section>
+
+    <!-- 図鑑：依頼者／常連さん／品。まだのものは影だけ -->
+    <section id="screen-zukan" class="screen" data-testid="screen-zukan" hidden>
+      <div class="col-a">
+        <div class="panel zukan-panel">
+          <h2 class="ribbon">図鑑</h2>
+          <div class="zukan-me" id="zukan-me" data-testid="zukan-me"><span class="me-icon" id="zukan-icon" aria-hidden="true"></span><b id="zukan-name"></b></div>
+          <div class="tabs" role="tablist">
+            <button class="tab" role="tab" data-tab="clients" id="tab-clients" data-testid="tab-clients">依頼者</button>
+            <button class="tab" role="tab" data-tab="regulars" id="tab-regulars" data-testid="tab-regulars">常連さん</button>
+            <button class="tab" role="tab" data-tab="items" id="tab-items" data-testid="tab-items">品</button>
+          </div>
+          <p class="zukan-count" id="zukan-count" data-testid="zukan-count"></p>
+          <ul class="zukan-grid" id="zukan-clients" data-testid="zukan-clients" data-pane="clients"></ul>
+          <ul class="regular-list" id="regular-list" data-testid="regular-list" data-pane="regulars"></ul>
+          <p class="zukan-empty" id="regulars-empty" data-pane="regulars" hidden>3回来てくれた依頼者が、常連さんになります。</p>
+          <ul class="zukan-grid items" id="zukan-items" data-testid="zukan-items" data-pane="items"></ul>
+        </div>
+      </div>
+      <div class="col-b">
+        <p class="home-note" id="zukan-note"></p>
+        <div class="actions"><button class="btn blue" id="zukan-back" data-testid="zukan-back">もどる</button></div>
       </div>
     </section>
 
@@ -214,6 +321,26 @@
       </ul>
       <div class="actions"><button class="btn blue" id="score-help-close" data-testid="score-help-close">閉じる</button></div>
     </dialog>
+    <!-- メニュー（ホームだけで開ける） -->
+    <dialog id="menu" class="dialog menu" data-testid="menu">
+      <h2 class="panel-title">メニュー</h2>
+      <div class="menu-list">
+        <button class="btn blue" id="menu-zukan" data-testid="menu-zukan">図鑑</button>
+        <button class="btn blue" id="menu-dress" data-testid="menu-dress">着せ替え</button>
+        <button class="btn blue" id="menu-deco" data-testid="menu-deco">飾る</button>
+        <button class="btn ghost" id="menu-title" data-testid="menu-title">タイトルへ</button>
+        <button class="btn ghost" id="menu-close" data-testid="menu-close">閉じる</button>
+      </div>
+    </dialog>
+    <!-- はじめから：記録があるときだけ確かめる -->
+    <dialog id="confirm-new" class="dialog" data-testid="confirm-new">
+      <h2 class="panel-title">はじめから遊びますか？</h2>
+      <p>今の記録（日付・点数・常連さん・もらった品・キャラ）は消えます。</p>
+      <div class="actions confirm-actions">
+        <button class="btn small ghost" id="confirm-new-cancel" data-testid="confirm-new-cancel">やめる</button>
+        <button class="btn small primary" id="confirm-new-ok" data-testid="confirm-new-ok">はじめから</button>
+      </div>
+    </dialog>
   </div>
 
   <script src="svg/city.js"></script>
@@ -223,7 +350,15 @@
   <script src="svg/cards-a.js"></script>
   <script src="svg/cards-b.js"></script>
   <script src="svg/cards-c.js"></script>
+  <script src="svg/cards-d.js"></script>
+  <script src="svg/items.js"></script>
+  <script src="svg/player.js"></script>
   <script src="js/score.js"></script>
+  <script src="js/save.js"></script>
+  <script src="js/schedule.js"></script>
+  <script src="js/rewards.js"></script>
+  <script src="js/rank.js"></script>
+  <script src="data/items.js"></script>
   <script src="data/requests.js"></script>
   <script src="js/game.js"></script>
 </body>

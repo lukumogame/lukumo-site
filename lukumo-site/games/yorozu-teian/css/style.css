@@ -361,6 +361,16 @@ body[data-screen="screen-title"] .topbar { display: none; }
 .title-intro { margin: 0; font-size: 14.5px; line-height: 1.7; }
 .title-start { min-width: 200px; min-height: 52px; font-size: 18px; margin-top: 4px; }
 .title-note { color: var(--sub); }
+/* セーブ：つづきから／はじめから */
+.btn.ghost { background: #fff; color: var(--blue-d); border: 2px solid var(--blue); box-shadow: none; }
+.continue-info { color: var(--sub); margin-top: -6px; }
+.continue-info:empty { display: none; }
+.save-note { margin: 0; font-size: 13px; color: var(--ink); background: #fff3dc; border: 2px solid var(--orange); border-radius: 12px; padding: 6px 10px; }
+.confirm-actions { gap: 10px; flex-wrap: wrap; }
+.confirm-actions .btn { min-width: 120px; }
+/* 同じ依頼がまた来たとき（8日目以降） */
+.again-note { margin: 0; align-self: flex-start; font-size: 13px; font-weight: 700; color: var(--blue-d); background: #e8f1fb; border-radius: 999px; padding: 4px 12px; }
+.week-avg { border-top: 2px dashed var(--line); padding-top: 6px; }
 @keyframes title-in { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: none; } }
 @media (prefers-reduced-motion: reduce) { .title-card { animation: none; } }
 
@@ -418,8 +428,8 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
    画面の高さに合わせて、絵や余白を縮める。高さ600px以上のウィンドウで、どの画面も1画面に収める（tools/pc-fit.js で確認） */
 @media (min-width: 900px) and (orientation: landscape) {
   #screen-result .result-head { height: auto; flex: 1; min-height: 0; }
-  .result-face.has-art { width: clamp(110px, 25dvh, 220px); height: clamp(110px, 25dvh, 220px); }
-  .score-ring { width: clamp(100px, 18dvh, 160px); height: clamp(100px, 18dvh, 160px); padding-top: clamp(24px, 5dvh, 44px); }
+  .result-face.has-art { width: clamp(96px, 20dvh, 220px); height: clamp(96px, 20dvh, 220px); }
+  .score-ring { width: clamp(90px, 15dvh, 160px); height: clamp(90px, 15dvh, 160px); padding-top: clamp(20px, 4.4dvh, 44px); }
   .score-ring span { font-size: clamp(34px, 5.6dvh, 50px); }
 }
 @media (min-width: 900px) and (orientation: landscape) and (max-height: 860px) {
@@ -461,3 +471,140 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
   .regular-note { padding: 4px 12px; }
   .bubble.talk { min-height: 96px; }
 }
+
+/* ---- 第1段フェーズ3：品・図鑑・メニュー・保存の印 ---- */
+.topbar { position: relative; }
+.save-mark { position: absolute; right: 8px; top: 50%; width: 26px; height: 26px; margin-top: -13px; pointer-events: none; }
+.save-mark svg { width: 100%; height: 100%; display: block; }
+.save-mark.on { animation: save-mark 1.6s ease-out both; }
+@keyframes save-mark { 0% { opacity: 0; transform: translateY(3px); } 15%, 75% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .save-mark.on { animation: none; } }
+.reward-note { display: flex; align-items: center; gap: 10px; padding: 6px 12px; background: #fff7e8; border: 2px solid var(--orange); border-radius: 12px; font-weight: 700; }
+.reward-icon { flex: none; width: 44px; height: 44px; }
+.reward-icon:empty { display: none; }
+.reward-icon svg { width: 100%; height: 100%; display: block; }
+.menu-btn { position: relative; }
+.new-dot { position: absolute; top: 4px; right: 10px; width: 12px; height: 12px; border-radius: 50%; background: var(--red); border: 2px solid #fff; }
+.menu-list { display: grid; gap: 10px; justify-items: center; }
+.menu-list .btn { width: min(260px, 100%); }
+.tabs { display: flex; gap: 6px; margin: 4px 0 6px; }
+.tab { flex: 1; min-height: 44px; border: 2px solid var(--blue); background: #fff; color: var(--blue-d); border-radius: 999px; font-weight: 800; font-size: 15px; }
+.tab.on { background: var(--blue); color: #fff; }
+.zukan-count { margin: 0 0 6px; color: var(--sub); font-size: 13px; }
+.zukan-panel { display: flex; flex-direction: column; min-height: 0; }
+.zukan-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 8px; overflow-y: auto; }
+.zk { display: flex; flex-direction: column; align-items: center; gap: 2px; padding: 6px 4px; background: #fff; border: 2px solid var(--line); border-radius: 12px; text-align: center; }
+.zk b { font-size: 13px; line-height: 1.3; white-space: nowrap; max-width: 100%; overflow: hidden; } .zk small { font-size: 11px; color: var(--sub); min-height: 1em; }
+.zk-face.client-figure { width: 64px; height: 64px; }
+.zk-head { grid-column: 1 / -1; font-weight: 800; color: var(--blue-d); padding-top: 4px; }
+.zk-icons { display: flex; gap: 4px; }
+.zk-icon { width: 40px; height: 40px; display: block; }
+.zk-icon svg { width: 100%; height: 100%; display: block; }
+.zk-icon.missing { border: 2px dashed #b8c2cb; border-radius: 50%; }
+/* 影：同じ絵を薄い灰色の1色でぬる */
+.shadow svg [fill]:not([fill="none"]) { fill: #d3dae0 !important; }
+.shadow svg [stroke]:not([stroke="none"]) { stroke: #d3dae0 !important; }
+.zk.shadow { background: #f4f6f8; }
+.zukan-empty { color: var(--sub); }
+.result-notes { display: grid; gap: 8px; }
+.result-notes:not(:has(> :not([hidden]))) { display: none; }
+@media (min-width: 900px) and (orientation: landscape) {
+  #screen-result .col-a { display: flex; flex-direction: column; gap: 10px; }
+  #screen-result .result-head { flex: 1; min-height: 0; }
+  .result-notes { margin: 0 12px 12px; }
+  /* 図鑑：一覧は枠の中でスクロールし、画面は縦にはみ出さない */
+  #screen-zukan .col-a { min-height: 0; }
+  .zukan-panel { max-height: calc(100vh - 96px); }
+  .zukan-grid, #screen-zukan .regular-list { flex: 1; min-height: 0; overflow-y: auto; }
+}
+
+/* ---- 第1段フェーズ4：自分のキャラ・アイコン・着せ替え・街を歩く ---- */
+.me-icon { flex: none; width: 40px; height: 40px; border-radius: 50%; display: block; overflow: hidden; border: 2px solid #fff; box-shadow: 0 0 0 2px var(--line); background: #fff; }
+.me-icon:empty { display: none; }
+.me-icon svg { width: 100%; height: 100%; display: block; }
+.me-icon.big { width: 56px; height: 56px; }
+.topbar { align-items: center; }
+.continue-me { display: flex; align-items: center; gap: 10px; font-size: 17px; }
+.player-figure { width: min(220px, 70%); aspect-ratio: 200 / 260; margin: 0 auto; }
+.player-figure svg { width: 100%; height: 100%; display: block; }
+.create-preview { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.create-icon-row { display: flex; align-items: center; gap: 8px; color: var(--sub); }
+.create-options { display: grid; gap: 8px; }
+.opt-row { display: grid; gap: 4px; }
+.opt-label { font-size: 13px; font-weight: 700; color: var(--sub); }
+.opt-choices { display: flex; flex-wrap: wrap; gap: 6px; }
+.opt { min-width: 44px; min-height: 44px; padding: 4px 12px; border-radius: 999px; border: 2px solid var(--line); background: #fff; color: var(--ink); font-weight: 700; font-size: 14px; }
+.opt.on { border-color: var(--blue); background: #e8f1fb; color: var(--blue-d); box-shadow: 0 0 0 2px var(--blue); }
+.opt.swatch { width: 44px; padding: 0; background: var(--sw); }
+.opt.swatch.on { box-shadow: 0 0 0 3px #fff, 0 0 0 5px var(--blue); }
+.name-row { display: flex; align-items: center; gap: 10px; font-weight: 700; }
+.name-row input { flex: 1; min-height: 44px; font: inherit; font-size: 16px; padding: 6px 12px; border: 2px solid var(--line); border-radius: 12px; }
+.create-actions { gap: 10px; flex-wrap: wrap; }
+.wear-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+.wear-item { width: 100%; min-height: 56px; display: flex; align-items: center; gap: 8px; padding: 6px 10px; border: 2px solid var(--line); border-radius: 12px; background: #fff; text-align: left; font-weight: 700; font-size: 13px; color: var(--ink); }
+.wear-item.on { border-color: var(--blue); box-shadow: 0 0 0 2px var(--blue); background: #e8f1fb; }
+.zukan-me { display: flex; align-items: center; gap: 8px; margin: 2px 0 6px; }
+/* 街を歩く自分のキャラ：足元を道の点に合わせる */
+.walker { position: absolute; width: 9%; aspect-ratio: 200 / 260; transform: translate(-50%, -100%); pointer-events: none; z-index: 2; }
+.walker svg { width: 100%; height: 100%; display: block; }
+.walker.walking svg { animation: walk-bob .25s ease-in-out infinite alternate; }
+@keyframes walk-bob { from { transform: translateY(0); } to { transform: translateY(-6%); } }
+@media (prefers-reduced-motion: reduce) { .walker.walking svg { animation: none; } }
+@media (min-width: 900px) and (orientation: landscape) {
+  .walker { width: 6%; }
+  #screen-create .player-figure, #screen-dress .player-figure { width: auto; height: min(46vh, 340px); }
+}
+@media (min-width: 900px) and (orientation: landscape) {
+  /* キャラ作り：見出しを選ぶボタンの左に並べて、高さを抑える（ボタンは44px のまま） */
+  .opt-row { grid-template-columns: 7.5em 1fr; align-items: center; }
+  .create-options { gap: 6px; }
+}
+/* フェーズ4の直し：上の帯の文字を折り返さない／名前の見出しを縦に折らない／歩くキャラは会社の名札の下を通る */
+.topbar .pill { white-space: nowrap; min-width: 0; }
+@media (max-width: 899px), (orientation: portrait) { .topbar .me-icon { width: 34px; height: 34px; } }
+.name-row { white-space: nowrap; }
+.walker { z-index: 1; }
+.city .company { z-index: 2; }
+
+/* ---- 第1段フェーズ5：飾りつけ・ランクアップ ---- */
+.deco-scene { position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius); overflow: hidden; border: 2px solid var(--line); background: #efe3d2; }
+.deco-bg { position: absolute; inset: 0; }
+.deco-bg svg { width: 100%; height: 100%; display: block; }
+.deco-counter { position: absolute; left: 0; right: 0; bottom: 0; height: 14%; }
+.deco-counter svg { width: 100%; height: 100%; display: block; }
+.deco-mark { position: absolute; border: 2px dashed var(--orange); border-radius: 4px; pointer-events: none; }
+.deco-mark.on { border: 3px solid var(--blue); box-shadow: 0 0 0 2px #fff; }
+.deco-spots { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 8px; }
+.deco-spot { min-height: 56px; min-width: 44px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; padding: 4px; border-radius: 12px; border: 2px dashed var(--orange); background: #fff; color: var(--ink); font-weight: 700; }
+.deco-spot small { font-size: 12px; }
+.deco-spot .zk-icon { width: 28px; height: 28px; }
+.deco-spot.filled { border-style: solid; }
+.deco-spot.on { border: 2px solid var(--blue); box-shadow: 0 0 0 2px var(--blue); background: #e8f1fb; }
+.deco-help { margin: 0 0 8px; font-weight: 700; }
+.rank-up { display: grid; justify-items: center; gap: 4px; padding: 8px; margin-bottom: 8px; background: #fff7e8; border: 2px solid var(--orange); border-radius: 12px; text-align: center; }
+.rank-up b { font-size: 20px; color: var(--orange-d); }
+.rank-up-logo { width: min(240px, 80%); }
+.rank-up-logo svg { width: 100%; display: block; }
+.rank-label b { color: var(--blue-d); }
+/* 集計のランク：名前と「あと○日」を2行に分けて、言葉の途中で折り返さない */
+.rank-label { flex-wrap: wrap; gap: 2px 12px; }
+.rank-label > span:first-child { white-space: nowrap; }
+#rank-text { white-space: normal; min-width: 0; word-break: keep-all; }
+@media (min-width: 900px) and (orientation: landscape) {
+  /* 飾りつけ：絵の大きさを画面の高さに合わせ、下の5つのボタンまで1画面に収める */
+  .deco-scene { width: min(100%, calc((100vh - 250px) * 4 / 3)); margin: 0 auto; }
+  .deco-spots { width: min(100%, calc((100vh - 250px) * 4 / 3)); margin-left: auto; margin-right: auto; }
+}
+/* 品のボタン：名前は1行（収まらないときだけ少し小さく）、色違いは名前の下の小さな札 */
+.wear-item .wi-text { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; flex: 1; }
+.wi-name { display: block; max-width: 100%; white-space: nowrap; overflow: hidden; font-size: 13px; }
+.wi-tag { font-size: 11px; font-weight: 700; color: var(--blue-d); background: #e8f1fb; border-radius: 999px; padding: 0 8px; }
+
+/* ---- 第1段フェーズ6：当てた好み・外れた好み ---- */
+.honne-row { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px 10px; padding: 2px 4px; grid-column: 1 / -1; }
+.honne-label { font-size: 13px; font-weight: 700; color: var(--sub); }
+.honne-tags { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.honne-tags li { display: flex; align-items: center; gap: 4px; padding: 3px 10px; border-radius: 999px; font-weight: 800; font-size: 14px; border: 2px solid; }
+.honne-tags li small { font-size: 11px; font-weight: 700; }
+.honne-tags .h-hit { color: #2f7d4b; border-color: var(--green); background: #eaf7ee; }
+.honne-tags .h-miss { color: #6b7782; border-color: #c3ccd4; background: #f4f6f8; border-style: dashed; }

@@ -101,6 +101,11 @@
       return p("M82,140 Q100,160 118,140", "#fff") + p("M88,140 Q100,150 112,140", SKIN) +
         p("M84,141 L92,156 L100,150 L108,156 L116,141", "#fff") + p("M60,186 L140,186", "none", ' stroke="' + k.dark + '" stroke-width="5"');
     },
+    vest: function (k) {
+      return p("M80,140 L100,182 L120,140Z", "#fff") + p("M90,141 L100,152 L110,141", SKIN) +
+        p("M86,138 L99,152 L86,158Z", "#fff") + p("M114,138 L101,152 L114,158Z", "#fff") +
+        c(100, 188, 2.6, k.dark, NS) + c(100, 198, 2.6, k.dark, NS);
+    },
     cardigan: function (k) {
       return p("M86,141 L100,170 L114,141Z", "#fff") + p("M90,141 L100,152 L110,141", SKIN) +
         p("M84,140 L100,176 L116,140") + p("M100,176 L100,200") + c(94, 186, 2.6, "#fff") + c(106, 186, 2.6, "#fff");
@@ -130,6 +135,9 @@
       front: "M46,106 C40,50 70,38 100,38 C130,38 160,50 154,106 C152,90 150,78 146,70 Q100,78 54,70 C50,78 48,90 46,106Z",
       extra: "M128,58 L144,52"
     },
+    akira: {
+      front: "M48,96 C44,56 72,42 100,42 C130,42 156,56 152,96 C150,80 146,70 140,64 C128,58 114,60 104,52 C96,60 78,58 66,64 C57,70 51,82 48,96Z"
+    },
     fumie: {
       back: "M84,40 C82,20 118,20 116,40Z",
       front: "M47,98 C40,54 70,42 100,42 C130,42 160,54 153,98 C150,80 142,70 130,66 Q116,60 100,68 Q84,60 70,66 C58,70 50,80 47,98Z",
@@ -144,7 +152,8 @@
     miyuki: { hair: "#3a2e2e", shirt: "#3d4f7c", collar: "jacket", female: 1 },
     fumie: { hair: "#e9ebf0", shirt: "#a58bc9", collar: "cardigan", female: 1, bun: 1 },
     shota: { hair: "#2f3140", shirt: "#e05a4f", collar: "tee" },
-    daiki: { hair: "#4a3528", shirt: "#e3b23c", dark: "#c4952a", collar: "sweater", beard: 1 }
+    daiki: { hair: "#4a3528", shirt: "#e3b23c", dark: "#c4952a", collar: "sweater", beard: 1 },
+    akira: { hair: "#a3a8b2", shirt: "#8f7350", dark: "#6e573b", collar: "vest", mustache: 1 }
   };
 
   function human(id, mood) {
@@ -159,6 +168,7 @@
     s += p(h.front, k.hair);
     if (h.extra) s += p(h.extra, k.hair, id === "fumie" ? ' stroke="#b9bec8" stroke-width="3"' : id === "miyuki" ? ' stroke="#ffcc33" stroke-width="5"' : "");
     s += g(100, 92, 1, face(mood, { ey: 6, my: 20 }));
+    if (k.mustache) s += p("M88,107 Q94,101 100,104.5 Q106,101 112,107 Q106,109.5 100,108 Q94,109.5 88,107Z", k.hair);
     if (k.glasses) {
       s += '<g fill="none" stroke-width="3">' +
         '<rect x="70" y="88" width="24" height="18" rx="6"/><rect x="106" y="88" width="24" height="18" rx="6"/>' +
@@ -211,16 +221,61 @@
     return s;
   }
 
+  // ---- ミツバチ（頭に作業用の三角きん）----
+  function bee(mood) {
+    var s = "", Y = "#f7c23a", WING = "#e3f3fb";
+    s += e(54, 140, 24, 34, WING, ' transform="rotate(-28 54 140)"') + e(146, 140, 24, 34, WING, ' transform="rotate(28 146 140)"');
+    s += e(100, 176, 44, 40, Y);
+    s += p("M59,158 Q100,166 141,158 L144,168 Q100,176 56,168Z", INK, NS) + p("M58,184 Q100,192 142,184 L137,194 Q100,202 63,194Z", INK, NS);
+    s += p("M86,46 Q80,28 70,20") + p("M114,46 Q120,28 130,20") + c(68, 18, 6.5, INK) + c(132, 18, 6.5, INK);
+    s += c(100, 90, 50, Y);
+    s += e(100, 100, 38, 31, SKIN, NS);
+    s += p("M54,72 C62,38 138,38 146,72 C130,62 70,62 54,72Z", "#4a90d9") + c(140, 50, 5, "#4a90d9");
+    s += g(100, 94, 1, face(mood, { ey: 4, my: 19 }));
+    return s;
+  }
+
+  // ---- ウサギ（おばあちゃんは肩かけと丸めがね）----
+  function rabbit(x, y, sc, mood, fur, granny) {
+    var b = "", IN = "#f6b8c4";
+    b += p("M-56,140 C-58,82 -38,48 0,48 C38,48 58,82 56,140Z", fur);
+    b += e(0, 100, 28, 36, "#fff", NS);
+    if (granny) b += p("M-48,66 Q0,96 48,66 L54,90 Q0,122 -54,90Z", "#a58bc9") + c(0, 96, 5, "#ffcc33");
+    b += e(-20, -64, 12, 32, fur) + e(20, -64, 12, 32, fur) + e(-20, -60, 5.5, 22, IN, NS) + e(20, -60, 5.5, 22, IN, NS);
+    b += c(0, 0, 48, fur);
+    b += face(mood, { ey: 0, my: 18, ex: 19, cx: 31 });
+    b += e(0, 11, 4.5, 3.2, "#e88a9a", NS);
+    if (granny) b += '<g fill="none" stroke-width="3">' + c(-19, 0, 11, "none") + c(19, 0, 11, "none") + p("M-8,0 L8,0") + "</g>";
+    return g(x, y, sc, b);
+  }
+
+  // ---- 宇宙からの研究者（白衣・丸めがね・アンテナ1本）----
+  function scholar(mood) {
+    var s = "", SKN = "#b9a3e3";
+    s += p("M50,200 C50,154 70,138 100,138 C130,138 150,154 150,200Z", "#fff");
+    s += p("M86,140 L100,170 L114,140Z", "#8f78c8");
+    s += p("M86,140 L100,178 L100,200") + p("M114,140 L100,178") + p("M118,170 L134,170 L134,190 L118,190Z", "#fff") + p("M124,170 L124,160", "none", ' stroke="#4a90d9" stroke-width="4"');
+    s += p("M100,42 L100,20") + c(100, 15, 7, "#ffcc33");
+    s += p("M52,90 L26,72 L34,108Z", SKN) + p("M148,90 L174,72 L166,108Z", SKN);
+    s += c(100, 92, 52, SKN);
+    s += g(100, 92, 1, face(mood, { ey: 6, my: 24, cy: 22 }));
+    s += '<g fill="none" stroke-width="3">' + c(82, 98, 12, "none") + c(118, 98, 12, "none") + p("M94,98 L106,98") + "</g>";
+    return s;
+  }
+
   function draw(id, mood) {
     switch (id) {
       case "hoshina": return ladybug(58, mood, 0) + ladybug(145, mood, 1);
       case "kumada": return bear(76, 106, 0.88, mood) + bear(154, 140, 0.6, mood);
       case "pururu": return alien(mood);
+      case "mitsue": return bee(mood);
+      case "fuwari": return rabbit(80, 116, 0.86, mood, "#f4f1ec", 1) + rabbit(158, 150, 0.55, mood, "#e3c9a8", 0);
+      case "miru": return scholar(mood);
       default: return PEOPLE[id] ? human(id, mood) : human("sakura", mood);
     }
   }
 
-  var CHARACTER_IDS = ["sakura", "yuto", "kenta", "hoshina", "miyuki", "fumie", "kumada", "shota", "pururu", "daiki"];
+  var CHARACTER_IDS = ["sakura", "yuto", "kenta", "hoshina", "miyuki", "fumie", "kumada", "shota", "pururu", "daiki", "akira", "mitsue", "fuwari", "miru"];
 
   function character(clientId, mood) {
     if (mood !== "great" && mood !== "poor") mood = "normal";

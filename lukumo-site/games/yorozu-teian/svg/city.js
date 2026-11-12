@@ -405,5 +405,11 @@
     }
   };
 
-  root.YorozuArt = Object.assign(root.YorozuArt || {}, { city: city, CITY_COMPANIES: CITY_COMPANIES });
+  // 自分のキャラが歩く道：地面の座標（u,v）と絵の座標（x,y）の行き来と、道路の位置（js/game.js の街を歩く処理で使う）
+  var CITY_ROADS = {
+    UR: UR, VR: VR,
+    toXY: function (u, v) { return { x: 300 + u - v, y: Y0 - 20 + (u + v) / 2 }; },
+    ground: CU
+  };
+  root.YorozuArt = Object.assign(root.YorozuArt || {}, { city: city, CITY_COMPANIES: CITY_COMPANIES, CITY_ROADS: CITY_ROADS });
 })(typeof globalThis !== "undefined" ? globalThis : this);
