@@ -72,7 +72,8 @@
     playedOnce: false,  // 前の記録で1日目の案内を終えたか（はじめからの2周目は案内をとばせる）
     // 第1段のフェーズ3〜5で使う。今は保存と読み込みで同じ中身を引きつぐだけ
     met: [], schedule: { seed: 0, days: {} }, perfect: [], rank: { level: 1, streak: 0 },
-    player: null, items: {}, deco: null
+    player: null, items: {}, deco: null,
+    spot: null          // 自分のキャラが今立っている会社（null は道の上の最初の場所）。同じ会社へは歩かない
   };
   const day = () => state.day;
 
@@ -85,7 +86,7 @@
         today: state.today.map(x => ({ reqId: x.req.id, total: x.total, stars: x.stars })),
         dayAverages: state.dayAverages.map(a => a ?? null), history: state.history, regulars: state.regulars,
         met: state.met, schedule: state.schedule, perfect: state.perfect, rank: state.rank,
-        tutorial: t ? { done: [...t.done], firstDone: !!t.firstDone } : null, playedOnce: state.playedOnce
+        tutorial: t ? { done: [...t.done], firstDone: !!t.firstDone } : null, playedOnce: state.playedOnce, spot: state.spot
       },
       player: state.player, items: state.items, deco: state.deco
     };
@@ -118,7 +119,7 @@
       dayAverages: g.dayAverages.slice(), history: g.history, regulars: g.regulars,
       met: g.met, schedule: g.schedule, perfect: g.perfect, rank: g.rank,
       tutorial: g.tutorial && !NO_TUTORIAL ? { done: new Set(g.tutorial.done), current: null, firstDone: g.tutorial.firstDone } : null,
-      playedOnce: g.playedOnce, player: fixPlayer(d.player), items: d.items, deco: d.deco
+      playedOnce: g.playedOnce, spot: g.spot, player: fixPlayer(d.player), items: d.items, deco: d.deco
     });
   }
 
@@ -154,7 +155,7 @@
   const COACH = {
     home: { text: "ここは人だけでなく様々な生き物が相談しに来る不思議な街。屋根に飛行機の看板がある「旅行・デート」の会社をタップして、事務所に入ろう。", allow: ["#company-travel"], spot: ["#city"] },
     office: { text: "依頼者の話をよく聞こう。表向きの希望とは別に、言葉のはしに「本音」がかくれているよ。「つぎへ」で話を進めよう。", allow: ["#talk-next"], quiet: ["#talk-bubble"] },
-    score: { text: "点数は100点満点。本音に合うカード1枚ごとに12.5点（最大50点）、予算を守れば30点、依頼者の苦手なものがなければ20点。", allow: ["#coach-ok"], spot: ["#budget"] },
+    score: { text: "点数は100点満点。本音に合うカード1枚ごとに12.5点（最大50点）、予算を守れば30点、苦手なものは20点から、苦手なものが入ったカード1枚ごとに5点減る。", allow: ["#coach-ok"], spot: ["#budget"] },
     slot: { text: "提案書には4つの欄がある。青い枠の欄に入れるカードを選ぶよ。欄をタップすると、その欄を選び直せる。", allow: ["#coach-ok"], spot: ["#slots"] },
     card: { text: "下の候補から1枚タップ。上の「残り」で予算を確かめよう。日数に合うかも大事。", allow: ["#cards"] },
     fill: { text: "残りの欄も同じように選ぼう。欄をタップすると、その欄を選び直せるよ。", allow: ["#slots", "#cards"] },
@@ -335,7 +336,7 @@
     $("mini-lines").innerHTML = state.lines.map(l => `<li>${l}</li>`).join("");
     face($("mini-face"), state.client, "normal");
     $("budget-amount").textContent = money(state.budget, r.budget.unit);
-    $("budget-bonus").textContent = state.bonus ? `（常連の増額＋${money(state.bonus, r.budget.unit)}）` : "";
+    $("budget-bonus").textContent = state.bonus ? `（前回のお礼で増額＋${money(state.bonus, r.budget.unit)}）` : "";
     $("budget-duration").textContent = r.budget.duration;
     show("screen-proposal");
     renderProposal();
@@ -460,6 +461,8 @@
     else goHome();
   }
 
+  // 品の色の名前（data/items.json の colorNames）。名前がないときは「元の色／色違い」
+  const colorName = (item, c) => (item.colorNames && item.colorNames[c]) || (c ? "色違い" : "元の色");
   // 結果画面の「○○をもらった！」の札。押しても何も開かない（提案書づくりの流れを止めない）
   function itemIcon(item, color) {
     return ART.item ? ART.item(item.art, item.colors[color]) : `<svg viewBox="0 0 64 64"><circle cx="32" cy="32" r="22" fill="${item.colors[color]}"/></svg>`;
@@ -476,7 +479,7 @@
       return;
     }
     $("reward-icon").innerHTML = itemIcon(got.item, got.color);
-    $("reward-text").textContent = got.kind === "color" ? `「${got.item.name}」の色違いをもらった！` : `「${got.item.name}」をもらった！`;
+    $("reward-text").textContent = got.kind === "color" ? `「${got.item.name}」の色違い（${colorName(got.item, got.color)}）をもらった！` : `「${got.item.name}」（${colorName(got.item, got.color)}）をもらった！`;
   }
 
   // ---- 1日の集計 ----
@@ -650,7 +653,7 @@
     $("wear-empty").hidden = mine.length > 0;
     const cells = mine.flatMap(i => (state.items[i.id] || []).map(c => {
       const v = i.id + ":" + c;
-      return `<li><button class="wear-item${cur === v ? " on" : ""}" data-wear="${v}" data-testid="wear-${i.id}-${c}" aria-pressed="${cur === v}"><span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b>${c ? `<small class="wi-tag">色違い</small>` : ""}</span></button></li>`;
+      return `<li><button class="wear-item${cur === v ? " on" : ""}" data-wear="${v}" data-testid="wear-${i.id}-${c}" aria-pressed="${cur === v}"><span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b><small class="wi-tag">${colorName(i, c)}</small></span></button></li>`;
     }));
     $("wear-list").innerHTML = (mine.length ? [`<li><button class="wear-item${cur ? "" : " on"}" data-wear="" data-testid="wear-none" aria-pressed="${!cur}"><span class="zk-icon missing"></span><span>はずす</span></button></li>`] : []).concat(cells).join("");
     show("screen-dress");
@@ -706,7 +709,7 @@
     $("deco-empty").textContent = mine.length ? "" : `まだ${place === "shelf" ? "棚" : "壁"}に飾れる品がありません。依頼者が大喜びすると、品をもらえることがあります。`;
     const cells = mine.flatMap(i => (state.items[i.id] || []).map(c => {
       const v = i.id + ":" + c;
-      return `<li><button class="wear-item${cur === v ? " on" : ""}" data-deco="${v}" data-testid="deco-${i.id}-${c}" aria-pressed="${cur === v}"><span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b>${c ? `<small class="wi-tag">色違い</small>` : ""}</span></button></li>`;
+      return `<li><button class="wear-item${cur === v ? " on" : ""}" data-deco="${v}" data-testid="deco-${i.id}-${c}" aria-pressed="${cur === v}"><span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b><small class="wi-tag">${colorName(i, c)}</small></span></button></li>`;
     }));
     $("deco-list").innerHTML = (mine.length ? [`<li><button class="wear-item${cur ? "" : " on"}" data-deco="" data-testid="deco-none" aria-pressed="${!cur}"><span class="zk-icon missing"></span><span>はずす</span></button></li>`] : []).concat(cells).join("");
     show("screen-deco");
@@ -722,7 +725,7 @@
     openDeco();
   }
 
-  // ---- 街を歩く：会社をタップすると、自分のキャラが道に沿って入口まで歩く（約1秒） ----
+  // ---- 街を歩く：別の会社をタップしたときだけ、自分のキャラが道に沿って入口まで歩く（約1秒）。同じ会社なら歩かずすぐ入る ----
   let cityView = CITY_VIEW.phone, walking = null;
   const REDUCE = window.matchMedia("(prefers-reduced-motion: reduce)");
   // 自分のキャラが立っている場所（会社の名札にかからない道の上）。歩くときは近くの交差点（425,340）を通る
@@ -740,12 +743,20 @@
     if (!state.player || !ART.CITY_ROADS) { w.hidden = true; return; }
     w.hidden = false;
     w.innerHTML = playerSvg(state.player);
-    Object.assign(w.style, cityPct(ART.CITY_ROADS.toXY(HOME_SPOT.u, HOME_SPOT.v)));
+    // 前に入った会社があれば、その入口に立ったまま（ホームに戻るたびに最初の場所へ戻さない）
+    //   歩いたときの最後の位置（fill: forwards）が残っていると置いた場所より優先されるので、先に消す
+    if (w.getAnimations) w.getAnimations().forEach(a => a.cancel());
+    //   立つのは会社の前の道の上（建物の上だと会社の印にかかるため）
+    const pts = state.spot && walkPoints(state.spot);
+    Object.assign(w.style, cityPct(pts ? pts[3] : ART.CITY_ROADS.toXY(HOME_SPOT.u, HOME_SPOT.v)));
     w.classList.remove("walking");
   }
   function walkTo(key, done) {
     const pts = walkPoints(key), w = $("walker");
-    if (!pts || REDUCE.matches || w.hidden || !w.animate) { done(); return; }
+    // もうその会社の前に立っているときは歩かない（別の場所へ行くときだけ歩く）
+    const here = state.spot === key;
+    state.spot = key;
+    if (here || !pts || REDUCE.matches || w.hidden || !w.animate) { done(); return; }
     let finished = false;
     const finish = () => {
       if (finished) return; finished = true;
@@ -825,7 +836,7 @@
         const has = state.items[i.id] || [];
         const any = has.length > 0;
         const dots = i.colors.map((c, k) => has.includes(k)
-          ? `<span class="zk-icon" data-color="${k}" title="${k ? "色違い" : "元の色"}">${itemIcon(i, k)}</span>`
+          ? `<span class="zk-icon" data-color="${k}" title="${colorName(i, k)}">${itemIcon(i, k)}</span>`
           : any ? `<span class="zk-icon missing" data-color="${k}" aria-label="まだの色"></span>`
           : `<span class="zk-icon shadow" data-color="${k}" aria-hidden="true">${itemIcon(i, 0)}</span>`).join("");
         return `<li class="zk item${any ? "" : " unknown"}" data-item="${i.id}" data-owned="${has.join(",")}"><span class="zk-icons">${dots}</span><b>${any ? i.name : "？？？"}</b><small>${any ? (i.use === "wear" ? { head: "頭", body: "服", hand: "手に持つ" }[i.part] : { shelf: "棚に飾る", wall: "壁に飾る" }[i.place]) : ""}</small></li>`;
@@ -874,7 +885,7 @@
       day: startDay, timeIdx: 0, today: [], dayAverages: [], history: {}, regulars: [],
       tutorial: startDay === 1 && !NO_TUTORIAL ? { done: new Set(), current: null } : null,
       met: [], schedule: { seed: newSeed(), days: {} }, perfect: [], rank: { level: 1, streak: 0 },
-      player: b ? b.player : null, items: {}, deco: b ? b.deco : null
+      player: b ? b.player : null, items: {}, deco: b ? b.deco : null, spot: null
     });
     if (withTitle === "create") return; // キャラ作りの画面は呼んだ側で開く
     if (withTitle) openTitle(); else goHome();

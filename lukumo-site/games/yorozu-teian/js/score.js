@@ -3,7 +3,7 @@
   const SLOTS = ["destination", "activity", "food", "surprise"];
   const SLOT_NAMES = { destination: "行き先", activity: "過ごし方", food: "食事", surprise: "サプライズ" };
 
-  // cards: 4欄で選んだカード4枚 / req: 依頼データ / budget: 予算（常連の増額を含めたい時は渡す）
+  // cards: 4欄で選んだカード4枚 / req: 依頼データ / budget: 予算（前回のお礼の増額を含めたい時は渡す）
   function scoreProposal(cards, req, budget) {
     const limit = budget ?? req.budget.amount;
     const honneHits = cards.filter(c => c.tags.some(t => req.honneTags.includes(t))).length;

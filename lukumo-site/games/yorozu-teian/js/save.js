@@ -14,7 +14,9 @@
       game: {
         day: 1, timeIdx: 0, today: [], dayAverages: [], history: {}, regulars: [], met: [],
         schedule: { seed: 0, days: {} }, perfect: [], rank: { level: 1, streak: 0 },
-        tutorial: { done: [], firstDone: false }, playedOnce: false
+        tutorial: { done: [], firstDone: false }, playedOnce: false,
+        // spot：自分のキャラが今立っている場所（会社のキー）。null は道の上の最初の場所
+        spot: null
       },
       // hairColor：髪の色（人と宇宙人）。null は「前の決まり（肌の色に合わせた色）」。読み込むときに js/game.js が番号に直す
       player: { name: "所長", body: "human", color: 0, hair: 0, hairColor: null, eyes: 0, mouth: 0, iconBg: 0, wear: { head: null, body: null, hand: null } },
@@ -44,6 +46,7 @@
     if (!isObj(g.schedule) || !isObj(g.schedule.days)) throw new Error("予定が読めません");
     if (!isObj(g.rank) || !isInt(g.rank.level, 1) || !isInt(g.rank.streak)) throw new Error("ランクが読めません");
     if (g.tutorial !== null && !(isObj(g.tutorial) && Array.isArray(g.tutorial.done))) throw new Error("案内の記録が読めません");
+    if (typeof g.spot !== "string") g.spot = null;
     // 時間帯は、今日すでに終えた件数と同じにそろえる（提出のあと閉じる前に保存された時のため）
     g.timeIdx = g.today.length;
     const p = Object.assign(b.player, isObj(d.player) ? d.player : {});

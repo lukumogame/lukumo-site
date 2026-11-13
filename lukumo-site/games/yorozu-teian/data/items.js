@@ -29,6 +29,10 @@ window.YOROZU_ITEMS = {
     "#e8c36a",
     "#d98a6a"
    ],
+   "colorNames": [
+    "きいろ",
+    "れんが"
+   ],
    "art": "strawhat"
   },
   {
@@ -41,6 +45,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#4a8fd8",
     "#5cb87a"
+   ],
+   "colorNames": [
+    "あお",
+    "みどり"
    ],
    "art": "globe"
   },
@@ -55,6 +63,10 @@ window.YOROZU_ITEMS = {
     "#e9d8a6",
     "#bcd4e6"
    ],
+   "colorNames": [
+    "クリーム",
+    "みずいろ"
+   ],
    "art": "oldmap"
   },
   {
@@ -67,6 +79,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#6cbf5a",
     "#e0a03a"
+   ],
+   "colorNames": [
+    "みどり",
+    "オレンジ"
    ],
    "art": "leafumbrella"
   },
@@ -81,6 +97,10 @@ window.YOROZU_ITEMS = {
     "#f2c94c",
     "#e07aa8"
    ],
+   "colorNames": [
+    "きいろ",
+    "ピンク"
+   ],
    "art": "honeyjar"
   },
   {
@@ -93,6 +113,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#7cc5a0",
     "#b79ad8"
+   ],
+   "colorNames": [
+    "ミント",
+    "むらさき"
    ],
    "art": "dewwreath"
   },
@@ -107,6 +131,10 @@ window.YOROZU_ITEMS = {
     "#b9784a",
     "#7a9a4a"
    ],
+   "colorNames": [
+    "ちゃいろ",
+    "オリーブ"
+   ],
    "art": "poncho"
   },
   {
@@ -119,6 +147,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#a0683c",
     "#c9a24a"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "こがね"
    ],
    "art": "pinecone"
   },
@@ -133,6 +165,10 @@ window.YOROZU_ITEMS = {
     "#e2574c",
     "#f0a830"
    ],
+   "colorNames": [
+    "あか",
+    "オレンジ"
+   ],
    "art": "leafframe"
   },
   {
@@ -145,6 +181,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#8fd0c8",
     "#f2c94c"
+   ],
+   "colorNames": [
+    "ミント",
+    "きいろ"
    ],
    "art": "starwand"
   },
@@ -159,6 +199,10 @@ window.YOROZU_ITEMS = {
     "#b79ad8",
     "#6cc0e0"
    ],
+   "colorNames": [
+    "むらさき",
+    "みずいろ"
+   ],
    "art": "planet"
   },
   {
@@ -171,6 +215,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#3d4f8a",
     "#6a3d7a"
+   ],
+   "colorNames": [
+    "こん",
+    "むらさき"
    ],
    "art": "constellation"
   },
@@ -185,6 +233,10 @@ window.YOROZU_ITEMS = {
     "#f2c94c",
     "#c9d6e3"
    ],
+   "colorNames": [
+    "きいろ",
+    "ぎんいろ"
+   ],
    "art": "moonpin"
   },
   {
@@ -197,6 +249,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#3d4f8a",
     "#e8a0b0"
+   ],
+   "colorNames": [
+    "こん",
+    "ピンク"
    ],
    "art": "starcardigan"
   },
@@ -211,6 +267,10 @@ window.YOROZU_ITEMS = {
     "#4a8fd8",
     "#5cb87a"
    ],
+   "colorNames": [
+    "あお",
+    "みどり"
+   ],
    "art": "starwheel"
   },
   {
@@ -223,6 +283,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#e2574c",
     "#f0a830"
+   ],
+   "colorNames": [
+    "あか",
+    "オレンジ"
    ],
    "art": "dotribbon"
   },
@@ -237,6 +301,10 @@ window.YOROZU_ITEMS = {
     "#e2574c",
     "#4a8fd8"
    ],
+   "colorNames": [
+    "あか",
+    "あお"
+   ],
    "art": "dotcape"
   },
   {
@@ -249,6 +317,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#5cb87a",
     "#e8c36a"
+   ],
+   "colorNames": [
+    "みどり",
+    "きいろ"
    ],
    "art": "cloverfan"
   },
@@ -263,6 +335,10 @@ window.YOROZU_ITEMS = {
     "#a0683c",
     "#6f8a3c"
    ],
+   "colorNames": [
+    "ちゃいろ",
+    "オリーブ"
+   ],
    "art": "acornhat"
   },
   {
@@ -276,6 +352,10 @@ window.YOROZU_ITEMS = {
     "#4a7fb8",
     "#b9784a"
    ],
+   "colorNames": [
+    "あお",
+    "ちゃいろ"
+   ],
    "art": "overalls"
   },
   {
@@ -288,6 +368,10 @@ window.YOROZU_ITEMS = {
    "colors": [
     "#e8c36a",
     "#e2574c"
+   ],
+   "colorNames": [
+    "きいろ",
+    "あか"
    ],
    "art": "fishnet"
   }
