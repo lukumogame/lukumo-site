@@ -299,7 +299,7 @@
     const sameReq = past.filter(v => v.reqId === req.id);
     const again = sameReq.length > 0;
     $("again-note").hidden = !again;
-    if (again) $("again-note").textContent = `また相談に来てくれました　前回 ${points(sameReq[sameReq.length - 1].total)}点`;
+    if (again) $("again-note").textContent = `また相談に来てくれました　この依頼の前回 ${points(sameReq[sameReq.length - 1].total)}点`;
     if (state.client.unusual && !past.length && state.client.memo.length) {
       memo.hidden = false;
       memo.innerHTML = `<b>依頼者メモ</b>${state.client.name}の苦手なもの：${state.client.memo.join("・")}`;
@@ -477,7 +477,7 @@
       // 全部の色がそろったときは、品のかわりにお礼の一言
       //   常連さん：キャラごとの一言（data/requests.json の clients.*.thanks）／常連でない客：決まった一言
       const regular = state.regulars.includes(state.req.clientId);
-      $("reward-text").textContent = `${state.client.name}「${regular ? state.client.thanks || "いつもありがとう！" : "ありがとう！また相談させてね。"}」`;
+      $("reward-text").textContent = `品はぜんぶそろいました。${state.client.name}「${regular ? state.client.thanks || "いつもありがとう！" : "ありがとう！また相談させてね。"}」`;
       return;
     }
     $("reward-icon").innerHTML = itemIcon(got.item, got.color);
