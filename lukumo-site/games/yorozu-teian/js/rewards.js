@@ -1,5 +1,5 @@
 // よろず提案所：もらえる品の判定（画面を触らない計算だけ。ゲーム本体と node のテストの両方で使う）
-// - 常連でない回：100点で、依頼者の種類の品（まだない品→まだない色違い→全部そろえば何もなし）
+// - 常連でない回：100点で、依頼者の種類の品（まだない品→まだない色違い→全部そろえばお礼の一言だけ）
 // - 常連の回（3回目の来店から）：80点以上で、そのキャラだけの品（品の種類は最大3つ）→ そろったら色違い → 全部そろえばお礼の一言だけ
 (function (root) {
   const MAX_REGULAR_ITEMS = 3;   // 常連の品は1キャラにつき最大3種類
@@ -27,14 +27,14 @@
   }
 
   // 判定。v = { total, clientId, species, regularVisit }。owned = { 品ID: [色の番号…] }
-  // 返り値：{ item, color, kind:"item"|"color" } ／ { kind:"thanks" }（常連で全部そろったとき）／ null（何もなし）
+  // 返り値：{ item, color, kind:"item"|"color" } ／ { kind:"thanks" }（品が全部そろったとき）／ null（点数が足りない）
   function award(v, catalog, owned) {
     if (v.regularVisit) {
       if (v.total < GREAT) return null;
       return nextOf(itemsOf("regular:" + v.clientId, catalog), owned) || { kind: "thanks" };
     }
     if (v.total < PERFECT) return null;
-    return nextOf(itemsOf("species:" + groupOf(v.species, catalog), catalog), owned);
+    return nextOf(itemsOf("species:" + groupOf(v.species, catalog), catalog), owned) || { kind: "thanks" };
   }
 
   // もらった品を持ち物に入れる（新しい持ち物を返す。元は変えない）

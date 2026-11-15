@@ -474,8 +474,10 @@
     note.dataset.kind = got.kind;
     if (got.kind === "thanks") {
       $("reward-icon").innerHTML = "";
-      // 全部の色がそろった常連さんは、キャラごとのお礼の一言（data/requests.json の clients.*.thanks）
-      $("reward-text").textContent = `${state.client.name}「${state.client.thanks || "いつもありがとう！"}」`;
+      // 全部の色がそろったときは、品のかわりにお礼の一言
+      //   常連さん：キャラごとの一言（data/requests.json の clients.*.thanks）／常連でない客：決まった一言
+      const regular = state.regulars.includes(state.req.clientId);
+      $("reward-text").textContent = `${state.client.name}「${regular ? state.client.thanks || "いつもありがとう！" : "ありがとう！また相談させてね。"}」`;
       return;
     }
     $("reward-icon").innerHTML = itemIcon(got.item, got.color);
@@ -839,7 +841,9 @@
           ? `<span class="zk-icon" data-color="${k}" title="${colorName(i, k)}">${itemIcon(i, k)}</span>`
           : any ? `<span class="zk-icon missing" data-color="${k}" aria-label="まだの色"></span>`
           : `<span class="zk-icon shadow" data-color="${k}" aria-hidden="true">${itemIcon(i, 0)}</span>`).join("");
-        return `<li class="zk item${any ? "" : " unknown"}" data-item="${i.id}" data-owned="${has.join(",")}"><span class="zk-icons">${dots}</span><b>${any ? i.name : "？？？"}</b><small>${any ? (i.use === "wear" ? { head: "頭", body: "服", hand: "手に持つ" }[i.part] : { shelf: "棚に飾る", wall: "壁に飾る" }[i.place]) : ""}</small></li>`;
+        // 色の名前を文字でも（まだの色は「？」）
+        const colorText = any ? `<small class="zk-colors" data-testid="zk-colors-${i.id}">${i.colors.map((_, k) => has.includes(k) ? colorName(i, k) : "？").join("・")}</small>` : "";
+        return `<li class="zk item${any ? "" : " unknown"}" data-item="${i.id}" data-owned="${has.join(",")}"><span class="zk-icons">${dots}</span><b>${any ? i.name : "？？？"}</b>${colorText}<small>${any ? (i.use === "wear" ? { head: "頭", body: "服", hand: "手に持つ" }[i.part] : { shelf: "棚に飾る", wall: "壁に飾る" }[i.place]) : ""}</small></li>`;
       }).join("");
       return `<li class="zk-head">${title}</li>${cells}`;
     }).join("");
