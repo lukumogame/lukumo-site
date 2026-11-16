@@ -12,7 +12,9 @@
 <meta property="og:image" content="https://lukumo-site.vercel.app/assets/img/ogp.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#e3f2fb">
-<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/favicon-48.png" sizes="48x48" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&family=Noto+Sans+JP:wght@400;700&display=swap">
@@ -30,10 +32,13 @@
 
   <header class="site-header">
     <div class="wrap">
-      <a class="logo" href="./" aria-label="Lukumo トップへ">
-        <svg viewBox="0 0 34 24" aria-hidden="true"><path d="M8 22a6 6 0 0 1 0-12 9 9 0 0 1 16-3 7 7 0 0 1 4 15z" fill="#fff" stroke="#1d2b3a" stroke-width="2.5" stroke-linejoin="round"/></svg>
-        Lukumo
-      </a>
+      <div class="brand">
+        <img class="mascot-icon" src="assets/img/rumi/rumi-icon.webp" width="32" height="32" alt="">
+        <a class="logo" href="./" aria-label="Lukumo トップへ">
+          <svg viewBox="0 0 34 24" aria-hidden="true"><path d="M8 22a6 6 0 0 1 0-12 9 9 0 0 1 16-3 7 7 0 0 1 4 15z" fill="#fff" stroke="#1d2b3a" stroke-width="2.5" stroke-linejoin="round"/></svg>
+          Lukumo
+        </a>
+      </div>
       <nav class="nav" aria-label="メニュー">
         <a href="#town-title">作品</a>
         <a href="about.html">Lukumoについて</a>
@@ -44,14 +49,24 @@
 
   <main id="main">
     <div class="hero">
-    <div class="wrap hero-text">
-      <p class="eyebrow">Lukumo（ルクモ）のゲーム</p>
-      <h1 id="town-title">雲の上の小さな街</h1>
-      <p class="lead">建物を押すと、Lukumoのゲームで遊べます。</p>
+    <div class="wrap hero-text hero-rumi">
+      <div>
+        <p class="eyebrow">Lukumo（ルクモ）のゲーム</p>
+        <h1 id="town-title">雲の上の小さな街</h1>
+        <p class="lead">建物を押すと、Lukumoのゲームで遊べます。</p>
+      </div>
+      <div class="rumi rumi-hero">
+        <p class="rumi-bubble tail-right"><span class="rumi-name">案内役のルミ</span>ようこそLukumoへ！無料で遊べるブラウザゲームを置いてるよ</p>
+        <div class="rumi-art"><img src="assets/img/rumi/rumi-standing.webp" width="480" height="960" alt="Lukumoの案内役ルミ。笑顔でピースしている全身の絵" fetchpriority="high"></div>
+      </div>
     </div>
 
     <div class="wrap">
       <div class="island">
+        <div class="rumi rumi-guide">
+          <div class="rumi-art"><img src="assets/img/rumi/rumi-smile.webp" width="240" height="240" alt="" loading="lazy"></div>
+          <p class="rumi-bubble tail-left">迷ったら、まずは短いゲームからどうぞ</p>
+        </div>
         <ul class="town" id="town" aria-labelledby="town-title" aria-busy="true"></ul>
       </div>
       <svg class="island-bottom" viewBox="0 0 400 40" preserveAspectRatio="none" aria-hidden="true"><path d="M0 0H400V8C380 30 350 36 330 22 310 40 270 40 250 24 230 40 190 40 170 24 150 40 110 40 90 22 70 36 30 34 0 10Z"/></svg>

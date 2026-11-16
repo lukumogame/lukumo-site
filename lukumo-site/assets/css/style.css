@@ -4,7 +4,9 @@
   --sky: #e3f2fb;
   --navy: #1d2b3a;
   --navy-soft: #5d6a78;
-  --accent: #236ca8;
+  --mint: #7fe3b0;        /* ルミの差し色。ボタン・枠・帯に使う（白文字は載せない） */
+  --mint-soft: #e8f9f0;   /* ミントの薄い下地 */
+  --accent: #18704c;      /* リンク・強調の文字色（空色の上でも読める濃さのミント） */
   --radius: 18px;
   --wrap: 1080px;
   --font-head: "M PLUS Rounded 1c", "Hiragino Maru Gothic ProN", sans-serif;
@@ -42,7 +44,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 700; line-height: 1.4; 
 .logo svg { width: 34px; height: 24px; }
 .nav { display: flex; gap: 0; justify-content: flex-end; }
 .nav a { color: var(--navy); text-decoration: none; font-family: var(--font-head); font-weight: 700; font-size: 13px; padding: 6px 8px; white-space: nowrap; border-radius: 999px; }
-.nav a[aria-current="page"] { background: var(--white); }
+.nav a[aria-current="page"] { background: var(--mint-soft); box-shadow: inset 0 0 0 2px var(--mint); }
 
 /* 背景の雲 */
 .sky-clouds { position: absolute; inset: 0 0 auto 0; height: 560px; pointer-events: none; overflow: hidden; z-index: 0; }
@@ -81,7 +83,7 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 700; line-height: 1.4; 
 .news-list li { display: flex; gap: 16px; flex-wrap: wrap; }
 .news-date { color: var(--navy-soft); font-size: 14px; }
 .news-date:empty { display: none; } /* 日付が空欄のあいだは詰めて表示する */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 24px; border-radius: 999px; background: var(--accent); color: var(--white); font-family: var(--font-head); font-weight: 700; text-decoration: none; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 10px 24px; border-radius: 999px; background: var(--mint); color: var(--navy); border: 2px solid var(--navy); font-family: var(--font-head); font-weight: 700; text-decoration: none; }
 .btn-outline { background: var(--white); color: var(--accent); border: 2px solid var(--accent); }
 .more { display: inline-block; margin-top: 8px; font-size: 14px; }
 
@@ -184,5 +186,70 @@ h1, h2, h3 { font-family: var(--font-head); font-weight: 700; line-height: 1.4; 
 }
 /* 幅340px未満（とても小さい端末）では、メニューを2行目に回す */
 @media (max-width: 339px) {
+  .site-header .wrap { flex-wrap: wrap; }
+}
+
+/* ---- ルミ（Lukumoの案内役） ---- */
+/* 絵は白い背景つきなので、白い面（カード・島）の上に置く */
+.brand { display: flex; align-items: center; gap: 6px; flex: none; }
+.mascot-icon { width: 32px; height: 32px; border-radius: 50%; border: 2px solid var(--navy); background: var(--mint); flex: none; }
+.rumi { display: flex; align-items: center; gap: 12px; }
+.rumi-art { flex: none; background: var(--white); border-radius: var(--radius); }
+.rumi-art img { width: 100%; height: auto; }
+.rumi-bubble { position: relative; margin: 0; background: var(--white); border: 2px solid var(--navy); border-radius: 16px; padding: 8px 14px; font-family: var(--font-head); font-weight: 700; font-size: 14px; line-height: 1.6; color: var(--navy); }
+.rumi-name { display: block; font-size: 12px; color: var(--accent); }
+.rumi-bubble::after { content: ""; position: absolute; top: 50%; width: 12px; height: 12px; background: inherit; border: 2px solid var(--navy); }
+.tail-left::after { left: -8px; border-top: 0; border-right: 0; transform: translateY(-50%) rotate(45deg); }
+.tail-right::after { right: -8px; border-bottom: 0; border-left: 0; transform: translateY(-50%) rotate(45deg); }
+
+/* トップ：見出しの右に立ち絵。スマホでは見出しの下に小さく */
+.hero-rumi { display: grid; gap: 12px; }
+.rumi-hero { justify-content: flex-end; }
+.rumi-hero .rumi-bubble { flex: 0 1 240px; }
+.rumi-hero .rumi-art { width: 96px; padding: 6px; border: 3px solid var(--mint); }
+
+/* 作品一覧の案内（街の島の一番上） */
+.rumi-guide { margin: 0 4px 12px; }
+.rumi-guide .rumi-art { width: 64px; border-radius: 50%; overflow: hidden; }
+.rumi-guide .rumi-bubble { background: var(--mint-soft); }
+
+/* 作品ページ：rumi_comment がある作品だけ */
+.rumi-note { align-items: flex-end; }
+.rumi-note .rumi-art { width: 64px; }
+.rumi-note .rumi-bubble { flex: 1 1 auto; align-self: center; background: var(--mint-soft); font-family: var(--font-body); font-weight: 400; font-size: 15px; }
+.rumi-note .rumi-name { font-family: var(--font-head); font-weight: 700; }
+
+/* 404 */
+.lost .rumi { justify-content: center; max-width: 420px; margin: 0 auto 16px; }
+.lost .rumi-art { width: 112px; border-radius: 50%; overflow: hidden; border: 3px solid var(--mint); }
+.lost .rumi-bubble { text-align: left; }
+
+/* Lukumoについて：ルミの紹介 */
+.rumi-sheet { width: 100%; height: auto; border-radius: 12px; margin: 4px 0 12px; }
+.small-note { font-size: 14px; color: var(--navy-soft); }
+
+@media (max-width: 419px) {
+  .mascot-icon { width: 26px; height: 26px; }
+  .logo { font-size: 18px; }
+  .logo svg { width: 28px; height: 20px; }
+  .nav a { padding: 6px 5px; font-size: 12px; }
+}
+@media (min-width: 768px) {
+  .hero-rumi { grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+  .rumi-hero .rumi-art { width: 150px; }
+  .rumi-hero .rumi-bubble { flex-basis: 230px; font-size: 15px; }
+  .rumi-note .rumi-art { width: 80px; }
+}
+/* 幅360〜374px：ルミのアイコンが入っても1行に収まるよう、ヘッダーを少し詰める */
+@media (max-width: 374px) {
+  .site-header .wrap { gap: 8px; }
+  .brand { gap: 4px; }
+  .mascot-icon { width: 24px; height: 24px; }
+  .logo { font-size: 17px; gap: 6px; }
+  .logo svg { width: 26px; height: 18px; }
+  .nav a { padding: 6px 4px; }
+}
+/* 幅360px未満では、メニューを2行目に回す */
+@media (max-width: 359px) {
   .site-header .wrap { flex-wrap: wrap; }
 }

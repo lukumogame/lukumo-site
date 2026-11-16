@@ -63,6 +63,14 @@
       '</div>';
 
     var html = '';
+    // ルミのひとこと：works.json の任意項目 rumi_comment に文字があるときだけ出す
+    var rumi = typeof w.rumi_comment === 'string' ? w.rumi_comment.trim() : '';
+    if (rumi) {
+      html += '<section class="card rumi rumi-note" aria-label="ルミのひとこと">' +
+        '<div class="rumi-art"><img src="../assets/img/rumi/rumi-thumbsup.webp" width="360" height="852" alt="" loading="lazy"></div>' +
+        '<p class="rumi-bubble tail-left"><span class="rumi-name">ルミのひとこと</span>' + esc(rumi) + '</p>' +
+        '</section>';
+    }
     var shots = w.screenshots || [];
     if (shots.length) {
       html += '<section class="card" aria-labelledby="shots-title"><h2 id="shots-title">画面写真</h2><ul class="shots" id="shots">' +
