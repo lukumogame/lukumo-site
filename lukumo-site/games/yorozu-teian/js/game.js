@@ -452,12 +452,22 @@
     const full = SLOTS.every(s => state.picks[s]);
     $("submit").disabled = !full;
     fitCardNames();
+    // 画面を開いた直後は大きさがまだ決まっていないことがあるので、描き終わったあとにもう一度合わせる
+    requestAnimationFrame(fitCardNames);
     if (tutorialNow()) coach(proposalStep(full));
   }
   // 候補カードの名前。会場の広さ「（〜10人）」は切らずに、名前の下の1行にまとめる（名前と広さが途中で分かれないように）
+  // カードの名前：言葉の途中では折り返さない（「自己紹介すご／ろく」を出さない。持ち主の指示 2026-11-17）
+  //   折り返してよい場所（「の・で…」のあと、カタカナとの境目）は js/name-breaks.js で決め、<wbr> で示す。ほかは word-break: keep-all で折り返さない
+  const NB = window.YorozuNameBreaks;
+  const esc = s => String(s).replace(/[&<>"]/g, ch => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[ch]));
+  function breakable(text) {
+    const parts = NB ? NB.breakParts(text) : [text];
+    return `<span class="nb">${parts.map(esc).join("<wbr>")}</span>`;
+  }
   function cardNameHtml(name) {
     const m = name.match(/^(.*?)(（〜[^）]*）)$/);
-    return m ? `<span class="nm">${m[1]}</span><span class="cap">${m[2]}</span>` : name;
+    return m ? `<span class="nm">${breakable(m[1])}</span><span class="cap">${esc(m[2])}</span>` : breakable(name);
   }
   // 1文字だけが次の行に残る折り返し（例「似顔絵の名／札」）を直す：まず行の長さをそろえ（text-wrap: balance）、
   // それでも残るときだけ文字を少し小さくする（最小10px）。カードの幅は画面で変わるので、描いたあとに測る
@@ -476,11 +486,25 @@
   function fitCardNames() {
     document.querySelectorAll("#cards .card-name, #slots .slot-card").forEach(el => {
       const box = el.querySelector(".nm") || el;
-      el.style.fontSize = ""; box.style.textWrap = "";
+      el.style.fontSize = ""; box.style.textWrap = ""; el.classList.remove("nb-loose");
+      // 言葉の途中で折り返さないので、折り返せる場所のない長い名前は幅からはみ出すことがある → 文字を少し小さくして収める（最小10px）
+      const over = () => el.scrollWidth > el.clientWidth + 1;
+      let f = parseFloat(getComputedStyle(el).fontSize);
+      while (over() && f > 10) { f -= 0.5; el.style.fontSize = f + "px"; }
+      // それでも入らないときは、予備の折り返し場所（文字の種類の境目）も使う（例「自己紹介／すごろく」）
+      const nbEl = el.querySelector(".nb");
+      //   それでも入らなければ、もう一段の予備（言葉の切れ目ならどこでも。例「ゲーム／センター」）
+      for (const level of [1, 2]) {
+        if (!(over() && nbEl && NB)) break;
+        nbEl.innerHTML = NB.breakParts(nbEl.textContent, level).map(esc).join("<wbr>");
+        el.style.fontSize = ""; f = parseFloat(getComputedStyle(el).fontSize);
+        while (over() && f > 10) { f -= 0.5; el.style.fontSize = f + "px"; }
+      }
+      // それでも入らないとき（ふつうは起きない）だけ、言葉の途中でも折り返す
+      if (over()) el.classList.add("nb-loose");
       const orphan = () => { const n = lineLengths(box); return n.length > 1 && n.some(x => x === 1); };
       if (!orphan()) return;
       box.style.textWrap = "balance";
-      let f = parseFloat(getComputedStyle(el).fontSize);
       while (orphan() && f > 10) { f -= 0.5; el.style.fontSize = f + "px"; }
     });
     // 値段の単位（つゆのしずく など）がカードの幅に入りきらないときは、単位の文字だけ少し小さくする（最小8.5px。それでも入らなければ「…」）
@@ -490,6 +514,18 @@
       const r = document.createRange(); r.selectNodeContents(u);
       const over = () => r.getBoundingClientRect().width > u.getBoundingClientRect().width + 0.1;
       while (over() && f > 8.5) { f -= 0.5; u.style.fontSize = f + "px"; }
+    });
+    // 値段の全体（●・数字・単位）がカードの幅からはみ出すとき（幅の狭いスマホで「1,000円」の「円」が切れるなど）は、数字を少し小さくする（最小11px）
+    document.querySelectorAll("#cards .card .cost, #slots .slot .cost").forEach(c => {
+      const num = c.querySelector(".num"); if (!num) return;
+      num.style.fontSize = ""; c.classList.remove("tight");
+      const box = c.closest(".card, .slot"), money = c.querySelector(".money") || c;
+      const unit = c.querySelector(".unit");
+      const out = () => { const b = box.getBoundingClientRect(), m = money.getBoundingClientRect(); return m.right > b.right - 3 || m.left < b.left + 3 || money.scrollWidth > money.clientWidth + 1 || c.scrollWidth > c.clientWidth + 1 || (unit && unit.scrollWidth > unit.clientWidth + 0.5); };
+      let f = parseFloat(getComputedStyle(num).fontSize);
+      while (out() && f > 11) { f -= 0.5; num.style.fontSize = f + "px"; }
+      // それでも入らない（5けたの値段など）ときは、前の「●」の印を外して場所を空ける
+      if (out()) { c.classList.add("tight"); num.style.fontSize = ""; f = parseFloat(getComputedStyle(num).fontSize); while (out() && f > 10) { f -= 0.5; num.style.fontSize = f + "px"; } }
     });
   }
   function tutorialNow() { return state.tutorial && state.timeIdx === 0 && !state.tutorial.firstDone; }

@@ -691,3 +691,50 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
   #screen-dress .col-b > .panel, #screen-deco .col-b > .panel { display: flex; flex-direction: column; min-height: 0; }
   #wear-list, #deco-list { flex: 1; min-height: 0; overflow-y: auto; padding: 3px; margin: -3px; }
 }
+
+/* ---- PCの提案書：左の列（依頼者・会話・予算）の文字と絵を大きく（持ち主の指示 2026-11-17：「文字が小さくて見えにくい」）
+   画面の高さに合わせて大きさを変える（高さ600pxでも縦にはみ出さない。tools/pc-fit.js で確認） ---- */
+@media (min-width: 900px) and (orientation: landscape) {
+  #screen-proposal .bubble.mini { gap: clamp(4px, 1.4dvh, 14px); padding: clamp(8px, 1.8dvh, 20px) clamp(14px, 2dvh, 22px); }
+  #screen-proposal .mini-face.has-art { width: clamp(60px, 15dvh, 150px); height: clamp(60px, 15dvh, 150px); }
+  #screen-proposal .mini-text { font-size: clamp(15px, 2.3dvh, 20px); }
+  #screen-proposal .mini-text b { font-size: clamp(16px, 2.6dvh, 22px); }
+  #screen-proposal .mini-text small { font-size: clamp(13px, 1.9dvh, 16px); }
+  #screen-proposal .mini-lines { font-size: clamp(15px, 2.4dvh, 21px); line-height: clamp(1.4, 0.2dvh + 1.35, 1.55); gap: clamp(2px, 0.8dvh, 8px); }
+  /* 右の列：提案書の4欄と候補カードも、高さに合わせて大きく（余白を残しすぎない） */
+  #screen-proposal .panel-title { font-size: clamp(14px, 2dvh, 18px); }
+  #screen-proposal .slots { gap: clamp(8px, 1.4dvh, 14px); }
+  #screen-proposal .slot { min-height: clamp(72px, calc(22dvh - 54px), 160px); padding: clamp(6px, 1.2dvh, 14px) clamp(8px, 1.2dvh, 14px); grid-template-columns: clamp(32px, 4.4dvh, 44px) 1fr; column-gap: clamp(6px, 1dvh, 10px); }
+  #screen-proposal .slot-icon { width: clamp(32px, 4.4dvh, 44px); height: clamp(32px, 4.4dvh, 44px); }
+  #screen-proposal .slot-name { font-size: clamp(13px, 1.9dvh, 17px); }
+  #screen-proposal .slot-card { font-size: clamp(14px, 2.3dvh, 20px); }
+  #screen-proposal .slot-empty { font-size: clamp(13px, 1.9dvh, 17px); }
+  #screen-proposal .cards { gap: clamp(6px, 1.2dvh, 12px); }
+  #screen-proposal .card { min-height: clamp(118px, calc(40dvh - 90px), 300px); padding: clamp(6px, 1dvh, 12px) clamp(4px, 0.8dvh, 10px); gap: clamp(4px, 0.8dvh, 8px); }
+  #screen-proposal .card-art { height: clamp(48px, calc(20dvh - 54px), 150px); }
+  #screen-proposal .card-name { font-size: clamp(12px, 2dvh, 18px); }
+  #screen-proposal .cost .num { font-size: clamp(14px, 2.1dvh, 19px); }
+  #screen-proposal .cost .unit { font-size: clamp(10px, 1.4dvh, 13px); }
+  #screen-proposal .budget { font-size: clamp(16px, 2.2dvh, 19px); padding: clamp(8px, 1.6dvh, 16px) clamp(14px, 2dvh, 20px); }
+  #screen-proposal .budget b { font-size: 1.2em; }
+  #screen-proposal .budget .left { font-size: clamp(20px, 3dvh, 26px); }
+}
+/* 大きなPC画面（幅1600px以上・高さ760px以上）：遊ぶ場所を広げ、上の帯の文字も少し大きく（余白ばかりで文字が小さい、を減らす） */
+@media (min-width: 1600px) and (min-height: 760px) and (orientation: landscape) {
+  .app { max-width: 1440px; }
+}
+@media (min-width: 900px) and (orientation: landscape) {
+  .pill { font-size: clamp(15px, 2.1dvh, 19px); }
+}
+/* カードの名前：言葉の途中では折り返さない。折り返してよい場所は <wbr>（js/name-breaks.js） */
+.card-name .nb, .slot-card .nb { word-break: keep-all; overflow-wrap: normal; }
+.card-name.nb-loose .nb, .slot-card.nb-loose .nb { word-break: normal; overflow-wrap: anywhere; }
+.card-name, .slot-card { overflow-wrap: normal; }
+.card-name.nb-loose, .slot-card.nb-loose { overflow-wrap: anywhere; }
+/* 名前の箱はカードの幅に合わせる（言葉の途中で折り返さないと、箱が文字に合わせて広がり、はみ出しを測れなくなるため） */
+.card-name { width: 100%; min-width: 0; }
+.slot-card { min-width: 0; max-width: 100%; }
+/* 「円」は1文字なので縮めたり切ったりしない（入らないときは数字のほうを小さくする：js/game.js fitCardNames） */
+.money.yen .unit { flex: none; overflow: visible; }
+/* 値段が狭いカードに入らないときは、前の「●」を外す（js/game.js fitCardNames） */
+.cost.tight .num::before, .cost.tight .money::before { display: none !important; }
