@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>よろず提案所（試作版）</title>
-  <meta name="description" content="依頼者の話を聞いて、ぴったりの提案書をつくるゲームの試作版。">
+  <meta name="description" content="旅行・デートとイベントの2社で、依頼者の話を聞いて、ぴったりの提案書をつくるゲームの試作版。">
   <meta name="theme-color" content="#e6eef2">
   <meta property="og:type" content="website">
   <meta property="og:title" content="よろず提案所（試作版）">
-  <meta property="og:description" content="人も、生き物も、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲームの試作版（7日間・依頼21件、その後も続けて遊べる）。">
+  <meta property="og:description" content="人も、生き物も、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲームの試作版（旅行・デートとイベントの2社・依頼42件。会社を選んで遊べて、その後も続けて遊べる）。">
   <!-- SNS で共有したときの画像（tools/make-og-image.js で作る）。公開先の URL で指す -->
   <meta property="og:image" content="https://lukumo-site.vercel.app/games/yorozu-teian/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -45,7 +45,7 @@
         <small class="continue-info" id="continue-info" data-testid="continue-info"></small>
         <button class="btn primary title-start" id="start" data-testid="start">はじめる</button>
         <p class="save-note" id="save-note" data-testid="save-note" role="status" hidden></p>
-        <small class="title-note">試作版：7日間・依頼21件</small>
+        <small class="title-note">試作版：2社・依頼42件</small>
       </div>
     </section>
 
@@ -59,6 +59,8 @@
         </div>
         <div class="client" id="client" data-testid="client"><div class="client-figure" id="client-figure"></div><div class="client-name" id="client-name"></div></div>
         <div class="counter" id="counter" aria-hidden="true"></div>
+        <!-- その会社を初めて開いたときだけの案内（companies.*.welcomed。画面は足さず、事務所の中に重ねる） -->
+        <div class="welcome" id="welcome" data-testid="welcome" role="status" hidden><p id="welcome-text"></p><button class="coach-ok" id="welcome-ok" data-testid="welcome-ok">わかった</button></div>
       </div>
       </div>
       <div class="col-b">
@@ -155,11 +157,12 @@
           <div class="shops">商店街</div>
         </div>
         <div class="walker" id="walker" data-testid="walker" aria-hidden="true"></div>
-        <button class="company c-travel" id="company-travel" data-company="travel" data-testid="company-travel"><span class="sign">✈</span><span class="cname">旅行・デート</span><span class="waiting" data-testid="waiting-travel" hidden></span></button>
+        <button class="company c-travel" id="company-travel" data-company="travel" data-testid="company-travel"><span class="sign">✈</span><span class="cname">旅行・デート</span><span class="waiting" data-testid="waiting-travel" hidden></span><span class="count" data-testid="count-travel" hidden></span></button>
         <button class="company c-life" data-company="life" data-testid="company-life" disabled aria-disabled="true"><span class="sign">⌂</span><span class="cname">ライフプラン</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-life" hidden></span></button>
         <button class="company c-invest" data-company="invest" data-testid="company-invest" disabled aria-disabled="true"><span class="sign">¥</span><span class="cname">投資</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-invest" hidden></span></button>
         <button class="company c-town" data-company="town" data-testid="company-town" disabled aria-disabled="true"><span class="sign">⚑</span><span class="cname">町おこし</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-town" hidden></span></button>
-        <button class="company c-event" data-company="event" data-testid="company-event" disabled aria-disabled="true"><span class="sign">◎</span><span class="cname">イベント</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-event" hidden></span></button>
+        <!-- イベント：2日目から選べる（1日目は「2日目から」と出して押せない。js/game.js の goHome） -->
+        <button class="company c-event" id="company-event" data-company="event" data-testid="company-event" disabled aria-disabled="true"><span class="sign">◎</span><span class="cname">イベント</span><span class="soon" data-testid="soon-event">2日目から</span><span class="waiting" data-testid="waiting-event" hidden></span><span class="count" data-testid="count-event" hidden></span></button>
       </div>
       </div>
     </section>
@@ -175,14 +178,11 @@
       </div>
       </div>
       <div class="col-b">
-      <div class="panel rank">
-          <div class="rank-up" id="rank-up" data-testid="rank-up" hidden>
-            <b>ランクアップ！</b><span id="rank-up-name"></span><small class="rank-up-note" data-testid="rank-up-note">事務所の壁紙とカウンターが新しくなりました</small>
-            <div class="rank-up-logo" id="rank-up-logo" aria-hidden="true"></div>
-          </div>
-          <div class="rank-label"><span>ランク：<b id="rank-name" data-testid="rank-name"></b></span><span id="rank-text" data-testid="rank-text"></span></div>
-          <div class="bar"><span id="rank-bar"></span></div>
-          <small>平均70点以上の日を5日連続で続けるとランクアップ。途中で70点を下回ると0日にもどる。</small>
+      <!-- 会社ごと：その日に遊んだ会社だけ1行ずつ（平均・ランク・連続日数）。ランクアップした会社には枠（2社なら1つずつ順に。ボタンか「次の日へ」で2社目へ） -->
+      <div class="panel rank" id="summary-rank">
+          <div class="rank-ups" id="rank-ups" aria-live="polite"></div>
+          <ul class="co-rows" id="co-rows" data-testid="co-rows"></ul>
+          <small class="rank-rule">平均70点以上の日を5日連続で続けるとランクアップ。途中で70点を下回ると0日にもどる。</small>
       </div>
       <div class="actions"><button class="btn primary" id="next-day" data-testid="next-day">次の日へ</button></div>
       </div>
@@ -238,6 +238,10 @@
       <div class="col-a">
         <div class="panel">
           <h2 class="ribbon">事務所を飾る</h2>
+          <div class="tabs co-tabs" id="deco-co" role="tablist" aria-label="会社">
+            <button class="tab" role="tab" data-co="travel" data-testid="deco-co-travel">旅行・デート</button>
+            <button class="tab" role="tab" data-co="event" data-testid="deco-co-event">イベント</button>
+          </div>
           <div class="deco-scene" id="deco-scene" data-testid="deco-scene">
             <div class="deco-bg" id="deco-bg" aria-hidden="true"></div>
             <div class="deco-counter" id="deco-counter" aria-hidden="true"></div>
@@ -261,6 +265,10 @@
         <div class="panel zukan-panel">
           <h2 class="ribbon">図鑑</h2>
           <div class="zukan-me" id="zukan-me" data-testid="zukan-me"><span class="me-icon" id="zukan-icon" aria-hidden="true"></span><b id="zukan-name"></b></div>
+          <div class="tabs co-tabs" id="zukan-co" role="tablist" aria-label="会社">
+            <button class="tab" role="tab" data-co="travel" data-testid="zukan-co-travel">旅行・デート</button>
+            <button class="tab" role="tab" data-co="event" data-testid="zukan-co-event">イベント</button>
+          </div>
           <div class="tabs" role="tablist">
             <button class="tab" role="tab" data-tab="clients" id="tab-clients" data-testid="tab-clients">依頼者</button>
             <button class="tab" role="tab" data-tab="regulars" id="tab-regulars" data-testid="tab-regulars">常連さん</button>
@@ -284,7 +292,7 @@
       <div class="col-a">
       <div class="panel detail-head">
         <div class="client-figure" id="detail-face" aria-hidden="true"></div>
-        <div><h2 id="detail-name"></h2><p id="detail-profile"></p><span class="badge">常連さん</span></div>
+        <div><h2 id="detail-name"></h2><p id="detail-profile"></p><span class="badge" id="detail-badge" data-testid="detail-badge">常連さん</span></div>
       </div>
       <div class="panel"><h3 class="panel-title">好み（わかったこと）</h3><ul class="tags" id="detail-likes" data-testid="detail-likes"></ul></div>
       </div>
@@ -351,6 +359,7 @@
   <script src="svg/cards-b.js"></script>
   <script src="svg/cards-c.js"></script>
   <script src="svg/cards-d.js"></script>
+  <script src="svg/cards-e.js"></script>
   <script src="svg/items.js"></script>
   <script src="svg/player.js"></script>
   <script src="js/score.js"></script>

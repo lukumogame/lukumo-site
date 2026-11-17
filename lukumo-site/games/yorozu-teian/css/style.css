@@ -95,7 +95,22 @@ button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .slot-empty { grid-column: 1 / -1; color: #9aa7b2; font-size: 13px; }
 .slot .cost { grid-column: 1 / -1; }
 .cost { font-size: 12px; color: var(--orange-d); font-weight: 700; }
-.cost::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 4px; border-radius: 50%; background: var(--orange); vertical-align: -1px; }
+/* 値段（js/game.js の moneyHtml）：数字は太く大きく・折り返さない。単位は小さく、入りきらないときは単位だけ上の行へ */
+.money { display: inline-flex; flex-wrap: wrap; align-items: baseline; column-gap: 3px; max-width: 100%; vertical-align: baseline; }
+.money.yen { flex-wrap: nowrap; column-gap: 1px; }
+.money .num { white-space: nowrap; font-weight: 800; }
+.money .unit { min-width: 0; max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-size: 0.8em; font-weight: 700; }
+.cost .money { justify-content: center; }
+.cost .num { font-size: 14px; }
+.cost .unit { font-size: 10px; }
+.card { min-width: 0; }
+.slot-card .nm { display: block; }
+.slot-card .cap { display: block; white-space: nowrap; font-size: 0.86em; }
+.card .cost .num::before, .slot .cost .money::before { content: ""; display: inline-block; width: 9px; height: 9px; margin-right: 3px; border-radius: 50%; background: var(--orange); vertical-align: 0; }
+.slot .cost .money { justify-content: flex-start; align-items: center; }
+.slot .cost .unit { font-size: 11px; }
+.card .cost { width: 100%; text-align: center; line-height: 1.25; }
+.budget .money .num { font-size: 1.05em; }
 .check { position: absolute; top: -8px; right: -8px; width: 26px; height: 26px; border-radius: 50%; background: var(--green); border: 2px solid #fff; }
 .check::after { content: ""; position: absolute; left: 8px; top: 4px; width: 6px; height: 11px; border: solid #fff; border-width: 0 3px 3px 0; transform: rotate(45deg); }
 
@@ -107,6 +122,9 @@ button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .card-art.slot-destination { background: #7fb0c8; } .card-art.slot-activity { background: #8cc39a; }
 .card-art.slot-food { background: #e8a87c; } .card-art.slot-surprise { background: #d99ab8; }
 .card-name { flex: 1; font-size: 12px; font-weight: 700; line-height: 1.3; text-align: center; line-break: strict; overflow-wrap: anywhere; }
+/* 会場の広さ「（〜10人）」は名前の下の1行に（js/game.js の cardNameHtml）。1文字だけの行が出たら js/game.js の fitCardNames が直す */
+.card-name .nm { display: block; }
+.card-name .cap { display: block; white-space: nowrap; font-size: 0.92em; }
 
 /* ボタン */
 .actions { display: flex; justify-content: center; margin-top: auto; padding-top: 4px; }
@@ -610,3 +628,66 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
 .honne-tags .h-miss { color: #6b7782; border-color: #c3ccd4; background: #f4f6f8; border-style: dashed; }
 .rank-up-note { font-size: 12px; color: var(--sub); }
 .zk-colors { display: block; font-size: 11px; font-weight: 700; color: var(--blue-d); white-space: nowrap; }
+
+/* ---- 第2段フェーズ2：1件ごとに会社を選ぶ（旅行・デート／イベント） ---- */
+.city.has-art .c-event .cname { background: #8e5cc4; color: #fff; border-color: #fff; }
+.city.has-art .c-event:disabled .cname { background: #fff; color: var(--sub); border-color: var(--line); }
+/* 会社の上の、次に来る依頼者の小さな顔（前の「①」の札のかわり） */
+.company .waiting.face { width: 46px; height: 46px; min-width: 0; padding: 0; overflow: hidden; background: #fff; border-color: #fff; }
+.company .waiting.face svg { width: 100%; height: 100%; display: block; }
+.city.has-art .company .waiting.face { top: -8%; right: -2%; }
+.c-event .waiting.face { border-color: #8e5cc4; }
+.c-travel .waiting.face { border-color: var(--blue); }
+/* 顔の右上の人数の札（①②③。今日これから来るお客さんの数）。顔と一緒に上下にゆれる。名前の札とは重ならない */
+.company .count { position: absolute; z-index: 3; top: calc(-8% - 6px); right: calc(-2% - 26px); width: 26px; height: 26px; padding: 0; overflow: hidden; display: grid; place-items: center; border-radius: 999px; background: var(--red); color: #fff; border: 2px solid #fff; font-size: 16px; font-weight: 800; line-height: 1; box-shadow: 0 2px 0 rgba(0,0,0,.2); animation: bob 1.6s ease-in-out infinite; pointer-events: none; }
+.company .count[hidden] { display: none; }
+/* 今日の依頼・集計の会社の印（✈／◎） */
+.co-mark { display: inline-grid; place-items: center; width: 22px; height: 22px; margin-right: 6px; border-radius: 50%; background: var(--blue); color: #fff; font-size: 12px; font-weight: 800; vertical-align: middle; flex: none; }
+[data-company="event"] > .co-mark, .co-mark[data-company="event"], li[data-company="event"] .co-mark, .co-row[data-company="event"] .co-mark { background: #8e5cc4; }
+.summary-rows .n { display: flex; align-items: center; min-width: 0; }
+/* 集計：会社ごとの行（平均・ランク・連続日数） */
+.co-rows { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+.co-row { display: grid; gap: 3px; padding: 6px 10px; background: #fff; border: 2px solid var(--line); border-radius: 12px; }
+.co-row[data-company="event"] { border-color: #cdb6e6; }
+.co-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; font-weight: 800; }
+.co-name { display: flex; align-items: center; white-space: nowrap; }
+.co-avg { white-space: nowrap; } .co-avg b { font-size: 20px; }
+.co-row .rank-text { white-space: normal; min-width: 0; word-break: keep-all; }
+.loop-note { margin: 0; font-size: 13px; font-weight: 800; color: #6a3f9e; }
+.rank-ups { display: grid; gap: 6px; }
+.rank-ups:empty { display: none; }
+.rank-ups .rank-up { margin-bottom: 0; }
+.rank-up-co { display: block; font-size: 12px; font-weight: 800; color: var(--sub); }
+/* 2社が同じ日にランクアップしたときは、枠を1つずつ。下のボタンで2社目の枠に入れかえる */
+.rank-ups .rank-up[hidden] { display: none; }
+.rank-up-next { min-width: 0; min-height: 44px; padding: 6px 18px; justify-self: center; font-size: 15px; }
+.rank-up-next[hidden] { display: none; }
+@media (min-width: 900px) and (orientation: landscape) and (max-height: 660px) {
+  /* PCで高さが低いとき（600px台）は、2社目を見るボタンのぶん看板の絵を少し小さくして1画面に収める */
+  #summary-rank[data-ups="2"] .rank-up-logo { width: min(180px, 60%); }
+}
+.rank-up-name .rank-up-co { display: inline; margin-right: 6px; }
+/* 事務所：その会社を初めて開いたときの案内（事務所の絵の上に重ねる箱） */
+#office-scene .welcome { position: absolute; left: 8px; right: 8px; top: 8px; z-index: 4; display: flex; gap: 10px; align-items: center; padding: 8px 12px; background: #fffdf2; border: 3px solid #8e5cc4; border-radius: 14px; font-size: 14px; font-weight: 700; box-shadow: 0 6px 16px rgba(0,0,0,.2); }
+#office-scene .welcome[hidden] { display: none; }
+#office-scene .welcome p { margin: 0; flex: 1; }
+#office-scene .welcome .coach-ok { background: #8e5cc4; }
+/* 図鑑・飾る：上の会社の切り替え */
+.co-tabs .tab { font-size: 14px; border-color: #8e5cc4; color: #6a3f9e; }
+.co-tabs .tab[data-co="travel"] { border-color: var(--blue); color: var(--blue-d); }
+.co-tabs .tab.on { background: #8e5cc4; color: #fff; }
+.co-tabs .tab[data-co="travel"].on { background: var(--blue); color: #fff; }
+@media (min-width: 900px) and (orientation: landscape) {
+  /* 飾る：上に会社の切り替えが増えたぶん、絵を少し小さくして1画面に収める */
+  .deco-scene, .deco-spots { width: min(100%, calc((100vh - 305px) * 4 / 3)); }
+}
+
+/* ---- 第2段フェーズ5：着せ替えは全社の品（会社ごとの見出し）。PC では品の一覧が枠の中でスクロールし、画面は縦にはみ出さない ---- */
+.wear-head { grid-column: 1 / -1; display: flex; align-items: center; font-weight: 800; font-size: 13px; color: var(--blue-d); padding-top: 4px; }
+.wear-head[data-company="event"] { color: #6a3f9e; }
+.wear-head .co-mark { width: 20px; height: 20px; font-size: 11px; }
+@media (min-width: 900px) and (orientation: landscape) {
+  #screen-dress .col-b, #screen-deco .col-b { min-height: 0; max-height: calc(100vh - 96px); }
+  #screen-dress .col-b > .panel, #screen-deco .col-b > .panel { display: flex; flex-direction: column; min-height: 0; }
+  #wear-list, #deco-list { flex: 1; min-height: 0; overflow-y: auto; padding: 3px; margin: -3px; }
+}

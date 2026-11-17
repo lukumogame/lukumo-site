@@ -1,6 +1,8 @@
 // よろず提案所：もらえる品の判定（画面を触らない計算だけ。ゲーム本体と node のテストの両方で使う）
 // - 常連でない回：100点で、依頼者の種類の品（まだない品→まだない色違い→全部そろえばお礼の一言だけ）
 // - 常連の回（3回目の来店から）：80点以上で、そのキャラだけの品（品の種類は最大3つ）→ そろったら色違い → 全部そろえばお礼の一言だけ
+// - 第2段：常連と品は会社ごと。品のデータの company（書かなければ旅行・デート "travel"）で、その会社の品だけから選ぶ
+//   常連の回かどうか（regularVisit）は、呼ぶ側がその会社の常連で決める
 (function (root) {
   const MAX_REGULAR_ITEMS = 3;   // 常連の品は1キャラにつき最大3種類
   const PERFECT = 100, GREAT = 80;
@@ -8,9 +10,12 @@
   // 依頼者の種類（species）→ 品のまとまり（human/bug/animal/alien）
   function groupOf(species, catalog) { return (catalog.speciesGroups || {})[species] || "human"; }
 
-  // そのまとまりの品を order の順に（常連の品は上限の数まで）
-  function itemsOf(group, catalog) {
-    const list = catalog.items.filter(i => i.group === group).sort((a, b) => a.order - b.order);
+  // 品の会社（書かなければ旅行・デート）
+  const companyOf = item => item.company || "travel";
+  // そのまとまりの品を order の順に（常連の品は上限の数まで）。company を渡さなければ旅行・デートの品
+  function itemsOf(group, catalog, company) {
+    const co = company || "travel";
+    const list = catalog.items.filter(i => i.group === group && companyOf(i) === co).sort((a, b) => a.order - b.order);
     return group.startsWith("regular:") ? list.slice(0, MAX_REGULAR_ITEMS) : list;
   }
 
@@ -26,15 +31,15 @@
     return null;
   }
 
-  // 判定。v = { total, clientId, species, regularVisit }。owned = { 品ID: [色の番号…] }
+  // 判定。v = { total, clientId, species, regularVisit, company }。owned = { 品ID: [色の番号…] }（会社をまたいで1つ）
   // 返り値：{ item, color, kind:"item"|"color" } ／ { kind:"thanks" }（品が全部そろったとき）／ null（点数が足りない）
   function award(v, catalog, owned) {
     if (v.regularVisit) {
       if (v.total < GREAT) return null;
-      return nextOf(itemsOf("regular:" + v.clientId, catalog), owned) || { kind: "thanks" };
+      return nextOf(itemsOf("regular:" + v.clientId, catalog, v.company), owned) || { kind: "thanks" };
     }
     if (v.total < PERFECT) return null;
-    return nextOf(itemsOf("species:" + groupOf(v.species, catalog), catalog), owned) || { kind: "thanks" };
+    return nextOf(itemsOf("species:" + groupOf(v.species, catalog), catalog, v.company), owned) || { kind: "thanks" };
   }
 
   // もらった品を持ち物に入れる（新しい持ち物を返す。元は変えない）
@@ -47,7 +52,7 @@
     return out;
   }
 
-  const api = { MAX_REGULAR_ITEMS, PERFECT, GREAT, groupOf, itemsOf, award, grant };
+  const api = { MAX_REGULAR_ITEMS, PERFECT, GREAT, groupOf, companyOf, itemsOf, award, grant };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.YorozuRewards = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

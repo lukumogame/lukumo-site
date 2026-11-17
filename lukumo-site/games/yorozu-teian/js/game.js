@@ -35,46 +35,87 @@
     surprise: '<svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="10" rx="1.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3 10h18M12 10v10M12 10c-3-5-7-3-4-1m4 1c3-5 7-3 4-1" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>'
   };
 
-  // 来店の予定は js/schedule.js で作り、保存データ（state.schedule）に入れる
-  // 1日目は固定、2〜7日目は乱数で並べる、8日目以降はその日の朝に決める
-  // 開発用：?schedule=fixed でデータの day・time どおり（テストと試遊の再現用。8日目以降は乱数の種0で決める）
+  // 依頼の順番は js/schedule.js で作り、会社ごとの保存データ（state.companies[会社].queue）に入れる
+  // 会社ごとに21件の順番待ち（最初の3件は固定・あとは乱数）。その会社を選ぶたびに次の1件が来る。21件のあとは8日目以降の決まり
+  // 開発用：?schedule=fixed でデータの day・time どおりの順（テストと試遊の再現用。8日目以降は乱数の種0で決める）
   const SCHED = window.YorozuSchedule;
   const FIXED = new URLSearchParams(location.search).get("schedule") === "fixed";
   const DAYS = [...new Set(DATA.requests.map(r => r.day))].sort((a, b) => a - b);
+  const PER_DAY = SCHED.PER_DAY;
   const reqById = id => DATA.requests.find(r => r.id === id);
   const newSeed = () => FIXED ? 0 : 1 + Math.floor(Math.random() * 2147483646);
-  function idsOf(day) {
-    const S = state.schedule;
-    if (!S.days[day]) {
-      if (day <= SCHED.WEEK) {
-        let week;
-        try { week = FIXED ? SCHED.fixedWeek(DATA.requests) : SCHED.buildWeek(DATA.requests, S.seed); }
-        catch (e) { week = SCHED.fixedWeek(DATA.requests); }
-        for (let d = 1; d <= SCHED.WEEK; d++) if (!S.days[d]) S.days[d] = week[d];
-      } else {
-        S.days[day] = SCHED.pickDay(day, S.seed, { requests: DATA.requests, regulars: state.regulars, perfect: state.perfect, days: S.days });
+  // 会社（第2段）。記録は会社ごと（ランク・常連・図鑑・順番待ち・飾りつけ）。品の持ち物と日付・1日3件は全体で1つ
+  // 遊べるのは旅行・デートとイベント。1件ごとにホームで会社を選ぶ（1日の中で混ぜてよい）
+  const COMPANIES = SAVE ? SAVE.COMPANIES : ["travel", "event"];
+  const COMPANY_NAMES = { travel: "旅行・デート", event: "イベント" };
+  const COMPANY_MARK = { travel: "✈", event: "◎" };
+  // イベントは2日目から選べる（1日目は旅行・デートの案内のため。docs/第2段_設計.md ⑦）。前の記録で2日目以降なら、つづきからすぐ選べる
+  const EVENT_FROM_DAY = 2;
+  const isOpen = c => c === "travel" || (c === "event" && state.day >= EVENT_FROM_DAY);
+  // 欄の名前は会社ごと（欄のキーと点数の決まりは全社同じ）。イベント：会場・出し物・料理・サプライズ
+  const SLOT_LABELS = { travel: SLOT_NAMES, event: { destination: "会場", activity: "出し物", food: "料理", surprise: "サプライズ" } };
+  const slotName = (s, c) => (SLOT_LABELS[c || state.company] || SLOT_NAMES)[s];
+  // その会社を初めて開いたときの案内（事務所の中に1回だけ。companies.*.welcomed に残す）
+  const WELCOME = { event: "イベント会社へようこそ。会場・出し物・料理・サプライズの4つを選ぶよ。人数にも気をつけてね" };
+  // 予算の横の条件：旅行・デートは日数（budget.duration）、イベントは人数（budget.people。例「10人の会」）
+  const conditionOf = b => b.people ? `${b.people}${b.peopleUnit || "人"}の会` : (b.duration || "");
+  const companyOfReq = r => r.company || "travel";
+  const companyOfItem = i => i.company || "travel";
+  const requestsFor = c => DATA.requests.filter(r => companyOfReq(r) === c);
+  function newCompany() {
+    return SAVE ? SAVE.blankCompany() : { history: {}, regulars: [], met: [], perfect: [], rank: { level: 1, streak: 0 }, queue: { seed: 0, order: [], pos: 0, after: [], plan: null }, dayAverages: {}, welcomed: false };
+  }
+  const newDeco = () => SAVE ? SAVE.blankDeco() : { shelf: [null, null, null], wall: [null, null] };
+  // その会社の順番待ち。まだ作っていなければ（新しく始めた時・依頼が増えた会社）、種から作る
+  function queueOf(c) {
+    const q = state.companies[c].queue;
+    if (!q.order.length) {
+      const reqs = requestsFor(c);
+      if (reqs.length) {
+        try { q.order = FIXED ? SCHED.fixedQueue(reqs) : SCHED.buildQueue(reqs, q.seed); }
+        catch (e) { q.order = SCHED.fixedQueue(reqs); }
       }
     }
-    return S.days[day] || [];
+    return q;
   }
-  // その日の依頼（朝・昼・夜の順）。来た日と時間帯は予定のものに置きかえる
-  const requestsOf = day => idsOf(day).map(reqById).filter(Boolean).map((r, k) => Object.assign({}, r, { day, time: TIMES[k] }));
+  // 次にその会社に来る依頼（来た日と時間帯は今のものに置きかえる）。来る依頼がなければ null
+  // 8日目以降の決まりで選んだその日の候補（plan）は、すぐ順番待ちに入れておく（その日のうちに選び直さないため）
+  function nextRequest(c) {
+    const q = queueOf(c), C = state.companies[c];
+    const res = SCHED.nextFor({
+      company: c, requests: requestsFor(c), queue: q, day: state.day,
+      today: state.today.map(t => ({ company: t.company || "travel", reqId: t.req.id, clientId: t.req.clientId })),
+      regulars: C.regulars, perfect: C.perfect,
+      // どの会社でも遊び終えた依頼（イベントの依頼の needs を確かめるため）
+      played: COMPANIES.flatMap(k => { const Q = queueOf(k); return Q.order.slice(0, Q.pos).concat(Q.after || []); })
+        .concat(state.today.map(t => t.req.id))
+    });
+    if (!res) return null;
+    if (res.plan) q.plan = res.plan;
+    return Object.assign({}, reqById(res.id), { day: state.day, time: TIMES[Math.min(state.timeIdx, TIMES.length - 1)], company: c });
+  }
 
   const state = {
     day: 1, timeIdx: 0, req: null, client: null, lines: [], lineIndex: 0,
     budget: 0, bonus: 0, picks: {}, activeSlot: SLOTS[0], result: null,
-    today: [],          // 今日の結果 [{req, total, stars}]
-    dayAverages: [],    // 日ごとの平均
-    history: {},        // clientId → [{reqId, day, time, total, picks:[名前]}]
-    regulars: [],       // 常連になった clientId
+    today: [],          // 今日の結果 [{company, req, total, stars}]（会社をまたいで1日3件）
+    dayAverages: [],    // 日ごとの平均（全体）
+    // 会社ごとの記録 { travel: {history, regulars, met, perfect, rank, queue, dayAverages, welcomed}, event: {…} }（js/save.js の blankCompany）
+    //   history：clientId → [{reqId, day, time, total, picks:[名前]}]／regulars：常連になった clientId
+    companies: Object.fromEntries(COMPANIES.map(c => [c, newCompany()])),
+    company: "travel",  // 今の会社（遊んでいる依頼の会社＝最後に入った会社。図鑑・飾るを開いたときもまずこの会社）
+    decos: Object.fromEntries(COMPANIES.map(c => [c, newDeco()])), // 会社ごとの飾りつけ { travel: {shelf, wall}, event: {…} }
     detailFrom: null,
     tutorial: null,     // 1日目の案内の進み具合
     playedOnce: false,  // 前の記録で1日目の案内を終えたか（はじめからの2周目は案内をとばせる）
-    // 第1段のフェーズ3〜5で使う。今は保存と読み込みで同じ中身を引きつぐだけ
-    met: [], schedule: { seed: 0, days: {} }, perfect: [], rank: { level: 1, streak: 0 },
-    player: null, items: {}, deco: null,
+    player: null, items: {},
     spot: null          // 自分のキャラが今立っている会社（null は道の上の最初の場所）。同じ会社へは歩かない
   };
+  // 今の会社の記録を、前と同じ名前でも読み書きできるようにする（state.history・state.rank・state.deco など）
+  ["history", "regulars", "met", "perfect", "rank"].forEach(k => Object.defineProperty(state, k, {
+    enumerable: true, get: () => state.companies[state.company][k], set: v => { state.companies[state.company][k] = v; }
+  }));
+  Object.defineProperty(state, "deco", { enumerable: true, get: () => state.decos[state.company], set: v => { state.decos[state.company] = v; } });
   const day = () => state.day;
 
   // ---- セーブ ----
@@ -83,12 +124,12 @@
     return {
       game: {
         day: state.day, timeIdx: state.today.length,
-        today: state.today.map(x => ({ reqId: x.req.id, total: x.total, stars: x.stars })),
-        dayAverages: state.dayAverages.map(a => a ?? null), history: state.history, regulars: state.regulars,
-        met: state.met, schedule: state.schedule, perfect: state.perfect, rank: state.rank,
-        tutorial: t ? { done: [...t.done], firstDone: !!t.firstDone } : null, playedOnce: state.playedOnce, spot: state.spot
+        today: state.today.map(x => ({ company: x.company || (x.req && x.req.company) || "travel", reqId: x.req.id, total: x.total, stars: x.stars })),
+        dayAverages: state.dayAverages.map(a => a ?? null),
+        tutorial: t ? { done: [...t.done], firstDone: !!t.firstDone } : null, playedOnce: state.playedOnce, spot: state.spot,
+        companies: state.companies
       },
-      player: state.player, items: state.items, deco: state.deco
+      player: state.player, items: state.items, deco: state.decos
     };
   }
   // 結果が出た時・閉じた時・次の日へ進んだ時に呼ぶ。保存できなくても遊びは止めない
@@ -107,24 +148,33 @@
     clearTimeout(saveMarkTimer);
     saveMarkTimer = setTimeout(() => { m.hidden = true; m.classList.remove("on"); }, 1600);
   }
+  // 保存データ（v2。js/save.js の normalize を通したもの）を読み込む
   function restore(d) {
     const g = d.game;
-    state.schedule = g.schedule;
-    if (!state.schedule.seed && !FIXED) state.schedule.seed = newSeed();
-    state.regulars = g.regulars; state.perfect = g.perfect;
-    const reqs = requestsOf(g.day);
+    state.companies = g.companies;
+    state.decos = d.deco;
+    // 今の会社は、自分のキャラが立っている会社＝最後に入った会社（まだどこにも入っていなければ旅行・デート）
+    state.company = COMPANIES.includes(g.spot) ? g.spot : "travel";
+    COMPANIES.forEach(c => { const q = g.companies[c].queue; if (!q.seed && !FIXED) q.seed = newSeed(); queueOf(c); });
     Object.assign(state, {
       day: g.day, timeIdx: g.today.length,
-      today: g.today.map((x, i) => ({ req: reqs[i] && reqs[i].id === x.reqId ? reqs[i] : reqById(x.reqId), total: x.total, stars: x.stars })),
-      dayAverages: g.dayAverages.slice(), history: g.history, regulars: g.regulars,
-      met: g.met, schedule: g.schedule, perfect: g.perfect, rank: g.rank,
+      today: g.today.map((x, i) => ({ company: x.company, req: Object.assign({}, reqById(x.reqId), { day: g.day, time: TIMES[i] || TIMES[2], company: x.company }), total: x.total, stars: x.stars })),
+      dayAverages: g.dayAverages.slice(),
       tutorial: g.tutorial && !NO_TUTORIAL ? { done: new Set(g.tutorial.done), current: null, firstDone: g.tutorial.firstDone } : null,
-      playedOnce: g.playedOnce, spot: g.spot, player: fixPlayer(d.player), items: d.items, deco: d.deco
+      playedOnce: g.playedOnce, spot: g.spot, player: fixPlayer(d.player), items: d.items
     });
   }
 
   // ---- 表示用の小道具 ----
   function money(n, unit) { return unit === "円" ? n.toLocaleString("ja-JP") + "円" : unit + " " + n.toLocaleString("ja-JP"); }
+  // 値段の表示（カード・欄・上の合計）。数字は太く大きく、単位は小さく。数字は途中で折り返さない（.num は nowrap）
+  //   円は「1,000円」のまま1行。ほかの単位（つゆのしずく など）は、入りきらなければ単位だけが上の行に出る（単位も途中で切らない）
+  //   文字だけを読むと money() と同じ（間の空白は表示では消える）
+  function moneyHtml(n, unit) {
+    const num = `<b class="num">${n.toLocaleString("ja-JP")}</b>`;
+    return unit === "円" ? `<span class="money yen">${num}<span class="unit">円</span></span>`
+      : `<span class="money"><span class="unit">${unit}</span> ${num}</span>`;
+  }
   function points(n) { return Number.isInteger(n) ? String(n) : n.toFixed(1); }
   function starHtml(n) { return [1, 2, 3].map(k => `<span class="star${k <= n ? " on" : ""}${UI ? " has-art" : ""}" aria-hidden="true">${UI ? UI.star(k <= n) : ""}</span>`).join(""); }
   function show(id) {
@@ -142,7 +192,7 @@
     $("time-label").textContent = time;
     $("app").dataset.time = time;
     if (UI) $("time-icon").innerHTML = UI.timeIcon(time);
-    const total = requestsOf(day()).length;
+    const total = PER_DAY;
     $("progress-label").textContent = done + "/" + total + "件";
     $("progress-bar").style.width = (done / total * 100) + "%";
   }
@@ -239,38 +289,62 @@
   }
   PC.addEventListener("change", () => { if (document.body.dataset.screen === "screen-home" && ART.city) drawCity($("city").dataset.time); });
   function goHome() {
-    const reqs = requestsOf(day());
     const time = TIMES[Math.min(state.timeIdx, TIMES.length - 1)];
     setTop(time, state.timeIdx);
     $("city").dataset.time = time;
     if (ART.city) drawCity(time);
-    $("home-note").textContent = `${day()}日目の${time}。旅行・デートの会社に依頼者が来ています。`;
     $("menu-new").hidden = !state.newItem;
     drawMe();
     drawLogos();
-    // 依頼者が来ている会社に人数の札（①②…）を出す。会社は依頼の company（なければ旅行・デート）
-    const waiting = {};
-    reqs.slice(state.timeIdx).filter(r => r.time === time).forEach(r => { const c = r.company || "travel"; waiting[c] = (waiting[c] || 0) + 1; });
+    // イベントは2日目から。1日目は建物に「2日目から」と出して押せない
+    const ev = $("company-event");
+    ev.disabled = !isOpen("event");
+    ev.setAttribute("aria-disabled", String(ev.disabled));
+    ev.querySelector(".soon").hidden = !ev.disabled;
+    // 依頼者が来ている会社の上に、次に来る依頼者の小さな顔（その会社の順番待ちの次の1件）と人数の札（①②③）
+    // 人数は「今日これから来るお客さんの数」＝ 1日3件 − 今日遊んだ件数（第2段の前の札と同じ意味。docs/第2段_設計.md ⑦「顔＋人数」）
+    // 遊べる会社にはどれも同じ数を出す（どちらの会社を選んでも1件ずつ減る）。1日の終わり（0人）は顔も札も消す
+    const next = {};
+    const left = Math.max(0, PER_DAY - state.today.length);
+    if (state.timeIdx < PER_DAY && left > 0) COMPANIES.forEach(c => { if (isOpen(c)) { const r = nextRequest(c); if (r) next[c] = r; } });
+    const circled = n => n > 0 && n <= 20 ? String.fromCharCode(0x245F + n) : String(n);
     document.querySelectorAll("#city .waiting").forEach(el => {
-      const key = el.closest(".company").dataset.company, n = waiting[key] || 0;
-      el.hidden = n === 0;
-      el.textContent = n > 0 && n <= 20 ? String.fromCharCode(0x245F + n) : String(n);
-      el.setAttribute("aria-label", `お客さん${n}人`);
-      el.dataset.count = n;
+      const key = el.closest(".company").dataset.company, r = next[key];
+      const cnt = el.closest(".company").querySelector(".count");
+      el.hidden = !r;
+      el.dataset.count = r ? left : 0;
+      el.classList.toggle("face", !!(r && ART.character));
+      // 人数の札：顔の絵があるときは顔の右上に小さく。絵がないときは顔の場所に数字だけ（札は出さない）
+      if (cnt) {
+        cnt.hidden = !(r && ART.character);
+        cnt.dataset.count = r ? left : 0;
+        if (cnt.hidden) { cnt.textContent = ""; cnt.removeAttribute("aria-label"); cnt.removeAttribute("role"); }
+        else { cnt.textContent = circled(left); cnt.setAttribute("role", "img"); cnt.setAttribute("aria-label", `お客さん${left}人`); }
+      }
+      if (!r) { el.textContent = ""; el.removeAttribute("aria-label"); el.removeAttribute("role"); delete el.dataset.client; return; }
+      const c = DATA.clients[r.clientId];
+      el.dataset.client = r.clientId;
+      el.setAttribute("role", "img");
+      el.setAttribute("aria-label", `次の依頼者：${c.name}`);
+      el.innerHTML = ART.character ? ART.character(r.clientId, "normal") : circled(left);
     });
-    $("today-list").innerHTML = reqs.map((r, i) => {
-      const done = state.today[i];
-      const label = done ? `${DATA.clients[r.clientId].name}　${points(done.total)}点` : i === state.timeIdx ? "依頼者が来ています" : "これから";
-      return `<li class="${done ? "done" : i === state.timeIdx ? "now" : ""}"><span class="t">${r.time}</span><span>${label}</span></li>`;
+    // 下の文：2社から選べるときは「どちらの会社へ行きますか？」（1日目は旅行・デートだけなので今までの文）
+    const open = Object.keys(next);
+    $("home-note").textContent = open.length >= 2 ? `${day()}日目の${time}。どちらの会社へ行きますか？` : `${day()}日目の${time}。${COMPANY_NAMES[open[0] || "travel"]}の会社に依頼者が来ています。`;
+    // 今日の3件（朝・昼・夜）。遊んだ件は会社の印（✈／◎）と依頼者と点数、これからの件は名前を出さない
+    $("today-list").innerHTML = TIMES.slice(0, PER_DAY).map((t, i) => {
+      const done = state.today[i], co = done && (done.company || "travel");
+      const label = done ? `<span class="co-mark" data-company="${co}" role="img" aria-label="${COMPANY_NAMES[co]}">${COMPANY_MARK[co]}</span>${DATA.clients[done.req.clientId].name}　${points(done.total)}点` : i === state.timeIdx ? "依頼者が来ています" : "これから";
+      return `<li class="${done ? "done" : i === state.timeIdx ? "now" : ""}"${co ? ` data-company="${co}"` : ""}><span class="t">${t}</span><span>${label}</span></li>`;
     }).join("");
     show("screen-home");
     placeWalker();
     if (tutorialNow()) coach("home"); else coach(null);
-    if (!reqs.length) summary();
   }
 
   // ---- 事務所 ----
   function startRequest(req) {
+    state.company = req.company || "travel";
     state.req = req;
     state.client = DATA.clients[req.clientId];
     state.picks = {};
@@ -305,11 +379,17 @@
       memo.innerHTML = `<b>依頼者メモ</b>${state.client.name}の苦手なもの：${state.client.memo.join("・")}`;
     } else memo.hidden = true;
 
+    // 事務所の絵は会社ごと（イベントは仮の絵：紫の壁と旗の飾り。本番の絵はフェーズ4）
+    $("office-scene").dataset.company = state.company;
     if (ART.office) {
       $("office-bg").innerHTML = ART.office(req.time, officeOpts());
-      $("counter").innerHTML = ART.counter(state.rank.level);
+      $("counter").innerHTML = ART.counter(state.rank.level, state.company);
       $("office-scene").classList.add("has-art");
     }
+    // その会社を初めて開いたときだけの案内（事務所の中の箱。読んだら閉じる。新しい画面は足さない）
+    const C = state.companies[state.company], tip = WELCOME[state.company];
+    $("welcome").hidden = !(tip && !C.welcomed);
+    if (tip && !C.welcomed) { $("welcome-text").textContent = tip; C.welcomed = true; }
     show("screen-office");
     const client = $("client");
     client.classList.remove("enter"); void client.offsetWidth; client.classList.add("enter");
@@ -335,9 +415,9 @@
     $("mini-line").textContent = state.lines[0];
     $("mini-lines").innerHTML = state.lines.map(l => `<li>${l}</li>`).join("");
     face($("mini-face"), state.client, "normal");
-    $("budget-amount").textContent = money(state.budget, r.budget.unit);
+    $("budget-amount").innerHTML = moneyHtml(state.budget, r.budget.unit);
     $("budget-bonus").textContent = state.bonus ? `（前回のお礼で増額＋${money(state.bonus, r.budget.unit)}）` : "";
-    $("budget-duration").textContent = r.budget.duration;
+    $("budget-duration").textContent = conditionOf(r.budget);
     show("screen-proposal");
     renderProposal();
   }
@@ -348,30 +428,69 @@
       const active = s === state.activeSlot ? " active" : "";
       return `<button class="slot${c ? " filled" : ""}${active}" data-slot="${s}" data-testid="slot-${s}" aria-pressed="${!!active}">
         <span class="slot-icon">${slotIcon(s)}</span>
-        <span class="slot-name">${SLOT_NAMES[s]}</span>
-        ${c ? `<span class="slot-card">${c.name}</span><span class="cost">${money(c.cost, r.budget.unit)}</span>${checkMark()}`
+        <span class="slot-name">${slotName(s)}</span>
+        ${c ? `<span class="slot-card">${cardNameHtml(c.name)}</span><span class="cost">${moneyHtml(c.cost, r.budget.unit)}</span>${checkMark()}`
             : `<span class="slot-empty">えらんでね</span>`}
       </button>`;
     }).join("");
-    $("cards-title").textContent = SLOT_NAMES[state.activeSlot] + "の候補";
+    $("cards-title").textContent = slotName(state.activeSlot) + "の候補";
     $("cards").innerHTML = r.slots[state.activeSlot].map((c, i) => {
       const on = state.picks[state.activeSlot] === c;
       return `<button class="card${on ? " picked" : ""}" data-index="${i}" data-testid="card-${i}" aria-pressed="${on}">
         <span class="card-art slot-${state.activeSlot}" data-art="${c.art || ""}">${cardArt(state.activeSlot, i, c)}</span>
-        <span class="card-name">${c.name}</span>
-        <span class="cost">${money(c.cost, r.budget.unit)}</span>
+        <span class="card-name">${cardNameHtml(c.name)}</span>
+        <span class="cost">${moneyHtml(c.cost, r.budget.unit)}</span>
         ${on ? checkMark() : ""}
       </button>`;
     }).join("");
     const sum = SLOTS.reduce((s, k) => s + (state.picks[k] ? state.picks[k].cost : 0), 0);
-    $("sum-cost").textContent = money(sum, r.budget.unit);
+    $("sum-cost").innerHTML = moneyHtml(sum, r.budget.unit);
     $("sum-cost").classList.toggle("over", sum > state.budget);
     const left = state.budget - sum;
-    $("budget-left").textContent = left >= 0 ? "残り " + money(left, r.budget.unit) : money(-left, r.budget.unit) + " オーバー";
+    $("budget-left").innerHTML = left >= 0 ? "残り " + moneyHtml(left, r.budget.unit) : moneyHtml(-left, r.budget.unit) + " オーバー";
     $("budget-left").classList.toggle("over", left < 0);
     const full = SLOTS.every(s => state.picks[s]);
     $("submit").disabled = !full;
+    fitCardNames();
     if (tutorialNow()) coach(proposalStep(full));
+  }
+  // 候補カードの名前。会場の広さ「（〜10人）」は切らずに、名前の下の1行にまとめる（名前と広さが途中で分かれないように）
+  function cardNameHtml(name) {
+    const m = name.match(/^(.*?)(（〜[^）]*）)$/);
+    return m ? `<span class="nm">${m[1]}</span><span class="cap">${m[2]}</span>` : name;
+  }
+  // 1文字だけが次の行に残る折り返し（例「似顔絵の名／札」）を直す：まず行の長さをそろえ（text-wrap: balance）、
+  // それでも残るときだけ文字を少し小さくする（最小10px）。カードの幅は画面で変わるので、描いたあとに測る
+  function lineLengths(el) {
+    const r = document.createRange(), rows = {};
+    const walk = n => {
+      if (n.nodeType === 3) for (let i = 0; i < n.length; i++) {
+        r.setStart(n, i); r.setEnd(n, i + 1);
+        const rc = r.getClientRects()[0];
+        if (rc) { const k = Math.round(rc.top); rows[k] = (rows[k] || 0) + 1; }
+      } else n.childNodes.forEach(walk);
+    };
+    walk(el);
+    return Object.values(rows);
+  }
+  function fitCardNames() {
+    document.querySelectorAll("#cards .card-name, #slots .slot-card").forEach(el => {
+      const box = el.querySelector(".nm") || el;
+      el.style.fontSize = ""; box.style.textWrap = "";
+      const orphan = () => { const n = lineLengths(box); return n.length > 1 && n.some(x => x === 1); };
+      if (!orphan()) return;
+      box.style.textWrap = "balance";
+      let f = parseFloat(getComputedStyle(el).fontSize);
+      while (orphan() && f > 10) { f -= 0.5; el.style.fontSize = f + "px"; }
+    });
+    // 値段の単位（つゆのしずく など）がカードの幅に入りきらないときは、単位の文字だけ少し小さくする（最小8.5px。それでも入らなければ「…」）
+    document.querySelectorAll("#cards .cost .unit, #slots .cost .unit").forEach(u => {
+      u.style.fontSize = "";
+      let f = parseFloat(getComputedStyle(u).fontSize);
+      const r = document.createRange(); r.selectNodeContents(u);
+      const over = () => r.getBoundingClientRect().width > u.getBoundingClientRect().width + 0.1;
+      while (over() && f > 8.5) { f -= 0.5; u.style.fontSize = f + "px"; }
+    });
   }
   function tutorialNow() { return state.tutorial && state.timeIdx === 0 && !state.tutorial.firstDone; }
   function proposalStep(full) {
@@ -425,7 +544,7 @@
       const bad = c.tags.some(t => r.dislikeTags.includes(t));
       const hit = c.tags.some(t => r.honneTags.includes(t));
       const [cls, mk, label] = bad ? ["m-bad", "×", "苦手なもの"] : hit ? ["m-hit", "◎", "本音に合った"] : ["m-miss", "△", "本音とは別"];
-      return `<li class="${cls}" data-mark="${cls}"><span class="mk ${cls}" aria-label="${label}">${mk}</span><span class="pk-slot">${SLOT_NAMES[s]}</span><span class="pk-name">${c.name}</span></li>`;
+      return `<li class="${cls}" data-mark="${cls}"><span class="mk ${cls}" aria-label="${label}">${mk}</span><span class="pk-slot">${slotName(s)}</span><span class="pk-name">${c.name}</span></li>`;
     }).join("");
     // 依頼者の本音：選んだカードのどれかに入っていれば「当てた」、どれにもなければ「外れた」
     $("honne-tags").innerHTML = r.honneTags.map(t => {
@@ -434,15 +553,17 @@
     }).join("");
     $("cost-note").textContent = `合計 ${money(res.cost, r.budget.unit)}／予算 ${money(state.budget, r.budget.unit)}` + (res.budget ? "" : "（予算オーバー）");
 
-    // 記録
+    // 記録（その会社の記録へ。順番待ちを1件進める）
+    const C = state.companies[r.company];
+    C.queue = SCHED.commit(queueOf(r.company), r.id);
     (state.history[r.clientId] = state.history[r.clientId] || []).push({ reqId: r.id, day: r.day, time: r.time, total: res.total, stars: res.stars, picks: cards.map(c => c.name) });
-    state.today.push({ req: r, total: res.total, stars: res.stars });
+    state.today.push({ company: r.company, req: r, total: res.total, stars: res.stars });
     if (!state.met.includes(r.clientId)) state.met.push(r.clientId);
     if (res.total === 100 && !state.perfect.includes(r.id)) state.perfect.push(r.id);
     const newRegular = r.becomesRegular && !state.regulars.includes(r.clientId);
     if (newRegular) state.regulars.push(r.clientId);
     // もらえる品：常連の回（3回目の来店から）は80点以上でそのキャラの品、ほかは100点で種類の品
-    const got = RW ? RW.award({ total: res.total, clientId: r.clientId, species: state.client.species, regularVisit: state.regulars.includes(r.clientId) }, ITEMS, state.items) : null;
+    const got = RW ? RW.award({ total: res.total, clientId: r.clientId, species: state.client.species, regularVisit: C.regulars.includes(r.clientId), company: r.company }, ITEMS, state.items) : null;
     showReward(got);
     if (got && got.item) { state.items = RW.grant(state.items, got); state.newItem = true; }
     persist();
@@ -457,7 +578,7 @@
     if (tutorialNow()) state.tutorial.firstDone = true;
     state.timeIdx++;
     persist();
-    if (state.timeIdx >= requestsOf(day()).length) summary();
+    if (state.timeIdx >= PER_DAY) summary();
     else goHome();
   }
 
@@ -498,29 +619,86 @@
       $("week-avg").textContent = points(Math.round(dayAverage(w) * 10) / 10);
       $("week-avg-row").querySelector("span").textContent = "この7日間の平均";
     }
-    $("summary-rows").innerHTML = state.today.map(t => `<li data-time="${t.req.time}">
-      <span class="t">${t.req.time}</span><span class="n">${DATA.clients[t.req.clientId].name}</span>
-      <span class="s">${points(t.total)}点</span><span class="stars small">${starHtml(t.stars)}</span></li>`).join("");
+    $("summary-rows").innerHTML = state.today.map(t => { const co = t.company || "travel"; return `<li data-time="${t.req.time}" data-company="${co}">
+      <span class="t">${t.req.time}</span><span class="n"><span class="co-mark" role="img" aria-label="${COMPANY_NAMES[co]}">${COMPANY_MARK[co]}</span>${DATA.clients[t.req.clientId].name}</span>
+      <span class="s">${points(t.total)}点</span><span class="stars small">${starHtml(t.stars)}</span></li>`; }).join("");
     $("summary-avg").textContent = points(Math.round(avg * 10) / 10);
-    // ランクアップ：平均70点以上の日が連続5日で上がる（1日でも下回ったら0に戻る）。同じ日は2回数えない（js/rank.js）
-    let up = false;
-    if (RK) { const r = RK.countDay(state.rank, day(), avg); up = r.up; state.rank = r.rank; if (up) state.rank.upDay = day(); }
-    if (state.rank.upDay === day()) up = true; // つづきから集計を開き直したときも、その日のランクアップを見せる
-    const lv = state.rank.level || 1, st = state.rank.streak || 0;
-    $("rank-name").textContent = RK ? RK.NAMES[lv] : "";
-    // ランクアップした日は「0日連続」と空のバーを出さず、次のランクの案内を1行だけ（次の日の集計からはいつもの表示）
-    $("rank-text").textContent = up && RK ? (lv < RK.MAX ? `次は「${RK.NAMES[lv + 1]}」へ。${RANK_DAYS}日連続でランクアップ` : "最高ランクになりました") : RK ? RK.barText(state.rank) : st + "/" + RANK_DAYS + "日";
-    $("rank-bar").style.width = (lv >= 3 ? 100 : st / RANK_DAYS * 100) + "%";
-    $("rank-bar").parentElement.hidden = up;
-    document.querySelector("#screen-summary .rank > small").hidden = up;
-    $("rank-up").hidden = !up;
-    if (up) { $("rank-up-name").textContent = `「${RK.NAMES[lv]}」になりました`; if (UI && UI.logo) $("rank-up-logo").innerHTML = UI.logo(lv); }
+    // ランクアップ：会社ごとに、その日その会社で遊んだ件の平均が70点以上の日が連続5日で上がる（1日でも下回ったら0に戻る）
+    // その日に遊ばなかった会社は数えない（連続も途切れない）。同じ日は2回数えない（js/rank.js の countDayByCompany）
+    // 表示（docs/第2段_設計.md ③A）：その日に遊んだ会社だけ1行ずつ（平均・ランク・連続日数）。遊ばなかった会社は出さない
+    const played = COMPANIES.filter(c => state.today.some(t => (t.company || "travel") === c));
+    const ups = {};
+    if (RK) {
+      const ranks = Object.fromEntries(COMPANIES.map(c => [c, state.companies[c].rank]));
+      const r = RK.countDayByCompany(ranks, day(), state.today.map(t => ({ company: t.company || "travel", total: t.total })));
+      Object.keys(r.avgs).forEach(c => {
+        const C = state.companies[c];
+        if (!C) return;
+        C.rank = r.ranks[c]; C.dayAverages[day()] = r.avgs[c];
+        if (r.up[c]) C.rank.upDay = day();
+      });
+    }
+    // つづきから集計を開き直したときも、その日のランクアップを見せる（upDay）
+    played.forEach(c => { ups[c] = state.companies[c].rank.upDay === day(); });
+    $("co-rows").innerHTML = played.map(c => {
+      const C = state.companies[c], rk = C.rank, lv = rk.level || 1, st = rk.streak || 0, up = ups[c];
+      const ts = state.today.filter(t => (t.company || "travel") === c).map(t => t.total);
+      const cavg = Math.round(dayAverage(ts) * 10) / 10;
+      // ランクアップした日は「0日連続」と空のバーを出さず、次のランクの案内を1行だけ（次の日の集計からはいつもの表示）
+      const text = up && RK ? (lv < RK.MAX ? `次は「${RK.NAMES[lv + 1]}」へ。${RANK_DAYS}日連続でランクアップ` : "最高ランクになりました") : RK ? RK.barText(rk) : st + "/" + RANK_DAYS + "日";
+      // その会社の順番待ち（21件）を今日遊び終えたら「○○ 21件ひとめぐり」と1行
+      const q = C.queue, last = q.order[q.order.length - 1];
+      const loop = q.order.length && q.pos >= q.order.length && state.today.some(t => (t.company || "travel") === c && t.req.id === last);
+      return `<li class="co-row" data-company="${c}" data-testid="summary-company-${c}">
+        <div class="co-head"><span class="co-name"><span class="co-mark" aria-hidden="true">${COMPANY_MARK[c]}</span>${COMPANY_NAMES[c]}</span><span class="co-avg">平均 <b data-testid="co-avg">${points(cavg)}</b>点</span></div>
+        <div class="rank-label"><span>ランク：<b data-testid="rank-name">${RK ? RK.NAMES[lv] : ""}</b></span><span class="rank-text" data-testid="rank-text">${text}</span></div>
+        <div class="bar"${up ? " hidden" : ""}><span style="width:${lv >= 3 ? 100 : st / RANK_DAYS * 100}%"></span></div>
+        ${loop ? `<p class="loop-note" data-testid="loop-note">${COMPANY_NAMES[c]} ${q.order.length}件ひとめぐり</p>` : ""}
+      </li>`;
+    }).join("");
+    // ランクアップした会社には枠。2社が同じ日に上がったときは1つずつ順に見せる（docs/第2段_設計.md ③A）
+    //   はじめは1社目の枠だけ（1社のときと同じ形：看板の絵・「ランクアップ！」・名前・壁紙の一文）
+    //   その下の「○○のランクアップを見る」で2社目の枠に入れかえる。見ずに「次の日へ」を押したときも、先に2社目を見せる
+    const upList = played.filter(c => ups[c]);
+    rankUpShown = 0;
+    $("rank-ups").innerHTML = upList.map((c, i) => {
+      const lv = state.companies[c].rank.level || 1;
+      return `<div class="rank-up" data-company="${c}" data-testid="rank-up"${i > 0 ? " hidden" : ""}>
+        <b>ランクアップ！</b><span class="rank-up-name"><small class="rank-up-co">${COMPANY_NAMES[c]}</small>「${RK.NAMES[lv]}」になりました</span><small class="rank-up-note" data-testid="rank-up-note">事務所の壁紙とカウンターが新しくなりました</small>
+        <div class="rank-up-logo" aria-hidden="true">${UI && UI.logo ? UI.logo(lv) : ""}</div>
+      </div>`;
+    }).join("") + (upList.length > 1 ? `<button class="btn ghost rank-up-next" id="rank-up-next" data-testid="rank-up-next"></button>` : "");
+    showRankUp(0);
+    $("summary-rank").dataset.ups = upList.length;
+    $("summary-rank").dataset.rows = played.length;
+    document.querySelector("#screen-summary .rank-rule").hidden = upList.length > 0;
     drawLogos();
     show("screen-summary");
     persist();
     coach(state.tutorial ? "summary" : null);
   }
+  // 同じ日に2社がランクアップしたとき、今見せている枠の番号（0から）
+  let rankUpShown = 0;
+  function showRankUp(i) {
+    const boxes = [...$("rank-ups").querySelectorAll(".rank-up")], btn = $("rank-up-next");
+    rankUpShown = i;
+    boxes.forEach((b, k) => { b.hidden = k !== i; });
+    $("summary-rank").dataset.shown = boxes.length ? i + 1 : 0;
+    if (!btn) return;
+    const nx = boxes[i + 1];
+    btn.hidden = !nx;
+    if (nx) btn.textContent = `${COMPANY_NAMES[nx.dataset.company]}のランクアップを見る`;
+  }
+  // まだ見ていないランクアップの枠があれば、次の枠を見せて true（「次の日へ」はそのあと）
+  function showNextRankUp() {
+    const n = $("rank-ups").querySelectorAll(".rank-up").length;
+    if (rankUpShown + 1 >= n) return false;
+    showRankUp(rankUpShown + 1);
+    $("next-day").focus();
+    return true;
+  }
   function nextDay() {
+    if (showNextRankUp()) return;
     coachDone("summary");
     state.day++; state.timeIdx = 0; state.today = [];
     if (state.tutorial) state.playedOnce = true;
@@ -651,48 +829,73 @@
     document.querySelectorAll("#screen-dress .tab").forEach(b => { const on = b.dataset.part === dressPart; b.classList.toggle("on", on); b.setAttribute("aria-selected", String(on)); });
     $("dress-figure").innerHTML = playerSvg(state.player);
     const cur = state.player.wear[dressPart];
+    // 着られるのは全社でもらった品（決定：着せ替えは会社をまたぐ）。どこでもらったか分かるよう、会社ごとに見出しを付けて並べる
     const mine = ITEMS.items.filter(i => i.use === "wear" && i.part === dressPart && (state.items[i.id] || []).length);
     $("wear-empty").hidden = mine.length > 0;
-    const cells = mine.flatMap(i => (state.items[i.id] || []).map(c => {
-      const v = i.id + ":" + c;
-      return `<li><button class="wear-item${cur === v ? " on" : ""}" data-wear="${v}" data-testid="wear-${i.id}-${c}" aria-pressed="${cur === v}"><span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b><small class="wi-tag">${colorName(i, c)}</small></span></button></li>`;
-    }));
+    const cells = COMPANIES.flatMap(co => {
+      const list = mine.filter(i => companyOfItem(i) === co);
+      if (!list.length) return [];
+      return [`<li class="wear-head" data-company="${co}" data-testid="wear-head-${co}"><span class="co-mark" aria-hidden="true">${COMPANY_MARK[co]}</span>${COMPANY_NAMES[co]}でもらった品</li>`].concat(list.flatMap(i => (state.items[i.id] || []).map(c => {
+        const v = i.id + ":" + c;
+        return `<li data-company="${co}"><button class="wear-item${cur === v ? " on" : ""}" data-wear="${v}" data-testid="wear-${i.id}-${c}" aria-pressed="${cur === v}"><span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b><small class="wi-tag">${colorName(i, c)}</small></span></button></li>`;
+      })));
+    });
     $("wear-list").innerHTML = (mine.length ? [`<li><button class="wear-item${cur ? "" : " on"}" data-wear="" data-testid="wear-none" aria-pressed="${!cur}"><span class="zk-icon missing"></span><span>はずす</span></button></li>`] : []).concat(cells).join("");
     show("screen-dress");
     requestAnimationFrame(fitNames);
     coach(null);
   }
+  // 品を選んで画面を描き直しても、スクロールの位置をそのままにする（下の品を続けて試すとき、毎回いちばん上へ戻らないように。持ち主の指示）
+  //   画面全体（スマホ）と、枠の中でスクロールする一覧（PC）の両方を覚えて戻す
+  function keepScroll(screenId, redraw) {
+    const y = window.scrollY;
+    const inner = [...document.querySelectorAll(`#${screenId} *`)].filter(el => el.scrollTop > 0).map(el => [el.id || null, el.className, el.scrollTop]);
+    redraw();
+    window.scrollTo(0, y);
+    const els = [...document.querySelectorAll(`#${screenId} *`)];
+    inner.forEach(([id, cls, top]) => { const el = id ? document.getElementById(id) : els.find(e => e.className === cls); if (el) el.scrollTop = top; });
+  }
   function setWear(v) {
     state.player.wear[dressPart] = v || null;
     persist();
     drawMe();
-    openDress();
+    keepScroll("screen-dress", () => openDress());
   }
 
   // ---- 飾りつけ：棚3か所・壁2か所 ----
   // 保存の形は deco = { shelf: ["品ID:色"|null ×3], wall: [… ×2] }。持っていない品・場所に合わない品は飾らない
-  function decoArt(v, place) {
+  // co：どの会社の事務所か（書かなければ今の会社）。飾れるのはその会社でもらった品だけ
+  function decoArt(v, place, co) {
     const [id, c] = v ? v.split(":") : [];
     const it = id && itemById(id);
-    return it && it.use === "deco" && it.place === place && (state.items[id] || []).includes(Number(c)) ? itemIcon(it, Number(c)) : null;
+    return it && it.use === "deco" && it.place === place && companyOfItem(it) === (co || state.company) && (state.items[id] || []).includes(Number(c)) ? itemIcon(it, Number(c)) : null;
   }
-  function officeOpts(fit) {
-    const d = state.deco || { shelf: [], wall: [] };
-    return { rank: state.rank.level, fit, deco: { shelf: (d.shelf || []).map(v => decoArt(v, "shelf")), wall: (d.wall || []).map(v => decoArt(v, "wall")) } };
+  function officeOpts(fit, co) {
+    co = co || state.company;
+    const d = state.decos[co] || { shelf: [], wall: [] };
+    return { rank: state.companies[co].rank.level, company: co, fit, deco: { shelf: (d.shelf || []).map(v => decoArt(v, "shelf", co)), wall: (d.wall || []).map(v => decoArt(v, "wall", co)) } };
+  }
+  // 図鑑・飾るで見ている会社（上の切り替え）。開いたときは今の会社（最後に入った会社）
+  let viewCo = "travel";
+  const VC = () => state.companies[viewCo];
+  function markCoTabs(id) {
+    document.querySelectorAll(`#${id} .tab`).forEach(b => { const on = b.dataset.co === viewCo; b.classList.toggle("on", on); b.setAttribute("aria-selected", String(on)); });
   }
   let decoSpot = null; // { place, i }
   function openDeco(spot) {
-    if (!state.deco) state.deco = SAVE.blank().deco;
+    if (!state.decos[viewCo]) state.decos[viewCo] = newDeco();
+    const deco = state.decos[viewCo];
     decoSpot = spot || decoSpot || { place: "shelf", i: 0 };
+    markCoTabs("deco-co");
     const time = TIMES[Math.min(state.timeIdx, 2)];
-    $("deco-bg").innerHTML = ART.office ? ART.office(time, officeOpts("meet")) : "";
-    $("deco-counter").innerHTML = ART.counter ? ART.counter(state.rank.level) : "";
+    $("deco-bg").innerHTML = ART.office ? ART.office(time, officeOpts("meet", viewCo)) : "";
+    $("deco-counter").innerHTML = ART.counter ? ART.counter(VC().rank.level, viewCo) : "";
     // 飾る場所：絵の中は場所を示す枠だけ（押せない）。押すボタンは絵の下に5つ並べる（棚の段は間が狭く、44px のボタンが重なるため）
-    const S = ART.DECO_SPOTS || { shelf: [], wall: [] };
+    const S = (ART.decoSpots ? ART.decoSpots(viewCo) : ART.DECO_SPOTS) || { shelf: [], wall: [] };
     $("deco-scene").querySelectorAll(".deco-mark").forEach(b => b.remove());
     const btns = [];
     ["shelf", "wall"].forEach(place => S[place].forEach((q, i) => {
-      const on = decoSpot.place === place && decoSpot.i === i, v = state.deco[place][i];
+      const on = decoSpot.place === place && decoSpot.i === i, v = deco[place][i];
       const m = document.createElement("span");
       m.className = "deco-mark" + (on ? " on" : "");
       m.setAttribute("aria-hidden", "true");
@@ -704,9 +907,10 @@
     }));
     $("deco-spots").innerHTML = btns.join("");
     // 選んだ場所に飾れる品
-    const place = decoSpot.place, cur = state.deco[place][decoSpot.i];
+    const place = decoSpot.place, cur = deco[place][decoSpot.i];
     $("deco-help").textContent = `${place === "shelf" ? "棚" : "壁"}の${decoSpot.i + 1}か所目に飾る品を選んでね。`;
-    const mine = ITEMS.items.filter(i => i.use === "deco" && i.place === place && (state.items[i.id] || []).length);
+    // 飾れるのはその会社でもらった品だけ（決定：品は会社ごと）
+    const mine = ITEMS.items.filter(i => i.use === "deco" && i.place === place && companyOfItem(i) === viewCo && (state.items[i.id] || []).length);
     $("deco-empty").hidden = mine.length > 0;
     $("deco-empty").textContent = mine.length ? "" : `まだ${place === "shelf" ? "棚" : "壁"}に飾れる品がありません。依頼者が大喜びすると、品をもらえることがあります。`;
     const cells = mine.flatMap(i => (state.items[i.id] || []).map(c => {
@@ -719,12 +923,12 @@
     coach(null);
   }
   function setDeco(v) {
-    const d = state.deco, { place, i } = decoSpot;
+    const d = state.decos[viewCo], { place, i } = decoSpot;
     // 同じ品（同じ色）を2か所には飾らない：ほかの場所にあれば、こちらへ移す
     if (v) ["shelf", "wall"].forEach(pl => d[pl].forEach((x, k) => { if (x === v) d[pl][k] = null; }));
     d[place][i] = v || null;
     persist();
-    openDeco();
+    keepScroll("screen-deco", () => openDeco());
   }
 
   // ---- 街を歩く：別の会社をタップしたときだけ、自分のキャラが道に沿って入口まで歩く（約1秒）。同じ会社なら歩かずすぐ入る ----
@@ -782,10 +986,12 @@
 
   // ---- 図鑑（依頼者／常連さん／品）。まだのものは影だけ ----
   let zukanTab = "clients";
-  const CLIENT_ORDER = [...new Set(DATA.requests.map(r => r.clientId))];
+  // 図鑑の依頼者は、見ている会社に来る依頼者（会社ごとに数える）
+  const clientOrder = () => [...new Set(requestsFor(viewCo).map(r => r.clientId))];
   function openZukan(tab) {
     zukanTab = tab || zukanTab;
-    document.querySelectorAll("#screen-zukan .tab").forEach(b => {
+    markCoTabs("zukan-co");
+    document.querySelectorAll("#screen-zukan .tab[data-tab]").forEach(b => {
       const on = b.dataset.tab === zukanTab;
       b.classList.toggle("on", on); b.setAttribute("aria-selected", String(on));
     });
@@ -799,11 +1005,12 @@
     coach(null);
   }
   function renderZukanClients() {
-    const met = CLIENT_ORDER.filter(id => state.met.includes(id)).length;
+    const CLIENT_ORDER = clientOrder();
+    const met = CLIENT_ORDER.filter(id => VC().met.includes(id)).length;
     $("zukan-count").textContent = `会った依頼者 ${met}/${CLIENT_ORDER.length}人`;
     $("zukan-note").textContent = "まだ会っていない依頼者は、影だけ見えます。";
     $("zukan-clients").innerHTML = CLIENT_ORDER.map(id => {
-      const c = DATA.clients[id], seen = state.met.includes(id);
+      const c = DATA.clients[id], seen = VC().met.includes(id);
       return `<li class="zk${seen ? "" : " shadow"}" data-client="${id}" data-seen="${seen}"><span class="client-figure zk-face" data-face="${id}" aria-hidden="true"></span>
         <b>${seen ? c.name : "？？？"}</b><small>${seen ? c.kind : ""}</small></li>`;
     }).join("");
@@ -811,11 +1018,12 @@
     requestAnimationFrame(fitNames);
   }
   function renderRegulars() {
-    $("zukan-count").textContent = `常連さん ${state.regulars.length}人`;
+    const C = VC();
+    $("zukan-count").textContent = `常連さん ${C.regulars.length}人`;
     $("zukan-note").textContent = "名前をタップすると、好みとこれまでの提案が見られます。";
-    $("regulars-empty").hidden = state.regulars.length > 0;
-    $("regular-list").innerHTML = state.regulars.map(id => {
-      const c = DATA.clients[id], v = state.history[id] || [], last = v[v.length - 1];
+    $("regulars-empty").hidden = C.regulars.length > 0;
+    $("regular-list").innerHTML = C.regulars.map(id => {
+      const c = DATA.clients[id], v = C.history[id] || [], last = v[v.length - 1];
       return `<li><button class="regular-item" data-client="${id}" data-testid="regular-${id}">
         <span class="client-figure regular-face" data-face="${id}" aria-hidden="true"></span>
         <span class="regular-text"><b>${c.name}</b><small>${c.kind}・来店${v.length}回${last ? `・前回${points(last.total)}点` : ""}</small></span>
@@ -824,17 +1032,19 @@
     $("regular-list").querySelectorAll("[data-face]").forEach(el => face(el, DATA.clients[el.dataset.face], "normal"));
   }
   function renderZukanItems() {
-    const groups = [...new Set(ITEMS.items.map(i => i.group))];
-    const total = ITEMS.items.reduce((n, i) => n + i.colors.length, 0);
-    const have = ITEMS.items.reduce((n, i) => n + (state.items[i.id] || []).length, 0);
+    // 品は会社ごとに数える（見ている会社の品だけ。旅行・デートは it-、イベントは ev- の品）
+    const list = ITEMS.items.filter(i => companyOfItem(i) === viewCo);
+    const groups = [...new Set(list.map(i => i.group))];
+    const total = list.reduce((n, i) => n + i.colors.length, 0);
+    const have = list.reduce((n, i) => n + (state.items[i.id] || []).length, 0);
     $("zukan-count").textContent = `集めた品 ${have}/${total}（色違いを含む）`;
     $("zukan-note").textContent = "常連でない依頼者は100点で、常連さんは80点以上で品をくれます。";
     requestAnimationFrame(fitNames);
     $("zukan-items").innerHTML = groups.map(g => {
       const [kind, key] = g.split(":");
-      const known = kind === "species" || state.met.includes(key);
+      const known = kind === "species" || VC().met.includes(key);
       const title = kind === "species" ? `${ITEMS.groupNames[key] || key}の品` : `${known ? DATA.clients[key].name : "？？？"}の品（常連さん）`;
-      const cells = ITEMS.items.filter(i => i.group === g).sort((a, b) => a.order - b.order).map(i => {
+      const cells = list.filter(i => i.group === g).sort((a, b) => a.order - b.order).map(i => {
         const has = state.items[i.id] || [];
         const any = has.length > 0;
         const dots = i.colors.map((c, k) => has.includes(k)
@@ -859,10 +1069,14 @@
   function openRegulars() { openZukan("regulars"); }
 
   // ---- 常連のキャラ詳細 ----
+  // 結果から開くときは今の会社、図鑑の常連さんから開くときは図鑑で見ている会社の記録
   function openDetail(clientId, from) {
     const c = DATA.clients[clientId];
-    const visits = state.history[clientId] || [];
+    const co = from === "list" ? viewCo : state.company;
+    const visits = state.companies[co].history[clientId] || [];
     state.detailFrom = from;
+    // どの会社の常連さんか（さくらさんのように両方の会社に来る依頼者もいるため、来店の記録はその会社の分だけ）
+    $("detail-badge").textContent = `${COMPANY_NAMES[co]}の常連さん`;
     face($("detail-face"), c, "great");
     $("detail-name").textContent = c.name;
     $("detail-profile").textContent = `${c.kind}・${c.profile}`;
@@ -885,12 +1099,16 @@
   // ---- はじめから ----
   function reset(startDay, withTitle) {
     const b = SAVE ? SAVE.blank() : null;
+    const companies = {}, decos = {};
+    COMPANIES.forEach(c => { companies[c] = newCompany(); companies[c].queue.seed = newSeed(); decos[c] = newDeco(); });
     Object.assign(state, {
-      day: startDay, timeIdx: 0, today: [], dayAverages: [], history: {}, regulars: [],
+      day: startDay, timeIdx: 0, today: [], dayAverages: [], companies, decos, company: "travel",
       tutorial: startDay === 1 && !NO_TUTORIAL ? { done: new Set(), current: null } : null,
-      met: [], schedule: { seed: newSeed(), days: {} }, perfect: [], rank: { level: 1, streak: 0 },
-      player: b ? b.player : null, items: {}, deco: b ? b.deco : null, spot: null
+      player: b ? b.player : null, items: {}, spot: null
     });
+    COMPANIES.forEach(queueOf);
+    // 開発用 ?day=N：前の日までの分（旅行・デート1日3件）は遊び終えたことにして、順番待ちを進める
+    if (startDay > 1) { const q = queueOf("travel"); q.pos = Math.min((startDay - 1) * PER_DAY, q.order.length); }
     if (withTitle === "create") return; // キャラ作りの画面は呼んだ側で開く
     if (withTitle) openTitle(); else goHome();
   }
@@ -924,8 +1142,7 @@
     show("screen-title");
   }
   function continueGame() {
-    const reqs = requestsOf(day());
-    if (state.today.length >= reqs.length) summary(); else goHome();
+    if (state.today.length >= PER_DAY) summary(); else goHome();
   }
 
   // ---- つなぎ ----
@@ -938,11 +1155,15 @@
   $("confirm-new-ok").addEventListener("click", () => { closeConfirm(); startNew(); });
   $("confirm-new-cancel").addEventListener("click", closeConfirm);
   $("continue").addEventListener("click", continueGame);
-  $("company-travel").addEventListener("click", () => {
-    if (walking) return;
+  // 会社をタップ：今いる会社と違うときだけ歩いてから、その会社の次の依頼へ（同じ会社なら歩かずすぐ事務所）
+  function enterCompany(c) {
+    if (walking || !isOpen(c)) return;
     coachDone("home");
-    walkTo("travel", () => startRequest(requestsOf(day())[state.timeIdx]));
-  });
+    walkTo(c, () => { const r = nextRequest(c); if (r) startRequest(r); else goHome(); });
+  }
+  $("company-travel").addEventListener("click", () => enterCompany("travel"));
+  $("company-event").addEventListener("click", () => enterCompany("event"));
+  $("welcome-ok").addEventListener("click", () => { $("welcome").hidden = true; persist(); });
   $("talk-next").addEventListener("click", nextLine);
   $("talk-bubble").addEventListener("click", nextLine);
   $("reread").addEventListener("click", openLog);
@@ -962,15 +1183,18 @@
   $("submit").addEventListener("click", submit);
   $("close-result").addEventListener("click", closeResult);
   $("next-day").addEventListener("click", nextDay);
+  $("rank-ups").addEventListener("click", e => { if (e.target.closest("#rank-up-next")) showNextRankUp(); });
   $("open-detail").addEventListener("click", () => openDetail(state.req.clientId, "result"));
   // メニュー（ホームだけで開ける）
   const menuDlg = $("menu");
   const closeMenu = () => { if (menuDlg.close) menuDlg.close(); else menuDlg.removeAttribute("open"); };
   $("open-menu").addEventListener("click", () => { if (menuDlg.showModal) menuDlg.showModal(); else menuDlg.setAttribute("open", ""); });
   $("menu-close").addEventListener("click", closeMenu);
-  $("menu-zukan").addEventListener("click", () => { closeMenu(); openZukan(state.newItem ? "items" : "clients"); });
+  $("menu-zukan").addEventListener("click", () => { closeMenu(); viewCo = state.company; openZukan(state.newItem ? "items" : "clients"); });
+  document.querySelectorAll("#zukan-co .tab").forEach(b => b.addEventListener("click", () => { viewCo = b.dataset.co; openZukan(); }));
+  document.querySelectorAll("#deco-co .tab").forEach(b => b.addEventListener("click", () => { viewCo = b.dataset.co; openDeco({ place: "shelf", i: 0 }); }));
   $("menu-title").addEventListener("click", () => { closeMenu(); openTitle(); });
-  document.querySelectorAll("#screen-zukan .tab").forEach(b => b.addEventListener("click", () => openZukan(b.dataset.tab)));
+  document.querySelectorAll("#screen-zukan .tab[data-tab]").forEach(b => b.addEventListener("click", () => openZukan(b.dataset.tab)));
   $("zukan-back").addEventListener("click", goHome);
   $("menu-dress").addEventListener("click", () => { closeMenu(); openDress("head"); });
   $("create-options").addEventListener("click", e => { const b = e.target.closest(".opt"); if (b) pickOption(b.dataset.key, b.dataset.value); });
@@ -981,7 +1205,7 @@
   $("wear-list").addEventListener("click", e => { const b = e.target.closest(".wear-item"); if (b) setWear(b.dataset.wear); });
   $("dress-look").addEventListener("click", () => openCreate("edit"));
   $("dress-back").addEventListener("click", goHome);
-  $("menu-deco").addEventListener("click", () => { closeMenu(); openDeco({ place: "shelf", i: 0 }); });
+  $("menu-deco").addEventListener("click", () => { closeMenu(); viewCo = state.company; openDeco({ place: "shelf", i: 0 }); });
   $("deco-spots").addEventListener("click", e => { const b = e.target.closest(".deco-spot"); if (b) openDeco({ place: b.dataset.place, i: Number(b.dataset.i) }); });
   $("deco-list").addEventListener("click", e => { const b = e.target.closest(".wear-item"); if (b) setDeco(b.dataset.deco); });
   $("deco-back").addEventListener("click", goHome);
@@ -1022,5 +1246,14 @@
   }
   window.__readyAt = performance.now();
   document.body.dataset.ready = "1";
-  window.__yorozu = { state, DAYS, requestsOf, snapshot, restore, fixPlayer };
+  // テスト用：state.companies に会社ごとの記録。nextRequest(会社) で次に来る依頼、queueOf(会社) で順番待ち
+  // company：今の会社（最後に入った会社）／companyState(会社)：その会社の記録（ランク・常連・順番待ちなど）
+  window.__yorozu = {
+    state, DAYS, COMPANIES, nextRequest, queueOf, snapshot, restore, fixPlayer,
+    // テスト用：依頼の提案書をすぐ開く（候補カードの名前の折り返しを確かめる）
+    openProposalFor: (id, slot) => { startRequest(Object.assign({}, reqById(id), { time: "朝" })); openProposal(); state.activeSlot = slot || SLOTS[0]; renderProposal(); },
+    get company() { return state.company; },
+    companyState: c => state.companies[c],
+    isOpen
+  };
 })();

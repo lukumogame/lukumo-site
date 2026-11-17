@@ -147,7 +147,8 @@
     },
     // 月のヘアピン：頭の右上の横
     moonpin: {
-      part: "head", color: "#f2c94c",
+      // 髪かざりなので耳の上に出す（まる耳などに隠れないように。2026-11-16 持ち主の承認）
+      part: "head", color: "#f2c94c", overEars: true,
       front: function (k) {
         return r(122, 55, 34, 7, "#6b7a8f", 3.5, rot(-40, 139, 58.5)) +
           moon(142, 52, 13, 6, -5, 10.5, k) + star(128, 66, 5, 2.4, WHITE);
@@ -285,8 +286,111 @@
       }
     }
   };
+  // ---- イベント会社の品（第2段）----
+  var MAPLE = "M0 -15L3.5 -8L9 -11.5L7.5 -4L14 -4.5L10.5 0.5L13 5L5 4.5L6 9L0 6.5L-6 9L-5 4.5L-13 5L-10.5 0.5L-14 -4.5L-7.5 -4L-9 -11.5L-3.5 -8Z";
+  Object.assign(WEAR, {
+    // パーティー帽：頭のてっぺんにのせるとんがり帽子
+    partyhat: {
+      part: "head", color: "#e57aa0",
+      front: function (k) {
+        return p("M100,8 L127,46 Q100,56 73,46Z", k) +
+          c(94, 26, 3, WHITE, NS) + c(106, 34, 3, WHITE, NS) + c(90, 42, 3, WHITE, NS) + c(111, 45, 3, WHITE, NS) + c(101, 18, 2.4, WHITE, NS) +
+          p("M71,45 Q100,56 129,45 L131,52 Q100,64 69,52Z", GOLD) + c(100, 8, 7, GOLD);
+      }
+    },
+    // コック帽：ふくらんだ白い帽子
+    cookhat: {
+      part: "head", color: "#ffffff",
+      front: function (k) {
+        return p("M72,36 C52,34 54,6 76,10 C78,-2 98,-2 102,8 C108,-2 128,0 126,12 C148,8 148,36 128,36Z", k) +
+          l("M86,18 V34 M100,14 V34 M114,18 V34", 2.5) +
+          r(68, 30, 64, 22, k, 4) + l("M68,40 H132", 2) + c(84, 45, 3, RED, NS);
+      }
+    },
+    // 光る輪っか：頭の上にうかぶ光の輪
+    halo: {
+      part: "head", color: "#f2e27a",
+      front: function (k) {
+        var ring = "M60,22 A40,10 0 1 0 140,22 A40,10 0 1 0 60,22";
+        return l(ring, 18, k, ' opacity="0.35"') + T(ring, k, 6) + star(150, 8, 6, 2.4, WHITE) + star(52, 10, 4.5, 1.8, WHITE);
+      }
+    },
+    // つゆのかんむり：葉のつるとしずく
+    dewcrown: {
+      part: "head", color: "#9ce0f0",
+      front: function (k) {
+        var drop = function (x, y, z) { return p("M" + x + "," + (y - 12 * z) + " Q" + (x + 8 * z) + "," + y + " " + (x + 8 * z) + "," + (y + 4 * z) + " A" + 8 * z + "," + 8 * z + " 0 0 1 " + (x - 8 * z) + "," + (y + 4 * z) + " Q" + (x - 8 * z) + "," + y + " " + x + "," + (y - 12 * z) + "Z", k); };
+        return T("M58,48 Q100,30 142,48", "#6cbf5a", 6) +
+          e(68, 42, 8, 4, "#8fcf6a", rot(-24, 68, 42)) + e(132, 42, 8, 4, "#8fcf6a", rot(24, 132, 42)) + e(100, 38, 8, 4, "#8fcf6a") +
+          drop(80, 30, 1) + drop(100, 20, 1.3) + drop(120, 30, 1) + r(96, 16, 3, 5, WHITE, 1.5, NS);
+      }
+    },
+    // もみじのピン：頭の右上の横
+    maplepin: {
+      part: "head", color: "#e2574c", overEars: true,
+      front: function (k) {
+        return r(122, 56, 34, 7, "#6b7a8f", 3.5, rot(-40, 139, 59.5)) +
+          '<g transform="translate(144 50) rotate(14) scale(1.15)" stroke-width="' + n(LW / 1.15) + '">' + p(MAPLE, k) + l("M0 4V-9M0 1L8 -2M0 1L-8 -2", 2) + "</g>";
+      }
+    },
+    // 花びらのリボン：首元の蝶ネクタイ
+    petalbow: {
+      part: "body", color: "#f08ab0",
+      front: function (k) {
+        return shirt(true) +
+          e(85, 147, 13, 7, k, rot(-22, 85, 147)) + e(85, 160, 13, 7, k, rot(22, 85, 160)) +
+          e(115, 147, 13, 7, k, rot(22, 115, 147)) + e(115, 160, 13, 7, k, rot(-22, 115, 160)) +
+          c(100, 153.5, 7, GOLD) + c(100, 153.5, 3, "#f08a3a", NS);
+      }
+    },
+    // 花のエプロン：シャツの上に胸当てとすそ
+    apron: {
+      part: "body", color: "#e2574c",
+      front: function (k) {
+        return shirt(true) +
+          l("M86,150 L90,141 M114,150 L110,141", 3) +
+          p("M84,150 L116,150 L116,178 L84,178Z", k) + p("M72,176 L128,176 L134,222 L66,222Z", k) +
+          l("M72,178 L58,182 M128,178 L142,182", 3) +
+          r(90, 192, 20, 14, CREAM, 3) +
+          c(92, 160, 3, WHITE, NS) + c(108, 166, 3, WHITE, NS) + c(78, 188, 3, WHITE, NS) + c(122, 196, 3, WHITE, NS) + c(80, 212, 3, WHITE, NS) + c(120, 214, 3, WHITE, NS);
+      }
+    },
+    // 木の実リュック：背中のリュックと肩ひも
+    nutbackpack: {
+      part: "body", color: "#a0683c",
+      back: function (k) {
+        return r(40, 136, 120, 74, k, 24) + p("M46,150 Q48,138 64,138 L136,138 Q152,138 154,150 Z", light(k), NS + ' opacity="0.5"');
+      },
+      front: function (k) {
+        return shirt(true) + T("M84,142 L80,200", dark(k), 6) + T("M116,142 L120,200", dark(k), 6) +
+          e(118, 176, 6, 7, "#c58a52") + p("M111,173 Q111,166 118,166 Q125,166 125,173Z", "#6a4a32");
+      }
+    },
+    // 木の実マラカス：右手で持つどんぐりの形のマラカス
+    acornmaracas: {
+      part: "hand", color: "#b9784a",
+      front: function (k) {
+        return T("M148,204 L164,164", DARKWOOD, 6) +
+          e(168, 152, 13, 14, k, rot(20, 168, 152)) +
+          p("M152,146 Q150,128 170,128 Q188,130 186,150Z", "#7a4a2a") +
+          l("M158,138 L166,132 M162,144 L176,134 M172,146 L182,140", 2) + T("M171,129 L173,122", DARKWOOD, 3.5) +
+          l("M186,170 L194,174 M188,160 L198,160 M150,124 L144,118", 3);
+      }
+    },
+    // 光る花たば：右手で持つ光る花の束
+    glowbouquet: {
+      part: "hand", color: "#f2e27a",
+      front: function (k) {
+        return l("M146,190 L136,166 M150,190 L150,152 M154,190 L166,166", 3, "#5cb87a") +
+          c(136, 166, 16, k, NS + ' opacity="0.45"') + c(166, 166, 16, k, NS + ' opacity="0.45"') + c(151, 148, 16, k, NS + ' opacity="0.45"') +
+          c(136, 166, 10, k) + c(166, 166, 10, k) + c(151, 148, 10, k) + c(136, 166, 3.6, WHITE, NS) + c(166, 166, 3.6, WHITE, NS) + c(151, 148, 3.6, WHITE, NS) +
+          p("M136,186 L164,186 L156,214 L144,214Z", CREAM) + p("M150,198 L140,192 V204Z M150,198 L160,192 V204Z", "#f08aa0");
+      }
+    }
+  });
   var WEAR_ARTS = Object.keys(WEAR);
-  var HATS = { strawhat: 1, acornhat: 1 }; // 頭の上をおおう品（耳・触角・アンテナを帽子の中にしまう）
+  // 頭の上をおおう品（耳・触角・アンテナを帽子の外へずらす）
+  var HATS = { strawhat: 1, acornhat: 1, partyhat: 1, cookhat: 1, dewcrown: 1 };
 
   function wear(art, color, layer) {
     var w = WEAR[art];
@@ -447,7 +551,8 @@
     s += sp.head + (head ? "" : sp.ears) + c(HEAD.cx, HEAD.cy, HEAD.r, k);
     s += sp.front;
     s += g(HEAD.cx, HEAD.cy, 1, face(mood, eyes, mouth, sp.face, sp.faceSkin));
-    if (head) s += wear(head.art, head.color, "front") + sp.ears; // 耳・触角は頭の品より手前
+    // 耳・触角は頭の品より手前。ただし髪かざり（overEars）は耳の上に出す（まる耳などに隠れないように）
+    if (head) s += WEAR[head.art].overEars ? sp.ears + wear(head.art, head.color, "front") : wear(head.art, head.color, "front") + sp.ears;
     if (hand && !noHand) s += wear(hand.art, hand.color, "front") + c(HAND_R.x, HAND_R.y, HAND_R2, k);
     return s;
   }
