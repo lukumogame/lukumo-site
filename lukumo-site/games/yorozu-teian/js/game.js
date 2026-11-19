@@ -59,6 +59,8 @@
   const WELCOME = { event: "イベント会社へようこそ。会場・出し物・料理・サプライズの4つを選ぶよ。人数にも気をつけてね" };
   // 予算の横の条件：旅行・デートは日数（budget.duration）、イベントは人数（budget.people。例「10人の会」）
   const conditionOf = b => b.people ? `${b.people}${b.peopleUnit || "人"}の会` : (b.duration || "");
+  // 会場の広さ（名前の「（〜10人）」）が依頼の人数より小さいか。人数が入りきらない会場は、データで本音のタグを持たない
+  const tooSmall = (card, req) => { const m = req.budget.people && /（〜(\d+)[^）]*）$/.exec(card.name); return !!m && +m[1] < req.budget.people; };
   const companyOfReq = r => r.company || "travel";
   const companyOfItem = i => i.company || "travel";
   const requestsFor = c => DATA.requests.filter(r => companyOfReq(r) === c);
@@ -302,14 +304,18 @@
     ev.setAttribute("aria-disabled", String(ev.disabled));
     ev.querySelector(".soon").hidden = !ev.disabled;
     // 依頼者が来ている会社の上に、次に来る依頼者の小さな顔（その会社の順番待ちの次の1件）と人数の札（①②③）
-    // 人数は「今日これから来るお客さんの数」＝ 1日3件 − 今日遊んだ件数（第2段の前の札と同じ意味。docs/第2段_設計.md ⑦「顔＋人数」）
-    // 遊べる会社にはどれも同じ数を出す（どちらの会社を選んでも1件ずつ減る）。1日の終わり（0人）は顔も札も消す
-    const next = {};
-    const left = Math.max(0, PER_DAY - state.today.length);
-    if (state.timeIdx < PER_DAY && left > 0) COMPANIES.forEach(c => { if (isOpen(c)) { const r = nextRequest(c); if (r) next[c] = r; } });
+    // 人数は会社ごとの「その会社で今日待っているお客さんの数」＝ 1日3件 − 今日その会社で遊んだ件数（2026-11-19 試遊第8回を受けて。
+    // 前は2社に同じ数を出していて、行っていない会社の数も減っていた）。1日3件で終わるのは同じ。1日の終わりは顔も札も消す
+    const next = {}, leftOf = {};
+    const dayLeft = Math.max(0, PER_DAY - state.today.length);
+    if (state.timeIdx < PER_DAY && dayLeft > 0) COMPANIES.forEach(c => {
+      if (!isOpen(c)) return;
+      leftOf[c] = Math.max(0, PER_DAY - state.today.filter(t => (t.company || "travel") === c).length);
+      const r = leftOf[c] > 0 && nextRequest(c); if (r) next[c] = r;
+    });
     const circled = n => n > 0 && n <= 20 ? String.fromCharCode(0x245F + n) : String(n);
     document.querySelectorAll("#city .waiting").forEach(el => {
-      const key = el.closest(".company").dataset.company, r = next[key];
+      const key = el.closest(".company").dataset.company, r = next[key], left = r ? leftOf[key] : 0;
       const cnt = el.closest(".company").querySelector(".count");
       el.hidden = !r;
       el.dataset.count = r ? left : 0;
@@ -580,7 +586,9 @@
       const bad = c.tags.some(t => r.dislikeTags.includes(t));
       const hit = c.tags.some(t => r.honneTags.includes(t));
       const [cls, mk, label] = bad ? ["m-bad", "×", "苦手なもの"] : hit ? ["m-hit", "◎", "本音に合った"] : ["m-miss", "△", "本音とは別"];
-      return `<li class="${cls}" data-mark="${cls}"><span class="mk ${cls}" aria-label="${label}">${mk}</span><span class="pk-slot">${slotName(s)}</span><span class="pk-name">${c.name}</span></li>`;
+      // イベントの会場が人数より小さいときは、△の理由を添える（2026-11-19 試遊第8回を受けて）
+      const why = !bad && !hit && tooSmall(c, r) ? `<small class="pk-why" data-testid="pk-why">人数が入りきらない</small>` : "";
+      return `<li class="${cls}" data-mark="${cls}"><span class="mk ${cls}" aria-label="${label}">${mk}</span><span class="pk-slot">${slotName(s)}</span><span class="pk-name">${c.name}${why}</span></li>`;
     }).join("");
     // 依頼者の本音：選んだカードのどれかに入っていれば「当てた」、どれにもなければ「外れた」
     $("honne-tags").innerHTML = r.honneTags.map(t => {
@@ -1204,7 +1212,7 @@
   $("talk-bubble").addEventListener("click", nextLine);
   $("reread").addEventListener("click", openLog);
   $("log-close").addEventListener("click", closeLog);
-  $("open-score-help").addEventListener("click", () => { const d = $("score-help"); if (d.showModal) d.showModal(); else d.setAttribute("open", ""); });
+  $("open-score-help").addEventListener("click", () => { const d = $("score-help"); $("help-people").hidden = !(state.req && state.req.budget.people); if (d.showModal) d.showModal(); else d.setAttribute("open", ""); });
   $("score-help-close").addEventListener("click", () => { const d = $("score-help"); if (d.close) d.close(); else d.removeAttribute("open"); });
   $("slots").addEventListener("click", e => {
     const b = e.target.closest(".slot"); if (!b) return;

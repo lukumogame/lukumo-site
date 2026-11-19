@@ -738,3 +738,5 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
 .money.yen .unit { flex: none; overflow: visible; }
 /* 値段が狭いカードに入らないときは、前の「●」を外す（js/game.js fitCardNames） */
 .cost.tight .num::before, .cost.tight .money::before { display: none !important; }
+/* 結果の△の理由（イベントの会場が人数より小さいとき）。名前の下に小さく */
+.pk-why { display: block; font-size: 12px; font-weight: 400; color: var(--sub); }
