@@ -37,6 +37,8 @@
         tutorial: { done: [], firstDone: false }, playedOnce: false,
         // spot：自分のキャラが今立っている場所（会社のキー）。null は道の上の最初の場所
         spot: null,
+        // news：新しくもらった品の赤い丸（js/game.js の「新しい品の印」）
+        news: { menu: { zukan: false, dress: false, deco: false }, zukan: [], fresh: [] },
         companies: perCompany(blankCompany)
       },
       // hairColor：髪の色（人と宇宙人）。null は「前の決まり（肌の色に合わせた色）」。読み込むときに js/game.js が番号に直す
@@ -131,6 +133,9 @@
     g.companies = Object.fromEntries(COMPANIES.map(c => [c, normalizeCompany((cs || {})[c], c)]));
     if (g.tutorial !== null && !(isObj(g.tutorial) && Array.isArray(g.tutorial.done))) throw new Error("案内の記録が読めません");
     if (typeof g.spot !== "string") g.spot = null;
+    // 新しい品の印は、読めなければ印なしで続ける（遊びには関わらないので、読めないデータにはしない）
+    const n = isObj(g.news) ? g.news : {}, nm = isObj(n.menu) ? n.menu : {};
+    g.news = { menu: { zukan: nm.zukan === true, dress: nm.dress === true, deco: nm.deco === true }, zukan: isIds(n.zukan) ? n.zukan : [], fresh: isIds(n.fresh) ? n.fresh : [] };
     // 時間帯は、今日すでに終えた件数と同じにそろえる（提出のあと閉じる前に保存された時のため）
     g.timeIdx = g.today.length;
     const p = Object.assign(b.player, isObj(d.player) ? d.player : {});

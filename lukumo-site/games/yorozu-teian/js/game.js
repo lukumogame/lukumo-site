@@ -59,6 +59,24 @@
   const WELCOME = { event: "イベント会社へようこそ。会場・出し物・料理・サプライズの4つを選ぶよ。人数にも気をつけてね" };
   // 予算の横の条件：旅行・デートは日数（budget.duration）、イベントは人数（budget.people。例「10人の会」）
   const conditionOf = b => b.people ? `${b.people}${b.peopleUnit || "人"}の会` : (b.duration || "");
+  // ---- 新しい品の印（赤い丸。2026-11-19 持ち主の指示） ----
+  // menu：メニューの中の「図鑑・着せ替え・飾る」の丸。その画面を開いたら消える。メニューのボタンの丸は、このどれかがあるとき
+  // zukan：図鑑で丸を付ける品（品ID:色）。図鑑を閉じたら消える（図鑑の品は押せないため）
+  // fresh：着せ替え・飾るで丸を付ける品（品ID:色）。その品を選んだら消える。品のあるタブ・飾る場所にも丸
+  function blankNews() { return { menu: { zukan: false, dress: false, deco: false }, zukan: [], fresh: [] }; }
+  const ND = (id, label) => `<span class="nd"${id ? ` data-testid="${id}"` : ""} role="img" aria-label="${label || "新しい品"}"></span>`;
+  const isFresh = v => state.news.fresh.includes(v);
+  function markNewItem(got) {
+    const it = got.item, v = it.id + ":" + got.color, n = state.news;
+    n.menu.zukan = true; n.menu[it && it.use === "wear" ? "dress" : "deco"] = true;
+    if (!n.zukan.includes(v)) n.zukan.push(v);
+    if (!n.fresh.includes(v)) n.fresh.push(v);
+  }
+  function drawMenuDots() {
+    const m = state.news.menu;
+    $("menu-new").hidden = !(m.zukan || m.dress || m.deco);
+    ["zukan", "dress", "deco"].forEach(k => { $("menu-" + k + "-new").hidden = !m[k]; });
+  }
   // 会場の広さ（名前の「（〜10人）」）が依頼の人数より小さいか。人数が入りきらない会場は、データで本音のタグを持たない
   const tooSmall = (card, req) => { const m = req.budget.people && /（〜(\d+)[^）]*）$/.exec(card.name); return !!m && +m[1] < req.budget.people; };
   const companyOfReq = r => r.company || "travel";
@@ -111,6 +129,7 @@
     tutorial: null,     // 1日目の案内の進み具合
     playedOnce: false,  // 前の記録で1日目の案内を終えたか（はじめからの2周目は案内をとばせる）
     player: null, items: {},
+    news: blankNews(),  // 新しくもらった品の赤い丸（下の「新しい品の印」）
     spot: null          // 自分のキャラが今立っている会社（null は道の上の最初の場所）。同じ会社へは歩かない
   };
   // 今の会社の記録を、前と同じ名前でも読み書きできるようにする（state.history・state.rank・state.deco など）
@@ -129,6 +148,7 @@
         today: state.today.map(x => ({ company: x.company || (x.req && x.req.company) || "travel", reqId: x.req.id, total: x.total, stars: x.stars })),
         dayAverages: state.dayAverages.map(a => a ?? null),
         tutorial: t ? { done: [...t.done], firstDone: !!t.firstDone } : null, playedOnce: state.playedOnce, spot: state.spot,
+        news: state.news,
         companies: state.companies
       },
       player: state.player, items: state.items, deco: state.decos
@@ -163,7 +183,7 @@
       today: g.today.map((x, i) => ({ company: x.company, req: Object.assign({}, reqById(x.reqId), { day: g.day, time: TIMES[i] || TIMES[2], company: x.company }), total: x.total, stars: x.stars })),
       dayAverages: g.dayAverages.slice(),
       tutorial: g.tutorial && !NO_TUTORIAL ? { done: new Set(g.tutorial.done), current: null, firstDone: g.tutorial.firstDone } : null,
-      playedOnce: g.playedOnce, spot: g.spot, player: fixPlayer(d.player), items: d.items
+      playedOnce: g.playedOnce, spot: g.spot, player: fixPlayer(d.player), items: d.items, news: g.news
     });
   }
 
@@ -295,7 +315,7 @@
     setTop(time, state.timeIdx);
     $("city").dataset.time = time;
     if (ART.city) drawCity(time);
-    $("menu-new").hidden = !state.newItem;
+    drawMenuDots();
     drawMe();
     drawLogos();
     // イベントは2日目から。1日目は建物に「2日目から」と出して押せない
@@ -609,7 +629,7 @@
     // もらえる品：常連の回（3回目の来店から）は80点以上でそのキャラの品、ほかは100点で種類の品
     const got = RW ? RW.award({ total: res.total, clientId: r.clientId, species: state.client.species, regularVisit: C.regulars.includes(r.clientId), company: r.company }, ITEMS, state.items) : null;
     showReward(got);
-    if (got && got.item) { state.items = RW.grant(state.items, got); state.newItem = true; }
+    if (got && got.item) { state.items = RW.grant(state.items, got); markNewItem(got); }
     persist();
     $("regular-note").hidden = !newRegular;
     $("regular-name").textContent = state.client.name;
@@ -870,7 +890,11 @@
   let dressPart = "head";
   function openDress(part) {
     dressPart = part || dressPart;
-    document.querySelectorAll("#screen-dress .tab").forEach(b => { const on = b.dataset.part === dressPart; b.classList.toggle("on", on); b.setAttribute("aria-selected", String(on)); });
+    document.querySelectorAll("#screen-dress .tab").forEach(b => {
+      const on = b.dataset.part === dressPart; b.classList.toggle("on", on); b.setAttribute("aria-selected", String(on));
+      b.querySelectorAll(".nd").forEach(e => e.remove());
+      if (ITEMS.items.some(i => i.use === "wear" && i.part === b.dataset.part && state.news.fresh.some(v => v.split(":")[0] === i.id))) b.insertAdjacentHTML("beforeend", ND("dress-tab-" + b.dataset.part + "-new"));
+    });
     $("dress-figure").innerHTML = playerSvg(state.player);
     const cur = state.player.wear[dressPart];
     // 着られるのは全社でもらった品（決定：着せ替えは会社をまたぐ）。どこでもらったか分かるよう、会社ごとに見出しを付けて並べる
@@ -881,7 +905,7 @@
       if (!list.length) return [];
       return [`<li class="wear-head" data-company="${co}" data-testid="wear-head-${co}"><span class="co-mark" aria-hidden="true">${COMPANY_MARK[co]}</span>${COMPANY_NAMES[co]}でもらった品</li>`].concat(list.flatMap(i => (state.items[i.id] || []).map(c => {
         const v = i.id + ":" + c;
-        return `<li data-company="${co}"><button class="wear-item${cur === v ? " on" : ""}" data-wear="${v}" data-testid="wear-${i.id}-${c}" aria-pressed="${cur === v}"><span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b><small class="wi-tag">${colorName(i, c)}</small></span></button></li>`;
+        return `<li data-company="${co}"><button class="wear-item${cur === v ? " on" : ""}" data-wear="${v}" data-testid="wear-${i.id}-${c}" aria-pressed="${cur === v}">${isFresh(v) ? ND("new-" + i.id + "-" + c) : ""}<span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b><small class="wi-tag">${colorName(i, c)}</small></span></button></li>`;
       })));
     });
     $("wear-list").innerHTML = (mine.length ? [`<li><button class="wear-item${cur ? "" : " on"}" data-wear="" data-testid="wear-none" aria-pressed="${!cur}"><span class="zk-icon missing"></span><span>はずす</span></button></li>`] : []).concat(cells).join("");
@@ -901,6 +925,7 @@
   }
   function setWear(v) {
     state.player.wear[dressPart] = v || null;
+    state.news.fresh = state.news.fresh.filter(x => x !== v);
     persist();
     drawMe();
     keepScroll("screen-dress", () => openDress());
@@ -931,6 +956,8 @@
     const deco = state.decos[viewCo];
     decoSpot = spot || decoSpot || { place: "shelf", i: 0 };
     markCoTabs("deco-co");
+    const freshDeco = (co, place) => ITEMS.items.some(i => i.use === "deco" && companyOfItem(i) === co && (!place || i.place === place) && state.news.fresh.some(v => v.split(":")[0] === i.id));
+    document.querySelectorAll("#deco-co .tab").forEach(b => { b.querySelectorAll(".nd").forEach(e => e.remove()); if (freshDeco(b.dataset.co)) b.insertAdjacentHTML("beforeend", ND("deco-co-" + b.dataset.co + "-new")); });
     const time = TIMES[Math.min(state.timeIdx, 2)];
     $("deco-bg").innerHTML = ART.office ? ART.office(time, officeOpts("meet", viewCo)) : "";
     $("deco-counter").innerHTML = ART.counter ? ART.counter(VC().rank.level, viewCo) : "";
@@ -947,7 +974,7 @@
       $("deco-scene").appendChild(m);
       const [id, c] = v ? v.split(":") : [];
       const it = id && itemById(id);
-      btns.push(`<button class="deco-spot${on ? " on" : ""}${v ? " filled" : ""}" data-place="${place}" data-i="${i}" data-testid="spot-${place}-${i}" aria-pressed="${on}" aria-label="${place === "shelf" ? "棚" : "壁"}の${i + 1}か所目"><small>${place === "shelf" ? "棚" : "壁"}${i + 1}</small>${it ? `<span class="zk-icon">${itemIcon(it, Number(c))}</span>` : ""}</button>`);
+      btns.push(`<button class="deco-spot${on ? " on" : ""}${v ? " filled" : ""}" data-place="${place}" data-i="${i}" data-testid="spot-${place}-${i}" aria-pressed="${on}" aria-label="${place === "shelf" ? "棚" : "壁"}の${i + 1}か所目">${freshDeco(viewCo, place) ? ND("", "新しい品を飾れます") : ""}<small>${place === "shelf" ? "棚" : "壁"}${i + 1}</small>${it ? `<span class="zk-icon">${itemIcon(it, Number(c))}</span>` : ""}</button>`);
     }));
     $("deco-spots").innerHTML = btns.join("");
     // 選んだ場所に飾れる品
@@ -959,7 +986,7 @@
     $("deco-empty").textContent = mine.length ? "" : `まだ${place === "shelf" ? "棚" : "壁"}に飾れる品がありません。依頼者が大喜びすると、品をもらえることがあります。`;
     const cells = mine.flatMap(i => (state.items[i.id] || []).map(c => {
       const v = i.id + ":" + c;
-      return `<li><button class="wear-item${cur === v ? " on" : ""}" data-deco="${v}" data-testid="deco-${i.id}-${c}" aria-pressed="${cur === v}"><span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b><small class="wi-tag">${colorName(i, c)}</small></span></button></li>`;
+      return `<li><button class="wear-item${cur === v ? " on" : ""}" data-deco="${v}" data-testid="deco-${i.id}-${c}" aria-pressed="${cur === v}">${isFresh(v) ? ND("new-" + i.id + "-" + c) : ""}<span class="zk-icon">${itemIcon(i, c)}</span><span class="wi-text"><b class="wi-name">${i.name}</b><small class="wi-tag">${colorName(i, c)}</small></span></button></li>`;
     }));
     $("deco-list").innerHTML = (mine.length ? [`<li><button class="wear-item${cur ? "" : " on"}" data-deco="" data-testid="deco-none" aria-pressed="${!cur}"><span class="zk-icon missing"></span><span>はずす</span></button></li>`] : []).concat(cells).join("");
     show("screen-deco");
@@ -971,6 +998,7 @@
     // 同じ品（同じ色）を2か所には飾らない：ほかの場所にあれば、こちらへ移す
     if (v) ["shelf", "wall"].forEach(pl => d[pl].forEach((x, k) => { if (x === v) d[pl][k] = null; }));
     d[place][i] = v || null;
+    state.news.fresh = state.news.fresh.filter(x => x !== v);
     persist();
     keepScroll("screen-deco", () => openDeco());
   }
@@ -1044,7 +1072,12 @@
     $("zukan-name").textContent = playerName(state.player) + "の図鑑";
     if (zukanTab === "clients") renderZukanClients();
     if (zukanTab === "regulars") renderRegulars();
-    if (zukanTab === "items") { renderZukanItems(); state.newItem = false; }
+    if (zukanTab === "items") renderZukanItems();
+    // 品のタブと、新しい品のある会社のタブに丸
+    const zkNew = co => state.news.zukan.some(v => companyOfItem(itemById(v.split(":")[0])) === co);
+    $("tab-items").querySelectorAll(".nd").forEach(e => e.remove());
+    if (zkNew(viewCo)) $("tab-items").insertAdjacentHTML("beforeend", ND("tab-items-new"));
+    document.querySelectorAll("#zukan-co .tab").forEach(b => { b.querySelectorAll(".nd").forEach(e => e.remove()); if (zkNew(b.dataset.co)) b.insertAdjacentHTML("beforeend", ND("zukan-co-" + b.dataset.co + "-new")); });
     show("screen-zukan");
     coach(null);
   }
@@ -1097,7 +1130,8 @@
           : `<span class="zk-icon shadow" data-color="${k}" aria-hidden="true">${itemIcon(i, 0)}</span>`).join("");
         // 色の名前を文字でも（まだの色は「？」）
         const colorText = any ? `<small class="zk-colors" data-testid="zk-colors-${i.id}">${i.colors.map((_, k) => has.includes(k) ? colorName(i, k) : "？").join("・")}</small>` : "";
-        return `<li class="zk item${any ? "" : " unknown"}" data-item="${i.id}" data-owned="${has.join(",")}"><span class="zk-icons">${dots}</span><b>${any ? i.name : "？？？"}</b>${colorText}<small>${any ? (i.use === "wear" ? { head: "頭", body: "服", hand: "手に持つ" }[i.part] : { shelf: "棚に飾る", wall: "壁に飾る" }[i.place]) : ""}</small></li>`;
+        const isNew = has.some(k => state.news.zukan.includes(i.id + ":" + k));
+        return `<li class="zk item${any ? "" : " unknown"}" data-item="${i.id}" data-owned="${has.join(",")}">${isNew ? ND("zk-new-" + i.id) : ""}<span class="zk-icons">${dots}</span><b>${any ? i.name : "？？？"}</b>${colorText}<small>${any ? (i.use === "wear" ? { head: "頭", body: "服", hand: "手に持つ" }[i.part] : { shelf: "棚に飾る", wall: "壁に飾る" }[i.place]) : ""}</small></li>`;
       }).join("");
       return `<li class="zk-head">${title}</li>${cells}`;
     }).join("");
@@ -1148,7 +1182,7 @@
     Object.assign(state, {
       day: startDay, timeIdx: 0, today: [], dayAverages: [], companies, decos, company: "travel",
       tutorial: startDay === 1 && !NO_TUTORIAL ? { done: new Set(), current: null } : null,
-      player: b ? b.player : null, items: {}, spot: null
+      player: b ? b.player : null, items: {}, news: blankNews(), spot: null
     });
     COMPANIES.forEach(queueOf);
     // 開発用 ?day=N：前の日までの分（旅行・デート1日3件）は遊び終えたことにして、順番待ちを進める
@@ -1234,13 +1268,26 @@
   const closeMenu = () => { if (menuDlg.close) menuDlg.close(); else menuDlg.removeAttribute("open"); };
   $("open-menu").addEventListener("click", () => { if (menuDlg.showModal) menuDlg.showModal(); else menuDlg.setAttribute("open", ""); });
   $("menu-close").addEventListener("click", closeMenu);
-  $("menu-zukan").addEventListener("click", () => { closeMenu(); viewCo = state.company; openZukan(state.newItem ? "items" : "clients"); });
+  $("menu-zukan").addEventListener("click", () => {
+    closeMenu(); viewCo = state.company;
+    // 新しい品があるときは品のタブから。新しい品がほかの会社のものだけなら、その会社を開く
+    const nz = state.news.zukan.map(v => companyOfItem(itemById(v.split(":")[0])));
+    if (nz.length && !nz.includes(viewCo)) viewCo = nz[0];
+    const tab = state.news.menu.zukan ? "items" : "clients";
+    state.news.menu.zukan = false; persist();
+    openZukan(tab);
+  });
   document.querySelectorAll("#zukan-co .tab").forEach(b => b.addEventListener("click", () => { viewCo = b.dataset.co; openZukan(); }));
   document.querySelectorAll("#deco-co .tab").forEach(b => b.addEventListener("click", () => { viewCo = b.dataset.co; openDeco({ place: "shelf", i: 0 }); }));
   $("menu-title").addEventListener("click", () => { closeMenu(); openTitle(); });
   document.querySelectorAll("#screen-zukan .tab[data-tab]").forEach(b => b.addEventListener("click", () => openZukan(b.dataset.tab)));
-  $("zukan-back").addEventListener("click", goHome);
-  $("menu-dress").addEventListener("click", () => { closeMenu(); openDress("head"); });
+  $("zukan-back").addEventListener("click", () => { if (state.news.zukan.length) { state.news.zukan = []; persist(); } goHome(); });
+  $("menu-dress").addEventListener("click", () => {
+    closeMenu(); state.news.menu.dress = false; persist();
+    // 新しい品がある部位から開く
+    const f = ITEMS.items.find(i => i.use === "wear" && state.news.fresh.some(v => v.split(":")[0] === i.id));
+    openDress(f ? f.part : "head");
+  });
   $("create-options").addEventListener("click", e => { const b = e.target.closest(".opt"); if (b) pickOption(b.dataset.key, b.dataset.value); });
   $("create-random").addEventListener("click", randomDraft);
   $("create-ok").addEventListener("click", finishCreate);
@@ -1249,7 +1296,13 @@
   $("wear-list").addEventListener("click", e => { const b = e.target.closest(".wear-item"); if (b) setWear(b.dataset.wear); });
   $("dress-look").addEventListener("click", () => openCreate("edit"));
   $("dress-back").addEventListener("click", goHome);
-  $("menu-deco").addEventListener("click", () => { closeMenu(); viewCo = state.company; openDeco({ place: "shelf", i: 0 }); });
+  $("menu-deco").addEventListener("click", () => {
+    closeMenu(); state.news.menu.deco = false; persist();
+    // 新しい品があるときは、その会社・その場所から開く
+    const f = ITEMS.items.find(i => i.use === "deco" && state.news.fresh.some(v => v.split(":")[0] === i.id));
+    viewCo = f ? companyOfItem(f) : state.company;
+    openDeco({ place: f ? f.place : "shelf", i: 0 });
+  });
   $("deco-spots").addEventListener("click", e => { const b = e.target.closest(".deco-spot"); if (b) openDeco({ place: b.dataset.place, i: Number(b.dataset.i) }); });
   $("deco-list").addEventListener("click", e => { const b = e.target.closest(".wear-item"); if (b) setDeco(b.dataset.deco); });
   $("deco-back").addEventListener("click", goHome);

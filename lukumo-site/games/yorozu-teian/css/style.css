@@ -194,7 +194,6 @@ button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .c-town { left: 8%; top: 52%; background: #3f9a56; }
 .c-event { left: 66%; top: 78%; background: #9b5fc9; }
 .company:disabled { filter: grayscale(.55); opacity: .85; cursor: not-allowed; }
-.city[data-time="夜"] .company:not(:disabled) { box-shadow: 0 0 0 4px #ffe08a; }
 .home-note { margin: 0; text-align: center; font-weight: 700; }
 
 /* 1日の集計 */
@@ -740,3 +739,7 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
 .cost.tight .num::before, .cost.tight .money::before { display: none !important; }
 /* 結果の△の理由（イベントの会場が人数より小さいとき）。名前の下に小さく */
 .pk-why { display: block; font-size: 12px; font-weight: 400; color: var(--sub); }
+/* 新しい品の赤い丸（メニューの中の3つ・タブ・品・飾る場所）。右上の角に */
+.menu-list .btn, .tab, .wear-item, .deco-spot, .zk.item { position: relative; }
+.menu-list .btn .new-dot { top: 6px; right: 12px; }
+.nd { position: absolute; top: 3px; right: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--red); border: 2px solid #fff; pointer-events: none; z-index: 1; }
