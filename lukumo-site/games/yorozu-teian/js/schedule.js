@@ -122,7 +122,7 @@
   //         today:[{company, reqId, clientId}]（今日遊んだ件。ほかの会社も含む）, regulars, perfect }（regulars・perfect はその会社の分）
   // 返り値：{ id, plan }（plan は8日目以降の決まりで使ったその日の候補。呼んだ側が queue.plan に入れておく）／依頼がなければ null
   function nextFor(ctx) {
-    const reqs = ctx.requests || [];
+    let reqs = ctx.requests || [];
     if (!reqs.length) return null;
     const q = ctx.queue, byId = Object.fromEntries(reqs.map(r => [r.id, r]));
     const today = ctx.today || [];
@@ -148,6 +148,10 @@
     // 2. 順番待ちを遊び終えたあと：8日目以降の決まりで、その会社のその日の候補（3件）を選び、まだ出していないものから1件ずつ
     const mine = today.filter(t => t.company === ctx.company).map(t => t.reqId);
     const served = [...q.order.slice(0, q.pos), ...q.after];
+    // 時間が進む常連さん（yearsLater のある依頼。第3段ライフプラン）：もっと先の回を遊んだあとは、それより前の回を出さない（時間が戻らないように）
+    const servedSet = new Set(served);
+    const laterServed = r => ctx.requests.some(o => o.clientId === r.clientId && o.yearsLater && visitOf(o) > visitOf(r) && servedSet.has(o.id));
+    reqs = reqs.filter(r => !laterServed(r));
     // 直近の6件（今日より前に、その会社に来た件。今日遊んだ件は served の末尾にある）
     const recent = served.slice(0, served.length - mine.length).slice(-2 * PER_DAY);
     let plan = q.plan && q.plan.day === ctx.day ? q.plan : null;

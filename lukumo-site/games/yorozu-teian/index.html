@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>よろず提案所（試作版）</title>
-  <meta name="description" content="旅行・デートとイベントの2社で、依頼者の話を聞いて、ぴったりの提案書をつくるゲームの試作版。">
+  <meta name="description" content="旅行・デート、イベント、ライフプランの3社で、依頼者の話を聞いて、ぴったりの提案書をつくるゲームの試作版。">
   <meta name="theme-color" content="#e6eef2">
   <meta property="og:type" content="website">
   <meta property="og:title" content="よろず提案所（試作版）">
-  <meta property="og:description" content="人も、生き物も、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲームの試作版（旅行・デートとイベントの2社・依頼42件。会社を選んで遊べて、その後も続けて遊べる）。">
+  <meta property="og:description" content="人も、生き物も、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲームの試作版（旅行・デート、イベント、ライフプランの3社・依頼63件。会社を選んで遊べて、その後も続けて遊べる）。">
   <!-- SNS で共有したときの画像（tools/make-og-image.js で作る）。公開先の URL で指す -->
   <meta property="og:image" content="https://lukumo-site.vercel.app/games/yorozu-teian/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -45,7 +45,7 @@
         <small class="continue-info" id="continue-info" data-testid="continue-info"></small>
         <button class="btn primary title-start" id="start" data-testid="start">はじめる</button>
         <p class="save-note" id="save-note" data-testid="save-note" role="status" hidden></p>
-        <small class="title-note">試作版：2社・依頼42件</small>
+        <small class="title-note">試作版：3社・依頼63件</small>
       </div>
     </section>
 
@@ -83,7 +83,7 @@
         <span class="mini-text"><b id="mini-name"></b><span id="mini-line"></span><small>タップで会話を全文読む</small></span>
         <ol class="mini-lines pc-only" id="mini-lines"></ol>
       </button>
-      <div class="budget" id="budget" data-testid="budget"><span>合計 <b id="sum-cost">0</b></span><span class="sep">／</span><span>予算 <b id="budget-amount"></b><span class="bonus" id="budget-bonus"></span>・<span id="budget-duration"></span></span><span class="left" id="budget-left" data-testid="budget-left"></span></div>
+      <div class="budget" id="budget" data-testid="budget"><span>合計 <b id="sum-cost">0</b></span><span class="sep">／</span><span><span id="budget-label">予算</span> <b id="budget-amount"></b><span class="bonus" id="budget-bonus"></span>・<span id="budget-duration"></span></span><span class="left" id="budget-left" data-testid="budget-left"></span></div>
       <button class="btn small ghost score-help-btn" id="open-score-help" data-testid="open-score-help">点数について</button>
       </div>
       <div class="col-b">
@@ -132,7 +132,7 @@
       <div class="panel picks-panel">
         <h2 class="panel-title">選んだカード</h2>
         <ul class="result-picks" id="result-picks" data-testid="result-picks"></ul>
-        <p class="picks-legend"><span class="mk m-hit">◎</span>本音に合った <span class="mk m-miss">△</span>本音とは別 <span class="mk m-bad">×</span>苦手なもの</p>
+        <p class="picks-legend"><span class="mk m-hit">◎</span>本音に合った <span class="mk m-miss">△</span><span id="legend-miss" data-testid="legend-miss">本音とは別</span> <span class="mk m-bad">×</span>苦手なもの</p>
       </div>
       <p class="cost-note" id="cost-note"></p>
       <div class="actions"><button class="btn blue" id="close-result" data-testid="close-result">閉じる</button></div>
@@ -158,7 +158,7 @@
         </div>
         <div class="walker" id="walker" data-testid="walker" aria-hidden="true"></div>
         <button class="company c-travel" id="company-travel" data-company="travel" data-testid="company-travel"><span class="sign">✈</span><span class="cname">旅行・デート</span><span class="waiting" data-testid="waiting-travel" hidden></span><span class="count" data-testid="count-travel" hidden></span></button>
-        <button class="company c-life" data-company="life" data-testid="company-life" disabled aria-disabled="true"><span class="sign">⌂</span><span class="cname">ライフプラン</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-life" hidden></span></button>
+        <button class="company c-life" id="company-life" data-company="life" data-testid="company-life" disabled aria-disabled="true"><span class="sign">⌂</span><span class="cname">ライフプラン</span><span class="soon" data-testid="soon-life">3日目から</span><span class="waiting" data-testid="waiting-life" hidden></span><span class="count" data-testid="count-life" hidden></span></button>
         <button class="company c-invest" data-company="invest" data-testid="company-invest" disabled aria-disabled="true"><span class="sign">¥</span><span class="cname">投資</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-invest" hidden></span></button>
         <button class="company c-town" data-company="town" data-testid="company-town" disabled aria-disabled="true"><span class="sign">⚑</span><span class="cname">町おこし</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-town" hidden></span></button>
         <!-- イベント：2日目から選べる（1日目は「2日目から」と出して押せない。js/game.js の goHome） -->
@@ -178,7 +178,7 @@
       </div>
       </div>
       <div class="col-b">
-      <!-- 会社ごと：その日に遊んだ会社だけ1行ずつ（平均・ランク・連続日数）。ランクアップした会社には枠（2社なら1つずつ順に。ボタンか「次の日へ」で2社目へ） -->
+      <!-- 会社ごと：その日に遊んだ会社だけ1行ずつ（平均・ランク・連続日数）。ランクアップした会社には枠（2社以上なら1つずつ順に。ボタンか「次の日へ」で次の会社へ） -->
       <div class="panel rank" id="summary-rank">
           <div class="rank-ups" id="rank-ups" aria-live="polite"></div>
           <ul class="co-rows" id="co-rows" data-testid="co-rows"></ul>
@@ -241,6 +241,7 @@
           <div class="tabs co-tabs" id="deco-co" role="tablist" aria-label="会社">
             <button class="tab" role="tab" data-co="travel" data-testid="deco-co-travel">旅行・デート</button>
             <button class="tab" role="tab" data-co="event" data-testid="deco-co-event">イベント</button>
+            <button class="tab" role="tab" data-co="life" data-testid="deco-co-life">ライフプラン</button>
           </div>
           <div class="deco-scene" id="deco-scene" data-testid="deco-scene">
             <div class="deco-bg" id="deco-bg" aria-hidden="true"></div>
@@ -268,6 +269,7 @@
           <div class="tabs co-tabs" id="zukan-co" role="tablist" aria-label="会社">
             <button class="tab" role="tab" data-co="travel" data-testid="zukan-co-travel">旅行・デート</button>
             <button class="tab" role="tab" data-co="event" data-testid="zukan-co-event">イベント</button>
+            <button class="tab" role="tab" data-co="life" data-testid="zukan-co-life">ライフプラン</button>
           </div>
           <div class="tabs" role="tablist">
             <button class="tab" role="tab" data-tab="clients" id="tab-clients" data-testid="tab-clients">依頼者</button>
@@ -326,6 +328,7 @@
         <li>合計が予算以内なら30点、こえると0点。</li>
         <li>依頼者の苦手なものが入ったカード1枚ごとに5点減る。</li>
         <li id="help-people" data-testid="help-people" hidden>イベントでは、人数が入りきらない会場（名前の「〜10人」より多い会）は、本音に合わないカードになる。</li>
+        <li id="help-period" data-testid="help-period" hidden>ライフプランでは、計画の期間に向いていないカード（名前の下の「1・5・10年」に、その期間がないもの）は、本音に合わないカードになる。</li>
         <li>80点以上で大喜び、50〜79点でまあまあ、49点以下でいまいち。</li>
       </ul>
       <div class="actions"><button class="btn blue" id="score-help-close" data-testid="score-help-close">閉じる</button></div>
@@ -361,6 +364,7 @@
   <script src="svg/cards-c.js"></script>
   <script src="svg/cards-d.js"></script>
   <script src="svg/cards-e.js"></script>
+  <script src="svg/cards-f.js"></script>
   <script src="svg/items.js"></script>
   <script src="svg/player.js"></script>
   <script src="js/score.js"></script>

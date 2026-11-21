@@ -1,14 +1,21 @@
 // よろず提案所：画面の進行（ホーム→事務所→提案書→結果→…→1日の集計→次の日へ。日付は終わりなく続く）
 (function () {
   "use strict";
-  const { SLOTS, SLOT_NAMES, scoreProposal, reactionOf, dayAverage } = window.YorozuScore;
+  const { SLOTS, SLOT_NAMES, scoreProposal, reactionOf, dayAverage, periodOk, isHonne } = window.YorozuScore;
   const DATA = window.YOROZU_DATA;
   const $ = id => document.getElementById(id);
   // 絵（svg/*.js）。読み込めなかった時は仮の図形のまま遊べる
   const ART = window.YorozuArt || {};
   const UI = ART.ui || null;
   const clientIdOf = c => Object.keys(DATA.clients).find(k => DATA.clients[k] === c);
-  const slotIcon = s => UI ? UI.slotIcon(s) : SLOT_ICON[s];
+  // ライフプランの欄のアイコン（家・かばん・コインの入ったびん・星。docs/第3段_設計.md 6-3）。ほかの会社は今までのアイコン
+  const LIFE_ICON = {
+    destination: '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11L12 4l8.5 7"/><path d="M6 9.5V20h12V9.5"/><path d="M10 20v-5h4v5"/></g></svg>',
+    activity: '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="8" width="17" height="11" rx="2"/><path d="M9 8V6a1.5 1.5 0 0 1 1.5-1.5h3A1.5 1.5 0 0 1 15 6v2M3.5 13h17"/></g></svg>',
+    food: '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h8M9 3.5v3L6.5 9.5V19a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5V9.5L15 6.5v-3"/><circle cx="10.5" cy="16" r="1.8"/><circle cx="13.8" cy="12.8" r="1.8"/></g></svg>',
+    surprise: '<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8L3.6 9.6l5.8-.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
+  };
+  const slotIcon = s => state.company === "life" ? LIFE_ICON[s] : UI ? UI.slotIcon(s) : SLOT_ICON[s];
   // カードの絵：カードごとの art（svg/cards-*.js のモチーフ）→ なければ欄ごとの絵
   const cardArt = (s, i, card) => {
     const m = card && card.art && ART.cardMotifs && ART.cardMotifs[card.art];
@@ -47,18 +54,27 @@
   // 会社（第2段）。記録は会社ごと（ランク・常連・図鑑・順番待ち・飾りつけ）。品の持ち物と日付・1日3件は全体で1つ
   // 遊べるのは旅行・デートとイベント。1件ごとにホームで会社を選ぶ（1日の中で混ぜてよい）
   const COMPANIES = SAVE ? SAVE.COMPANIES : ["travel", "event"];
-  const COMPANY_NAMES = { travel: "旅行・デート", event: "イベント" };
-  const COMPANY_MARK = { travel: "✈", event: "◎" };
+  const COMPANY_NAMES = { travel: "旅行・デート", event: "イベント", life: "ライフプラン" };
+  const COMPANY_MARK = { travel: "✈", event: "◎", life: "⌂" };
   // イベントは2日目から選べる（1日目は旅行・デートの案内のため。docs/第2段_設計.md ⑦）。前の記録で2日目以降なら、つづきからすぐ選べる
   const EVENT_FROM_DAY = 2;
-  const isOpen = c => c === "travel" || (c === "event" && state.day >= EVENT_FROM_DAY);
+  // ライフプランは3日目から（第3段。1日に1社ずつ増やす。docs/第3段_設計.md 2章）
+  const LIFE_FROM_DAY = 3;
+  const OPEN_FROM = { travel: 1, event: EVENT_FROM_DAY, life: LIFE_FROM_DAY };
+  const isOpen = c => state.day >= (OPEN_FROM[c] || Infinity);
   // 欄の名前は会社ごと（欄のキーと点数の決まりは全社同じ）。イベント：会場・出し物・料理・サプライズ
-  const SLOT_LABELS = { travel: SLOT_NAMES, event: { destination: "会場", activity: "出し物", food: "料理", surprise: "サプライズ" } };
+  const SLOT_LABELS = { travel: SLOT_NAMES, event: { destination: "会場", activity: "出し物", food: "料理", surprise: "サプライズ" },
+    life: { destination: "住まい", activity: "はたらき方", food: "たくわえ", surprise: "たのしみ" } };
   const slotName = (s, c) => (SLOT_LABELS[c || state.company] || SLOT_NAMES)[s];
   // その会社を初めて開いたときの案内（事務所の中に1回だけ。companies.*.welcomed に残す）
-  const WELCOME = { event: "イベント会社へようこそ。会場・出し物・料理・サプライズの4つを選ぶよ。人数にも気をつけてね" };
+  const WELCOME = { event: "イベント会社へようこそ。会場・出し物・料理・サプライズの4つを選ぶよ。人数にも気をつけてね",
+    life: "ライフプランの会社へようこそ。住まい・はたらき方・たくわえ・たのしみの4つを選ぶよ。何年先の計画かにも気をつけてね" };
   // 予算の横の条件：旅行・デートは日数（budget.duration）、イベントは人数（budget.people。例「10人の会」）
-  const conditionOf = b => b.people ? `${b.people}${b.peopleUnit || "人"}の会` : (b.duration || "");
+  const conditionOf = b => b.period ? `${b.period}年後までの計画` : b.people ? `${b.people}${b.peopleUnit || "人"}の会` : (b.duration || "");
+  // ライフプラン：カードの向いている期間（名前の下の1行。会場の広さと同じ場所）と、依頼の期間に向いているか
+  // 表記は「1・5・10年」（幅360pxのスマホでもカードに収まる長さ。「〈1年・5年・10年〉」でははみ出した）
+  const periodText = c => Array.isArray(c.periods) ? `${c.periods.join("・")}年` : "";
+  const periodMiss = (card, req) => !!req.budget.period && card.tags.some(t => req.honneTags.includes(t)) && !periodOk(card, req);
   // ---- 新しい品の印（赤い丸。2026-11-19 持ち主の指示） ----
   // menu：メニューの中の「図鑑・着せ替え・飾る」の丸。その画面を開いたら消える。メニューのボタンの丸は、このどれかがあるとき
   // zukan：図鑑で丸を付ける品（品ID:色）。図鑑を閉じたら消える（図鑑の品は押せないため）
@@ -318,11 +334,14 @@
     drawMenuDots();
     drawMe();
     drawLogos();
-    // イベントは2日目から。1日目は建物に「2日目から」と出して押せない
-    const ev = $("company-event");
-    ev.disabled = !isOpen("event");
-    ev.setAttribute("aria-disabled", String(ev.disabled));
-    ev.querySelector(".soon").hidden = !ev.disabled;
+    // イベントは2日目から、ライフプランは3日目から。その日より前は建物に「○日目から」と出して押せない
+    ["event", "life"].forEach(co => {
+      const b = $("company-" + co);
+      b.disabled = !isOpen(co);
+      b.setAttribute("aria-disabled", String(b.disabled));
+      b.querySelector(".soon").textContent = `${OPEN_FROM[co]}日目から`;
+      b.querySelector(".soon").hidden = !b.disabled;
+    });
     // 依頼者が来ている会社の上に、次に来る依頼者の小さな顔（その会社の順番待ちの次の1件）と人数の札（①②③）
     // 人数は会社ごとの「その会社で今日待っているお客さんの数」＝ 1日3件 − 今日その会社で遊んだ件数（2026-11-19 試遊第8回を受けて。
     // 前は2社に同じ数を出していて、行っていない会社の数も減っていた）。1日3件で終わるのは同じ。1日の終わりは顔も札も消す
@@ -354,9 +373,9 @@
       el.setAttribute("aria-label", `次の依頼者：${c.name}`);
       el.innerHTML = ART.character ? ART.character(r.clientId, "normal") : circled(left);
     });
-    // 下の文：2社から選べるときは「どちらの会社へ行きますか？」（1日目は旅行・デートだけなので今までの文）
+    // 下の文：2社以上から選べるときは「どの会社へ行きますか？」（第3段で3社になったため。1日目は旅行・デートだけなので今までの文）
     const open = Object.keys(next);
-    $("home-note").textContent = open.length >= 2 ? `${day()}日目の${time}。どちらの会社へ行きますか？` : `${day()}日目の${time}。${COMPANY_NAMES[open[0] || "travel"]}の会社に依頼者が来ています。`;
+    $("home-note").textContent = open.length >= 2 ? `${day()}日目の${time}。どの会社へ行きますか？` : `${day()}日目の${time}。${COMPANY_NAMES[open[0] || "travel"]}の会社に依頼者が来ています。`;
     // 今日の3件（朝・昼・夜）。遊んだ件は会社の印（✈／◎）と依頼者と点数、これからの件は名前を出さない
     $("today-list").innerHTML = TIMES.slice(0, PER_DAY).map((t, i) => {
       const done = state.today[i], co = done && (done.company || "travel");
@@ -400,6 +419,8 @@
     const again = sameReq.length > 0;
     $("again-note").hidden = !again;
     if (again) $("again-note").textContent = `また相談に来てくれました　この依頼の前回 ${points(sameReq[sameReq.length - 1].total)}点`;
+    // 時間が進む常連さん（第3段ライフプラン）：数年ぶりの来店だと分かる札（同じ依頼が2回目以降なら上の札のまま）
+    else if (req.yearsLater) { $("again-note").hidden = false; $("again-note").textContent = `${req.yearsLater}年ぶりに来てくれました`; }
     if (state.client.unusual && !past.length && state.client.memo.length) {
       memo.hidden = false;
       memo.innerHTML = `<b>依頼者メモ</b>${state.client.name}の苦手なもの：${state.client.memo.join("・")}`;
@@ -444,6 +465,8 @@
     $("budget-amount").innerHTML = moneyHtml(state.budget, r.budget.unit);
     $("budget-bonus").textContent = state.bonus ? `（前回のお礼で増額＋${money(state.bonus, r.budget.unit)}）` : "";
     $("budget-duration").textContent = conditionOf(r.budget);
+    // ライフプランの予算は毎月使えるお金（人は円、人以外はその種の単位）
+    $("budget-label").textContent = r.budget.period ? "毎月の予算" : "予算";
     show("screen-proposal");
     renderProposal();
   }
@@ -464,7 +487,7 @@
       const on = state.picks[state.activeSlot] === c;
       return `<button class="card${on ? " picked" : ""}" data-index="${i}" data-testid="card-${i}" aria-pressed="${on}">
         <span class="card-art slot-${state.activeSlot}" data-art="${c.art || ""}">${cardArt(state.activeSlot, i, c)}</span>
-        <span class="card-name">${cardNameHtml(c.name)}</span>
+        <span class="card-name">${cardNameHtml(c.name)}${c.periods ? `<span class="cap per" data-testid="per-${i}">${periodText(c)}</span>` : ""}</span>
         <span class="cost">${moneyHtml(c.cost, r.budget.unit)}</span>
         ${on ? checkMark() : ""}
       </button>`;
@@ -601,18 +624,21 @@
     $("bd-budget").textContent = points(res.budget);
     $("bd-fit").textContent = points(res.fit);
     // 選んだ4枚に印：◎本音に合った／△本音とは別／×苦手なもの（点数の計算と同じタグで判定）
+    // 凡例の△：ライフプランの依頼（期間がある）では「本音とは別・期間に合わない」（2026-11-21 持ち主の指示）
+    $("legend-miss").textContent = r.budget.period ? "本音とは別・期間に合わない" : "本音とは別";
     $("result-picks").innerHTML = SLOTS.map((s, i) => {
       const c = cards[i];
       const bad = c.tags.some(t => r.dislikeTags.includes(t));
-      const hit = c.tags.some(t => r.honneTags.includes(t));
+      const hit = isHonne(c, r); // 期間のある依頼では、期間に向いているカードだけが本音に合う（js/score.js）
       const [cls, mk, label] = bad ? ["m-bad", "×", "苦手なもの"] : hit ? ["m-hit", "◎", "本音に合った"] : ["m-miss", "△", "本音とは別"];
       // イベントの会場が人数より小さいときは、△の理由を添える（2026-11-19 試遊第8回を受けて）
-      const why = !bad && !hit && tooSmall(c, r) ? `<small class="pk-why" data-testid="pk-why">人数が入りきらない</small>` : "";
+      const why = !bad && !hit && tooSmall(c, r) ? `<small class="pk-why" data-testid="pk-why">人数が入りきらない</small>`
+        : !bad && periodMiss(c, r) ? `<small class="pk-why" data-testid="pk-why">期間に合わない</small>` : "";
       return `<li class="${cls}" data-mark="${cls}"><span class="mk ${cls}" aria-label="${label}">${mk}</span><span class="pk-slot">${slotName(s)}</span><span class="pk-name">${c.name}${why}</span></li>`;
     }).join("");
     // 依頼者の本音：選んだカードのどれかに入っていれば「当てた」、どれにもなければ「外れた」
     $("honne-tags").innerHTML = r.honneTags.map(t => {
-      const hit = cards.some(c => c.tags.includes(t));
+      const hit = cards.some(c => c.tags.includes(t) && periodOk(c, r));
       return `<li class="${hit ? "h-hit" : "h-miss"}" data-hit="${hit}"><span class="mk" aria-hidden="true">${hit ? "◎" : "✕"}</span>${t}<small>${hit ? "当てた" : "外れた"}</small></li>`;
     }).join("");
     $("cost-note").textContent = `合計 ${money(res.cost, r.budget.unit)}／予算 ${money(state.budget, r.budget.unit)}` + (res.budget ? "" : "（予算オーバー）");
@@ -1157,7 +1183,9 @@
     $("detail-badge").textContent = `${COMPANY_NAMES[co]}の常連さん`;
     face($("detail-face"), c, "great");
     $("detail-name").textContent = c.name;
-    $("detail-profile").textContent = `${c.kind}・${c.profile}`;
+    // 紹介文は、その会社でいちばん新しい来店の依頼の紹介文（時間が進む常連さんは、今の姿）
+    const lastProfile = visits.map(v => reqById(v.reqId)).filter(r => r && r.profile).pop();
+    $("detail-profile").textContent = `${c.kind}・${lastProfile ? lastProfile.profile : c.profile}`;
     const likes = [...new Set(visits.flatMap(v => DATA.requests.find(r => r.id === v.reqId).honneTags))];
     $("detail-likes").innerHTML = likes.map(t => `<li>${t}</li>`).join("");
     $("detail-visits").innerHTML = visits.map((v, i) => `<li><div class="v-head"><b>${i + 1}回目</b>（${v.day}日目・${v.time}）<span class="v-score">${points(v.total)}点</span></div><div class="v-picks">${v.picks.join("／")}</div></li>`).join("");
@@ -1241,12 +1269,13 @@
   }
   $("company-travel").addEventListener("click", () => enterCompany("travel"));
   $("company-event").addEventListener("click", () => enterCompany("event"));
+  $("company-life").addEventListener("click", () => enterCompany("life"));
   $("welcome-ok").addEventListener("click", () => { $("welcome").hidden = true; persist(); });
   $("talk-next").addEventListener("click", nextLine);
   $("talk-bubble").addEventListener("click", nextLine);
   $("reread").addEventListener("click", openLog);
   $("log-close").addEventListener("click", closeLog);
-  $("open-score-help").addEventListener("click", () => { const d = $("score-help"); $("help-people").hidden = !(state.req && state.req.budget.people); if (d.showModal) d.showModal(); else d.setAttribute("open", ""); });
+  $("open-score-help").addEventListener("click", () => { const d = $("score-help"); $("help-people").hidden = !(state.req && state.req.budget.people); $("help-period").hidden = !(state.req && state.req.budget.period); if (d.showModal) d.showModal(); else d.setAttribute("open", ""); });
   $("score-help-close").addEventListener("click", () => { const d = $("score-help"); if (d.close) d.close(); else d.removeAttribute("open"); });
   $("slots").addEventListener("click", e => {
     const b = e.target.closest(".slot"); if (!b) return;

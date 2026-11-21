@@ -743,3 +743,14 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
 .menu-list .btn, .tab, .wear-item, .deco-spot, .zk.item { position: relative; }
 .menu-list .btn .new-dot { top: 6px; right: 12px; }
 .nd { position: absolute; top: 3px; right: 5px; width: 12px; height: 12px; border-radius: 50%; background: var(--red); border: 2px solid #fff; pointer-events: none; z-index: 1; }
+/* 第3段：ライフプランの会社の色（ホームの建物の赤 #d9534a。文字の色は読みやすい濃さ） */
+.city.has-art .c-life .cname { background: #c8453c; color: #fff; border-color: #fff; }
+.city.has-art .c-life:disabled .cname { background: #fff; color: var(--sub); border-color: var(--line); }
+.c-life .waiting.face { border-color: #c8453c; }
+[data-company="life"] > .co-mark, .co-mark[data-company="life"], li[data-company="life"] .co-mark, .co-row[data-company="life"] .co-mark { background: #c8453c; }
+.co-row[data-company="life"] { border-color: #ecb9b4; }
+.wear-head[data-company="life"] { color: #a8352d; }
+.co-tabs .tab[data-co="life"] { border-color: #c8453c; color: #a8352d; }
+.co-tabs .tab[data-co="life"].on { background: #c8453c; color: #fff; }
+/* カードの向いている期間（名前の下の1行） */
+.card-name .per { color: #a8352d; }

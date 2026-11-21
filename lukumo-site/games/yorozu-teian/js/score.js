@@ -6,7 +6,7 @@
   // cards: 4欄で選んだカード4枚 / req: 依頼データ / budget: 予算（前回のお礼の増額を含めたい時は渡す）
   function scoreProposal(cards, req, budget) {
     const limit = budget ?? req.budget.amount;
-    const honneHits = cards.filter(c => c.tags.some(t => req.honneTags.includes(t))).length;
+    const honneHits = cards.filter(c => isHonne(c, req)).length;
     const dislikeHits = cards.filter(c => c.tags.some(t => req.dislikeTags.includes(t))).length;
     const cost = cards.reduce((s, c) => s + c.cost, 0);
     const honne = honneHits * 12.5;                 // 本音 50点
@@ -16,11 +16,15 @@
     return { total, honne, budget: budgetPts, fit, cost, honneHits, dislikeHits,
              reaction: reactionOf(total), stars: starsOf(total) };
   }
+  // 本音に合うカード：タグが本音のどれかに合う かつ、期間（第3段ライフプランの budget.period）がある依頼では、カードの periods にその期間が入っている
+  // 期間のない依頼（旅行・イベント）は今までと同じ判定
+  function periodOk(card, req) { const p = req.budget && req.budget.period; return !p || (Array.isArray(card.periods) && card.periods.includes(p)); }
+  function isHonne(card, req) { return card.tags.some(t => req.honneTags.includes(t)) && periodOk(card, req); }
   function reactionOf(t) { return t >= 80 ? "great" : t >= 50 ? "ok" : "poor"; }
   function starsOf(t) { return t >= 80 ? 3 : t >= 50 ? 2 : 1; }
   function dayAverage(totals) { return totals.reduce((s, t) => s + t, 0) / totals.length; }
 
-  const api = { SLOTS, SLOT_NAMES, scoreProposal, reactionOf, starsOf, dayAverage };
+  const api = { SLOTS, SLOT_NAMES, scoreProposal, isHonne, periodOk, reactionOf, starsOf, dayAverage };
   if (typeof module !== "undefined" && module.exports) module.exports = api;
   else root.YorozuScore = api;
 })(typeof globalThis !== "undefined" ? globalThis : this);

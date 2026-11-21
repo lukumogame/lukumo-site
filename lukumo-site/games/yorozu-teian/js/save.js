@@ -6,7 +6,7 @@
   const BROKEN_KEY = KEY + ".broken";
   const VERSION = 2;
   // 会社ごとに記録を持つ会社（第2段：旅行・デートとイベント）。会社を足すときはここに足す
-  const COMPANIES = ["travel", "event"];
+  const COMPANIES = ["travel", "event", "life"];
   const WEEK_REQUESTS = 21; // 1社の順番待ちの件数（7日分×3件）
   const PER_DAY = 3;
 

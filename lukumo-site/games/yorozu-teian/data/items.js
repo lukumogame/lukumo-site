@@ -1,7 +1,7 @@
 // 自動生成ファイル。直接編集せず data/items.json を直して node tools/sync-data を実行
 window.YOROZU_ITEMS = {
  "version": 1,
- "note": "もらえる品。group は species:<種類のまとまり> か regular:<依頼者のID>。order の順に渡す。colors は [元の色, 色違い]。use は wear（part: head/body/hand）か deco（place: shelf/wall）。常連の品は1キャラ3つまで（js/rewards.js の MAX_REGULAR_ITEMS）。名前は図鑑のカードに1行で収まるよう7字以内。company は会社（書かなければ旅行・デート travel、イベントは event。イベントの品の id は ev- で始める）",
+ "note": "もらえる品。group は species:<種類のまとまり> か regular:<依頼者のID>。order の順に渡す。colors は [元の色, 色違い]。use は wear（part: head/body/hand）か deco（place: shelf/wall）。常連の品は1キャラ3つまで（js/rewards.js の MAX_REGULAR_ITEMS）。名前は図鑑のカードに1行で収まるよう7字以内。company は会社（書かなければ旅行・デート travel、イベントは event、ライフプランは life。イベントの品の id は ev-、ライフプランの品は lp- で始める）",
  "speciesGroups": {
   "human": "human",
   "ladybug": "bug",
@@ -15,7 +15,9 @@ window.YOROZU_ITEMS = {
   "squirrel": "animal",
   "penguin": "animal",
   "alien_student": "alien",
-  "alien_captain": "alien"
+  "alien_captain": "alien",
+  "beaver": "animal",
+  "bagworm": "bug"
  },
  "groupNames": {
   "human": "人",
@@ -758,6 +760,384 @@ window.YOROZU_ITEMS = {
     "オリーブ"
    ],
    "art": "acornhouse"
+  },
+  {
+   "id": "lp-h-hat",
+   "name": "あみかけの帽子",
+   "group": "species:human",
+   "company": "life",
+   "order": 1,
+   "use": "wear",
+   "part": "head",
+   "colors": [
+    "#e2574c",
+    "#5a8fd0"
+   ],
+   "colorNames": [
+    "あか",
+    "あお"
+   ],
+   "art": "knithat"
+  },
+  {
+   "id": "lp-h-pot",
+   "name": "小さな鉢植え",
+   "group": "species:human",
+   "company": "life",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#d9825a",
+    "#f2efe6"
+   ],
+   "colorNames": [
+    "テラコッタ",
+    "しろ"
+   ],
+   "art": "smallpot"
+  },
+  {
+   "id": "lp-h-clock",
+   "name": "家族の時計",
+   "group": "species:human",
+   "company": "life",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#c58a52",
+    "#e2574c"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "あか"
+   ],
+   "art": "familyclock"
+  },
+  {
+   "id": "lp-b-mantle",
+   "name": "葉っぱのマント",
+   "group": "species:bug",
+   "company": "life",
+   "order": 1,
+   "use": "wear",
+   "part": "body",
+   "colors": [
+    "#5cb87a",
+    "#e0a03a"
+   ],
+   "colorNames": [
+    "みどり",
+    "かれは"
+   ],
+   "art": "leafmantle"
+  },
+  {
+   "id": "lp-b-jar",
+   "name": "種の貯金つぼ",
+   "group": "species:bug",
+   "company": "life",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#e8a0b0",
+    "#8fc8e8"
+   ],
+   "colorNames": [
+    "さくら",
+    "みずいろ"
+   ],
+   "art": "seedjar"
+  },
+  {
+   "id": "lp-b-swing",
+   "name": "枝のブランコ",
+   "group": "species:bug",
+   "company": "life",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#f2c94c",
+    "#e57aa0"
+   ],
+   "colorNames": [
+    "きいろ",
+    "ピンク"
+   ],
+   "art": "branchswing"
+  },
+  {
+   "id": "lp-a-cane",
+   "name": "木のつえ",
+   "group": "species:animal",
+   "company": "life",
+   "order": 1,
+   "use": "wear",
+   "part": "hand",
+   "colors": [
+    "#a0683c",
+    "#d8b48a"
+   ],
+   "colorNames": [
+    "こげちゃ",
+    "しらき"
+   ],
+   "art": "woodcane"
+  },
+  {
+   "id": "lp-a-house",
+   "name": "小さな家の模型",
+   "group": "species:animal",
+   "company": "life",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#d9534a",
+    "#4a8fd8"
+   ],
+   "colorNames": [
+    "あか",
+    "あお"
+   ],
+   "art": "minihouse"
+  },
+  {
+   "id": "lp-a-map",
+   "name": "川の地図",
+   "group": "species:animal",
+   "company": "life",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#f6e7c1",
+    "#dcefd2"
+   ],
+   "colorNames": [
+    "きなり",
+    "わかば"
+   ],
+   "art": "rivermap"
+  },
+  {
+   "id": "lp-x-badge",
+   "name": "星のバッジ",
+   "group": "species:alien",
+   "company": "life",
+   "order": 1,
+   "use": "wear",
+   "part": "head",
+   "colors": [
+    "#4a8fd8",
+    "#b79ad8"
+   ],
+   "colorNames": [
+    "あお",
+    "むらさき"
+   ],
+   "art": "starbadge"
+  },
+  {
+   "id": "lp-x-frame",
+   "name": "未来の写真立て",
+   "group": "species:alien",
+   "company": "life",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#8fd0d8",
+    "#f2c94c"
+   ],
+   "colorNames": [
+    "みずいろ",
+    "きんいろ"
+   ],
+   "art": "futureframe"
+  },
+  {
+   "id": "lp-x-cal",
+   "name": "星の暦",
+   "group": "species:alien",
+   "company": "life",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#2b3a66",
+    "#6a3d7a"
+   ],
+   "colorNames": [
+    "こん",
+    "むらさき"
+   ],
+   "art": "starcalendar"
+  },
+  {
+   "id": "lp-r-megumi-1",
+   "name": "よだれかけ",
+   "group": "regular:megumi",
+   "company": "life",
+   "order": 1,
+   "use": "wear",
+   "part": "body",
+   "colors": [
+    "#f6c8d0",
+    "#a8d8f0"
+   ],
+   "colorNames": [
+    "ピンク",
+    "みずいろ"
+   ],
+   "art": "bib"
+  },
+  {
+   "id": "lp-r-megumi-2",
+   "name": "家族の手形",
+   "group": "regular:megumi",
+   "company": "life",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#e2574c",
+    "#4a8fd8"
+   ],
+   "colorNames": [
+    "あか",
+    "あお"
+   ],
+   "art": "handprints"
+  },
+  {
+   "id": "lp-r-megumi-3",
+   "name": "ベビーベッド",
+   "group": "regular:megumi",
+   "company": "life",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#f4e3c8",
+    "#a8d8b8"
+   ],
+   "colorNames": [
+    "クリーム",
+    "ミント"
+   ],
+   "art": "babycrib"
+  },
+  {
+   "id": "lp-r-sota-1",
+   "name": "ギターのピック",
+   "group": "regular:sota",
+   "company": "life",
+   "order": 1,
+   "use": "wear",
+   "part": "hand",
+   "colors": [
+    "#e2574c",
+    "#2b3a66"
+   ],
+   "colorNames": [
+    "あか",
+    "こん"
+   ],
+   "art": "guitarpick"
+  },
+  {
+   "id": "lp-r-sota-2",
+   "name": "バンドポスター",
+   "group": "regular:sota",
+   "company": "life",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#2b2b3a",
+    "#e2574c"
+   ],
+   "colorNames": [
+    "くろ",
+    "あか"
+   ],
+   "art": "bandposter"
+  },
+  {
+   "id": "lp-r-sota-3",
+   "name": "はじめての鍵",
+   "group": "regular:sota",
+   "company": "life",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#f2c94c",
+    "#c9d6e3"
+   ],
+   "colorNames": [
+    "きんいろ",
+    "ぎんいろ"
+   ],
+   "art": "firstkey"
+  },
+  {
+   "id": "lp-r-banta-1",
+   "name": "大工の帽子",
+   "group": "regular:banta",
+   "company": "life",
+   "order": 1,
+   "use": "wear",
+   "part": "head",
+   "colors": [
+    "#f2c94c",
+    "#e07a3a"
+   ],
+   "colorNames": [
+    "きいろ",
+    "オレンジ"
+   ],
+   "art": "carpenterhat"
+  },
+  {
+   "id": "lp-r-banta-2",
+   "name": "木の巣の看板",
+   "group": "regular:banta",
+   "company": "life",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#c58a52",
+    "#e8d0a0"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "しらき"
+   ],
+   "art": "nestsign"
+  },
+  {
+   "id": "lp-r-banta-3",
+   "name": "木くずの置物",
+   "group": "regular:banta",
+   "company": "life",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#e8c88a",
+    "#b9784a"
+   ],
+   "colorNames": [
+    "しらき",
+    "ちゃいろ"
+   ],
+   "art": "woodchip"
   }
  ]
 };

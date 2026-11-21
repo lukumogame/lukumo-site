@@ -77,7 +77,14 @@
     shelf: DECO_SPOTS.shelf,
     wall: [{ x: 30, y: 163, w: 40, h: 40 }, { x: 270, y: 58, w: 40, h: 40 }]
   };
-  function decoSpots(company) { return company === "event" ? DECO_SPOTS_EVENT : DECO_SPOTS; }
+  // ライフプランの事務所（第3段・設計6-2）：生成りの壁と木の床の相談室。左の壁に「未来の年表」、その下に相談用の丸テーブル、
+  // 右に本棚（上に観葉植物）。ランク3でペンダントライトの右に街の見える窓
+  // 棚の3か所は旅行と同じ座標（本棚の右の列の3段）。壁の2か所：年表の下（丸テーブルの上）と、ペンダントライトの左上。どちらも依頼者・家具に重ならない
+  var DECO_SPOTS_LIFE = {
+    shelf: DECO_SPOTS.shelf,
+    wall: [{ x: 28, y: 138, w: 38, h: 38 }, { x: 128, y: 44, w: 40, h: 40 }]
+  };
+  function decoSpots(company) { return company === "event" ? DECO_SPOTS_EVENT : company === "life" ? DECO_SPOTS_LIFE : DECO_SPOTS; }
 
   var EVENT_PAL = {
     "朝": { wall: "#efe3f6", wallShade: "#dcc5ea", wallDeep: "#c9addd", ceil: "#dccbe8", ceilLine: "#cbb5dc", floor: "#d6c6c2", board: "#3f5a4c" },
@@ -154,28 +161,143 @@
     s += p("M48 208c-8-10-16-6-12 0zM48 208c8-10 16-6 12 0z", "#fff3c8");
     return s;
   }
-  // opts = { rank: 1〜3, company: "travel"|"event", deco: { shelf: [svg|null ×3], wall: [svg|null ×2] }, fit: "meet" }
+
+  // ---- ライフプランの事務所 ----
+  var LIFE_RED = "#d9534a", LIFE_GOLD = "#e8b93c";
+  var LIFE_PAL = {
+    "朝": { wall: "#fbf4e6", wallShade: "#f2e2cb", grid: "#ecc2b6", wallDeep: "#c98f62", ceil: "#efe1cd", ceilLine: "#e1cdb3", floor: "#d3a878", floorLine: "#bf915f" },
+    "昼": { wall: "#fbf4e6", wallShade: "#f2e2cb", grid: "#ecc2b6", wallDeep: "#c98f62", ceil: "#efe1cd", ceilLine: "#e1cdb3", floor: "#d3a878", floorLine: "#bf915f" },
+    "夜": { wall: "#eadcc5", wallShade: "#dfc9ab", grid: "#d9a597", wallDeep: "#b07a50", ceil: "#d3c0a6", ceilLine: "#c3ae93", floor: "#b88f63", floorLine: "#a07a50" }
+  };
+  // 壁紙：ランク1 無地／ランク2 はっきりした格子（ギンガム）／ランク3 格子に金の細線と、金のふちの腰板
+  function lifeWall(k, rank) {
+    var s = "", x, y;
+    if (rank >= 2) {
+      for (x = -34; x < 440; x += 28) s += r(x, 32, 12, 204, k.wallShade);
+      for (y = 40; y < 236; y += 28) s += r(-40, y, 480, 12, k.wallShade);
+      for (x = -34; x < 440; x += 28) for (y = 40; y < 236; y += 28) s += r(x, y, 12, 12, k.grid);
+    }
+    if (rank === 3) {
+      for (x = -21; x < 440; x += 28) s += r(x - 0.6, 32, 1.2, 204, LIFE_GOLD, 0, ' opacity="0.7"');
+      s += r(-40, 196, 480, 40, k.wallDeep) + r(-40, 192, 480, 5, LIFE_GOLD);
+      for (x = -30; x < 440; x += 40) s += r(x, 202, 30, 28, "none", 3, ' stroke="#e3b88e" stroke-width="2"');
+    }
+    return s;
+  }
+  // 未来の年表：1年・5年・10年の3本の線（長さで年の差）。先に芽・木・家の絵。文字は書かない
+  function lifeTimeline(rank) {
+    var gold = rank === 3, s = "";
+    s += r(10, 48, 108, 82, gold ? LIFE_GOLD : "#b98a5a", 3) + r(14, 52, 100, 74, "#fffdf6");
+    if (gold) s += r(12, 50, 104, 78, "none", 2, ' stroke="#fff3c8" stroke-width="1"');
+    s += r(14, 52, 100, 12, LIFE_RED) + r(20, 56, 30, 4, "#fff", 2) + r(54, 56, 12, 4, "#f7c6c0", 2);
+    // 1年：短い線と芽
+    s += r(24, 77, 26, 3, "#efb1a9", 1.5) + c(22, 78.5, 3.4, LIFE_RED);
+    s += r(56.2, 74, 1.6, 8, "#5c9a52") + p("M57 76q-6-1-7-6q6 0 7 6zM57 75q5-1 6-6q-6 0-6 6z", "#6cbf5a");
+    // 5年：中くらいの線と木
+    s += r(24, 95, 52, 3, "#efb1a9", 1.5) + c(22, 96.5, 3.4, LIFE_RED);
+    for (var t = 30; t < 76; t += 10) s += r(t, 93.5, 1.4, 6, "#e59a90");
+    s += r(83, 94, 3, 8, "#9b6a3e") + c(84.5, 90, 7, "#5fae6a") + c(81, 92, 4, "#78c084");
+    // 10年：長い線と家
+    s += r(24, 113, 72, 3, "#efb1a9", 1.5) + c(22, 114.5, 3.4, LIFE_RED);
+    for (t = 30; t < 96; t += 10) s += r(t, 111.5, 1.4, 6, "#e59a90");
+    s += r(100, 110, 11, 10, "#fff3e0", 0, ' stroke="#b98a5a" stroke-width="1"') + p("M98 111l7.5-7l7.5 7z", LIFE_RED) + r(104, 114, 3.4, 6, "#b98a5a");
+    s += c(64, 50, 3, gold ? LIFE_GOLD : LIFE_RED);
+    return s;
+  }
+  // 相談用の丸テーブル（左の床）。上に資料と湯のみと小さな花
+  function lifeTable() {
+    var s = "";
+    s += '<ellipse cx="64" cy="238" rx="20" ry="4" fill="#8f5c34"/>' + r(60, 206, 8, 32, "#a86d3a");
+    s += '<ellipse cx="64" cy="206" rx="42" ry="8" fill="#b77b45"/><ellipse cx="64" cy="203" rx="42" ry="8" fill="#d9a066"/>';
+    s += p("M36 202l18-5l14 4l-18 5z", "#ffffff") + p("M40 201l10-3M43 203l10-3", "none", ' stroke="#ecc2b6" stroke-width="1.2"');
+    s += r(72, 194, 8, 8, "#fff3e0", 2) + r(72, 196, 8, 2, LIFE_RED);
+    s += r(88, 190, 8, 12, "#f4efe6", 2) + p("M92 190v-8M92 186l-4-3M92 185l4-4", "none", ' stroke="#5c9a52" stroke-width="1.4" stroke-linecap="round"') +
+      c(92, 181, 3.2, LIFE_RED) + c(87.5, 182.5, 2.4, "#f2c94c") + c(96.5, 180.5, 2.4, "#f6a8c8");
+    return s;
+  }
+  // 本棚（右）と、上の観葉植物。右の列の本は飾ると台で隠れる
+  function lifeShelf() {
+    var s = r(318, 118, 56, 124, "#b07a4a", 3) + r(322, 124, 48, 114, "#8a5a34");
+    [148, 182, 214, 240].forEach(function (y) { s += r(318, y, 56, 5, "#c99460"); });
+    var cols = ["#d9534a", "#4a8fd8", "#f2c94c", "#5cb87a", "#f4efe6", "#b79ad8", "#e98a4f", "#3f6a8a"];
+    function books(x0, x1, yb, hs, ci, lean) {
+      var x = x0, i = 0, out = "";
+      while (x + 4 <= x1 && i < hs.length) {
+        var w = 4 + (i + ci) % 3, h = hs[i], col = cols[(i + ci) % cols.length];
+        out += r(x, yb - h, w, h, col, 1) + r(x, yb - h + 3, w, 1.4, "#fff", 0, ' opacity="0.6"');
+        x += w + 0.6; i++;
+      }
+      if (lean) out += p("M" + x + " " + yb + "l" + 8 + "-17l4 2l-8 15z", cols[(ci + 3) % cols.length]);
+      return out;
+    }
+    s += books(324, 344, 148, [20, 17, 22, 18], 0, 0) + books(347, 369, 148, [19, 22, 16, 20], 3, 0);
+    s += books(324, 338, 182, [24, 20, 22], 2, 1) + books(347, 369, 182, [22, 25, 19, 23], 5, 0);
+    s += r(325, 206, 18, 8, "#f4efe6", 1) + r(326, 199, 16, 7, "#e98a4f", 1) + r(327, 193, 14, 6, "#4a8fd8", 1) + books(347, 369, 214, [20, 23, 18, 22], 1, 0);
+    s += books(324, 344, 240, [18, 16, 19, 17], 4, 0) + books(347, 369, 240, [17, 19, 16, 18], 6, 0);
+    // 観葉植物（本棚の上）
+    s += p("M345 106c-10-4-18-14-17-28c9 4 15 14 17 28z", "#4f9c58") + p("M346 106c-3-14 0-28 10-38c4 12 1 26-10 38z", "#5fb36a") +
+      p("M347 106c6-10 16-17 26-16c-4 10-14 16-26 16z", "#4f9c58") + p("M346 106c-8-1-16-6-20-14c10 0 17 5 20 14z", "#6cbf77");
+    s += p("M336 104h20l-3 14h-14z", LIFE_RED) + r(334, 102, 24, 4, "#e57a70", 2);
+    s += r(360, 110, 12, 4, "#4a8fd8", 1) + r(361, 106, 10, 4, "#f2c94c", 1);
+    return s;
+  }
+  // ランク1・2：ペンダントライトの右に丸い時計／ランク3：同じ場所に街の見える窓（金のふちと赤いカーテン）
+  function lifeClock() {
+    var s = c(282, 74, 16, "#fffdf6", ' stroke="#b98a5a" stroke-width="3.5"');
+    for (var i = 0; i < 12; i++) { var a = i * Math.PI / 6; s += c(+(282 + 11.5 * Math.cos(a)).toFixed(2), +(74 + 11.5 * Math.sin(a)).toFixed(2), i % 3 ? 0.9 : 1.6, "#8a6a4a"); }
+    s += p("M282 74v-8M282 74l6 3", "none", ' stroke="#4a3a2a" stroke-width="1.8" stroke-linecap="round"') + c(282, 74, 1.6, LIFE_RED);
+    return s;
+  }
+  function lifeWindow(t, k) {
+    var s = r(244, 38, 72, 80, LIFE_GOLD, 3);
+    s += '<svg x="248" y="42" width="64" height="72" viewBox="6 128 84 88" preserveAspectRatio="xMidYMid slice">' + windowView(t, k) + "</svg>";
+    s += r(279, 42, 2, 72, "#fffaf0") + r(248, 77, 64, 2, "#fffaf0");
+    s += r(240, 114, 80, 6, "#f4efe6", 2) + r(240, 118, 80, 2, LIFE_GOLD);
+    // カーテン（左右）とタッセル
+    s += p("M236 34h14c-2 20-1 36 3 52c-6 4-12 4-17 0z", LIFE_RED) + p("M310 34h14v52c-5 4-11 4-17 0c4-16 5-32 3-52z", LIFE_RED);
+    s += r(234, 31, 92, 5, "#b03e36", 2) + c(236, 33.5, 3.2, LIFE_GOLD) + c(324, 33.5, 3.2, LIFE_GOLD);
+    s += c(243, 84, 3, LIFE_GOLD) + c(317, 84, 3, LIFE_GOLD);
+    return s;
+  }
+  // ランク3の金の飾り：天井の下の金の回り縁と、壁の金の星のつり飾り
+  function lifeGold() {
+    var s = r(-40, 32, 480, 3, LIFE_GOLD);
+    [[176, 12], [194, 22]].forEach(function (q) {
+      s += r(q[0] - 0.5, 35, 1, q[1], "#c99a2e");
+      var x = q[0], y = 35 + q[1] + 6, d = "";
+      for (var i = 0; i < 10; i++) { var a = Math.PI * i / 5 - Math.PI / 2, rr = i % 2 ? 2.6 : 6; d += (i ? "L" : "M") + (x + rr * Math.cos(a)).toFixed(2) + " " + (y + rr * Math.sin(a)).toFixed(2); }
+      s += p(d + "Z", LIFE_GOLD);
+    });
+    return s;
+  }
+  // opts = { rank: 1〜3, company: "travel"|"event"|"life", deco: { shelf: [svg|null ×3], wall: [svg|null ×2] }, fit: "meet" }
   //   deco の中身は品の絵（viewBox 0 0 64 64 の <svg>）。棚の段にはそのまま、壁は額に入れて飾る
   function office(time, opts) {
     opts = opts || {};
     var rank = opts.rank === 2 || opts.rank === 3 ? opts.rank : 1, deco = opts.deco || {};
     var t = PAL[time] ? time : "昼";
-    var k = PAL[t], ev = opts.company === "event", spots = decoSpots(opts.company);
+    var k = PAL[t], ev = opts.company === "event", life = opts.company === "life", spots = decoSpots(opts.company);
     if (ev) k = Object.assign({}, k, EVENT_PAL[t]);
+    if (life) k = Object.assign({}, k, LIFE_PAL[t]);
     var s = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" width="100%" height="100%" preserveAspectRatio="xMidYMid ' + (opts.fit === "meet" ? "meet" : "slice") + '" aria-hidden="true" focusable="false">';
 
     // 天井・壁・床
     s += r(-40, -40, 480, 380, k.wall);
     // 壁紙（ランク2：細いしま模様／ランク3：小さな花柄）。均一な塗りの細い線と小さな丸だけ
     if (ev) s += eventWall(k, rank);
+    else if (life) s += lifeWall(k, rank);
     else if (rank === 2) for (var sx = -36; sx < 440; sx += 18) s += r(sx, 32, 7, 204, k.wallShade); // 縦じまの壁紙（ランク1の無地と見分けがつく太さ）
-    if (!ev && rank === 3) for (var fy = 44; fy < 232; fy += 26) for (var fx = -30 + ((fy / 26) % 2) * 13; fx < 440; fx += 26) {
+    if (!ev && !life && rank === 3) for (var fy = 44; fy < 232; fy += 26) for (var fx = -30 + ((fy / 26) % 2) * 13; fx < 440; fx += 26) {
       s += c(fx, fy - 3, 2.2, k.wallShade) + c(fx + 3, fy, 2.2, k.wallShade) + c(fx, fy + 3, 2.2, k.wallShade) + c(fx - 3, fy, 2.2, k.wallShade) + c(fx, fy, 1.6, "#f2c94c");
     }
     s += r(-40, -40, 480, 70, k.ceil);
     s += r(-40, 28, 480, 4, k.ceilLine);
     s += r(-40, 236, 480, 6, k.wallShade);
     s += r(-40, 242, 480, 100, k.floor);
+    if (life) { // 木の床の板目
+      for (var fl = 252; fl < 300; fl += 12) s += r(-40, fl, 480, 1.4, k.floorLine);
+      for (var fb = 0; fb < 5; fb++) for (var fx2 = -30 + (fb % 2) * 34; fx2 < 440; fx2 += 68) s += r(fx2, 242 + fb * 12, 1.4, 10, k.floorLine);
+    }
     // ダウンライト
     s += '<ellipse cx="128" cy="14" rx="12" ry="3.5" fill="' + (k.lit ? "#fff1c4" : "#fbf6ee") + '"/>';
     s += '<ellipse cx="318" cy="14" rx="12" ry="3.5" fill="' + (k.lit ? "#fff1c4" : "#fbf6ee") + '"/>';
@@ -190,6 +312,11 @@
       s += garland(-10, 210, 36) + garland(220, 380, 36);
       if (rank === 3) s += garland(-10, 120, 50, 1) + garland(240, 316, 50, 1);
       s += eventBoard(k) + eventShelf() + eventFloor();
+    } else if (life) {
+      // ライフプラン：年表・丸テーブル・本棚と観葉植物。ランク1・2は時計、ランク3は窓と金の飾り
+      if (rank === 3) s += lifeGold() + lifeWindow(t, k);
+      else s += lifeClock();
+      s += '<g transform="translate(8 0)">' + lifeTimeline(rank) + "</g>" + lifeTable() + lifeShelf(); // 年表はスマホで左が切れないよう少し右へ
     } else {
       // 窓（左）
       s += '<g>' + windowView(t, k) + '</g>';
@@ -281,8 +408,9 @@
     if (k.lit) s += c(lx, 47, 6, "#fff8dc");
 
     // 椅子（大：中心160、小：中心250、座面 y≈230）
-    s += chair(160, 1);
-    s += chair(250, 0.78);
+    var cc = life ? LIFE_CHAIR : null;
+    s += chair(160, 1, cc);
+    s += chair(250, 0.78, cc);
 
     // 夜は部屋全体を少し落ち着かせる
     if (k.lit) s += r(-40, -40, 480, 380, "#2a2350", "", ' opacity="0.08"');
@@ -297,18 +425,20 @@
     });
   }
 
-  function chair(cx, sc) {
+  var LIFE_CHAIR = { seat: "#c4544a", hi: "#df8073", base: "#a8443b" };
+  function chair(cx, sc, col) {
     var w = 64 * sc, h = 52 * sc, top = 236 - h;
     var x0 = cx - w / 2;
     var d = "M" + x0 + " 242V" + (top + 18 * sc) + "c0-" + (14 * sc) + " " + (10 * sc) + "-" + (18 * sc) + " " + (w / 2) + "-" + (18 * sc) +
       "s" + (w / 2) + " " + (4 * sc) + " " + (w / 2) + " " + (18 * sc) + "V242z";
-    var s = p(d, "#3f68a8");
+    var s = p(d, col ? col.seat : "#3f68a8");
     s += p("M" + (x0 + 6 * sc) + " " + (top + 16 * sc) + "c2-" + (8 * sc) + " " + (10 * sc) + "-" + (11 * sc) + " " + (w / 2 - 6 * sc) + "-" + (11 * sc),
-      "none", ' stroke="#5a84c4" stroke-width="' + (4 * sc) + '" stroke-linecap="round"');
-    s += r(cx - w / 2 - 4 * sc, 226, w + 8 * sc, 10 * sc, "#355a93", 4 * sc);
+      "none", ' stroke="' + (col ? col.hi : "#5a84c4") + '" stroke-width="' + (4 * sc) + '" stroke-linecap="round"');
+    s += r(cx - w / 2 - 4 * sc, 226, w + 8 * sc, 10 * sc, col ? col.base : "#355a93", 4 * sc);
     return s;
   }
 
+  // company："life" は赤（ランク2は薄い赤、ランク3はホームの建物の赤 #d9534a に金のひし形）
   // rank：2 前に青い布／3 前に看板と同じオレンジの布（ふち飾りつき）
   // company："event" のときは布をイベントの紫に（ランク2は薄い紫の布、ランク3は濃い紫の布に金の丸と色の旗。docs/第2段_設計.md ⑤）
   function counter(rank, company) {
@@ -328,6 +458,8 @@
     if (rank === 2 || rank === 3) {
       var cloth = rank === 3 ? "#f7a933" : "#4a8fd8", edge = rank === 3 ? "#e08a14" : "#2f6fb6";
       if (company === "event") { cloth = rank === 3 ? "#8e5cc4" : "#b79ad8"; edge = rank === 3 ? "#6a3f9e" : "#8e6cbc"; }
+      // ランク2は落ち着いた緑（年表の芽・木の緑とそろえる。2026-11-21 持ち主の指示でピンクから変更）
+      if (company === "life") { cloth = rank === 3 ? "#d9534a" : "#78a86a"; edge = rank === 3 ? "#ad3c34" : "#5c9a52"; }
       s += r(-40, 20, 480, 34, cloth) + r(-40, 50, 480, 4, edge);
       for (var bx = -36; bx < 440; bx += 24) s += p("M" + bx + " 54h16l-8 6z", edge);
       if (rank === 3) s += r(-40, 26, 480, 3, "#fff7e6") + r(-40, 44, 480, 3, "#fff7e6");
@@ -336,9 +468,14 @@
         for (var gx = -28; gx < 440; gx += 24) s += c(gx, 36.5, 3.2, "#f2c94c");
         for (var fx = -36, n = 0; fx < 440; fx += 24, n++) s += p("M" + (fx + 2) + " 54h12l-6 6z", ["#f2c94c", "#f28fb0", "#8fd0f0", "#a8e0b0"][n % 4]);
       }
+      // ライフプランのランク3：布に金のひし形の飾りと、すその金の三角
+      if (rank === 3 && company === "life") {
+        for (var lx2 = -28; lx2 < 440; lx2 += 24) s += p("M" + lx2 + " 32.5l4 4l-4 4l-4-4z", "#f2c94c");
+        for (var lf = -36; lf < 440; lf += 24) s += p("M" + (lf + 4) + " 54h8l-4 4z", "#f2c94c");
+      }
     }
     return s + "</svg>";
   }
 
-  root.YorozuArt = Object.assign(root.YorozuArt || {}, { office: office, counter: counter, DECO_SPOTS: DECO_SPOTS, decoSpots: decoSpots });
+  root.YorozuArt = Object.assign(root.YorozuArt || {}, { office: office, counter: counter, DECO_SPOTS: DECO_SPOTS, DECO_SPOTS_LIFE: DECO_SPOTS_LIFE, decoSpots: decoSpots });
 })(typeof globalThis !== "undefined" ? globalThis : this);

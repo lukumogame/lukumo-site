@@ -360,7 +360,7 @@
   };
 
   function eventHuman(id, mood) {
-    var k = EV_PEOPLE[id], s = "";
+    var k = EV_PEOPLE[id] || LP_PEOPLE[id], s = "";
     s += p(k.female ? BODY_F : BODY_M, k.shirt) + NECK;
     s += k.collar(k);
     if (k.pony) s += p(k.pony, k.hair);
@@ -374,7 +374,7 @@
     if (k.back) s += p(k.back, k.hair);
     if (!k.back && !k.curls) s += EARS;
     s += HEAD;
-    s += p(k.front, k.hair);
+    if (k.front) s += p(k.front, k.hair);
     s += g(100, 92, 1, face(mood, { ey: 6, my: 20 }));
     if (k.top) s += k.top(k);
     return s;
@@ -480,8 +480,187 @@
     return s;
   }
 
+  // ===== 第3段：ライフプランの新しい依頼者11人 =====
+  // 人8人はイベントの人と同じ骨組み（eventHuman）。髪形と身につけるもので見分けがつくようにする
+  // ふちどりつきの帯（ひも・ストラップ）：黒い太線の上に色の線を重ねる
+  function band(d, col, w) {
+    return p(d, "none", ' stroke="' + INK + '" stroke-width="' + (w + 4) + '"') + p(d, "none", ' stroke="' + col + '" stroke-width="' + w + '"');
+  }
+
+  var LP_PEOPLE = {
+    // めぐみさん（30代・春に赤ちゃん）：肩までの髪と青緑の髪どめ、ゆったりした菜の花色のワンピースに白い丸えり
+    megumi: {
+      hair: "#7b4a32", shirt: "#f5d77e", female: 1,
+      back: "M44,100 C40,44 70,36 100,36 C130,36 160,44 156,100 L160,140 C150,146 138,144 132,136 L68,136 C62,144 50,146 40,140Z",
+      front: "M46,104 C40,50 70,38 100,38 C134,38 160,52 154,104 C150,86 140,72 124,64 C108,72 84,72 62,64 C54,76 48,90 46,104Z",
+      collar: function () {
+        return e(100, 196, 46, 22, "#f9e6a8", NS) +
+          p("M86,141 Q100,150 114,141", SKIN) +
+          p("M100,147 C92,160 76,160 72,146 Q80,140 88,141Z", "#fff") + p("M100,147 C108,160 124,160 128,146 Q120,140 112,141Z", "#fff") +
+          p("M100,172 C96,166 88,170 92,176 L100,184 L108,176 C112,170 104,166 100,172Z", "#f28aa0", ' stroke-width="2.5"');
+      },
+      top: function () {
+        return '<rect x="122" y="60" width="22" height="8" rx="4" fill="#4fb3a1" transform="rotate(-24 133 64)"/>';
+      }
+    },
+    // そうたさん（20代・働きはじめ・バンド）：目にかかる前髪、白いシャツにゆるめたネクタイ、肩にギターのストラップ
+    sota: {
+      hair: "#2a2420", shirt: "#f4f6f8",
+      front: "M46,100 C38,46 70,32 100,32 C132,32 162,46 154,100 C150,84 146,76 140,72 L132,82 L124,70 L114,82 L104,70 L94,82 L84,70 L74,82 L64,72 C56,78 50,88 46,100Z",
+      collar: function () {
+        return p("M86,140 L100,152 L114,140", SKIN) +
+          p("M84,138 L80,154 L98,150Z", "#fff") + p("M116,138 L120,154 L102,150Z", "#fff") +
+          p("M95,149 L105,149 L108,176 L101,186 L94,176Z", "#3a5a9a") + p("M95,149 L105,149 L103,156 L97,156Z", "#2c4678") +
+          band("M60,148 L150,206", "#2b2b2b", 8) + p("M76,159 L82,163", "none", ' stroke="#fff" stroke-width="2.5"') + p("M106,178 L112,182", "none", ' stroke="#fff" stroke-width="2.5"') + p("M136,196 L142,200", "none", ' stroke="#fff" stroke-width="2.5"');
+      }
+    },
+    // たえこさん（50代・庭いじり）：つばの広い麦わら帽子（緑のリボンと花）、短い髪、若草色のシャツに葉のブローチ
+    taeko: {
+      hair: "#5a4038", shirt: "#8dbb84", female: 1,
+      back: "M46,100 C44,70 56,60 70,58 L130,58 C144,60 156,70 154,100 L156,122 C150,128 142,126 138,120 L62,120 C58,126 50,128 44,122Z",
+      front: "M48,102 C46,90 50,84 56,84 L144,84 C150,84 154,90 152,102 C146,92 134,88 120,90 Q106,96 94,88 Q76,96 62,92 C56,94 51,98 48,102Z",
+      collar: function () {
+        return p("M86,140 L100,156 L114,140", SKIN) +
+          p("M84,138 L78,154 L98,154Z", "#fff") + p("M116,138 L122,154 L102,154Z", "#fff") +
+          p("M126,170 C134,160 146,162 148,166 C144,174 134,176 126,170Z", "#4f8f4a", ' stroke-width="2.5"') + p("M126,170 L142,166", "none", ' stroke-width="2"');
+      },
+      top: function () {
+        return e(100, 80, 70, 13, "#f0d48c") +
+          p("M62,78 C60,38 140,38 138,78 Q100,72 62,78Z", "#e8c77a") +
+          p("M62,66 Q100,60 138,66 L138,77 Q100,71 62,77Z", "#5e9e5a") +
+          c(128, 66, 6.5, "#f28aa0", ' stroke-width="3"') + c(128, 66, 2.5, "#ffcc33", NS) +
+          p("M78,52 Q100,46 122,52", "none", ' stroke="#c9a456" stroke-width="2.5"');
+      }
+    },
+    // けいたさん（30代・会社員・パン屋の夢）：きちんと分けた髪、灰色の背広とからし色のネクタイ、胸ポケットにバゲット
+    keita: {
+      hair: "#3a2a20", shirt: "#5b6372",
+      front: "M48,96 C42,50 74,38 104,40 C134,42 158,56 152,96 C150,80 144,70 136,64 Q100,70 80,50 Q72,66 58,72 C52,80 50,88 48,96Z",
+      collar: function () {
+        return p("M82,140 L100,178 L118,140Z", "#fff") + p("M90,141 L100,152 L110,141", SKIN) +
+          p("M96,150 L104,150 L107,172 L100,180 L93,172Z", "#d9a03a") +
+          p("M82,140 L72,160 L86,164 L100,184") + p("M118,140 L128,160 L114,164 L100,184") +
+          e(138, 158, 7.5, 24, "#e3a857", ' transform="rotate(16 138 158)"') +
+          p("M131,146 L140,142") + p("M133,156 L142,152") + p("M135,166 L144,162") +
+          p("M122,172 L154,172 L154,190 L122,190Z", "#5b6372");
+      },
+      top: function () {
+        return p("M86,52 Q96,60 106,58", "none", ' stroke="#5a4636" stroke-width="2.5"');
+      }
+    },
+    // ゆいさん（大学4年生）：まっすぐな長い黒髪とぱっつんの前髪、赤いカチューシャ、デニムのシャツと布のかばんのひも
+    yui: {
+      hair: "#2b2530", shirt: "#6f9bd1", female: 1,
+      back: "M42,100 C38,42 70,34 100,34 C130,34 162,42 158,100 L162,176 C150,182 136,180 130,170 L126,120 L74,120 L70,170 C64,180 50,182 38,176Z",
+      front: "M46,104 C42,50 70,36 100,36 C130,36 158,50 154,104 C153,92 151,84 148,78 L52,78 C49,84 47,92 46,104Z",
+      collar: function () {
+        return p("M82,140 Q100,180 118,140Z", "#fff") + p("M88,141 Q100,152 112,141", SKIN) +
+          p("M82,139 L74,156 L96,158Z", "#5a86bd") + p("M118,139 L126,156 L104,158Z", "#5a86bd") +
+          c(100, 168, 2.4, INK, NS) + band("M132,146 L146,204", "#efe2bf", 8);
+      },
+      top: function () {
+        return band("M52,70 C58,40 142,40 148,70", "#e2574c", 6);
+      }
+    },
+    // まことさん（40代・山歩き）：こめかみが少し白い短髪、オリーブ色のフリースとオレンジのファスナー、リュックの肩ひも
+    makoto: {
+      hair: "#3b3330", shirt: "#6f8a4e",
+      front: "M48,96 C44,54 72,42 100,42 C128,42 156,54 152,96 C148,82 142,72 134,66 Q118,60 100,62 Q82,60 66,66 C58,72 52,82 48,96Z",
+      collar: function () {
+        return p("M86,140 Q100,150 114,140", SKIN) + p("M84,139 L86,150 Q100,156 114,150 L116,139", "#5d7640") +
+          p("M100,154 L100,200") + p("M100,160 L100,172", "none", ' stroke="#ee7a3c" stroke-width="5"') +
+          band("M64,146 C62,166 64,186 66,204", "#c4483d", 9) + band("M136,146 C138,166 136,186 134,204", "#c4483d", 9) +
+          band("M66,178 L134,178", "#2f3336", 5);
+      },
+      top: function () {
+        return p("M50,96 C48,86 50,80 54,78 L58,96Z", "#d9dce2", ' stroke-width="3"') + p("M150,96 C152,86 150,80 146,78 L142,96Z", "#d9dce2", ' stroke-width="3"');
+      }
+    },
+    // ひなたさん（20代・家で絵の仕事）：鉛筆をさしたおだんご頭、大きな丸めがね、絵の具のついた青緑のセーター
+    hinata: {
+      hair: "#3b3247", shirt: "#57a7a8", female: 1,
+      front: "M48,100 C42,52 70,42 100,42 C130,42 158,52 152,100 C148,84 140,74 130,68 Q120,78 108,66 Q96,78 82,68 Q70,78 60,74 C54,80 50,90 48,100Z",
+      collar: function () {
+        return p("M80,141 Q100,160 120,141", "#4a9293") + p("M86,141 Q100,152 114,141", SKIN) +
+          c(70, 172, 5, "#e2574c", NS) + c(132, 182, 4.5, "#ffcc33", NS) + c(118, 164, 3.5, "#fff", NS) + c(84, 190, 4, "#f28aa0", NS);
+      },
+      top: function () {
+        return '<rect x="96" y="2" width="9" height="46" rx="2" fill="#f2c94c" transform="rotate(30 100 26)"/>' +
+          c(100, 34, 15, "#3b3247") + p("M90,34 Q100,40 110,34", "none", ' stroke="#57506a" stroke-width="2.5"') +
+          '<g fill="none" stroke-width="3">' + c(80, 98, 13, "none") + c(120, 98, 13, "none") + p("M93,98 L107,98") + "</g>";
+      }
+    },
+    // しげるさん（70代・碁会所の仲間）：頭のてっぺんはつるりと横だけ白い髪、太い白いまゆ、藍色の作務衣に碁石の飾り
+    shigeru: {
+      hair: "#eceef2", shirt: "#45608f",
+      front: "M50,104 C46,86 50,76 58,72 C60,84 62,96 66,104Z M150,104 C154,86 150,76 142,72 C140,84 138,96 134,104Z",
+      collar: function () {
+        return p("M88,140 L100,160 L112,140", SKIN) +
+          p("M116,140 L124,146 L102,172 L96,164Z", "#2f4670") + p("M84,140 L76,146 L114,194 L122,186Z", "#2f4670") +
+          c(140, 172, 5, INK, ' stroke-width="2"') + c(152, 176, 5, "#fff", ' stroke-width="2"');
+      },
+      top: function () {
+        return band("M68,80 Q80,73 92,78", "#f4f5f8", 5) + band("M108,78 Q120,73 132,80", "#f4f5f8", 5) +
+          p("M86,60 Q100,56 114,60", "none", ' stroke-width="2.5"') + p("M90,68 Q100,65 110,68", "none", ' stroke-width="2.5"');
+      }
+    },
+    // りょうさん（40代・はたらき方に迷う）：ゆるい波の短髪、細いふちのめがね、水色のシャツと首から下げた社員証
+    ryo: {
+      hair: "#4a3a30", shirt: "#9cc3d9",
+      front: "M48,96 C44,52 72,40 100,40 C130,40 156,52 152,96 C148,80 142,70 132,64 Q122,72 112,62 Q100,72 88,62 Q78,72 66,64 C58,70 52,82 48,96Z",
+      collar: function () {
+        return p("M86,140 L100,154 L114,140", SKIN) +
+          p("M84,138 L78,154 L98,152Z", "#e4f0f6") + p("M116,138 L122,154 L102,152Z", "#e4f0f6") +
+          band("M84,146 L94,174", "#e2574c", 3) + band("M116,146 L106,174", "#e2574c", 3) +
+          '<rect x="86" y="172" width="28" height="22" rx="3" fill="#fff"/>' + c(94, 181, 3.5, "#9aa5ae", NS) + p("M101,180 L109,180", "none", ' stroke="#9aa5ae" stroke-width="2.5"') + p("M92,188 L109,188", "none", ' stroke="#9aa5ae" stroke-width="2.5"');
+      },
+      top: function () {
+        return '<g fill="none" stroke-width="2.5">' +
+          '<rect x="70" y="91" width="22" height="14" rx="4"/><rect x="108" y="91" width="22" height="14" rx="4"/>' +
+          p("M92,97 L108,97") + p("M70,95 L58,92") + p("M130,95 L142,92") + "</g>";
+      }
+    }
+  };
+
+  // ---- ビーバー（ばん太さん）：茶色の毛、平たいしっぽ、大きな前歯、青いはちまきに耳の鉛筆、腰の道具帯 ----
+  function beaver(mood) {
+    // 2026-11-21 持ち主の指示：くまださん（クマ）と見分けやすいよう、毛は赤みのある明るい茶色、平たいしっぽを大きく
+    var s = "", F = "#c47848", L = "#f0d2a8", T = "#6e4630";
+    s += e(150, 160, 36, 22, T, ' transform="rotate(-48 150 160)"');
+    s += p("M134,168 L160,132 M144,180 L172,142 M156,186 L178,156 M130,150 L162,182 M140,138 L172,168", "none", ' stroke="#8f6248" stroke-width="2.5"');
+    s += p("M42,200 C40,150 62,134 100,134 C138,134 160,150 158,200Z", F);
+    s += e(100, 186, 32, 24, L, NS);
+    s += band("M48,172 Q100,184 152,172", "#c98d48", 9) + '<rect x="112" y="172" width="18" height="18" rx="3" fill="#c98d48"/>' + p("M118,172 L118,164 M124,172 L124,160", "none", ' stroke-width="3"');
+    s += c(60, 56, 11, F) + c(140, 56, 11, F) + c(60, 56, 5, L, NS) + c(140, 56, 5, L, NS);
+    s += c(100, 92, 48, F);
+    s += e(100, 112, 28, 21, L);
+    s += g(100, 92, 1, face(mood, { ey: -2, ex: 19, my: 27, cy: 12, cx: 33 }));
+    s += e(100, 101, 7, 5, INK, NS);
+    s += '<rect x="94" y="106" width="12" height="11" rx="2" fill="#fff" stroke-width="2.5"/>' + p("M100,107 L100,116", "none", ' stroke-width="2"');
+    s += p("M56,64 Q100,42 144,64 L147,75 Q100,53 53,75Z", "#3b6fb6") + p("M54,68 L38,60 L42,78Z", "#3b6fb6") + p("M54,72 L42,88 L54,86Z", "#3b6fb6");
+    s += '<rect x="130" y="24" width="7" height="36" rx="2" fill="#f2c94c" transform="rotate(-38 133 42)"/>';
+    return s;
+  }
+
+  // ---- ミノムシ（ぶらりさん）：枝から糸でぶら下がる、枯れ葉と小枝のみの。こげ茶の頭がのぞく ----
+  function bagworm(mood) {
+    var s = "", BAG = "#a8825a";
+    s += p("M8,24 Q100,10 192,22", "none", ' stroke="' + INK + '" stroke-width="13"') + p("M8,24 Q100,10 192,22", "none", ' stroke="#8a6142" stroke-width="8"');
+    s += p("M126,15 C132,1 148,1 152,7 C146,15 136,17 126,15Z", "#7fb069", ' stroke-width="3"');
+    s += p("M100,17 L100,44", "none", ' stroke-width="2.5"');
+    s += p("M100,42 C64,42 50,88 54,138 C58,180 78,200 100,200 C122,200 142,180 146,138 C150,88 136,42 100,42Z", BAG);
+    var leaves = [[78, 64, -30, "#c49a5e"], [120, 62, 26, "#8f6a44"], [66, 150, -20, "#8f6a44"], [132, 148, 24, "#c49a5e"], [82, 180, -10, "#b08850"], [118, 182, 14, "#9a7a40"], [100, 52, 0, "#b5925a"]];
+    leaves.forEach(function (L) { s += e(L[0], L[1], 9, 16, L[3], ' stroke-width="3" transform="rotate(' + L[2] + " " + L[0] + " " + L[1] + ')"'); });
+    s += p("M60,118 L74,128 M140,118 L126,128 M90,166 L104,160", "none", ' stroke="#6b4a30" stroke-width="3.5"');
+    s += e(100, 112, 38, 32, "#5a4636");
+    s += c(100, 108, 33, "#5a4636", NS);
+    s += e(100, 114, 28, 23, SKIN, NS);
+    s += g(100, 110, 0.8, face(mood, { ey: 2, my: 18, cy: 14 }));
+    return s;
+  }
+
   function draw(id, mood) {
-    if (EV_PEOPLE[id]) return eventHuman(id, mood);
+    if (EV_PEOPLE[id] || LP_PEOPLE[id]) return eventHuman(id, mood);
     switch (id) {
       case "hoshina": return ladybug(58, mood, 0) + ladybug(145, mood, 1);
       case "kumada": return bear(76, 106, 0.88, mood) + bear(154, 140, 0.6, mood);
@@ -495,12 +674,15 @@
       case "penta": return penguin(mood);
       case "poron": return student(mood);
       case "ruu": return captain(mood);
+      case "banta": return beaver(mood);
+      case "burari": return bagworm(mood);
       default: return PEOPLE[id] ? human(id, mood) : human("sakura", mood);
     }
   }
 
   var CHARACTER_IDS = ["sakura", "yuto", "kenta", "hoshina", "miyuki", "fumie", "kumada", "shota", "pururu", "daiki", "akira", "mitsue", "fuwari", "miru",
-    "minori", "keiko", "riku", "naoki", "maika", "tomori", "anzu", "momiji", "penta", "poron", "ruu"];
+    "minori", "keiko", "riku", "naoki", "maika", "tomori", "anzu", "momiji", "penta", "poron", "ruu",
+    "megumi", "sota", "banta", "taeko", "keita", "yui", "makoto", "hinata", "shigeru", "ryo", "burari"];
 
   function character(clientId, mood) {
     if (mood !== "great" && mood !== "poor") mood = "normal";
