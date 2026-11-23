@@ -1,7 +1,7 @@
 // 自動生成ファイル。直接編集せず data/items.json を直して node tools/sync-data を実行
 window.YOROZU_ITEMS = {
  "version": 1,
- "note": "もらえる品。group は species:<種類のまとまり> か regular:<依頼者のID>。order の順に渡す。colors は [元の色, 色違い]。use は wear（part: head/body/hand）か deco（place: shelf/wall）。常連の品は1キャラ3つまで（js/rewards.js の MAX_REGULAR_ITEMS）。名前は図鑑のカードに1行で収まるよう7字以内。company は会社（書かなければ旅行・デート travel、イベントは event、ライフプランは life。イベントの品の id は ev-、ライフプランの品は lp- で始める）",
+ "note": "もらえる品。group は species:<種類のまとまり> か regular:<依頼者のID>。order の順に渡す。colors は [元の色, 色違い]。use は wear（part: head/body/hand）か deco（place: shelf/wall）。常連の品は1キャラ3つまで（js/rewards.js の MAX_REGULAR_ITEMS）。名前は図鑑のカードに1行で収まるよう7字以内。company は会社（書かなければ旅行・デート travel、イベントは event、ライフプランは life、投資は invest、町おこしは town。イベントの品の id は ev-、ライフプランの品は lp-、投資は iv-、町おこしは tw- で始める）",
  "speciesGroups": {
   "human": "human",
   "ladybug": "bug",
@@ -17,7 +17,14 @@ window.YOROZU_ITEMS = {
   "alien_student": "alien",
   "alien_captain": "alien",
   "beaver": "animal",
-  "bagworm": "bug"
+  "bagworm": "bug",
+  "owl": "animal",
+  "beetle": "bug",
+  "alien_merchant": "alien",
+  "deer": "animal",
+  "frog": "animal",
+  "tanuki": "animal",
+  "alien_settler": "alien"
  },
  "groupNames": {
   "human": "人",
@@ -1138,6 +1145,762 @@ window.YOROZU_ITEMS = {
     "ちゃいろ"
    ],
    "art": "woodchip"
+  },
+  {
+   "id": "iv-h-band",
+   "name": "応援のはちまき",
+   "group": "species:human",
+   "company": "invest",
+   "order": 1,
+   "use": "wear",
+   "part": "head",
+   "colors": [
+    "#e2574c",
+    "#e3a91c"
+   ],
+   "colorNames": [
+    "あか",
+    "きんいろ"
+   ],
+   "art": "cheerband"
+  },
+  {
+   "id": "iv-h-sapling",
+   "name": "夢の苗木",
+   "group": "species:human",
+   "company": "invest",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#d9825a",
+    "#4a8fd8"
+   ],
+   "colorNames": [
+    "テラコッタ",
+    "あお"
+   ],
+   "art": "dreamsapling"
+  },
+  {
+   "id": "iv-h-shikishi",
+   "name": "お礼の色紙",
+   "group": "species:human",
+   "company": "invest",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#e3a91c",
+    "#e57aa0"
+   ],
+   "colorNames": [
+    "きんいろ",
+    "ピンク"
+   ],
+   "art": "thankscard"
+  },
+  {
+   "id": "iv-b-sash",
+   "name": "花のたすき",
+   "group": "species:bug",
+   "company": "invest",
+   "order": 1,
+   "use": "wear",
+   "part": "body",
+   "colors": [
+    "#f6a8c8",
+    "#f2c94c"
+   ],
+   "colorNames": [
+    "さくら",
+    "きいろ"
+   ],
+   "art": "flowersash"
+  },
+  {
+   "id": "iv-b-seeds",
+   "name": "小さな種袋",
+   "group": "species:bug",
+   "company": "invest",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#e8d0a0",
+    "#a8d8b8"
+   ],
+   "colorNames": [
+    "きなり",
+    "ミント"
+   ],
+   "art": "seedpouch"
+  },
+  {
+   "id": "iv-b-letter",
+   "name": "葉の感謝状",
+   "group": "species:bug",
+   "company": "invest",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#6cbf5a",
+    "#e0a03a"
+   ],
+   "colorNames": [
+    "わかば",
+    "かれは"
+   ],
+   "art": "leafcertificate"
+  },
+  {
+   "id": "iv-a-flag",
+   "name": "応援の小旗",
+   "group": "species:animal",
+   "company": "invest",
+   "order": 1,
+   "use": "wear",
+   "part": "hand",
+   "colors": [
+    "#e3a91c",
+    "#4a8fd8"
+   ],
+   "colorNames": [
+    "きんいろ",
+    "あお"
+   ],
+   "art": "cheerflag"
+  },
+  {
+   "id": "iv-a-chest",
+   "name": "木の実の宝箱",
+   "group": "species:animal",
+   "company": "invest",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#b9784a",
+    "#d9534a"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "あか"
+   ],
+   "art": "nutchest"
+  },
+  {
+   "id": "iv-a-sign",
+   "name": "森の店の看板",
+   "group": "species:animal",
+   "company": "invest",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#c58a52",
+    "#e8d0a0"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "しらき"
+   ],
+   "art": "forestshopsign"
+  },
+  {
+   "id": "iv-x-muffler",
+   "name": "星のマフラー",
+   "group": "species:alien",
+   "company": "invest",
+   "order": 1,
+   "use": "wear",
+   "part": "body",
+   "colors": [
+    "#3d4f8a",
+    "#9a7ad8"
+   ],
+   "colorNames": [
+    "こん",
+    "むらさき"
+   ],
+   "art": "starmuffler"
+  },
+  {
+   "id": "iv-x-globe",
+   "name": "夢の地球儀",
+   "group": "species:alien",
+   "company": "invest",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#8fd0e8",
+    "#b9a3e3"
+   ],
+   "colorNames": [
+    "みずいろ",
+    "ふじいろ"
+   ],
+   "art": "dreamglobe"
+  },
+  {
+   "id": "iv-x-banner",
+   "name": "星の応援旗",
+   "group": "species:alien",
+   "company": "invest",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#2b3a66",
+    "#e3a91c"
+   ],
+   "colorNames": [
+    "こん",
+    "きんいろ"
+   ],
+   "art": "starbanner"
+  },
+  {
+   "id": "iv-r-tsumugi-1",
+   "name": "お店の前かけ",
+   "group": "regular:tsumugi",
+   "company": "invest",
+   "order": 1,
+   "use": "wear",
+   "part": "body",
+   "colors": [
+    "#5a8a6a",
+    "#c9705a"
+   ],
+   "colorNames": [
+    "ふかみどり",
+    "れんが"
+   ],
+   "art": "cafeapron"
+  },
+  {
+   "id": "iv-r-tsumugi-2",
+   "name": "開店の写真",
+   "group": "regular:tsumugi",
+   "company": "invest",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#f4e3c8",
+    "#d9effa"
+   ],
+   "colorNames": [
+    "クリーム",
+    "みずいろ"
+   ],
+   "art": "openingphoto"
+  },
+  {
+   "id": "iv-r-tsumugi-3",
+   "name": "小さなレジ",
+   "group": "regular:tsumugi",
+   "company": "invest",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#e57aa0",
+    "#8fc8e8"
+   ],
+   "colorNames": [
+    "ピンク",
+    "みずいろ"
+   ],
+   "art": "tinyregister"
+  },
+  {
+   "id": "iv-r-goro-1",
+   "name": "職人の手ぬぐい",
+   "group": "regular:goro",
+   "company": "invest",
+   "order": 1,
+   "use": "wear",
+   "part": "head",
+   "colors": [
+    "#3d5a8a",
+    "#f4efe6"
+   ],
+   "colorNames": [
+    "あい",
+    "しろ"
+   ],
+   "art": "tenugui"
+  },
+  {
+   "id": "iv-r-goro-2",
+   "name": "若木の表札",
+   "group": "regular:goro",
+   "company": "invest",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#e8c88a",
+    "#a0683c"
+   ],
+   "colorNames": [
+    "しらき",
+    "こげちゃ"
+   ],
+   "art": "saplingplate"
+  },
+  {
+   "id": "iv-r-goro-3",
+   "name": "かんなの置物",
+   "group": "regular:goro",
+   "company": "invest",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#d8a868",
+    "#8a5a34"
+   ],
+   "colorNames": [
+    "しらき",
+    "くり"
+   ],
+   "art": "kanna"
+  },
+  {
+   "id": "iv-r-hou-1",
+   "name": "羽根のペン",
+   "group": "regular:hou",
+   "company": "invest",
+   "order": 1,
+   "use": "wear",
+   "part": "hand",
+   "colors": [
+    "#c9a070",
+    "#f4f1ec"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "しろ"
+   ],
+   "art": "featherpen"
+  },
+  {
+   "id": "iv-r-hou-2",
+   "name": "夜空の掛け軸",
+   "group": "regular:hou",
+   "company": "invest",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#2b3a66",
+    "#3f5a4c"
+   ],
+   "colorNames": [
+    "こん",
+    "ふかみどり"
+   ],
+   "art": "nightscroll"
+  },
+  {
+   "id": "iv-r-hou-3",
+   "name": "どんぐりの灯",
+   "group": "regular:hou",
+   "company": "invest",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#f2c94c",
+    "#f2a23a"
+   ],
+   "colorNames": [
+    "きいろ",
+    "だいだい"
+   ],
+   "art": "acornlamp"
+  },
+  {
+   "id": "tw-h-happi",
+   "name": "祭りのはっぴ",
+   "group": "species:human",
+   "company": "town",
+   "order": 1,
+   "use": "wear",
+   "part": "body",
+   "colors": [
+    "#3a6fb8",
+    "#e2574c"
+   ],
+   "colorNames": [
+    "あお",
+    "あか"
+   ],
+   "art": "happi"
+  },
+  {
+   "id": "tw-h-lantern",
+   "name": "ちょうちん",
+   "group": "species:human",
+   "company": "town",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#e2574c",
+    "#f4efe6"
+   ],
+   "colorNames": [
+    "あか",
+    "しろ"
+   ],
+   "art": "chochin"
+  },
+  {
+   "id": "tw-h-map",
+   "name": "町の絵地図",
+   "group": "species:human",
+   "company": "town",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#fbf0d0",
+    "#e3f0d0"
+   ],
+   "colorNames": [
+    "きなり",
+    "わかば"
+   ],
+   "art": "townmap"
+  },
+  {
+   "id": "tw-b-flower",
+   "name": "花の髪かざり",
+   "group": "species:bug",
+   "company": "town",
+   "order": 1,
+   "use": "wear",
+   "part": "head",
+   "colors": [
+    "#f6a8c8",
+    "#f2c94c"
+   ],
+   "colorNames": [
+    "さくら",
+    "きいろ"
+   ],
+   "art": "flowerclip"
+  },
+  {
+   "id": "tw-b-bell",
+   "name": "露の風鈴",
+   "group": "species:bug",
+   "company": "town",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#8fd0e8",
+    "#a8e0b0"
+   ],
+   "colorNames": [
+    "みずいろ",
+    "わかば"
+   ],
+   "art": "dewbell"
+  },
+  {
+   "id": "tw-b-flag",
+   "name": "葉っぱの旗",
+   "group": "species:bug",
+   "company": "town",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#5cb87a",
+    "#e98a3a"
+   ],
+   "colorNames": [
+    "みどり",
+    "もみじ"
+   ],
+   "art": "leafbanner"
+  },
+  {
+   "id": "tw-a-flute",
+   "name": "どんぐりの笛",
+   "group": "species:animal",
+   "company": "town",
+   "order": 1,
+   "use": "wear",
+   "part": "hand",
+   "colors": [
+    "#a0683c",
+    "#d8b48a"
+   ],
+   "colorNames": [
+    "こげちゃ",
+    "しらき"
+   ],
+   "art": "acornflute"
+  },
+  {
+   "id": "tw-a-stump",
+   "name": "切り株の椅子",
+   "group": "species:animal",
+   "company": "town",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#b9784a",
+    "#8fcf6a"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "こけ"
+   ],
+   "art": "stumpchair"
+  },
+  {
+   "id": "tw-a-sign",
+   "name": "木彫りの看板",
+   "group": "species:animal",
+   "company": "town",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#c58a52",
+    "#7a4a2a"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "こげちゃ"
+   ],
+   "art": "carvedsign"
+  },
+  {
+   "id": "tw-x-uchiwa",
+   "name": "星のうちわ",
+   "group": "species:alien",
+   "company": "town",
+   "order": 1,
+   "use": "wear",
+   "part": "hand",
+   "colors": [
+    "#4a8fd8",
+    "#e57aa0"
+   ],
+   "colorNames": [
+    "あお",
+    "ピンク"
+   ],
+   "art": "staruchiwa"
+  },
+  {
+   "id": "tw-x-dango",
+   "name": "月見の団子",
+   "group": "species:alien",
+   "company": "town",
+   "order": 2,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#e0a060",
+    "#c9d6e3"
+   ],
+   "colorNames": [
+    "くり",
+    "ぎんいろ"
+   ],
+   "art": "moondango"
+  },
+  {
+   "id": "tw-x-noren",
+   "name": "星座ののれん",
+   "group": "species:alien",
+   "company": "town",
+   "order": 3,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#2b3a66",
+    "#6a3d7a"
+   ],
+   "colorNames": [
+    "こん",
+    "むらさき"
+   ],
+   "art": "starnoren"
+  },
+  {
+   "id": "tw-r-toru-1",
+   "name": "八百屋の前かけ",
+   "group": "regular:toru",
+   "company": "town",
+   "order": 1,
+   "use": "wear",
+   "part": "body",
+   "colors": [
+    "#2b4a7a",
+    "#3f9a56"
+   ],
+   "colorNames": [
+    "こん",
+    "みどり"
+   ],
+   "art": "grocerapron"
+  },
+  {
+   "id": "tw-r-toru-2",
+   "name": "商店街の旗",
+   "group": "regular:toru",
+   "company": "town",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#e2574c",
+    "#3f9a56"
+   ],
+   "colorNames": [
+    "あか",
+    "みどり"
+   ],
+   "art": "streetbanner"
+  },
+  {
+   "id": "tw-r-toru-3",
+   "name": "野菜のかご",
+   "group": "regular:toru",
+   "company": "town",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#c8955a",
+    "#e8d0a0"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "しらき"
+   ],
+   "art": "veggiebasket"
+  },
+  {
+   "id": "tw-r-ume-1",
+   "name": "すげがさ",
+   "group": "regular:ume",
+   "company": "town",
+   "order": 1,
+   "use": "wear",
+   "part": "head",
+   "colors": [
+    "#d8b468",
+    "#a8864a"
+   ],
+   "colorNames": [
+    "わら",
+    "くり"
+   ],
+   "art": "sugegasa"
+  },
+  {
+   "id": "tw-r-ume-2",
+   "name": "村の写真",
+   "group": "regular:ume",
+   "company": "town",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#a8d49a",
+    "#f6c8d0"
+   ],
+   "colorNames": [
+    "わかば",
+    "さくら"
+   ],
+   "art": "villagephoto"
+  },
+  {
+   "id": "tw-r-ume-3",
+   "name": "梅干しのつぼ",
+   "group": "regular:ume",
+   "company": "town",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#c97a4a",
+    "#5a6a8a"
+   ],
+   "colorNames": [
+    "かき",
+    "あい"
+   ],
+   "art": "umejar"
+  },
+  {
+   "id": "tw-r-morio-1",
+   "name": "紅葉のかんむり",
+   "group": "regular:morio",
+   "company": "town",
+   "order": 1,
+   "use": "wear",
+   "part": "head",
+   "colors": [
+    "#e2574c",
+    "#f2a23a"
+   ],
+   "colorNames": [
+    "あか",
+    "だいだい"
+   ],
+   "art": "maplecrown"
+  },
+  {
+   "id": "tw-r-morio-2",
+   "name": "森の案内板",
+   "group": "regular:morio",
+   "company": "town",
+   "order": 2,
+   "use": "deco",
+   "place": "wall",
+   "colors": [
+    "#c58a52",
+    "#5cb87a"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "みどり"
+   ],
+   "art": "forestguide"
+  },
+  {
+   "id": "tw-r-morio-3",
+   "name": "木の実のたる",
+   "group": "regular:morio",
+   "company": "town",
+   "order": 3,
+   "use": "deco",
+   "place": "shelf",
+   "colors": [
+    "#b9784a",
+    "#8a5a34"
+   ],
+   "colorNames": [
+    "ちゃいろ",
+    "くり"
+   ],
+   "art": "nutbarrel"
   }
  ]
 };

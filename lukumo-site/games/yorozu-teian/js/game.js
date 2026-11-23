@@ -1,7 +1,7 @@
 // よろず提案所：画面の進行（ホーム→事務所→提案書→結果→…→1日の集計→次の日へ。日付は終わりなく続く）
 (function () {
   "use strict";
-  const { SLOTS, SLOT_NAMES, scoreProposal, reactionOf, dayAverage, periodOk, isHonne } = window.YorozuScore;
+  const { SLOTS, SLOT_NAMES, scoreProposal, reactionOf, dayAverage, condOk, isHonne } = window.YorozuScore;
   const DATA = window.YOROZU_DATA;
   const $ = id => document.getElementById(id);
   // 絵（svg/*.js）。読み込めなかった時は仮の図形のまま遊べる
@@ -15,7 +15,9 @@
     food: '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3.5h8M9 3.5v3L6.5 9.5V19a1.5 1.5 0 0 0 1.5 1.5h8a1.5 1.5 0 0 0 1.5-1.5V9.5L15 6.5v-3"/><circle cx="10.5" cy="16" r="1.8"/><circle cx="13.8" cy="12.8" r="1.8"/></g></svg>',
     surprise: '<svg viewBox="0 0 24 24"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8L12 16.8l-5.2 2.7 1-5.8L3.6 9.6l5.8-.8z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
   };
-  const slotIcon = s => state.company === "life" ? LIFE_ICON[s] : UI ? UI.slotIcon(s) : SLOT_ICON[s];
+  // 投資・町おこしの欄のアイコンは svg/ui.js（docs/第4段_第5段_設計.md 6-3）
+  const COMPANY_ICONS = () => ({ life: LIFE_ICON, invest: ART.SLOT_ICONS_INVEST, town: ART.SLOT_ICONS_TOWN });
+  const slotIcon = s => { const set = COMPANY_ICONS()[state.company]; return set && set[s] ? set[s] : UI ? UI.slotIcon(s) : SLOT_ICON[s]; };
   // カードの絵：カードごとの art（svg/cards-*.js のモチーフ）→ なければ欄ごとの絵
   const cardArt = (s, i, card) => {
     const m = card && card.art && ART.cardMotifs && ART.cardMotifs[card.art];
@@ -54,27 +56,49 @@
   // 会社（第2段）。記録は会社ごと（ランク・常連・図鑑・順番待ち・飾りつけ）。品の持ち物と日付・1日3件は全体で1つ
   // 遊べるのは旅行・デートとイベント。1件ごとにホームで会社を選ぶ（1日の中で混ぜてよい）
   const COMPANIES = SAVE ? SAVE.COMPANIES : ["travel", "event"];
-  const COMPANY_NAMES = { travel: "旅行・デート", event: "イベント", life: "ライフプラン" };
-  const COMPANY_MARK = { travel: "✈", event: "◎", life: "⌂" };
+  const COMPANY_NAMES = { travel: "旅行・デート", event: "イベント", life: "ライフプラン", invest: "投資", town: "町おこし" };
+  // 投資の印は芽（応援して育てる。2026-11-22 持ち主の指示で ¥ から替えた。文字にない形なので小さな絵）
+  const SPROUT = '<svg class="mk-svg" viewBox="-14 -14 28 28" aria-hidden="true" fill="currentColor"><path d="M-1.6 12V-2h3.2V12Z"/><path d="M-1-1C-5-1-11-4-12-11C-5-12-1-7-1-1Z"/><path d="M1-3C1-9 5-14 12-13C12-6 7-3 1-3Z"/><ellipse cx="0" cy="12" rx="9" ry="2.5"/></svg>';
+  const COMPANY_MARK = { travel: "✈", event: "◎", life: "⌂", invest: SPROUT, town: "⚑" };
   // イベントは2日目から選べる（1日目は旅行・デートの案内のため。docs/第2段_設計.md ⑦）。前の記録で2日目以降なら、つづきからすぐ選べる
   const EVENT_FROM_DAY = 2;
   // ライフプランは3日目から（第3段。1日に1社ずつ増やす。docs/第3段_設計.md 2章）
   const LIFE_FROM_DAY = 3;
-  const OPEN_FROM = { travel: 1, event: EVENT_FROM_DAY, life: LIFE_FROM_DAY };
-  const isOpen = c => state.day >= (OPEN_FROM[c] || Infinity);
+  // 投資は4日目から、町おこしは5日目から（第4段・第5段。1日に1社ずつ増やす）
+  const OPEN_FROM = { travel: 1, event: EVENT_FROM_DAY, life: LIFE_FROM_DAY, invest: 4, town: 5 };
+  // 依頼データのない会社は開かない（作りかけの会社を押しても止まらないように）
+  const isOpen = c => state.day >= (OPEN_FROM[c] || Infinity) && requestsFor(c).length > 0;
   // 欄の名前は会社ごと（欄のキーと点数の決まりは全社同じ）。イベント：会場・出し物・料理・サプライズ
   const SLOT_LABELS = { travel: SLOT_NAMES, event: { destination: "会場", activity: "出し物", food: "料理", surprise: "サプライズ" },
-    life: { destination: "住まい", activity: "はたらき方", food: "たくわえ", surprise: "たのしみ" } };
+    life: { destination: "住まい", activity: "はたらき方", food: "たくわえ", surprise: "たのしみ" },
+    invest: { destination: "応援先", activity: "お金の分け方", food: "見守り方", surprise: "お礼" },
+    town: { destination: "場所", activity: "呼びもの", food: "広め方", surprise: "つづけ方" } };
   const slotName = (s, c) => (SLOT_LABELS[c || state.company] || SLOT_NAMES)[s];
   // その会社を初めて開いたときの案内（事務所の中に1回だけ。companies.*.welcomed に残す）
   const WELCOME = { event: "イベント会社へようこそ。会場・出し物・料理・サプライズの4つを選ぶよ。人数にも気をつけてね",
-    life: "ライフプランの会社へようこそ。住まい・はたらき方・たくわえ・たのしみの4つを選ぶよ。何年先の計画かにも気をつけてね" };
-  // 予算の横の条件：旅行・デートは日数（budget.duration）、イベントは人数（budget.people。例「10人の会」）
-  const conditionOf = b => b.period ? `${b.period}年後までの計画` : b.people ? `${b.people}${b.peopleUnit || "人"}の会` : (b.duration || "");
-  // ライフプラン：カードの向いている期間（名前の下の1行。会場の広さと同じ場所）と、依頼の期間に向いているか
-  // 表記は「1・5・10年」（幅360pxのスマホでもカードに収まる長さ。「〈1年・5年・10年〉」でははみ出した）
-  const periodText = c => Array.isArray(c.periods) ? `${c.periods.join("・")}年` : "";
-  const periodMiss = (card, req) => !!req.budget.period && card.tags.some(t => req.honneTags.includes(t)) && !periodOk(card, req);
+    life: "ライフプランの会社へようこそ。住まい・はたらき方・たくわえ・たのしみの4つを選ぶよ。何年先の計画かにも気をつけてね",
+    invest: "投資の会社へようこそ。町の店や人の夢を応援するよ。応援先・お金の分け方・見守り方・お礼の4つを選んでね。応援する相手の数にも気をつけてね",
+    town: "町おこしの会社へようこそ。場所・呼びもの・広め方・つづけ方の4つを選ぶよ。季節にも気をつけてね" };
+  // 会社だけの条件（js/score.js の CONDS と同じキー）の見せ方：期間（ライフプラン）・応援する相手の数（投資）・季節（町おこし）
+  //   cond：予算の横の文／cap：カードの名前の下の1行（幅360pxのスマホでもカードに収まる長さ）／miss：結果の △ の理由／legend：凡例の △
+  //   label：予算の見出し／help：「点数について」の1行の id
+  const SPREAD = { one: { long: "1つに集中して応援", short: "1つ" }, few: { long: "2〜3に分けて応援", short: "2〜3" }, many: { long: "たくさんに少しずつ応援", short: "多く" } };
+  const SEASONS = ["春", "夏", "秋", "冬"];
+  const COND_UI = {
+    period: { cond: b => `${b.period}年後までの計画`, cap: c => `${c.periods.join("・")}年`, miss: "期間に合わない", legend: "本音とは別・期間に合わない", label: "毎月の予算", help: "help-period" },
+    spread: { cond: b => SPREAD[b.spread].long, cap: c => c.spreads.length >= 3 ? "どれでも" : Object.keys(SPREAD).filter(k => c.spreads.includes(k)).map(k => SPREAD[k].short).join("・"),
+      miss: "相手の数に合わない", legend: "本音とは別・相手の数に合わない", label: "応援に出せるお金", help: "help-spread" },
+    season: { cond: b => `${b.season}の町おこし`, cap: c => c.seasons.length >= 4 ? "一年中" : SEASONS.filter(k => c.seasons.includes(k)).join("・"),
+      miss: "季節に合わない", legend: "本音とは別・季節に合わない", label: "予算", help: "help-season" }
+  };
+  const CARD_KEY = window.YorozuScore.CONDS;
+  const condKeyOf = r => r && r.budget ? Object.keys(COND_UI).find(k => r.budget[k] != null) : null;
+  // 予算の横の条件：旅行・デートは日数（budget.duration）、イベントは人数（budget.people。例「10人の会」）、ほかは会社だけの条件
+  const conditionOf = b => { const k = condKeyOf({ budget: b }); return k ? COND_UI[k].cond(b) : b.people ? `${b.people}${b.peopleUnit || "人"}の会` : (b.duration || ""); };
+  // カードの向いている○○（名前の下の1行。会場の広さと同じ場所）
+  const condCap = (c, r) => { const k = condKeyOf(r); return k && Array.isArray(c[CARD_KEY[k]]) ? COND_UI[k].cap(c) : ""; };
+  // 本音のタグに合うのに、条件に向かないカード（結果の △ の理由）
+  const condMiss = (card, req) => !!condKeyOf(req) && card.tags.some(t => req.honneTags.includes(t)) && !condOk(card, req);
   // ---- 新しい品の印（赤い丸。2026-11-19 持ち主の指示） ----
   // menu：メニューの中の「図鑑・着せ替え・飾る」の丸。その画面を開いたら消える。メニューのボタンの丸は、このどれかがあるとき
   // zukan：図鑑で丸を付ける品（品ID:色）。図鑑を閉じたら消える（図鑑の品は押せないため）
@@ -334,8 +358,8 @@
     drawMenuDots();
     drawMe();
     drawLogos();
-    // イベントは2日目から、ライフプランは3日目から。その日より前は建物に「○日目から」と出して押せない
-    ["event", "life"].forEach(co => {
+    // イベントは2日目から、ライフプランは3日目から、投資は4日目から、町おこしは5日目から。その日より前は建物に「○日目から」と出して押せない
+    COMPANIES.filter(co => OPEN_FROM[co] > 1).forEach(co => {
       const b = $("company-" + co);
       b.disabled = !isOpen(co);
       b.setAttribute("aria-disabled", String(b.disabled));
@@ -388,6 +412,15 @@
   }
 
   // ---- 事務所 ----
+  // ほかの会社の依頼（needs）を遊んだときの点数の帯（great/ok/poor）。記録がなければ ok
+  function crossBandOf(req) {
+    const need = reqById(req.needs);
+    if (!need) return "ok";
+    const C = state.companies[companyOfReq(need)];
+    const past = (C && C.history[req.clientId] || []).filter(h => h.reqId === req.needs);
+    const last = past[past.length - 1];
+    return last && typeof last.total === "number" ? reactionOf(last.total) : "ok";
+  }
   function startRequest(req) {
     state.company = req.company || "travel";
     state.req = req;
@@ -402,6 +435,9 @@
     const prev = past[past.length - 1];
     const band = prev ? reactionOf(prev.total) : "ok";
     state.lines = req.returnGreeting ? [req.returnGreeting[band], ...req.lines] : req.lines.slice();
+    // ほかの会社から来る依頼者（needs）：前の会社のその依頼の点数で1行目を変える（80点以上・50〜79点・49点以下。2026-11-22 持ち主の指示）
+    //   前の点数が分からないとき（古い保存データなど）は 50〜79点の文（lines[0] と同じ）
+    if (req.needs && req.crossGreeting) state.lines[0] = req.crossGreeting[crossBandOf(req)] || state.lines[0];
     state.bonus = req.bonusBudget && prev && band === "great" ? req.bonusBudget : 0;
     state.budget = req.budget.amount + state.bonus;
     state.prevBand = prev ? band : null;
@@ -465,8 +501,9 @@
     $("budget-amount").innerHTML = moneyHtml(state.budget, r.budget.unit);
     $("budget-bonus").textContent = state.bonus ? `（前回のお礼で増額＋${money(state.bonus, r.budget.unit)}）` : "";
     $("budget-duration").textContent = conditionOf(r.budget);
-    // ライフプランの予算は毎月使えるお金（人は円、人以外はその種の単位）
-    $("budget-label").textContent = r.budget.period ? "毎月の予算" : "予算";
+    // 予算の見出し：ライフプランは毎月使えるお金、投資は応援に出せるお金（人は円、人以外はその種の単位）
+    const ck = condKeyOf(r);
+    $("budget-label").textContent = ck ? COND_UI[ck].label : "予算";
     show("screen-proposal");
     renderProposal();
   }
@@ -487,7 +524,7 @@
       const on = state.picks[state.activeSlot] === c;
       return `<button class="card${on ? " picked" : ""}" data-index="${i}" data-testid="card-${i}" aria-pressed="${on}">
         <span class="card-art slot-${state.activeSlot}" data-art="${c.art || ""}">${cardArt(state.activeSlot, i, c)}</span>
-        <span class="card-name">${cardNameHtml(c.name)}${c.periods ? `<span class="cap per" data-testid="per-${i}">${periodText(c)}</span>` : ""}</span>
+        <span class="card-name">${cardNameHtml(c.name)}${condCap(c, r) ? `<span class="cap per" data-testid="per-${i}">${condCap(c, r)}</span>` : ""}</span>
         <span class="cost">${moneyHtml(c.cost, r.budget.unit)}</span>
         ${on ? checkMark() : ""}
       </button>`;
@@ -625,7 +662,7 @@
     $("bd-fit").textContent = points(res.fit);
     // 選んだ4枚に印：◎本音に合った／△本音とは別／×苦手なもの（点数の計算と同じタグで判定）
     // 凡例の△：ライフプランの依頼（期間がある）では「本音とは別・期間に合わない」（2026-11-21 持ち主の指示）
-    $("legend-miss").textContent = r.budget.period ? "本音とは別・期間に合わない" : "本音とは別";
+    $("legend-miss").textContent = condKeyOf(r) ? COND_UI[condKeyOf(r)].legend : "本音とは別";
     $("result-picks").innerHTML = SLOTS.map((s, i) => {
       const c = cards[i];
       const bad = c.tags.some(t => r.dislikeTags.includes(t));
@@ -633,12 +670,12 @@
       const [cls, mk, label] = bad ? ["m-bad", "×", "苦手なもの"] : hit ? ["m-hit", "◎", "本音に合った"] : ["m-miss", "△", "本音とは別"];
       // イベントの会場が人数より小さいときは、△の理由を添える（2026-11-19 試遊第8回を受けて）
       const why = !bad && !hit && tooSmall(c, r) ? `<small class="pk-why" data-testid="pk-why">人数が入りきらない</small>`
-        : !bad && periodMiss(c, r) ? `<small class="pk-why" data-testid="pk-why">期間に合わない</small>` : "";
-      return `<li class="${cls}" data-mark="${cls}"><span class="mk ${cls}" aria-label="${label}">${mk}</span><span class="pk-slot">${slotName(s)}</span><span class="pk-name">${c.name}${why}</span></li>`;
+        : !bad && condMiss(c, r) ? `<small class="pk-why" data-testid="pk-why">${COND_UI[condKeyOf(r)].miss}</small>` : "";
+      return `<li class="${cls}" data-mark="${cls}" style="--i:${i}"><span class="mk ${cls}" aria-label="${label}">${mk}</span><span class="pk-slot">${slotName(s)}</span><span class="pk-name">${c.name}${why}</span></li>`;
     }).join("");
     // 依頼者の本音：選んだカードのどれかに入っていれば「当てた」、どれにもなければ「外れた」
     $("honne-tags").innerHTML = r.honneTags.map(t => {
-      const hit = cards.some(c => c.tags.includes(t) && periodOk(c, r));
+      const hit = cards.some(c => c.tags.includes(t) && condOk(c, r));
       return `<li class="${hit ? "h-hit" : "h-miss"}" data-hit="${hit}"><span class="mk" aria-hidden="true">${hit ? "◎" : "✕"}</span>${t}<small>${hit ? "当てた" : "外れた"}</small></li>`;
     }).join("");
     $("cost-note").textContent = `合計 ${money(res.cost, r.budget.unit)}／予算 ${money(state.budget, r.budget.unit)}` + (res.budget ? "" : "（予算オーバー）");
@@ -1035,12 +1072,15 @@
   // 自分のキャラが立っている場所（会社の名札にかからない道の上）。歩くときは近くの交差点（425,340）を通る
   const HOME_SPOT = { u: 425, v: 450 }, CROSS = { u: 425, v: 340 };
   function cityPct(pt) { const [vx, vy, vw, vh] = cityView; return { left: ((pt.x - vx) / vw * 100) + "%", top: ((pt.y - vy) / vh * 100) + "%" }; }
-  function walkPoints(key) {
+  //   歩く道：今立っている場所（前に入った会社の前の道の上。まだならホームの最初の場所）から、横の道（v=CROSS.v）へ出て、
+  //   行き先の会社の縦の道へ曲がり、入口まで。会社から会社へ移るときに、いったんホームの最初の場所へ戻らない（2026-11-21 持ち主の指摘）
+  function walkPoints(key, from) {
     const R = ART.CITY_ROADS, g = R && R.ground[key];
     if (!g) return null;
     const near = (list, x) => list.reduce((a, b) => Math.abs(b - x) < Math.abs(a - x) ? b : a);
     const uR = near(R.UR, g.u);
-    return [[HOME_SPOT.u, HOME_SPOT.v], [CROSS.u, CROSS.v], [uR, CROSS.v], [uR, g.v], [g.u, g.v]].map(([u, v]) => R.toXY(u, v));
+    const f = from && R.ground[from] ? { u: near(R.UR, R.ground[from].u), v: R.ground[from].v } : HOME_SPOT;
+    return [[f.u, f.v], [f.u, CROSS.v], [uR, CROSS.v], [uR, g.v], [g.u, g.v]].map(([u, v]) => R.toXY(u, v));
   }
   function placeWalker() {
     const w = $("walker");
@@ -1056,9 +1096,9 @@
     w.classList.remove("walking");
   }
   function walkTo(key, done) {
-    const pts = walkPoints(key), w = $("walker");
+    const from = state.spot, pts = walkPoints(key, from), w = $("walker");
     // もうその会社の前に立っているときは歩かない（別の場所へ行くときだけ歩く）
-    const here = state.spot === key;
+    const here = from === key;
     state.spot = key;
     if (here || !pts || REDUCE.matches || w.hidden || !w.animate) { done(); return; }
     let finished = false;
@@ -1086,7 +1126,8 @@
   let zukanTab = "clients";
   // 図鑑の依頼者は、見ている会社に来る依頼者（会社ごとに数える）
   const clientOrder = () => [...new Set(requestsFor(viewCo).map(r => r.clientId))];
-  function openZukan(tab) {
+  // back=true：依頼者の記録から戻ったとき。カードは作り直すが、最初から出し終わった印（.in）を付けて動かさない
+  function openZukan(tab, back) {
     zukanTab = tab || zukanTab;
     markCoTabs("zukan-co");
     document.querySelectorAll("#screen-zukan .tab[data-tab]").forEach(b => {
@@ -1099,6 +1140,8 @@
     if (zukanTab === "clients") renderZukanClients();
     if (zukanTab === "regulars") renderRegulars();
     if (zukanTab === "items") renderZukanItems();
+    // 一覧のカードに並び順の番号（スタッガー。css の .zk-anim）
+    document.querySelectorAll(`#screen-zukan [data-pane="${zukanTab}"] .zk-anim`).forEach((el, i) => { el.style.setProperty("--i", i); if (back) el.classList.add("in"); });
     // 品のタブと、新しい品のある会社のタブに丸
     const zkNew = co => state.news.zukan.some(v => companyOfItem(itemById(v.split(":")[0])) === co);
     $("tab-items").querySelectorAll(".nd").forEach(e => e.remove());
@@ -1114,7 +1157,7 @@
     $("zukan-note").textContent = "まだ会っていない依頼者は、影だけ見えます。";
     $("zukan-clients").innerHTML = CLIENT_ORDER.map(id => {
       const c = DATA.clients[id], seen = VC().met.includes(id);
-      return `<li class="zk${seen ? "" : " shadow"}" data-client="${id}" data-seen="${seen}"><span class="client-figure zk-face" data-face="${id}" aria-hidden="true"></span>
+      return `<li class="zk zk-anim${seen ? "" : " shadow"}" data-client="${id}" data-seen="${seen}"><span class="client-figure zk-face" data-face="${id}" aria-hidden="true"></span>
         <b>${seen ? c.name : "？？？"}</b><small>${seen ? c.kind : ""}</small></li>`;
     }).join("");
     $("zukan-clients").querySelectorAll("[data-face]").forEach(el => face(el, DATA.clients[el.dataset.face], "normal"));
@@ -1127,7 +1170,7 @@
     $("regulars-empty").hidden = C.regulars.length > 0;
     $("regular-list").innerHTML = C.regulars.map(id => {
       const c = DATA.clients[id], v = C.history[id] || [], last = v[v.length - 1];
-      return `<li><button class="regular-item" data-client="${id}" data-testid="regular-${id}">
+      return `<li class="zk-anim"><button class="regular-item" data-client="${id}" data-testid="regular-${id}">
         <span class="client-figure regular-face" data-face="${id}" aria-hidden="true"></span>
         <span class="regular-text"><b>${c.name}</b><small>${c.kind}・来店${v.length}回${last ? `・前回${points(last.total)}点` : ""}</small></span>
         <span class="regular-go" aria-hidden="true">›</span></button></li>`;
@@ -1157,7 +1200,7 @@
         // 色の名前を文字でも（まだの色は「？」）
         const colorText = any ? `<small class="zk-colors" data-testid="zk-colors-${i.id}">${i.colors.map((_, k) => has.includes(k) ? colorName(i, k) : "？").join("・")}</small>` : "";
         const isNew = has.some(k => state.news.zukan.includes(i.id + ":" + k));
-        return `<li class="zk item${any ? "" : " unknown"}" data-item="${i.id}" data-owned="${has.join(",")}">${isNew ? ND("zk-new-" + i.id) : ""}<span class="zk-icons">${dots}</span><b>${any ? i.name : "？？？"}</b>${colorText}<small>${any ? (i.use === "wear" ? { head: "頭", body: "服", hand: "手に持つ" }[i.part] : { shelf: "棚に飾る", wall: "壁に飾る" }[i.place]) : ""}</small></li>`;
+        return `<li class="zk item zk-anim${any ? "" : " unknown"}" data-item="${i.id}" data-owned="${has.join(",")}">${isNew ? ND("zk-new-" + i.id) : ""}<span class="zk-icons">${dots}</span><b>${any ? i.name : "？？？"}</b>${colorText}<small>${any ? (i.use === "wear" ? { head: "頭", body: "服", hand: "手に持つ" }[i.part] : { shelf: "棚に飾る", wall: "壁に飾る" }[i.place]) : ""}</small></li>`;
       }).join("");
       return `<li class="zk-head">${title}</li>${cells}`;
     }).join("");
@@ -1170,7 +1213,6 @@
       while (b.scrollWidth > b.clientWidth && f > 11) { f -= 0.5; b.style.fontSize = f + "px"; }
     });
   }
-  function openRegulars() { openZukan("regulars"); }
 
   // ---- 常連のキャラ詳細 ----
   // 結果から開くときは今の会社、図鑑の常連さんから開くときは図鑑で見ている会社の記録
@@ -1269,13 +1311,13 @@
   }
   $("company-travel").addEventListener("click", () => enterCompany("travel"));
   $("company-event").addEventListener("click", () => enterCompany("event"));
-  $("company-life").addEventListener("click", () => enterCompany("life"));
+  ["life", "invest", "town"].forEach(co => $("company-" + co).addEventListener("click", () => enterCompany(co)));
   $("welcome-ok").addEventListener("click", () => { $("welcome").hidden = true; persist(); });
   $("talk-next").addEventListener("click", nextLine);
   $("talk-bubble").addEventListener("click", nextLine);
   $("reread").addEventListener("click", openLog);
   $("log-close").addEventListener("click", closeLog);
-  $("open-score-help").addEventListener("click", () => { const d = $("score-help"); $("help-people").hidden = !(state.req && state.req.budget.people); $("help-period").hidden = !(state.req && state.req.budget.period); if (d.showModal) d.showModal(); else d.setAttribute("open", ""); });
+  $("open-score-help").addEventListener("click", () => { const d = $("score-help"); $("help-people").hidden = !(state.req && state.req.budget.people); Object.keys(COND_UI).forEach(k => { $(COND_UI[k].help).hidden = condKeyOf(state.req) !== k; }); if (d.showModal) d.showModal(); else d.setAttribute("open", ""); });
   $("score-help-close").addEventListener("click", () => { const d = $("score-help"); if (d.close) d.close(); else d.removeAttribute("open"); });
   $("slots").addEventListener("click", e => {
     const b = e.target.closest(".slot"); if (!b) return;
@@ -1338,7 +1380,11 @@
   $("regular-list").addEventListener("click", e => {
     const b = e.target.closest("[data-client]"); if (b) openDetail(b.dataset.client, "list");
   });
-  $("detail-back").addEventListener("click", () => state.detailFrom === "result" ? show("screen-result") : state.detailFrom === "list" ? openRegulars() : goHome());
+  $("detail-back").addEventListener("click", () => state.detailFrom === "result" ? show("screen-result") : state.detailFrom === "list" ? openZukan("regulars", true) : goHome());
+  // 図鑑のカードも、出し終わったものに印を付ける（css の .zk-anim.in）
+  $("screen-zukan").addEventListener("animationend", e => { if (e.target.classList.contains("zk-anim")) e.target.classList.add("in"); });
+  // 結果の「選んだカード」は、出し終わった行に印を付ける（画面を出し直しても、もう一度は動かさない。css の .result-picks li.in）
+  $("result-picks").addEventListener("animationend", e => { if (e.target.parentNode === $("result-picks")) e.target.classList.add("in"); });
   $("coach-skip").addEventListener("click", () => {
     state.tutorial = null;
     coach(null);

@@ -555,6 +555,286 @@
         c(32, 5, 2.4, GOLD) +
         l("M8 54q-4-3-1-6q4-1 3 3M55 56q4-3 1-6q-4-1-3 3", 1.5, "#c58a52"));
 
+    },
+
+    // ---- 投資の品（第4段）：お金の絵は描かない。応援・夢・店で描く ----
+    // 応援のはちまき：結び目と、たなびく両端
+    cheerband: function (k) {
+      return G(p("M6 30Q32 20 58 30L58 40Q32 30 6 40Z", k) + c(32, 29, 5, WHITE, ' stroke-width="1.6"') + c(32, 29, 2.4, k, NS) +
+        p("M52 34L62 50L55 49L52 56L47 38Z", k) + p("M50 34L44 54L40 48L34 51L44 36Z", mix(k)) + c(50, 35, 4, k));
+    },
+    // 夢の苗木：鉢に植えた若木と、星の形の小さな札
+    dreamsapling: function (k) {
+      return G(T("M32 46V20", DARKWOOD, 3) +
+        c(32, 16, 11, "#6cbf5a") + c(22, 22, 7, "#8fcf6a") + c(42, 22, 7, "#5cb87a") +
+        T("M44 50L50 34", WOOD, 1.6) + star(51, 31, 5.5, 2.4, GOLD) +
+        p("M18 44H46L42 60H22Z", k) + r(15, 40, 34, 7, mix(k), 3));
+    },
+    // お礼の色紙：金のふちの四角い板に、ハートと花の絵（文字は書かない）
+    thankscard: function (k) {
+      return G(r(8, 8, 48, 48, k, 3) + r(13, 13, 38, 38, CREAM, 1) +
+        p("M32 44C21 36 19 28 25 25Q29 23 32 28Q35 23 39 25C45 28 43 36 32 44Z", RED, ' stroke-width="1.8"') +
+        c(19, 19, 3, "#f6a8c8", ' stroke-width="1.2"') + c(45, 19, 3, "#f6a8c8", ' stroke-width="1.2"') + c(45, 45, 2.4, GOLD, ' stroke-width="1.2"') + c(19, 45, 2.4, GOLD, ' stroke-width="1.2"') +
+        c(25, 30, 1.6, WHITE, NS + ' opacity="0.8"'));
+    },
+    // 花のたすき：肩からかける帯に花
+    flowersash: function (k) {
+      var fl = function (x, y, cc) { return c(x - 3, y - 2, 3, cc, ' stroke-width="1.2"') + c(x + 3, y - 2, 3, cc, ' stroke-width="1.2"') + c(x, y + 3, 3, cc, ' stroke-width="1.2"') + c(x, y, 2, GOLD, NS); };
+      return G(p("M10 4L22 4L56 52L56 62L46 62L10 14Z", k) + l("M14 9L52 58", 1.2, WHITE, ' stroke-dasharray="2 3"') +
+        fl(20, 16, WHITE) + fl(32, 32, mix(k)) + fl(44, 48, WHITE) + p("M50 58L44 64M54 60L56 64", "none"));
+    },
+    // 小さな種袋：口をしばった布の袋と、こぼれた種と芽
+    seedpouch: function (k) {
+      return G(p("M18 30Q14 58 32 58Q50 58 46 30Q40 24 32 26Q24 24 18 30Z", k) + T("M22 28Q32 32 42 28", RED, 2) +
+        p("M24 26Q22 16 28 18Q32 12 36 18Q42 16 40 26Z", mix(k)) +
+        r(25, 38, 14, 12, CREAM, 2, ' stroke-width="1.5"') + e(32, 44, 2, 3, "#a0683c", NS) +
+        e(52, 56, 2.2, 1.6, "#a0683c", ' stroke-width="1"') + e(10, 57, 2.2, 1.6, "#a0683c", ' stroke-width="1"') +
+        l("M56 54V46", 1.6, "#5cb87a") + p("M56 47Q50 46 50 41Q56 41 56 47Z", "#8fcf6a", ' stroke-width="1.2"'));
+    },
+    // 葉の感謝状：大きな葉に、金のリボンの印
+    leafcertificate: function (k) {
+      return G(p("M8 50Q6 14 46 6Q60 34 30 54Q20 58 8 50Z", k) + l("M10 52Q26 34 44 10M22 38L18 26M28 31L38 34M34 24L32 14", 1.4, mix(k)) +
+        p("M38 40L34 56L39 53L42 58L44 42Z", RED, ' stroke-width="1.6"') + p("M46 40L52 54L46 52L44 57L42 42Z", RED, ' stroke-width="1.6"') +
+        c(42, 40, 7, GOLD) + star(42, 40, 4, 1.8, WHITE, null, NS));
+    },
+    // 応援の小旗：三角の旗と星
+    cheerflag: function (k) {
+      return G(T("M16 60V8", DARKWOOD, 3) + c(16, 7, 3, GOLD) +
+        p("M18 10L58 22L18 36Z", k) + star(32, 23, 6, 2.6, WHITE) + l("M18 32L46 24", 1.2, mix(k)));
+    },
+    // 木の実の宝箱：ふたが開いて、どんぐりが見える木の箱
+    nutchest: function (k) {
+      var ac = function (x, y) { return e(x, y + 2, 4, 4.6, "#c58a52", ' stroke-width="1.5"') + p("M" + (x - 4.6) + " " + (y + 1) + "Q" + (x - 4.6) + " " + (y - 4) + " " + x + " " + (y - 4) + "Q" + (x + 4.6) + " " + (y - 4) + " " + (x + 4.6) + " " + (y + 1) + "Z", DARKWOOD, ' stroke-width="1.5"'); };
+      return G(p("M10 26L14 8H50L54 26Z", mix(k)) + l("M14 16H50", 1.4) +
+        ac(22, 30) + ac(32, 28) + ac(42, 30) +
+        r(8, 32, 48, 26, k, 3) + l("M8 42H56", 1.6) + r(28, 38, 8, 10, GOLD, 2, ' stroke-width="1.8"') + c(32, 43, 1.4, INK, NS));
+    },
+    // 森の店の看板：枝からさげた板に、木の家の店とどんぐり
+    forestshopsign: function (k) {
+      return G(T("M2 8Q32 2 62 10", DARKWOOD, 4) + l("M16 8V18M48 8V18", 1.6) + e(52, 6, 5, 2.4, "#8fcf6a", rot(20, 52, 6)) +
+        r(6, 18, 52, 38, k, 5) + r(18, 34, 20, 16, CREAM, 0, ' stroke-width="1.5"') + p("M15 35L28 25L41 35Z", "#5cb87a", ' stroke-width="1.5"') +
+        r(25, 41, 6, 9, DARKWOOD, 1, ' stroke-width="1.2"') +
+        e(48, 42, 4, 5, "#c58a52", ' stroke-width="1.5"') + p("M43.6 40Q44 34 48 34Q52 34 52.4 40Z", DARKWOOD, ' stroke-width="1.5"'));
+    },
+    // 星のマフラー：巻いたマフラーと星のもよう
+    starmuffler: function (k) {
+      return G(p("M38 34L46 60L56 56L48 32Z", k) + l("M46 60L47 63M51 58L53 62M55 56L58 60", 2) +
+        p("M8 24Q32 12 56 24Q58 32 56 38Q32 28 8 38Q6 30 8 24Z", k) + p("M14 34Q32 28 50 34", "none") +
+        star(20, 28, 4, 1.8, GOLD) + star(36, 24, 4, 1.8, GOLD) + star(50, 30, 3.4, 1.5, GOLD) + star(48, 46, 3.4, 1.5, GOLD) + r(38, 30, 12, 8, mix(k), 3));
+    },
+    // 夢の地球儀：台にのせた星の地球。てっぺんに芽、まわりに輪
+    dreamglobe: function (k) {
+      return G(p("M20 60H44L40 52H24Z", DARKWOOD) + r(30, 44, 4, 9, WOOD) +
+        c(32, 28, 17, k) + p("M22 20Q28 16 32 22Q30 28 22 28Q16 26 22 20Z", "#8fcf6a", ' stroke-width="1.6"') + p("M36 30Q44 28 46 34Q42 42 36 38Z", "#8fcf6a", ' stroke-width="1.6"') +
+        e(32, 30, 26, 6, "none", ' stroke="' + GOLD + '" stroke-width="2.4"' + rot(-14, 32, 30)) +
+        l("M32 11V4", 1.8, "#5cb87a") + p("M32 6Q25 6 24 1Q31 1 32 6Z", "#8fcf6a", ' stroke-width="1.2"') + p("M32 6Q39 6 40 1Q33 1 32 6Z", "#8fcf6a", ' stroke-width="1.2"') +
+        star(54, 12, 3.4, 1.4, GOLD) + star(10, 46, 3, 1.3, GOLD));
+    },
+    // 星の応援旗：棒からさげた、すそが割れた旗に大きな星
+    starbanner: function (k) {
+      return G(T("M8 8H56", DARKWOOD, 3) + c(6, 8, 3, GOLD) + c(58, 8, 3, GOLD) +
+        p("M14 10H50V56L32 46L14 56Z", k) + star(32, 28, 11, 4.6, GOLD) +
+        star(20, 16, 2.6, 1.1, WHITE) + star(44, 40, 2.6, 1.1, WHITE));
+    },
+    // お店の前かけ（つむぎさん）：腰ひもの短い前かけと、ポケットにさしたペン
+    cafeapron: function (k) {
+      return G(T("M4 16Q32 22 60 16", k, 3) + p("M12 18Q32 23 52 18L54 54Q32 60 10 54Z", k) +
+        r(20, 32, 24, 14, mix(k), 2, ' stroke-width="1.8"') + l("M32 32V46", 1.4) + T("M26 30L24 22", RED, 2) +
+        p("M28 9C24 6 24 3 26 3Q27.5 3 28 4.6Q28.5 3 30 3C32 3 32 6 28 9Z", RED, NS) + l("M14 50Q32 55 50 50", 1.2, WHITE, ' stroke-dasharray="2 3"'));
+    },
+    // 開店の写真（つむぎさん）：日よけの店の前に花とリボン
+    openingphoto: function (k) {
+      var s = r(6, 8, 52, 46, WOOD, 3) + r(11, 13, 42, 36, k, 1) + r(18, 28, 28, 21, CREAM, 0, ' stroke-width="1.5"') + r(28, 36, 8, 13, "#a0683c", 0, ' stroke-width="1.2"'), i;
+      for (i = 0; i < 4; i++) s += p("M" + (17 + i * 7.5) + " 22h7.5v5a3.75 3.75 0 0 1-7.5 0z", i % 2 ? WHITE : RED, ' stroke-width="1.2"');
+      s += l("M15 34H49", 2, RED) + p("M32 34L28 30V38ZM32 34L36 30V38Z", RED, ' stroke-width="1"') +
+        c(16, 46, 3, "#f6a8c8", ' stroke-width="1.2"') + c(48, 46, 3, GOLD, ' stroke-width="1.2"') + r(26, 56, 12, 4, "#f6e7a8", 1, NS);
+      return G(s);
+    },
+    // 小さなレジ（つむぎさん）：丸いボタンの、おもちゃのようなレジ（お金は描かない）
+    tinyregister: function (k) {
+      return G(r(14, 8, 24, 14, mix(k), 3) + r(18, 11, 16, 7, "#e9f6ea", 1, ' stroke-width="1.5"') + r(24, 22, 4, 6, k) +
+        p("M8 28H56L60 54H4Z", k) + r(4, 52, 56, 8, mix(k), 2) + r(26, 54, 12, 3, CREAM, 1.5, NS) +
+        c(18, 36, 2.6, CREAM, ' stroke-width="1.2"') + c(26, 36, 2.6, CREAM, ' stroke-width="1.2"') + c(34, 36, 2.6, CREAM, ' stroke-width="1.2"') +
+        c(18, 44, 2.6, CREAM, ' stroke-width="1.2"') + c(26, 44, 2.6, CREAM, ' stroke-width="1.2"') + c(34, 44, 2.6, CREAM, ' stroke-width="1.2"') +
+        r(42, 33, 10, 14, GOLD, 2, ' stroke-width="1.5"') +
+        p("M50 6C44 2 44 -1 46.5 -1Q48.5 -1 50 1.5Q51.5 -1 53.5 -1C56 -1 56 2 50 6Z", RED, ' stroke-width="1.2" transform="translate(0 6)"'));
+    },
+    // 職人の手ぬぐい（ごろうさん）：頭に巻いて結んだ手ぬぐい
+    tenugui: function (k) {
+      return G(p("M10 40Q8 16 32 14Q56 16 54 40Q32 32 10 40Z", k) +
+        l("M16 34Q32 28 48 34M14 26Q32 20 50 26", 1.4, mix(k)) + c(24, 22, 1.4, WHITE, NS) + c(36, 19, 1.4, WHITE, NS) + c(44, 25, 1.4, WHITE, NS) + c(20, 31, 1.4, WHITE, NS) + c(32, 28, 1.4, WHITE, NS) +
+        p("M50 34L60 26L60 38Z", k) + p("M50 36L62 44L54 48Z", k) + c(50, 36, 4, mix(k)));
+    },
+    // 若木の表札（ごろうさん）：木の板の表札に、若木の焼き印（文字は書かない）
+    saplingplate: function (k) {
+      return G(r(14, 4, 36, 56, k, 4) + l("M18 12Q22 14 20 20M44 50Q40 48 42 42", 1.2, mix(k)) +
+        l("M32 46V24", 2.4, DARKWOOD) + l("M32 34Q24 32 22 24M32 30Q40 28 42 20", 2, DARKWOOD) +
+        e(22, 24, 4, 2.6, "#5cb87a", rot(-40, 22, 24) + ' stroke-width="1.4"') + e(42, 20, 4, 2.6, "#5cb87a", rot(40, 42, 20) + ' stroke-width="1.4"') + c(32, 22, 3, "#8fcf6a", ' stroke-width="1.4"') +
+        c(32, 54, 1.6, DARKWOOD, NS) + l("M24 50H40", 2, DARKWOOD));
+    },
+    // かんなの置物（ごろうさん）：木の台のかんなと、くるくるの削りくず
+    kanna: function (k) {
+      return G(r(8, 52, 48, 6, DARKWOOD, 2) +
+        p("M10 34H50L54 50H6Z", k) + r(10, 30, 40, 5, mix(k), 2) +
+        p("M28 20L36 20L34 40L26 40Z", "#c9d6e3", ' stroke-width="1.8"') + r(26, 18, 12, 4, "#8a96a8", 1.5) +
+        l("M42 30Q50 18 58 22Q62 28 56 30Q50 30 52 24", 2.2, "#e8c88a"));
+    },
+    // 羽根のペン（ほうさん）：大きな羽根と、インクのびん
+    featherpen: function (k) {
+      return G(r(36, 44, 20, 16, "#3d4f8a", 4) + r(40, 38, 12, 7, "#3d4f8a", 2) +
+        p("M12 4Q40 8 44 40Q30 34 18 22Q10 12 12 4Z", k) + l("M14 6Q30 18 44 40", 1.6) + l("M20 12L18 20M28 18L24 26M34 26L30 32", 1.2, mix(k)) +
+        T("M44 40L48 48", "#8a96a8", 2));
+    },
+    // 夜空の掛け軸（ほうさん）：月と森と星の掛け軸
+    nightscroll: function (k) {
+      var s = l("M22 4L32 0L42 4", 1.6) + r(10, 4, 44, 5, DARKWOOD, 2.5) + r(14, 9, 36, 44, CREAM, 0) + r(18, 13, 28, 36, k, 0) +
+        moon(38, 22, 6, 3, -2, 5.5, GOLD, ' stroke-width="1.4"') + star(24, 20, 2.6, 1.1, GOLD) + star(30, 29, 2, 0.9, WHITE) +
+        p("M18 49V40L22 32L26 40L29 34L33 42L37 35L41 41L46 36V49Z", "#2f5a46", ' stroke-width="1.4"') + r(10, 52, 44, 5, DARKWOOD, 2.5) +
+        c(10, 54.5, 2.4, GOLD) + c(54, 54.5, 2.4, GOLD);
+      return G(s);
+    },
+    // どんぐりの灯（ほうさん）：どんぐりの形のランプ。中がやさしく光る
+    acornlamp: function (k) {
+      return G(c(32, 38, 22, k, NS + ' opacity="0.25"') + r(16, 56, 32, 5, DARKWOOD, 2) +
+        p("M14 30Q14 58 32 58Q50 58 50 30Z", k) + p("M20 36Q22 50 32 52", "none", ' stroke="' + WHITE + '" stroke-width="2.6" opacity="0.7"') +
+        p("M10 32Q10 14 32 14Q54 14 54 32Z", DARKWOOD) + l("M16 24L22 20M24 26L30 18M34 26L40 18M42 26L48 20", 1.4, "#c58a52") +
+        T("M32 14V6", DARKWOOD, 3) + c(32, 40, 4, WHITE, NS + ' opacity="0.8"'));
+    },
+
+    // ---- 町おこしの品（第5段）----
+    // 祭りのはっぴ：えりに帯、すそにしまもよう
+    happi: function (k) {
+      return G(p("M20 8L44 8L60 20L54 32L48 28V58H16V28L10 32L4 20Z", k) +
+        p("M26 8L32 26L38 8", "none", ' stroke-width="7" stroke="' + INK + '"') + p("M26 8L32 26L38 8", "none", ' stroke-width="3" stroke="' + WHITE + '"') +
+        r(16, 48, 32, 4, WHITE, 0, ' stroke-width="1.4"') + l("M20 52V58M26 52V58M32 52V58M38 52V58M44 52V58", 1.4, WHITE) +
+        c(40, 36, 5, WHITE, ' stroke-width="1.5"') + c(40, 36, 2, RED, NS));
+    },
+    // ちょうちん：上下の黒い輪と、横のすじ
+    chochin: function (k) {
+      return G(l("M32 2V8", 2) + r(22, 8, 20, 5, INK, 2) + e(32, 33, 18, 21, k) +
+        l("M15 25Q32 29 49 25M14 33Q32 37 50 33M15 41Q32 45 49 41M18 18Q32 21 46 18M18 48Q32 51 46 48", 1.4, mix(k)) +
+        r(22, 52, 20, 5, INK, 2) + l("M32 57V62", 2) + c(32, 33, 4, WHITE, NS + ' opacity="0.7"'));
+    },
+    // 町の絵地図：川と道と家と山の地図
+    townmap: function (k) {
+      return G(r(6, 8, 52, 48, k, 2) + T("M6 46Q20 40 30 30T58 18", "#8fcbef", 4) +
+        l("M6 30H58M34 8V56", 2.5, WHITE) + p("M10 26L16 16L22 26Z", "#8fcf6a", ' stroke-width="1.4"') +
+        r(40, 38, 7, 6, CREAM, 0, ' stroke-width="1.2"') + p("M39 38.5L43.5 34L48 38.5Z", RED, ' stroke-width="1.2"') +
+        r(48, 44, 6, 5, CREAM, 0, ' stroke-width="1.2"') + p("M47 44.5L51 41L55 44.5Z", "#4a8fd8", ' stroke-width="1.2"') +
+        c(18, 44, 3, "#f6a8c8", ' stroke-width="1.2"') + c(46, 14, 4, "#6cbf5a", ' stroke-width="1.2"') +
+        c(24, 34, 3, RED) + l("M24 37V40", 1.4) + c(44, 26, 3, GOLD) + l("M44 29V32", 1.4));
+    },
+    // 花の髪かざり：花2つと葉のピン
+    flowerclip: function (k) {
+      var fl = function (x, y, R, f) { var s = "", i, a; for (i = 0; i < 5; i++) { a = i * 72 * Math.PI / 180 - Math.PI / 2; s += c(n(x + R * Math.cos(a)), n(y + R * Math.sin(a)), R * 0.75, f); } return s + c(x, y, R * 0.6, GOLD); };
+      return G(r(8, 40, 44, 6, "#8a96a8", 3, rot(-20, 30, 43)) + e(46, 46, 8, 4, "#6cbf5a", rot(30, 46, 46)) + fl(24, 30, 9, k) + fl(44, 22, 6.5, mix(k)));
+    },
+    // 露の風鈴：ガラスの鈴と、しずくの短冊
+    dewbell: function (k) {
+      return G(l("M32 2V12M32 36V44", 1.6) + p("M14 36Q14 12 32 12Q50 12 50 36Z", k) + p("M20 26Q22 18 28 16", "none", ' stroke="' + WHITE + '" stroke-width="2.4"') +
+        c(32, 36, 3, GOLD) + r(26, 44, 12, 16, CREAM, 1) + p("M32 48Q36 53 36 55A4 4 0 0 1 28 55Q28 53 32 48Z", mix(k), ' stroke-width="1.3"') +
+        c(22, 30, 2, "#f6a8c8", NS) + c(42, 26, 2, "#f6a8c8", NS));
+    },
+    // 葉っぱの旗：葉のガーランド（3枚）
+    leafbanner: function (k) {
+      var lf = function (x, y) { return p("M" + (x - 8) + " " + y + "Q" + x + " " + (y + 26) + " " + (x + 8) + " " + y + "Z", k) + l("M" + x + " " + (y + 1) + "V" + (y + 16), 1.3, mix(k)); };
+      return G(l("M4 12Q32 26 60 12", 2) + lf(14, 16) + lf(32, 20) + lf(50, 16) + c(4, 12, 3, DARKWOOD) + c(60, 12, 3, DARKWOOD) +
+        c(23, 19, 2.2, "#f6a8c8", ' stroke-width="1"') + c(41, 19, 2.2, "#f6a8c8", ' stroke-width="1"'));
+    },
+    // どんぐりの笛：どんぐりの形の笛と、音の印
+    acornflute: function (k) {
+      return G(e(28, 40, 16, 18, k) + p("M10 36Q10 18 28 18Q46 18 46 36Z", DARKWOOD) + l("M16 28L22 24M26 30L30 22M36 28L40 24", 1.4, "#c58a52") +
+        T("M28 18V10", DARKWOOD, 3) + c(22, 44, 2.6, INK, NS) + c(32, 48, 2.6, INK, NS) + r(40, 36, 12, 6, mix(k), 3) +
+        l("M54 22Q58 18 56 14M56 30Q62 28 62 22", 2.2) + c(52, 26, 2, INK, NS));
+    },
+    // 切り株の椅子：年輪の見える切り株に小さなきのこ
+    stumpchair: function (k) {
+      return G(p("M12 26V52Q12 58 32 58Q52 58 52 52V26Z", k) + l("M20 34V52M30 36V56M42 34V52", 1.4, mix(k)) +
+        p("M8 58Q12 52 14 46M56 58Q52 52 50 46", "none", ' stroke-width="4" stroke="' + INK + '"') +
+        e(32, 26, 20, 7, "#e8c88a") + e(32, 26, 12, 4, "none", ' stroke-width="1.3"') + e(32, 26, 5, 1.6, "none", ' stroke-width="1.3"') +
+        r(51, 44, 4, 8, CREAM, 1.5, ' stroke-width="1.4"') + p("M47 45Q47 38 53 38Q59 38 59 45Z", RED, ' stroke-width="1.4"') + c(51, 41, 1.2, WHITE, NS));
+    },
+    // 木彫りの看板：矢印の形の板と、彫った木の葉
+    carvedsign: function (k) {
+      return G(T("M32 30V62", DARKWOOD, 4) + p("M6 12H48L58 22L48 32H6Z", k) + l("M10 16H44", 1.2, mix(k)) +
+        p("M28 22Q20 14 14 22Q20 30 28 22Z", "#8fcf6a", ' stroke-width="1.6"') + l("M15 22H27", 1.2) + c(40, 22, 3, mix(k), ' stroke-width="1.4"'));
+    },
+    // 星のうちわ：丸いうちわに星
+    staruchiwa: function (k) {
+      return G(T("M32 62V40", WOOD, 4) + c(32, 26, 20, k) + c(32, 26, 15, mix(k), ' stroke-width="1.3"') +
+        l("M32 40L18 16M32 40L32 11M32 40L46 16", 1, WHITE, ' opacity="0.7"') + star(32, 26, 9, 4, GOLD) + star(18, 14, 3, 1.3, WHITE) + star(48, 36, 2.6, 1.1, WHITE));
+    },
+    // 月見の団子：台にのせた団子と、うしろに月
+    moondango: function (k) {
+      return G(c(46, 14, 10, "#fbe7a8") + r(10, 50, 44, 6, mix(k), 1) + p("M14 56H50L46 62H18Z", k) +
+        c(22, 44, 7, CREAM) + c(32, 44, 7, CREAM) + c(42, 44, 7, CREAM) + c(27, 33, 7, CREAM) + c(37, 33, 7, CREAM) + c(32, 22, 7, CREAM) +
+        p("M8 50Q10 34 14 30", "none", ' stroke="#8fcf6a" stroke-width="3"'));
+    },
+    // 星座ののれん：3枚に分かれたのれんと、星座の線
+    starnoren: function (k) {
+      var s = T("M4 8H60", DARKWOOD, 3), i;
+      for (i = 0; i < 3; i++) s += r(7 + i * 17, 10, 16, 46, k, 1);
+      s += l("M14 22L26 30L36 24L46 34L52 26", 1.4, CREAM) + star(14, 22, 3, 1.3, GOLD) + star(26, 30, 3, 1.3, GOLD) + star(36, 24, 2.6, 1.1, GOLD) + star(46, 34, 3, 1.3, GOLD) + star(52, 26, 2.6, 1.1, GOLD) +
+        moon(20, 46, 5, 2.4, -1.4, 4.4, GOLD, ' stroke-width="1.2"');
+      return G(s);
+    },
+    // 八百屋の前かけ（とおるさん）：胸まである前かけと、大きなポケットに大根の印
+    grocerapron: function (k) {
+      return G(l("M20 6Q32 0 44 6", 2.4) + p("M18 6H46V22Q58 24 56 60H8Q6 24 18 22Z", k) +
+        r(16, 34, 32, 18, mix(k), 2, ' stroke-width="1.8"') + T("M2 24Q8 22 18 22M46 22Q56 22 62 24", k, 3) +
+        p("M28 38Q34 38 36 48Q30 50 28 38Z", WHITE, ' stroke-width="1.3"') + p("M30 38Q28 32 32 34Q34 30 34 37Z", "#6cbf5a", ' stroke-width="1.2"'));
+    },
+    // 商店街の旗：竿の三角旗の列（文字は書かない）
+    streetbanner: function (k) {
+      var s = T("M8 6V60", "#8a96a8", 3) + c(8, 5, 3, GOLD) + p("M10 8H50V44L30 38L10 44Z", k) + r(10, 8, 40, 7, mix(k)) +
+        r(18, 20, 24, 3, WHITE, 1.5, NS) + r(18, 26, 18, 3, WHITE, 1.5, NS) + c(42, 30, 4, GOLD, ' stroke-width="1.3"');
+      return G(s + l("M50 8H58V20", 1.4) + p("M54 20L58 28L62 20Z", RED, ' stroke-width="1.2"'));
+    },
+    // 野菜のかご（とおるさん）：大根・トマト・にんじんの入った竹かご
+    veggiebasket: function (k) {
+      return G(p("M30 30L22 6Q28 4 34 12Z", "#6cbf5a") + p("M36 30L40 8Q46 10 42 24Z", "#8fcf6a") +
+        p("M24 32Q20 18 28 16Q36 16 34 32Z", WHITE) + c(42, 30, 7, RED) + p("M40 23L42 20L44 23Z", "#5cb87a", ' stroke-width="1.2"') +
+        p("M16 30L8 12L14 12L20 28Z", "#f2a23a") +
+        p("M6 30H58L52 58H12Z", k) + l("M9 38H55M11 46H53M13 54H51M18 30V58M32 30V58M46 30V58", 1.3, mix(k)) + r(4, 28, 56, 5, mix(k), 2.5));
+    },
+    // すげがさ（うめさん）：三角の笠とあごひも
+    sugegasa: function (k) {
+      return G(l("M18 38Q20 54 32 56Q44 54 46 38", 1.6) + p("M2 40L32 8L62 40Q32 46 2 40Z", k) +
+        l("M32 9L12 40M32 9L22 42M32 9V43M32 9L42 42M32 9L52 40", 1.2, mix(k)) + c(32, 8, 2.6, mix(k)));
+    },
+    // 村の写真（うめさん）：山あいの田んぼと家と桜
+    villagephoto: function (k) {
+      return G(r(6, 8, 52, 46, WOOD, 3) + r(11, 13, 42, 36, "#d9effa", 1) +
+        p("M11 34L22 20L30 28L38 18L53 32V49H11Z", k, ' stroke-width="1.5"') + p("M11 42Q32 36 53 42V49H11Z", "#c9e0a0", ' stroke-width="1.4"') +
+        r(26, 34, 10, 7, CREAM, 0, ' stroke-width="1.3"') + p("M24.5 34.5L31 29L37.5 34.5Z", DARKWOOD, ' stroke-width="1.3"') +
+        c(44, 38, 4, "#f6a8c8", ' stroke-width="1.2"') + c(48, 36, 3, "#f6a8c8", ' stroke-width="1.2"') + c(18, 18, 3, "#ffe28a", NS) + r(26, 56, 12, 4, "#f6e7a8", 1, NS));
+    },
+    // 梅干しのつぼ（うめさん）：布のふたをしばったつぼ
+    umejar: function (k) {
+      return G(p("M18 22Q8 30 10 44Q12 58 32 58Q52 58 54 44Q56 30 46 22Z", k) +
+        p("M14 22Q16 10 32 10Q48 10 50 22Q32 28 14 22Z", "#f4efe6") + T("M16 20Q32 25 48 20", RED, 2) +
+        r(22, 34, 20, 14, CREAM, 3, ' stroke-width="1.6"') + c(32, 41, 4, RED, ' stroke-width="1.3"') + l("M32 37V35", 1.4, "#5cb87a") +
+        c(18, 32, 2, WHITE, NS + ' opacity="0.6"'));
+    },
+    // 紅葉のかんむり（もりおさん）：葉のつるのかんむり
+    maplecrown: function (k) {
+      return G(T("M6 44Q32 30 58 44", DARKWOOD, 3) + maple(14, 34, 0.6, mix(k), -20) + maple(50, 34, 0.6, mix(k), 20) + maple(32, 24, 0.85, k, 0) +
+        c(23, 38, 2.6, GOLD, ' stroke-width="1.2"') + c(41, 38, 2.6, GOLD, ' stroke-width="1.2"'));
+    },
+    // 森の案内板（もりおさん）：くいに立てた板に、道と木と動物の足あと
+    forestguide: function (k) {
+      return G(T("M16 40V62M48 40V62", DARKWOOD, 4) + r(4, 6, 56, 38, k, 4) + r(9, 11, 46, 28, CREAM, 2) +
+        l("M12 34Q22 22 32 28T52 16", 3, "#e8c88a") + p("M16 22L20 14L24 22Z", "#5cb87a", ' stroke-width="1.3"') + p("M44 32L48 24L52 32Z", "#5cb87a", ' stroke-width="1.3"') +
+        c(34, 18, 2, DARKWOOD, NS) + c(31, 15, 1.2, DARKWOOD, NS) + c(34, 14, 1.2, DARKWOOD, NS) + c(37, 15, 1.2, DARKWOOD, NS) +
+        c(52, 16, 2.4, RED, ' stroke-width="1.2"'));
+    },
+    // 木の実のたる（もりおさん）：たるに木の実がいっぱい
+    nutbarrel: function (k) {
+      var ac = function (x, y) { return e(x, y + 1.5, 3.6, 4, "#c58a52", ' stroke-width="1.3"') + p("M" + (x - 4) + " " + (y + 0.5) + "Q" + (x - 4) + " " + (y - 3.6) + " " + x + " " + (y - 3.6) + "Q" + (x + 4) + " " + (y - 3.6) + " " + (x + 4) + " " + (y + 0.5) + "Z", DARKWOOD, ' stroke-width="1.3"'); };
+      return G(ac(22, 18) + ac(32, 15) + ac(42, 18) + c(27, 20, 3.6, RED, ' stroke-width="1.3"') + c(38, 21, 3.4, "#f2a23a", ' stroke-width="1.3"') +
+        p("M12 22Q8 40 12 58H52Q56 40 52 22Z", k) + l("M22 22Q20 40 22 58M32 22V58M42 22Q44 40 42 58", 1.2, mix(k)) +
+        r(9, 28, 46, 4, "#8a96a8", 1.5) + r(9, 48, 46, 4, "#8a96a8", 1.5));
+
     }
   };
 

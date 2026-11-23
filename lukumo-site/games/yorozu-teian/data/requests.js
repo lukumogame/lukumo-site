@@ -359,6 +359,218 @@ window.YOROZU_DATA = {
     "鳥",
     "雨もり"
    ]
+  },
+  "tsumugi": {
+   "name": "つむぎさん",
+   "kind": "人",
+   "profile": "30代の会社員。はじめてのボーナスで、町の誰かを応援したい",
+   "species": "human",
+   "unusual": false,
+   "memo": [],
+   "thanks": "いつもありがとうございます。駄菓子屋のおばちゃんも、よろしくって！"
+  },
+  "goro": {
+   "name": "ごろうさん",
+   "kind": "人",
+   "profile": "60代。元大工の棟梁。弟子が何人もいる",
+   "species": "human",
+   "unusual": false,
+   "memo": [],
+   "thanks": "いつも世話になるな。ここは町の頼れる相談所だ。"
+  },
+  "hou": {
+   "name": "ほうさん",
+   "kind": "フクロウ",
+   "profile": "森の相談役。夜の森の見張り番",
+   "species": "owl",
+   "unusual": true,
+   "memo": [
+    "カラス",
+    "昼のさわぎ",
+    "強い光"
+   ],
+   "thanks": "いつもありがたい。ここは森の夜の灯りのような所じゃ。ホウ。"
+  },
+  "chisato": {
+   "name": "ちさとさん",
+   "kind": "人",
+   "profile": "40代。商店街の花屋",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "haruto": {
+   "name": "はるとさん",
+   "kind": "人",
+   "profile": "大学生。はじめてのアルバイト代が入った",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "masaru": {
+   "name": "まさるさん",
+   "kind": "人",
+   "profile": "50代。小さな町工場の社長",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "rin": {
+   "name": "りんさん",
+   "kind": "人",
+   "profile": "20代。洋菓子店で働くパティシエの見習い",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "kabuto": {
+   "name": "かぶとさん",
+   "kind": "カブトムシ",
+   "profile": "森の力持ち。樹液の出る木の番をしている",
+   "species": "beetle",
+   "unusual": true,
+   "memo": [
+    "鳥",
+    "乾いた風",
+    "まぶしい灯り"
+   ]
+  },
+  "zeno": {
+   "name": "ゼノさん",
+   "kind": "宇宙の商人",
+   "profile": "星から星へ品物を運ぶ、宇宙からの商人",
+   "species": "alien_merchant",
+   "unusual": true,
+   "memo": [
+    "湿気",
+    "大きな音",
+    "重い荷物"
+   ]
+  },
+  "sayo": {
+   "name": "さよさん",
+   "kind": "人",
+   "profile": "70代。長年こつこつためたお金がある",
+   "species": "human",
+   "unusual": false,
+   "memo": [
+    "派手"
+   ]
+  },
+  "kenji": {
+   "name": "けんじさん",
+   "kind": "人",
+   "profile": "40代の会社員。20年ぶりに地元に戻ってきた",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "toru": {
+   "name": "とおるさん",
+   "kind": "人",
+   "profile": "40代。商店街の八百屋。閉まった店が増えてきた",
+   "species": "human",
+   "unusual": false,
+   "memo": [],
+   "thanks": "いつもありがとう。商店街のみんなも、ここの話をしてますよ。"
+  },
+  "ume": {
+   "name": "うめさん",
+   "kind": "人",
+   "profile": "70代。山あいの村の村長",
+   "species": "human",
+   "unusual": false,
+   "memo": [],
+   "thanks": "いつも本当にありがとう。村のみんなも、ここを頼りにしてますよ。"
+  },
+  "morio": {
+   "name": "もりおさん",
+   "kind": "シカ",
+   "profile": "森の長老。森の動物たちのまとめ役",
+   "species": "deer",
+   "unusual": true,
+   "memo": [
+    "大きな音",
+    "まぶしい",
+    "人ごみ"
+   ],
+   "thanks": "いつもありがとうよ。ここは、森の外のわしらの水飲み場じゃな。"
+  },
+  "ayaka": {
+   "name": "あやかさん",
+   "kind": "人",
+   "profile": "20代。都会から生まれた町に戻ってきた",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "gen": {
+   "name": "げんさん",
+   "kind": "人",
+   "profile": "60代。港町の漁師",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "yukino": {
+   "name": "ゆきのさん",
+   "kind": "人",
+   "profile": "30代。雪の多い町の小さな宿のおかみ",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "sora": {
+   "name": "そらさん",
+   "kind": "人",
+   "profile": "高校生。駅前がさびしいと感じている",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "hiroshi": {
+   "name": "ひろしさん",
+   "kind": "人",
+   "profile": "50代。小さな駅の駅長",
+   "species": "human",
+   "unusual": false,
+   "memo": []
+  },
+  "kerosuke": {
+   "name": "けろすけさん",
+   "kind": "カエル",
+   "profile": "田んぼの町の世話役",
+   "species": "frog",
+   "unusual": true,
+   "memo": [
+    "日照り",
+    "ヘビ",
+    "サギ"
+   ]
+  },
+  "ponkichi": {
+   "name": "ぽんきちさん",
+   "kind": "タヌキ",
+   "profile": "里山の小さな店の店主",
+   "species": "tanuki",
+   "unusual": true,
+   "memo": [
+    "犬",
+    "まぶしい",
+    "強い雨"
+   ]
+  },
+  "mira": {
+   "name": "ミラさん",
+   "kind": "宇宙からの移住者",
+   "profile": "地球の町に住みはじめた",
+   "species": "alien_settler",
+   "unusual": true,
+   "memo": [
+    "大声",
+    "ぬれる",
+    "とがった物"
+   ]
   }
  },
  "requests": [
@@ -5813,6 +6025,11 @@ window.YOROZU_DATA = {
    "time": "夜",
    "clientId": "akira",
    "visit": 1,
+   "crossGreeting": {
+    "great": "以前、妻との旅を相談したあきらです。妻が今も、あの列車の話を。",
+    "ok": "以前、妻との旅を相談したあきらです。お元気でしたか。",
+    "poor": "以前、妻との旅を相談したあきらです。あれから妻は、花の写真ばかり。"
+   },
    "lines": [
     "以前、妻との旅を相談したあきらです。お元気でしたか。",
     "妻が還暦でしてね。高級ホテルでお祝いしたいんです。",
@@ -6684,6 +6901,11 @@ window.YOROZU_DATA = {
    "time": "昼",
    "clientId": "kumada",
    "visit": 1,
+   "crossGreeting": {
+    "great": "旅のときは世話になったな！今日はこの子の、お祝いの会の相談だ。",
+    "ok": "旅のときは世話になったな。今日はこの子の会の相談なんだ。",
+    "poor": "旅のあと、この子と川に通ってな。今日はこの子の会の相談なんだ。"
+   },
    "lines": [
     "旅のときは世話になったな。今日はこの子の会の相談なんだ。",
     "友だちを呼ぶから、遊園地みたいににぎやかにしたい。",
@@ -8975,8 +9197,13 @@ window.YOROZU_DATA = {
    "clientId": "daiki",
    "visit": 1,
    "needs": "r12",
+   "crossGreeting": {
+    "great": "旅行のときはお世話になりました。プロポーズ、成功しました！",
+    "ok": "旅行のときはお世話になりました。おかげで、結婚が決まりました。",
+    "poor": "旅行のときはどうも。結婚は決まりました。彼女、今も保護施設通いで。"
+   },
    "lines": [
-    "旅行のときはお世話になりました。プロポーズ、成功しました！",
+    "旅行のときはお世話になりました。おかげで、結婚が決まりました。",
     "これから住む家は、やっぱり駅近で便利な所かなと。",
     "彼女はいつか、保護犬を家族に迎えたいみたいで。",
     "最近はふたりで夕飯を作るのが楽しくて。毎月12万円、5年後まで。"
@@ -10623,8 +10850,13 @@ window.YOROZU_DATA = {
    "clientId": "minori",
    "visit": 1,
    "needs": "e01",
+   "crossGreeting": {
+    "great": "教室の記念の会ではお世話になりました。生徒さんが増えたんです。",
+    "ok": "記念の会ではお世話になりました。おかげさまで生徒さんが増えて。",
+    "poor": "記念の会のあと、少人数の日を作ったら、生徒さんが増えたんです。"
+   },
    "lines": [
-    "イベントのときはお世話になりました。生徒さんが増えたんです。",
+    "記念の会ではお世話になりました。おかげさまで生徒さんが増えて。",
     "いっそ大きな教室を建てて、もっとたくさん教えようかしら。",
     "でも、ひとりひとりの味の好みまで分かるのが楽しくて。",
     "日曜は妹と市場めぐりよ。毎月の予算は10万円、5年後までで。"
@@ -11323,8 +11555,13 @@ window.YOROZU_DATA = {
    "clientId": "miyuki",
    "visit": 1,
    "needs": "r05",
+   "crossGreeting": {
+    "great": "旅行のときはお世話になりました。あの山旅で思い出したんです。",
+    "ok": "ひとり旅のときはお世話になりました。あれから考えたんです。",
+    "poor": "ひとり旅のあと、週末に近くの山を歩いてみて、思ったんです。"
+   },
    "lines": [
-    "旅行のときはお世話になりました。あの山旅で思い出したんです。",
+    "ひとり旅のときはお世話になりました。あれから考えたんです。",
     "山の近くで暮らしたい。でも仕事は都会で続けたほうが…。",
     "山岳部の仲間とは、今も手紙で山の話ばかりで。",
     "毎月の予算は11万円、10年後までの計画でお願いします。"
@@ -12015,8 +12252,13 @@ window.YOROZU_DATA = {
    "clientId": "pururu",
    "visit": 1,
    "needs": "r11",
+   "crossGreeting": {
+    "great": "旅行ではお世話になりました。地球がすっかり気に入りました。",
+    "ok": "旅行ではお世話になりました。また地球に来ることにしました。",
+    "poor": "旅行ではどうも。名所のあと、帰り道の八百屋さんが忘れられなくて。"
+   },
    "lines": [
-    "旅行ではお世話になりました。地球がすっかり気に入りました。",
+    "旅行ではお世話になりました。また地球に来ることにしました。",
     "1年いるなら、地球でいちばん有名な街に住みたいです。",
     "ゴミ出しの日を、となりの人に教わるのが楽しみで。",
     "朝の商店街のにおいも好き。毎月の星のかけらは60個、1年後まで。"
@@ -12496,6 +12738,10140 @@ window.YOROZU_DATA = {
    },
    "profile": "川の大工の親方。子らが巣立ち、孫ができた",
    "yearsLater": 5
+  },
+  {
+   "id": "i01",
+   "company": "invest",
+   "day": 1,
+   "time": "朝",
+   "clientId": "tsumugi",
+   "visit": 1,
+   "lines": [
+    "はじめてのボーナスが出たんです。町の誰かを応援したくて。",
+    "どうせなら、いちばん役に立つ所に出したいですよね。",
+    "そういえば子どものころ通った角の駄菓子屋、今も開いてるかな。",
+    "出せるのは3万円。1つのお店にしぼりたいです。"
+   ],
+   "surfaceWish": "役に立つ",
+   "honneTags": [
+    "思い出"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 30000,
+    "unit": "円",
+    "spread": "one"
+   },
+   "aftermath": {
+    "great": "駄菓子屋のおばちゃん、わたしを覚えてて。屋根も直りました！",
+    "ok": "役に立つ所を応援できました。駄菓子屋は、まだ行けてません。",
+    "poor": "役に立つ所に出せました。…でも本当は、あの駄菓子屋を残したかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "角の駄菓子屋",
+      "cost": 15500,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "dagashi"
+     },
+     {
+      "name": "駅前の子育て広場",
+      "cost": 17500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "brightplaza"
+     },
+     {
+      "name": "駄菓子屋の並ぶ横丁",
+      "cost": 12000,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "shotengai"
+     },
+     {
+      "name": "話題の新しいカフェ",
+      "cost": 16500,
+      "tags": [],
+      "spreads": [
+       "one"
+      ],
+      "art": "coffee"
+     }
+    ],
+    "activity": [
+     {
+      "name": "全部を屋根の修理に",
+      "cost": 10000,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "renovate"
+     },
+     {
+      "name": "役立つ3か所に分ける",
+      "cost": 9000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "threeenv"
+     },
+     {
+      "name": "新しい機械を買う足しに",
+      "cost": 11000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "saveappliance"
+     },
+     {
+      "name": "半分は手元に残す",
+      "cost": 4500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "学校帰りの道で寄る",
+      "cost": 1000,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "schoolyard"
+     },
+     {
+      "name": "年に1度の報告を読む",
+      "cost": 1000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "使い道の表をもらう",
+      "cost": 2000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "町の広報で様子を知る",
+      "cost": 500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "townnews"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "昔のくじ引き1回",
+      "cost": 1000,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "lottery"
+     },
+     {
+      "name": "町からの感謝状",
+      "cost": 3500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "certificate"
+     },
+     {
+      "name": "名前入りの記念札",
+      "cost": 4500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "nameplate"
+     },
+     {
+      "name": "お礼はいらない",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "leafsun"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i02",
+   "company": "invest",
+   "day": 1,
+   "time": "昼",
+   "clientId": "haruto",
+   "visit": 1,
+   "lines": [
+    "はじめてのバイト代が入ったんです。何かを応援してみたくて。",
+    "みんなが話してる、流行りのお店がいいのかな。",
+    "…大学の帰りに寄る古本屋、最近お客さんが少ないんですよね。",
+    "出せるのは1万円。1つのお店にしぼります。"
+   ],
+   "surfaceWish": "流行り",
+   "honneTags": [
+    "古本"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 10000,
+    "unit": "円",
+    "spread": "one"
+   },
+   "aftermath": {
+    "great": "古本屋の店主と本の話をする仲に。棚がひとつ増えました！",
+    "ok": "流行りの店、にぎわってました。古本屋は、ちょっと気になってます。",
+    "poor": "流行りの店は楽しかったです。…でも本当は、あの古本屋に通い続けたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "帰り道の古本屋",
+      "cost": 5500,
+      "tags": [
+       "古本"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "books"
+     },
+     {
+      "name": "行列のできる甘味屋",
+      "cost": 6500,
+      "tags": [
+       "流行り"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "trendshop"
+     },
+     {
+      "name": "古本市の出店たち",
+      "cost": 4000,
+      "tags": [
+       "古本"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "bookfair"
+     },
+     {
+      "name": "大学そばのパン屋",
+      "cost": 5500,
+      "tags": [],
+      "spreads": [
+       "one"
+      ],
+      "art": "bakery"
+     }
+    ],
+    "activity": [
+     {
+      "name": "全部を本棚の修理に",
+      "cost": 3000,
+      "tags": [
+       "古本"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "furniture"
+     },
+     {
+      "name": "流行りの店に半分",
+      "cost": 3000,
+      "tags": [
+       "流行り"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "shopbags"
+     },
+     {
+      "name": "新作の宣伝の足しに",
+      "cost": 3500,
+      "tags": [
+       "流行り"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "neon"
+     },
+     {
+      "name": "来月の分に取っておく",
+      "cost": 1000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "毎週の帰りに寄る",
+      "cost": 500,
+      "tags": [
+       "古本"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "footprints"
+     },
+     {
+      "name": "店の投稿を毎日見る",
+      "cost": 0,
+      "tags": [
+       "流行り"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "phone"
+     },
+     {
+      "name": "友だちと並びに行く",
+      "cost": 1500,
+      "tags": [
+       "流行り"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "caps"
+     },
+     {
+      "name": "たまに前を通る",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "commute"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "手書きのしおり",
+      "cost": 500,
+      "tags": [
+       "古本"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "bookmark"
+     },
+     {
+      "name": "新作スイーツの券",
+      "cost": 1500,
+      "tags": [
+       "流行り"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "cake"
+     },
+     {
+      "name": "店の前で記念写真",
+      "cost": 1000,
+      "tags": [
+       "流行り"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "camera"
+     },
+     {
+      "name": "お礼の一言カード",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "letter"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i03",
+   "company": "invest",
+   "day": 1,
+   "time": "夜",
+   "clientId": "chisato",
+   "visit": 1,
+   "lines": [
+    "商店街で花屋をしています。今年は少しゆとりができて。",
+    "自分の店を広げるか、新しい冷蔵庫か、迷ってるんです。",
+    "となりのパン屋さんと八百屋さんとは、毎朝あいさつする仲で。",
+    "出せるのは5万円。2〜3のお店に分けたいの。"
+   ],
+   "surfaceWish": "自分の店",
+   "honneTags": [
+    "仲間"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 50000,
+    "unit": "円",
+    "spread": "few"
+   },
+   "aftermath": {
+    "great": "3軒で朝市を始めたの。花とパンと野菜、よく売れてます！",
+    "ok": "お店はきれいになりました。となりとは、前と同じくらいです。",
+    "poor": "店は広くなりました。…でも本当は、となりのお店と一緒に続けたかったの"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "となりのパン屋",
+      "cost": 21000,
+      "tags": [
+       "仲間"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "bakery"
+     },
+     {
+      "name": "自分の店の建て増し",
+      "cost": 32000,
+      "tags": [
+       "自分の店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "shophouse"
+     },
+     {
+      "name": "商店街の全部の店",
+      "cost": 17000,
+      "tags": [
+       "仲間"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "shotengai"
+     },
+     {
+      "name": "公園の花だん",
+      "cost": 12500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "flowerbed"
+     }
+    ],
+    "activity": [
+     {
+      "name": "パン屋と八百屋に半分",
+      "cost": 17000,
+      "tags": [
+       "仲間"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "全部を自分の店に",
+      "cost": 23500,
+      "tags": [
+       "自分の店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "shopbags"
+     },
+     {
+      "name": "新しい花の冷蔵庫",
+      "cost": 21000,
+      "tags": [
+       "自分の店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "saveappliance"
+     },
+     {
+      "name": "少し残して様子見",
+      "cost": 6500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "毎朝のあいさつで",
+      "cost": 0,
+      "tags": [
+       "仲間"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "sunrise"
+     },
+     {
+      "name": "自分の店の客を数える",
+      "cost": 2000,
+      "tags": [
+       "自分の店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "月1回の店の寄り合い",
+      "cost": 3000,
+      "tags": [
+       "仲間"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "kominkan"
+     },
+     {
+      "name": "年に1度話を聞く",
+      "cost": 1000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "letter"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "3軒の合同の朝市",
+      "cost": 6500,
+      "tags": [
+       "仲間"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "morningmarket"
+     },
+     {
+      "name": "自分の店の看板を新調",
+      "cost": 7500,
+      "tags": [
+       "自分の店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "signboard"
+     },
+     {
+      "name": "花束のお返し",
+      "cost": 2000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "bouquet"
+     },
+     {
+      "name": "雑誌に店がのる",
+      "cost": 5500,
+      "tags": [
+       "自分の店"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "photobook"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i04",
+   "company": "invest",
+   "day": 2,
+   "time": "朝",
+   "clientId": "goro",
+   "visit": 1,
+   "lines": [
+    "大工の棟梁を40年やってな。去年、道具を置いたんだ。",
+    "これからは、腕のいい若手を応援したくてな。",
+    "弟子たちが、雨もりする町の古い家を気にしててなあ。",
+    "出せるのは8万円。2〜3の所に分けてくれ。"
+   ],
+   "surfaceWish": "若手",
+   "honneTags": [
+    "弟子",
+    "町の家"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 80000,
+    "unit": "円",
+    "spread": "few"
+   },
+   "aftermath": {
+    "great": "弟子らと町の家を3軒直した。昔の現場みたいで楽しかったよ！",
+    "ok": "若手はいい仕事をしとる。弟子らとは、なかなか会えんがな。",
+    "poor": "若手はがんばっとる。…でも本当は、弟子らと町の家を直したかったんだ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "弟子たちの工務店",
+      "cost": 36500,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "carpentry"
+     },
+     {
+      "name": "大会で優勝した若手",
+      "cost": 43500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "trophy"
+     },
+     {
+      "name": "古い家の直し隊",
+      "cost": 32000,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "renovate"
+     },
+     {
+      "name": "町の家具職人の若手",
+      "cost": 34000,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "furniture"
+     }
+    ],
+    "activity": [
+     {
+      "name": "弟子と町の家に半分ずつ",
+      "cost": 34000,
+      "tags": [
+       "弟子",
+       "町の家"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "若手の大会の賞金に",
+      "cost": 36500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "medal"
+     },
+     {
+      "name": "全部を古い家1軒に",
+      "cost": 39000,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "bighouse"
+     },
+     {
+      "name": "若手みんなに少しずつ",
+      "cost": 25000,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "threeenv"
+     }
+    ],
+    "food": [
+     {
+      "name": "現場に顔を出す",
+      "cost": 2500,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "worksite"
+     },
+     {
+      "name": "腕前の審査をする",
+      "cost": 4500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "lecture"
+     },
+     {
+      "name": "遠くから話を聞く",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "whisper"
+     },
+     {
+      "name": "直した家を見て回る",
+      "cost": 1000,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "footprints"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "古い家の柱に名前",
+      "cost": 3500,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "nameplate"
+     },
+     {
+      "name": "若手の作品の写真集",
+      "cost": 3500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "photobook"
+     },
+     {
+      "name": "弟子と一杯やる席",
+      "cost": 4500,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "beer"
+     },
+     {
+      "name": "立派な感謝状",
+      "cost": 3000,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "certificate"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i05",
+   "company": "invest",
+   "day": 2,
+   "time": "昼",
+   "clientId": "hou",
+   "visit": 1,
+   "lines": [
+    "森の夜の見張り番、ほうと申す。ホウ。",
+    "森の役に立つ所に、木の実を出したいと思うてな。",
+    "近ごろ若い鳥たちが、歌や巣づくりの店を開いておるのじゃ。",
+    "木の実は40。たくさんの所に少しずつ頼む。"
+   ],
+   "surfaceWish": "森の役に立つ",
+   "honneTags": [
+    "若鳥"
+   ],
+   "dislikeTags": [
+    "カラス",
+    "昼のさわぎ",
+    "強い光"
+   ],
+   "budget": {
+    "amount": 40,
+    "unit": "木の実",
+    "spread": "many"
+   },
+   "aftermath": {
+    "great": "若鳥らの店が、森じゅうに灯った。夜の見回りが楽しみじゃ。ホウ",
+    "ok": "森の道はきれいになった。若鳥らの店は、まだ小さいのう。",
+    "poor": "森の役には立った。…でも本当は、若鳥らの夢を見守りたかったのじゃ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "若鳥たちの小さな店々",
+      "cost": 21,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "birdsong"
+     },
+     {
+      "name": "森の道の大そうじ",
+      "cost": 17,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "leafshade"
+     },
+     {
+      "name": "若鳥1羽の歌の店",
+      "cost": 18,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "music"
+     },
+     {
+      "name": "明るい灯りの広場",
+      "cost": 16,
+      "tags": [
+       "森の役に立つ",
+       "強い光"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "brightplaza"
+     }
+    ],
+    "activity": [
+     {
+      "name": "店ごとにひと粒ずつ",
+      "cost": 11,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "nutstore"
+     },
+     {
+      "name": "見張り台に全部",
+      "cost": 16,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "tower"
+     },
+     {
+      "name": "半分は冬にそなえる",
+      "cost": 7,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "treehollow"
+     },
+     {
+      "name": "カラスと組んで配る",
+      "cost": 9,
+      "tags": [
+       "森の役に立つ",
+       "カラス"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "crowfeather"
+     }
+    ],
+    "food": [
+     {
+      "name": "夜の見回りでのぞく",
+      "cost": 2,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "nightgarden"
+     },
+     {
+      "name": "昼間に集まって話す",
+      "cost": 3,
+      "tags": [
+       "森の役に立つ",
+       "昼のさわぎ"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "picnic"
+     },
+     {
+      "name": "森の掲示板を見る",
+      "cost": 2,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "noticeboard"
+     },
+     {
+      "name": "月夜に歌を聞きに行く",
+      "cost": 5,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "moonhill"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "巣立ちの歌の招待",
+      "cost": 6,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "birdphoto"
+     },
+     {
+      "name": "森の功労者の札",
+      "cost": 5,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "nameplate"
+     },
+     {
+      "name": "光る感謝の灯り",
+      "cost": 7,
+      "tags": [
+       "森の役に立つ",
+       "強い光"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "lantern"
+     },
+     {
+      "name": "木の実のおすそわけ",
+      "cost": 2,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "goldwalnut"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i06",
+   "company": "invest",
+   "day": 2,
+   "time": "夜",
+   "clientId": "masaru",
+   "visit": 1,
+   "lines": [
+    "小さなねじ工場をやって30年。今年は少し余裕がありまして。",
+    "新しい機械を入れてる工場を、応援したいと思うんです。",
+    "…うちの旋盤、最近は見学の高校生がよくさわりに来てね。",
+    "出せるのは10万円。1か所にまとめて応援したい。"
+   ],
+   "surfaceWish": "新しい機械",
+   "honneTags": [
+    "技",
+    "見習い"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 100000,
+    "unit": "円",
+    "spread": "one"
+   },
+   "aftermath": {
+    "great": "見習いの子が、はじめてねじを1本仕上げてね。うれしかったなあ！",
+    "ok": "機械の工場は元気です。若い子に教えるのは、まだこれからです。",
+    "poor": "新しい機械はすごかった。…でも本当は、若い人に技を伝えたかったんだ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "見習いを育てる工房",
+      "cost": 47000,
+      "tags": [
+       "見習い",
+       "技"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "factory"
+     },
+     {
+      "name": "最新機械の工場",
+      "cost": 56000,
+      "tags": [
+       "新しい機械"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "robot"
+     },
+     {
+      "name": "工業高校の部活たち",
+      "cost": 40500,
+      "tags": [
+       "見習い"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "clubroom"
+     },
+     {
+      "name": "となり町の部品屋",
+      "cost": 36000,
+      "tags": [],
+      "spreads": [
+       "one"
+      ],
+      "art": "localshop"
+     }
+    ],
+    "activity": [
+     {
+      "name": "見習いの手当てに全部",
+      "cost": 45000,
+      "tags": [
+       "見習い"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "handover"
+     },
+     {
+      "name": "機械1台の足しに",
+      "cost": 51500,
+      "tags": [
+       "新しい機械"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "saveappliance"
+     },
+     {
+      "name": "道具と材料に半分ずつ",
+      "cost": 33500,
+      "tags": [
+       "技"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "toolbox"
+     },
+     {
+      "name": "一部は取っておく",
+      "cost": 13500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "週1で技を見に行く",
+      "cost": 3500,
+      "tags": [
+       "技"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "lecture"
+     },
+     {
+      "name": "機械の動きを数字で見る",
+      "cost": 3500,
+      "tags": [
+       "新しい機械"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "watch"
+     },
+     {
+      "name": "年に1度の見学会",
+      "cost": 2000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "museum"
+     },
+     {
+      "name": "新しい機械の発表会",
+      "cost": 5500,
+      "tags": [
+       "新しい機械"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "projector"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "はじめて作ったねじ",
+      "cost": 1000,
+      "tags": [
+       "技"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "screw"
+     },
+     {
+      "name": "新しい機械の模型",
+      "cost": 6500,
+      "tags": [
+       "新しい機械"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "robot"
+     },
+     {
+      "name": "工場の名前入りの盾",
+      "cost": 5500,
+      "tags": [
+       "新しい機械"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "trophy"
+     },
+     {
+      "name": "工場見学の招待",
+      "cost": 2000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "ticket"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i07",
+   "company": "invest",
+   "day": 3,
+   "time": "朝",
+   "clientId": "rin",
+   "visit": 1,
+   "lines": [
+    "洋菓子店で見習いをしてます。いつか自分の店を出したくて。",
+    "応援するなら、やっぱり雑誌にのる有名なお店かなって。",
+    "同じ学校を出た子たちも、屋台でお菓子を売り始めたんです。",
+    "出せるのは3万円。2〜3の所に分けたいです。"
+   ],
+   "surfaceWish": "有名店",
+   "honneTags": [
+    "夢の仲間"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 30000,
+    "unit": "円",
+    "spread": "few"
+   },
+   "aftermath": {
+    "great": "仲間の屋台に、わたしのクッキーも並べてもらえることに！",
+    "ok": "有名店のケーキ、勉強になりました。仲間とは、また今度。",
+    "poor": "有名店はすてきでした。…でも本当は、同じ夢の仲間を応援したかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "同級生のお菓子屋台",
+      "cost": 12000,
+      "tags": [
+       "夢の仲間"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "cookies"
+     },
+     {
+      "name": "雑誌の有名ケーキ店",
+      "cost": 17500,
+      "tags": [
+       "有名店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "cake"
+     },
+     {
+      "name": "仲間の小さな焼き菓子店",
+      "cost": 11000,
+      "tags": [
+       "夢の仲間"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "giftbox"
+     },
+     {
+      "name": "駅前の老舗の和菓子屋",
+      "cost": 14500,
+      "tags": [
+       "有名店"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "dango"
+     }
+    ],
+    "activity": [
+     {
+      "name": "2人の仲間に半分ずつ",
+      "cost": 11000,
+      "tags": [
+       "夢の仲間"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "有名店の新作に全部",
+      "cost": 14500,
+      "tags": [
+       "有名店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "parfait"
+     },
+     {
+      "name": "仲間みんなに少しずつ",
+      "cost": 9000,
+      "tags": [
+       "夢の仲間"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "threeenv"
+     },
+     {
+      "name": "材料費の足しに",
+      "cost": 6500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "sugarcubes"
+     }
+    ],
+    "food": [
+     {
+      "name": "屋台を手伝いに行く",
+      "cost": 1000,
+      "tags": [
+       "夢の仲間"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "kitchen"
+     },
+     {
+      "name": "有名店の行列に並ぶ",
+      "cost": 2000,
+      "tags": [
+       "有名店"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "trendshop"
+     },
+     {
+      "name": "ときどき写真で見る",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "camera"
+     },
+     {
+      "name": "味見の感想を送る",
+      "cost": 500,
+      "tags": [
+       "夢の仲間"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "letter"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "仲間との試食会",
+      "cost": 2000,
+      "tags": [
+       "夢の仲間"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "buffet"
+     },
+     {
+      "name": "有名店の限定ケーキ",
+      "cost": 4000,
+      "tags": [
+       "有名店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "cloche"
+     },
+     {
+      "name": "店主のサイン入り本",
+      "cost": 3500,
+      "tags": [
+       "有名店"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "autograph"
+     },
+     {
+      "name": "季節のお菓子1箱",
+      "cost": 1500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "giftbox"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i08",
+   "company": "invest",
+   "day": 3,
+   "time": "昼",
+   "clientId": "tsumugi",
+   "visit": 2,
+   "regularId": "tsumugi",
+   "bonusBudget": 5000,
+   "returnGreeting": {
+    "great": "駄菓子屋、今も子どもでいっぱいです！",
+    "ok": "またお世話になります。前はありがとうございました。",
+    "poor": "今度こそ…。実は、あの駄菓子屋の前を今も通るんです。"
+   },
+   "lines": [
+    "2回目のボーナスです。今度は町の役に立つ、新しいお店に。",
+    "…子どものころ通った銭湯と文房具屋も、閉めるか迷ってるらしくて。",
+    "出せるのは3万5千円。2〜3のお店に分けたいです。"
+   ],
+   "surfaceWish": "役に立つ",
+   "honneTags": [
+    "思い出"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 35000,
+    "unit": "円",
+    "spread": "few"
+   },
+   "aftermath": {
+    "great": "銭湯の帰りに文房具屋。子どものころの帰り道が、また戻りました！",
+    "ok": "新しいお店は便利です。銭湯は、ときどき行ってます。",
+    "poor": "新しいお店は便利でした。…でも本当は、思い出のお店を残したかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "銭湯と文房具屋",
+      "cost": 18000,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "onsenbath"
+     },
+     {
+      "name": "新しい便利な店",
+      "cost": 21500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "shopbags"
+     },
+     {
+      "name": "銭湯1軒だけに",
+      "cost": 16000,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "bathbucket"
+     },
+     {
+      "name": "図書館の新しい本棚",
+      "cost": 15000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "books"
+     }
+    ],
+    "activity": [
+     {
+      "name": "2軒に半分ずつ",
+      "cost": 13500,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "新しいレジの足しに",
+      "cost": 12500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "saveappliance"
+     },
+     {
+      "name": "町じゅうに少しずつ",
+      "cost": 10500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "threeenv"
+     },
+     {
+      "name": "半分を残しておく",
+      "cost": 5500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "銭湯帰りに文具を買う",
+      "cost": 1000,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "pencils"
+     },
+     {
+      "name": "月ごとの使い道の報告",
+      "cost": 1500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "休みの日に顔を出す",
+      "cost": 500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "footprints"
+     },
+     {
+      "name": "町の便利さを調べる",
+      "cost": 2500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "mappin"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "昔の番台に座る1日",
+      "cost": 2500,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "onsen"
+     },
+     {
+      "name": "新しい店の招待券",
+      "cost": 3500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "ticket"
+     },
+     {
+      "name": "お礼の手紙",
+      "cost": 500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "町の広報で紹介",
+      "cost": 2500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "townnews"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i09",
+   "company": "invest",
+   "day": 3,
+   "time": "夜",
+   "clientId": "keita",
+   "visit": 1,
+   "needs": "l09",
+   "crossGreeting": {
+    "great": "ライフプランのときはお世話になりました。パン屋、開けました！",
+    "ok": "ライフプランのときはどうも。パンの夢、少しずつ動き出してます。",
+    "poor": "ライフプランのあと、週末だけ、娘とパンを売りはじめたんです。"
+   },
+   "lines": [
+    "ライフプランのときはどうも。パンの夢、少しずつ動き出してます。",
+    "今度はぼくが応援する番です。しっかりした計画の人がいいかな。",
+    "ぼくも最初は、日曜に娘と焼くだけの小さな一歩でしたけどね。",
+    "出せるのは6万円。1人の夢にしぼりたいです。"
+   ],
+   "surfaceWish": "立派な計画",
+   "honneTags": [
+    "小さな一歩"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 60000,
+    "unit": "円",
+    "spread": "one"
+   },
+   "aftermath": {
+    "great": "日曜だけのジャム屋さんが、月に4日に増えたそうです。ぼくもうれしい！",
+    "ok": "立派な計画のお店、順調です。ぼくは少し遠くから見ています。",
+    "poor": "立派なお店になりました。…でも本当は、小さな一歩を応援したかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "日曜だけのジャム屋",
+      "cost": 26500,
+      "tags": [
+       "小さな一歩"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "jam"
+     },
+     {
+      "name": "計画書の立派な店",
+      "cost": 35000,
+      "tags": [
+       "立派な計画"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "headoffice"
+     },
+     {
+      "name": "週末の屋台の人たち",
+      "cost": 20000,
+      "tags": [
+       "小さな一歩"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "stall"
+     },
+     {
+      "name": "駅前のコーヒー店",
+      "cost": 27500,
+      "tags": [],
+      "spreads": [
+       "one"
+      ],
+      "art": "coffee"
+     }
+    ],
+    "activity": [
+     {
+      "name": "全部を最初の道具に",
+      "cost": 24000,
+      "tags": [
+       "小さな一歩"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "cookpot"
+     },
+     {
+      "name": "広い店の家賃の足しに",
+      "cost": 31000,
+      "tags": [
+       "立派な計画"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "shophouse"
+     },
+     {
+      "name": "3つの店に分ける",
+      "cost": 22000,
+      "tags": [
+       "立派な計画"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "threeenv"
+     },
+     {
+      "name": "少し手元に残す",
+      "cost": 9000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "日曜にジャムを買う",
+      "cost": 1500,
+      "tags": [
+       "小さな一歩"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "breakfast"
+     },
+     {
+      "name": "計画の進み具合を聞く",
+      "cost": 2000,
+      "tags": [
+       "立派な計画"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "毎月の数字を見る",
+      "cost": 1500,
+      "tags": [
+       "立派な計画"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "watch"
+     },
+     {
+      "name": "年に1度会う",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "letter"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "ジャムとパンの朝ごはん",
+      "cost": 2000,
+      "tags": [
+       "小さな一歩"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "sandwich"
+     },
+     {
+      "name": "開店式のくす玉",
+      "cost": 4500,
+      "tags": [
+       "立派な計画"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "kusudama"
+     },
+     {
+      "name": "店の名入りの盾",
+      "cost": 4000,
+      "tags": [
+       "立派な計画"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "trophy"
+     },
+     {
+      "name": "娘からのお礼の絵",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "easel"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i10",
+   "company": "invest",
+   "day": 4,
+   "time": "朝",
+   "clientId": "kabuto",
+   "visit": 1,
+   "lines": [
+    "森の力持ち、かぶとだ。ふんっ、今年は樹液がよく出てな。",
+    "どうせ応援するなら、森いちばんの大きな店がいい。",
+    "…ありやてんとう虫の小さな店は、雨のたびに困ってるらしいが。",
+    "出せるのは樹液のしずく30。たくさんの店に少しずつ頼む。"
+   ],
+   "surfaceWish": "大きな店",
+   "honneTags": [
+    "小さな虫"
+   ],
+   "dislikeTags": [
+    "鳥",
+    "乾いた風",
+    "まぶしい灯り"
+   ],
+   "budget": {
+    "amount": 30,
+    "unit": "樹液のしずく",
+    "spread": "many"
+   },
+   "aftermath": {
+    "great": "小さな店に葉の屋根がついた。ありたちに肩車をせがまれてるぞ！",
+    "ok": "大きな店は立派だった。小さな店たちは、まだ気になるな。",
+    "poor": "大きな店は強そうだった。…でも本当は、小さな虫たちの店を守りたかったんだ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "小さな虫の店通り",
+      "cost": 14,
+      "tags": [
+       "小さな虫"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "anthill"
+     },
+     {
+      "name": "森いちばんの大きな店",
+      "cost": 17,
+      "tags": [
+       "大きな店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "bigtree"
+     },
+     {
+      "name": "てんとう虫の1軒の店",
+      "cost": 11,
+      "tags": [
+       "小さな虫"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "leafhop"
+     },
+     {
+      "name": "見晴らしのいい高台の店",
+      "cost": 14,
+      "tags": [
+       "大きな店",
+       "乾いた風"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "mountain"
+     }
+    ],
+    "activity": [
+     {
+      "name": "店ごとにひとしずく",
+      "cost": 8,
+      "tags": [
+       "小さな虫"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "dewdrop"
+     },
+     {
+      "name": "大きな店の看板に全部",
+      "cost": 11,
+      "tags": [
+       "大きな店",
+       "まぶしい灯り"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "neon"
+     },
+     {
+      "name": "半分は冬にとっておく",
+      "cost": 5,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "treehollow"
+     },
+     {
+      "name": "2軒の大きな店に",
+      "cost": 9,
+      "tags": [
+       "大きな店"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "雨の日に見回る",
+      "cost": 2,
+      "tags": [
+       "小さな虫"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "puddle"
+     },
+     {
+      "name": "店の大きさをはかる",
+      "cost": 2,
+      "tags": [
+       "大きな店"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "measure"
+     },
+     {
+      "name": "夜の灯りの下で集まる",
+      "cost": 3,
+      "tags": [
+       "まぶしい灯り"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "lightup"
+     },
+     {
+      "name": "角で押して確かめる",
+      "cost": 1,
+      "tags": [
+       "大きな店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "gym"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "小さな虫の肩車の会",
+      "cost": 3,
+      "tags": [
+       "小さな虫"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "bugparty"
+     },
+     {
+      "name": "力持ちの大きな像",
+      "cost": 7,
+      "tags": [
+       "大きな店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "monument"
+     },
+     {
+      "name": "鳥の楽団の演奏",
+      "cost": 5,
+      "tags": [
+       "鳥"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "orchestra"
+     },
+     {
+      "name": "樹液のおすそわけ",
+      "cost": 1,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "honey"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i11",
+   "company": "invest",
+   "day": 4,
+   "time": "昼",
+   "clientId": "goro",
+   "visit": 2,
+   "regularId": "goro",
+   "bonusBudget": 10000,
+   "returnGreeting": {
+    "great": "弟子らと直した家、まだ雨もりひとつないぞ！",
+    "ok": "おう、また来たよ。前は世話になったな。",
+    "poor": "今度こそ…。弟子らがな、まだ古い家の話をしとるんだ。"
+   },
+   "lines": [
+    "今度はな、若手の家具職人の大会に、賞金を出そうかと思ってな。",
+    "…弟子の一人がな、町の古い集会所を直したいと言い出したんだ。",
+    "出せるのは9万円。1つにまとめて出したい。"
+   ],
+   "surfaceWish": "若手",
+   "honneTags": [
+    "弟子",
+    "町の家"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 90000,
+    "unit": "円",
+    "spread": "one"
+   },
+   "aftermath": {
+    "great": "集会所が直って、町の子らが集まっとる。弟子もいい顔だ！",
+    "ok": "大会はにぎやかだった。集会所は、まだ雨もりしとる。",
+    "poor": "大会は盛り上がった。…でも本当は、弟子と集会所を直したかったんだ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "古い集会所の直し",
+      "cost": 45500,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "kominkan"
+     },
+     {
+      "name": "若手家具職人の大会",
+      "cost": 49500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "trophy"
+     },
+     {
+      "name": "弟子の工務店と集会所",
+      "cost": 39000,
+      "tags": [
+       "弟子",
+       "町の家"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "carpentry"
+     },
+     {
+      "name": "町の植木屋の若手",
+      "cost": 36500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "gardentools"
+     }
+    ],
+    "activity": [
+     {
+      "name": "全部を屋根と柱に",
+      "cost": 43000,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "renovate"
+     },
+     {
+      "name": "優勝の賞金に全部",
+      "cost": 45500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "medal"
+     },
+     {
+      "name": "弟子の道具代に全部",
+      "cost": 36500,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "toolbox"
+     },
+     {
+      "name": "少しだけ残しておく",
+      "cost": 13000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "弟子の現場に通う",
+      "cost": 2000,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "worksite"
+     },
+     {
+      "name": "若手の腕を審査する",
+      "cost": 3000,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "lecture"
+     },
+     {
+      "name": "完成の日だけ行く",
+      "cost": 1000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "kusudama"
+     },
+     {
+      "name": "遠くで評判を聞く",
+      "cost": 0,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "whisper"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "集会所の柱に名前",
+      "cost": 2000,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "nameplate"
+     },
+     {
+      "name": "大会の名誉の席",
+      "cost": 4500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "stadium"
+     },
+     {
+      "name": "弟子たちとの昼めし",
+      "cost": 2500,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "bento"
+     },
+     {
+      "name": "お礼の手ぬぐい",
+      "cost": 1000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "tenugui"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i12",
+   "company": "invest",
+   "day": 4,
+   "time": "夜",
+   "clientId": "akira",
+   "visit": 1,
+   "needs": "e12",
+   "crossGreeting": {
+    "great": "還暦の会ではお世話になりました。妻は今も、庭で上機嫌でしてね。",
+    "ok": "妻の還暦の会では、お世話になりました。先日、退職しましてね。",
+    "poor": "還暦の会のあと、妻の庭を手伝ってみたら、これが楽しくて。"
+   },
+   "lines": [
+    "妻の還暦の会では、お世話になりました。先日、退職しましてね。",
+    "若い人の大きな挑戦を、どーんと応援してみたいんです。",
+    "…毎日ひまでね。妻には「家でうろうろしないで」と言われます。",
+    "出せるのは7万円。2〜3の所に分けてください。"
+   ],
+   "surfaceWish": "大きな挑戦",
+   "honneTags": [
+    "手伝う"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 70000,
+    "unit": "円",
+    "spread": "few"
+   },
+   "aftermath": {
+    "great": "若い店主の店で、毎週わたしも棚を作ってます。妻も笑ってますよ！",
+    "ok": "大きな挑戦、うまくいってるそうです。わたしは家で新聞を読んでます。",
+    "poor": "挑戦はすごかったです。…でも本当は、そばで若い人を手伝いたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "若い夫婦の古道具屋",
+      "cost": 30000,
+      "tags": [
+       "手伝う"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "pottery"
+     },
+     {
+      "name": "世界をめざす若者",
+      "cost": 41000,
+      "tags": [
+       "大きな挑戦"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "saverocket"
+     },
+     {
+      "name": "若者の畑と直売所",
+      "cost": 24000,
+      "tags": [
+       "手伝う"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "farm"
+     },
+     {
+      "name": "町の大きな新しい店",
+      "cost": 34500,
+      "tags": [
+       "大きな挑戦"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "tower"
+     }
+    ],
+    "activity": [
+     {
+      "name": "2つの店に半分ずつ",
+      "cost": 28000,
+      "tags": [
+       "手伝う"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "1人の挑戦に全部",
+      "cost": 39000,
+      "tags": [
+       "大きな挑戦"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "drone"
+     },
+     {
+      "name": "手伝いの日の材料に",
+      "cost": 17500,
+      "tags": [
+       "手伝う"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "少し残しておく",
+      "cost": 11000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "週に1度、店番をする",
+      "cost": 0,
+      "tags": [
+       "手伝う"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "parttime"
+     },
+     {
+      "name": "遠くから結果を聞く",
+      "cost": 0,
+      "tags": [
+       "大きな挑戦"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "whisper"
+     },
+     {
+      "name": "新聞で活やくを読む",
+      "cost": 1000,
+      "tags": [
+       "大きな挑戦"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "townnews"
+     },
+     {
+      "name": "妻と一緒に見に行く",
+      "cost": 1500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "footprints"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "棚づくりを手伝う日",
+      "cost": 1500,
+      "tags": [
+       "手伝う"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "furniture"
+     },
+     {
+      "name": "挑戦の記録の写真集",
+      "cost": 4000,
+      "tags": [
+       "大きな挑戦"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "photobook"
+     },
+     {
+      "name": "晴れ舞台への招待",
+      "cost": 5500,
+      "tags": [
+       "大きな挑戦"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "hall"
+     },
+     {
+      "name": "妻への花束",
+      "cost": 2000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "bouquet"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i13",
+   "company": "invest",
+   "day": 5,
+   "time": "朝",
+   "clientId": "hou",
+   "visit": 2,
+   "regularId": "hou",
+   "bonusBudget": 5,
+   "returnGreeting": {
+    "great": "若鳥らの店、夜ごと灯っておるぞ。ホウ。",
+    "ok": "また来たぞ。前は世話になったのう。",
+    "poor": "今度こそ…。若鳥らの歌が、今夜も聞こえておってな。"
+   },
+   "lines": [
+    "今度は森の古くなった大きな見張り台を、直したいと思うてな。ホウ。",
+    "…若いメジロが、ひとりで歌の教室を開くと言うておるのじゃ。",
+    "木の実は45。1つの所にまとめて頼む。"
+   ],
+   "surfaceWish": "森の役に立つ",
+   "honneTags": [
+    "若鳥"
+   ],
+   "dislikeTags": [
+    "カラス",
+    "昼のさわぎ",
+    "強い光"
+   ],
+   "budget": {
+    "amount": 45,
+    "unit": "木の実",
+    "spread": "one"
+   },
+   "aftermath": {
+    "great": "メジロの教室から、毎晩きれいな歌が聞こえる。見張りも楽しいわい",
+    "ok": "見張り台は立派になった。メジロの教室は、ささやかじゃ。",
+    "poor": "見張り台は立派になった。…でも本当は、メジロの夢を見守りたかったのじゃ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "メジロの歌の教室",
+      "cost": 22,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "classroom"
+     },
+     {
+      "name": "森の大きな見張り台",
+      "cost": 24,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "tower"
+     },
+     {
+      "name": "若鳥たちの店の通り",
+      "cost": 16,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "birdsong"
+     },
+     {
+      "name": "昼の広場の大舞台",
+      "cost": 18,
+      "tags": [
+       "森の役に立つ",
+       "昼のさわぎ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "forestage"
+     }
+    ],
+    "activity": [
+     {
+      "name": "全部を教室の止まり木に",
+      "cost": 16,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "highbranch"
+     },
+     {
+      "name": "見張り台の灯りに全部",
+      "cost": 16,
+      "tags": [
+       "森の役に立つ",
+       "強い光"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "lightup"
+     },
+     {
+      "name": "半分を冬にそなえる",
+      "cost": 9,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "treehollow"
+     },
+     {
+      "name": "森の道の修理に",
+      "cost": 14,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "footprints"
+     }
+    ],
+    "food": [
+     {
+      "name": "夜の教室をのぞく",
+      "cost": 2,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "nightschoolyard"
+     },
+     {
+      "name": "森の掲示板を見る",
+      "cost": 2,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "noticeboard"
+     },
+     {
+      "name": "カラスに様子を聞く",
+      "cost": 1,
+      "tags": [
+       "カラス"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "crowfeather"
+     },
+     {
+      "name": "見回りの記録をつける",
+      "cost": 3,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "diary"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "歌の発表会の一番席",
+      "cost": 5,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "music"
+     },
+     {
+      "name": "森の功労者の札",
+      "cost": 4,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "nameplate"
+     },
+     {
+      "name": "光る記念の像",
+      "cost": 6,
+      "tags": [
+       "森の役に立つ",
+       "強い光"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "monument"
+     },
+     {
+      "name": "木の実のおすそわけ",
+      "cost": 1,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "goldwalnut"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i14",
+   "company": "invest",
+   "day": 5,
+   "time": "昼",
+   "clientId": "sayo",
+   "visit": 1,
+   "lines": [
+    "長年こつこつためたお金があってね。町に何か残したいの。",
+    "名前の入った立派な記念碑なんか、いいかしらね。",
+    "…うちの前の道、学校帰りの子たちがにぎやかでね。毎日楽しみなの。",
+    "出せるのは10万円。たくさんの所に少しずつね。"
+   ],
+   "surfaceWish": "立派な記念",
+   "honneTags": [
+    "子ども"
+   ],
+   "dislikeTags": [
+    "派手"
+   ],
+   "budget": {
+    "amount": 100000,
+    "unit": "円",
+    "spread": "many"
+   },
+   "aftermath": {
+    "great": "子ども食堂も絵本の店も、笑い声でいっぱい。毎日のぞいてるの！",
+    "ok": "記念碑は立派にできたわ。子どもたちは、前を走っていくだけね。",
+    "poor": "記念碑は立派だったわ。…でも本当は、町の子どもたちの笑顔が見たかったの"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "町の子ども食堂たち",
+      "cost": 47000,
+      "tags": [
+       "子ども"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "kyushoku"
+     },
+     {
+      "name": "名前入りの記念碑",
+      "cost": 62500,
+      "tags": [
+       "立派な記念",
+       "派手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "monument"
+     },
+     {
+      "name": "1軒の絵本の店",
+      "cost": 41500,
+      "tags": [
+       "子ども"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "books"
+     },
+     {
+      "name": "公園の大きな時計台",
+      "cost": 52000,
+      "tags": [
+       "立派な記念"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "tower"
+     }
+    ],
+    "activity": [
+     {
+      "name": "子どもの店に少しずつ",
+      "cost": 36500,
+      "tags": [
+       "子ども"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "threeenv"
+     },
+     {
+      "name": "金色の看板に全部",
+      "cost": 41500,
+      "tags": [
+       "立派な記念",
+       "派手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "signboard"
+     },
+     {
+      "name": "半分を残しておく",
+      "cost": 21000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     },
+     {
+      "name": "町の記念館に半分",
+      "cost": 39500,
+      "tags": [
+       "立派な記念"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "museum"
+     }
+    ],
+    "food": [
+     {
+      "name": "学校帰りの道で見る",
+      "cost": 0,
+      "tags": [
+       "子ども"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "schoolyard"
+     },
+     {
+      "name": "記念の式典に出る",
+      "cost": 5000,
+      "tags": [
+       "立派な記念"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "hall"
+     },
+     {
+      "name": "年に1度の報告書",
+      "cost": 2000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "新聞にのせてもらう",
+      "cost": 4000,
+      "tags": [
+       "立派な記念",
+       "派手"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "townnews"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "子どもからの似顔絵",
+      "cost": 1000,
+      "tags": [
+       "子ども"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "artframe"
+     },
+     {
+      "name": "大きな銅像を建てる",
+      "cost": 12500,
+      "tags": [
+       "立派な記念",
+       "派手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "monument"
+     },
+     {
+      "name": "子どもの作文1つ",
+      "cost": 1000,
+      "tags": [
+       "子ども"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "町からの感謝状",
+      "cost": 5000,
+      "tags": [
+       "立派な記念"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "certificate"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i15",
+   "company": "invest",
+   "day": 5,
+   "time": "夜",
+   "clientId": "fumie",
+   "visit": 1,
+   "needs": "r06",
+   "crossGreeting": {
+    "great": "孫との日帰りでは、お世話になりました。煮物の味、覚えてくれてね。",
+    "ok": "孫との日帰りでは、お世話になりました。あの子、元気にしてるわ。",
+    "poor": "孫との日帰りのあと、あの子とうちで煮物を作ったの。楽しかったわ。"
+   },
+   "lines": [
+    "孫との日帰りでは、お世話になりました。あの子、元気にしてるわ。",
+    "その孫の友だちが、お店を始めたの。おしゃれなカフェにしたいって。",
+    "…でもその子、うちの台所で煮物を習いたいって言うのよ。",
+    "出せるのは4万円。その1軒にしぼってね。"
+   ],
+   "surfaceWish": "おしゃれ",
+   "honneTags": [
+    "家庭の味"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 40000,
+    "unit": "円",
+    "spread": "one"
+   },
+   "aftermath": {
+    "great": "お店の一番人気が、わたしの煮物なの。孫も毎週食べに来るわ！",
+    "ok": "おしゃれなお店になったわ。煮物は、まだうちで練習中ね。",
+    "poor": "おしゃれなお店だったわ。…でも本当は、うちの家庭の味を伝えたかったのよ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "孫の友だちの定食屋",
+      "cost": 21000,
+      "tags": [
+       "家庭の味"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "teishoku"
+     },
+     {
+      "name": "映える内装のカフェ",
+      "cost": 26000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "bookcafe"
+     },
+     {
+      "name": "友だち3人の屋台村",
+      "cost": 16500,
+      "tags": [
+       "家庭の味"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "stall"
+     },
+     {
+      "name": "駅前の花屋",
+      "cost": 15500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "bouquet"
+     }
+    ],
+    "activity": [
+     {
+      "name": "全部を台所の道具に",
+      "cost": 15500,
+      "tags": [
+       "家庭の味"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "cookpot"
+     },
+     {
+      "name": "内装とお皿に全部",
+      "cost": 18500,
+      "tags": [
+       "おしゃれ"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "cloche"
+     },
+     {
+      "name": "看板とメニュー表に",
+      "cost": 13500,
+      "tags": [
+       "おしゃれ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "signboard"
+     },
+     {
+      "name": "少し手元に残す",
+      "cost": 5000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "台所で煮物を教える",
+      "cost": 0,
+      "tags": [
+       "家庭の味"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "kitchen"
+     },
+     {
+      "name": "店の写真を見せてもらう",
+      "cost": 0,
+      "tags": [
+       "おしゃれ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "camera"
+     },
+     {
+      "name": "孫と食べに行く",
+      "cost": 1500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "donburi"
+     },
+     {
+      "name": "流行りの雑誌を送る",
+      "cost": 1500,
+      "tags": [
+       "おしゃれ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "photobook"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "煮物の名のメニュー",
+      "cost": 1000,
+      "tags": [
+       "家庭の味"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "recipebook"
+     },
+     {
+      "name": "おしゃれな記念のお皿",
+      "cost": 3000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "pottery"
+     },
+     {
+      "name": "店の前で記念写真",
+      "cost": 1000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "familyphoto"
+     },
+     {
+      "name": "お礼のケーキ",
+      "cost": 2000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "cake"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i16",
+   "company": "invest",
+   "day": 6,
+   "time": "朝",
+   "clientId": "tsumugi",
+   "visit": 3,
+   "regularId": "tsumugi",
+   "bonusBudget": 5000,
+   "returnGreeting": {
+    "great": "銭湯の帰り道、今も子どもでにぎやかです！",
+    "ok": "また来ました。いつもありがとうございます。",
+    "poor": "今度こそ…。あの帰り道のお店、今も気になってて。"
+   },
+   "becomesRegular": true,
+   "lines": [
+    "3回目のボーナスです。今度は町の役に立つ、大きな建物かな。",
+    "…子どものころの商店街、シャッターが少しずつ増えてて。",
+    "出せるのは4万円。たくさんのお店に少しずつ届けたいです。"
+   ],
+   "surfaceWish": "役に立つ",
+   "honneTags": [
+    "思い出",
+    "商店街"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 40000,
+    "unit": "円",
+    "spread": "many"
+   },
+   "aftermath": {
+    "great": "商店街の小さなお店が、ひとつずつ灯りを取り戻してます！",
+    "ok": "大きな建物は便利です。商店街は、少しさびしいままです。",
+    "poor": "大きな建物は便利でした。…でも本当は、思い出の商店街を残したかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "昔からの商店街の店",
+      "cost": 17000,
+      "tags": [
+       "思い出",
+       "商店街"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "shotengai"
+     },
+     {
+      "name": "駅前の大きな建物",
+      "cost": 23500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "hall"
+     },
+     {
+      "name": "思い出の1軒の本屋",
+      "cost": 16000,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "books"
+     },
+     {
+      "name": "新しい公園の遊具",
+      "cost": 19000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "sandbox"
+     }
+    ],
+    "activity": [
+     {
+      "name": "店ごとに少しずつ",
+      "cost": 14000,
+      "tags": [
+       "商店街"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "threeenv"
+     },
+     {
+      "name": "建物の建て替えに",
+      "cost": 21000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "renovate"
+     },
+     {
+      "name": "2つの大きな店に",
+      "cost": 16000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "来年に回す分",
+      "cost": 5500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "商店街を歩いて回る",
+      "cost": 0,
+      "tags": [
+       "商店街"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "footprints"
+     },
+     {
+      "name": "建物の報告会に出る",
+      "cost": 1500,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "lecture"
+     },
+     {
+      "name": "町の広報を読む",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "townnews"
+     },
+     {
+      "name": "子どものころの道で寄る",
+      "cost": 500,
+      "tags": [
+       "思い出"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "schoolyard"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "商店街のスタンプ帳",
+      "cost": 1000,
+      "tags": [
+       "商店街"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "stampcard"
+     },
+     {
+      "name": "建物に名前入りの札",
+      "cost": 3000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "nameplate"
+     },
+     {
+      "name": "大きな感謝の盾",
+      "cost": 4000,
+      "tags": [
+       "役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "trophy"
+     },
+     {
+      "name": "お礼の手紙",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "letter"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i17",
+   "company": "invest",
+   "day": 6,
+   "time": "昼",
+   "clientId": "mitsue",
+   "visit": 1,
+   "needs": "r16",
+   "crossGreeting": {
+    "great": "はじめてのお休みのときは、ありがとう！あれから、たまに休んでるの。",
+    "ok": "はじめてのお休みのときは、ありがとう！また相談に来たわ。",
+    "poor": "はじめてのお休みのあと、花の上でひと休みするのが好きになったの。"
+   },
+   "lines": [
+    "はじめてのお休みのときは、ありがとう！また相談に来たわ。",
+    "今度は、蜜がいちばんたくさん取れる花畑を応援したいわ。",
+    "…花畑の仲間がね、働きバチのための休み処を開いたのよ。",
+    "出せるのは、みつのしずく120。2〜3の所に分けてね。"
+   ],
+   "surfaceWish": "たくさんの蜜",
+   "honneTags": [
+    "ひと休み"
+   ],
+   "dislikeTags": [
+    "雨",
+    "煙",
+    "クモの巣"
+   ],
+   "budget": {
+    "amount": 120,
+    "unit": "みつのしずく",
+    "spread": "few"
+   },
+   "aftermath": {
+    "great": "仲間の休み処、いつも満席よ。わたしも帰りに羽を休めてるの！",
+    "ok": "蜜はたくさん取れたわ。休み処には、まだ行けてないの。",
+    "poor": "蜜はいっぱい取れたわ。…でも本当は、仲間の休み処を応援したかったの"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "仲間の花の休み処",
+      "cost": 56,
+      "tags": [
+       "ひと休み"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "beenap"
+     },
+     {
+      "name": "蜜のいちばん多い花畑",
+      "cost": 68,
+      "tags": [
+       "たくさんの蜜"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "flowerfield"
+     },
+     {
+      "name": "森じゅうの休み処",
+      "cost": 43,
+      "tags": [
+       "ひと休み"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "naphill"
+     },
+     {
+      "name": "雨の多い谷の花畑",
+      "cost": 50,
+      "tags": [
+       "たくさんの蜜",
+       "雨"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "meadow"
+     }
+    ],
+    "activity": [
+     {
+      "name": "休み処2軒に半分ずつ",
+      "cost": 43,
+      "tags": [
+       "ひと休み"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "全部を蜜集めの道具に",
+      "cost": 50,
+      "tags": [
+       "たくさんの蜜"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "nectar"
+     },
+     {
+      "name": "少しは巣にのこす",
+      "cost": 19,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "honey"
+     },
+     {
+      "name": "焼き菓子のかまど屋に",
+      "cost": 35,
+      "tags": [
+       "煙"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "cookies"
+     }
+    ],
+    "food": [
+     {
+      "name": "帰りに羽を休めて寄る",
+      "cost": 7,
+      "tags": [
+       "ひと休み"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "leafshade"
+     },
+     {
+      "name": "蜜の量を毎日数える",
+      "cost": 7,
+      "tags": [
+       "たくさんの蜜"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "dropjar"
+     },
+     {
+      "name": "雨の日に様子を見る",
+      "cost": 5,
+      "tags": [
+       "雨"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "puddle"
+     },
+     {
+      "name": "仲間の手紙を読む",
+      "cost": 4,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "letter"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "休み処の昼寝の席",
+      "cost": 12,
+      "tags": [
+       "ひと休み"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "hammock"
+     },
+     {
+      "name": "蜜のつぼの大きな棚",
+      "cost": 17,
+      "tags": [
+       "たくさんの蜜"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "honey"
+     },
+     {
+      "name": "花の香りの手紙",
+      "cost": 5,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "perfume"
+     },
+     {
+      "name": "クモの巣の飾り",
+      "cost": 7,
+      "tags": [
+       "クモの巣"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "spiderweb"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i18",
+   "company": "invest",
+   "day": 6,
+   "time": "夜",
+   "clientId": "zeno",
+   "visit": 1,
+   "lines": [
+    "星から星へ品物を運ぶ、ゼノと申します。地球は3回目です。",
+    "地球の最新の機械を、宇宙じゅうに紹介したいのです。",
+    "…この前、手で編んだ鍋つかみを星の子にあげたら大はしゃぎで。",
+    "出せるのは星のかけら50。たくさんの工房に少しずつ。"
+   ],
+   "surfaceWish": "最新の品",
+   "honneTags": [
+    "手づくり"
+   ],
+   "dislikeTags": [
+    "湿気",
+    "大きな音",
+    "重い荷物"
+   ],
+   "budget": {
+    "amount": 50,
+    "unit": "星のかけら",
+    "spread": "many"
+   },
+   "aftermath": {
+    "great": "手編みの鍋つかみ、7つの星で大人気。作り手さんに星の手紙が届きます！",
+    "ok": "最新の機械、宇宙でも話題です。手づくりの品は、まだ少しだけ。",
+    "poor": "最新の機械は好評でした。…でも本当は、手づくりの品を広めたかったのです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "町の手づくり工房たち",
+      "cost": 23,
+      "tags": [
+       "手づくり"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "knitting"
+     },
+     {
+      "name": "最新の機械の工場",
+      "cost": 28,
+      "tags": [
+       "最新の品"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "robot"
+     },
+     {
+      "name": "1軒の焼きもの工房",
+      "cost": 20,
+      "tags": [
+       "手づくり"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "pottery"
+     },
+     {
+      "name": "港の大きな倉庫",
+      "cost": 18,
+      "tags": [
+       "重い荷物"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "port"
+     }
+    ],
+    "activity": [
+     {
+      "name": "工房ごとに少しずつ",
+      "cost": 15,
+      "tags": [
+       "手づくり"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "threeenv"
+     },
+     {
+      "name": "最新の機械1台に全部",
+      "cost": 20,
+      "tags": [
+       "最新の品"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "saveappliance"
+     },
+     {
+      "name": "2つの工場に分ける",
+      "cost": 18,
+      "tags": [
+       "最新の品"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "帰りの燃料に取っておく",
+      "cost": 8,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "spaceship"
+     }
+    ],
+    "food": [
+     {
+      "name": "工房で作るのを見る",
+      "cost": 4,
+      "tags": [
+       "手づくり"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "scarf"
+     },
+     {
+      "name": "機械の発表会に行く",
+      "cost": 6,
+      "tags": [
+       "最新の品",
+       "大きな音"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "projector"
+     },
+     {
+      "name": "星から通信で聞く",
+      "cost": 3,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "telescope"
+     },
+     {
+      "name": "新しい品の速さを測る",
+      "cost": 4,
+      "tags": [
+       "最新の品"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "watch"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "星の子の手づくり飾り",
+      "cost": 4,
+      "tags": [
+       "手づくり"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "spikystar"
+     },
+     {
+      "name": "光る最新の記念品",
+      "cost": 9,
+      "tags": [
+       "最新の品"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "gem"
+     },
+     {
+      "name": "大きな音の花火で祝う",
+      "cost": 8,
+      "tags": [
+       "大きな音"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "fireworks"
+     },
+     {
+      "name": "地球の絵はがき",
+      "cost": 1,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "postcard"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i19",
+   "company": "invest",
+   "day": 7,
+   "time": "朝",
+   "clientId": "goro",
+   "visit": 3,
+   "regularId": "goro",
+   "bonusBudget": 15000,
+   "returnGreeting": {
+    "great": "集会所、今じゃ町の子らのたまり場だ！",
+    "ok": "おう、今年も頼むよ。いつもありがとうな。",
+    "poor": "今度こそ…。弟子らと、また古い家を見て回っとるんだ。"
+   },
+   "becomesRegular": true,
+   "lines": [
+    "若手を集めた大きな技の大会を、町で開こうかと思ってな。",
+    "…弟子らが、町じゅうの古い家の戸や窓を見て回っとるんだ。",
+    "出せるのは10万円。たくさんの所に少しずつ分けてくれ。"
+   ],
+   "surfaceWish": "若手",
+   "honneTags": [
+    "弟子",
+    "町の家"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 100000,
+    "unit": "円",
+    "spread": "many"
+   },
+   "aftermath": {
+    "great": "弟子らと町じゅうの戸を直した。どの家からも、ありがとうが聞こえる！",
+    "ok": "大会は大にぎわいだった。古い家は、まだ半分残っとる。",
+    "poor": "大会は盛り上がった。…でも本当は、弟子らと町じゅうの家を直したかったんだ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "町じゅうの古い家々",
+      "cost": 47000,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "oldhouse"
+     },
+     {
+      "name": "若手の技の大会",
+      "cost": 56000,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "stadium"
+     },
+     {
+      "name": "弟子1人の独立の店",
+      "cost": 42500,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "carpentry"
+     },
+     {
+      "name": "若手の建築の学校",
+      "cost": 50500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "classroom"
+     }
+    ],
+    "activity": [
+     {
+      "name": "家ごとに少しずつ",
+      "cost": 39000,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "threeenv"
+     },
+     {
+      "name": "大会の賞金に全部",
+      "cost": 47000,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "medal"
+     },
+     {
+      "name": "弟子らの道具を新調",
+      "cost": 40500,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "toolbox"
+     },
+     {
+      "name": "来年の分に残す",
+      "cost": 17000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "弟子と一軒ずつ回る",
+      "cost": 4500,
+      "tags": [
+       "弟子",
+       "町の家"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "worksite"
+     },
+     {
+      "name": "大会の審査員をする",
+      "cost": 5500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "lecture"
+     },
+     {
+      "name": "直った家の話を聞く",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "whisper"
+     },
+     {
+      "name": "若手の作品を見て回る",
+      "cost": 3500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "museum"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "町の家の戸に印を彫る",
+      "cost": 3500,
+      "tags": [
+       "町の家"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "nameplate"
+     },
+     {
+      "name": "大会の記念の盾",
+      "cost": 6500,
+      "tags": [
+       "若手"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "trophy"
+     },
+     {
+      "name": "弟子との大宴会",
+      "cost": 8000,
+      "tags": [
+       "弟子"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "banquet"
+     },
+     {
+      "name": "お礼の手ぬぐい",
+      "cost": 1000,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "tenugui"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i20",
+   "company": "invest",
+   "day": 7,
+   "time": "昼",
+   "clientId": "kenji",
+   "visit": 1,
+   "lines": [
+    "20年ぶりに地元に戻ってきました。何か応援したくて。",
+    "駅前にできた、話題の店がいいかなと思うんです。",
+    "…子どものころ手伝った近所の畑、今は人手が足りないらしくて。",
+    "出せるのは6万円。2〜3の所に分けたいです。"
+   ],
+   "surfaceWish": "話題の店",
+   "honneTags": [
+    "農家",
+    "地元"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 60000,
+    "unit": "円",
+    "spread": "few"
+   },
+   "aftermath": {
+    "great": "週末は畑で汗をかいてます。とれたての野菜が、朝ごはんに！",
+    "ok": "話題の店はにぎわってます。畑には、まだ顔を出せてません。",
+    "poor": "話題の店は楽しかったです。…でも本当は、地元の畑を応援したかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "近所の農家2軒",
+      "cost": 30000,
+      "tags": [
+       "農家",
+       "地元"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "farm"
+     },
+     {
+      "name": "駅前の話題の店",
+      "cost": 37000,
+      "tags": [
+       "話題の店"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "trendshop"
+     },
+     {
+      "name": "1軒のりんご園",
+      "cost": 28000,
+      "tags": [
+       "農家"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "orchard"
+     },
+     {
+      "name": "となり町の大きな店",
+      "cost": 25500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "shopbags"
+     }
+    ],
+    "activity": [
+     {
+      "name": "2軒の畑に半分ずつ",
+      "cost": 25500,
+      "tags": [
+       "農家"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "splitjar"
+     },
+     {
+      "name": "話題の店の新メニューに",
+      "cost": 28000,
+      "tags": [
+       "話題の店"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "parfait"
+     },
+     {
+      "name": "町の行事に少しずつ",
+      "cost": 18500,
+      "tags": [
+       "地元"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "confetti"
+     },
+     {
+      "name": "少し残しておく",
+      "cost": 9500,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "rainyjar"
+     }
+    ],
+    "food": [
+     {
+      "name": "週末に畑を手伝う",
+      "cost": 1000,
+      "tags": [
+       "農家"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "vegetables"
+     },
+     {
+      "name": "店の行列を見に行く",
+      "cost": 1500,
+      "tags": [
+       "話題の店"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "neon"
+     },
+     {
+      "name": "ときどき電話で聞く",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "phone"
+     },
+     {
+      "name": "店の評判を調べる",
+      "cost": 1000,
+      "tags": [
+       "話題の店"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "townnews"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "とれたて野菜の朝ごはん",
+      "cost": 3000,
+      "tags": [
+       "地元"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "breakfast"
+     },
+     {
+      "name": "話題の店の招待券",
+      "cost": 4000,
+      "tags": [
+       "話題の店"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "ticket"
+     },
+     {
+      "name": "地元の同級生と再会",
+      "cost": 3500,
+      "tags": [
+       "地元"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "oldschool"
+     },
+     {
+      "name": "お礼の手紙",
+      "cost": 0,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "letter"
+     }
+    ]
+   }
+  },
+  {
+   "id": "i21",
+   "company": "invest",
+   "day": 7,
+   "time": "夜",
+   "clientId": "hou",
+   "visit": 3,
+   "regularId": "hou",
+   "bonusBudget": 6,
+   "returnGreeting": {
+    "great": "メジロの教室、生徒が10羽になったぞ。ホウ。",
+    "ok": "また来たぞ。いつも世話になるのう。",
+    "poor": "今度こそ…。若鳥らが、また夢の話をしておってな。"
+   },
+   "becomesRegular": true,
+   "lines": [
+    "森の大きな灯台を建てれば、皆の役に立つと思うてな。",
+    "…巣立ったばかりの若鳥たちが、森のあちこちで店を出しておる。",
+    "木の実は50じゃ。たくさんの店に、少しずつ届けてほしい。"
+   ],
+   "surfaceWish": "森の役に立つ",
+   "honneTags": [
+    "若鳥"
+   ],
+   "dislikeTags": [
+    "カラス",
+    "昼のさわぎ",
+    "強い光"
+   ],
+   "budget": {
+    "amount": 50,
+    "unit": "木の実",
+    "spread": "many"
+   },
+   "aftermath": {
+    "great": "夜の見回りで、若鳥らの店を一軒ずつのぞくのが楽しみじゃ。ホウ",
+    "ok": "灯台は立派じゃ。若鳥らの店は、まだ少しさびしいのう。",
+    "poor": "灯台は立派にできた。…でも本当は、若鳥らの夢を見守りたかったのじゃ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "若鳥たちの店々",
+      "cost": 23,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "birdsong"
+     },
+     {
+      "name": "森の大きな灯台",
+      "cost": 28,
+      "tags": [
+       "森の役に立つ",
+       "強い光"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "tower"
+     },
+     {
+      "name": "1羽の歌の教室",
+      "cost": 20,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "classroom"
+     },
+     {
+      "name": "森の道の大そうじ",
+      "cost": 19,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "leafshade"
+     }
+    ],
+    "activity": [
+     {
+      "name": "店ごとにひと粒ずつ",
+      "cost": 15,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "nutstore"
+     },
+     {
+      "name": "灯台に全部",
+      "cost": 21,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "lightup"
+     },
+     {
+      "name": "3つの巣の修理に",
+      "cost": 17,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "few"
+      ],
+      "art": "treehouse"
+     },
+     {
+      "name": "冬の分に取っておく",
+      "cost": 9,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "treehollow"
+     }
+    ],
+    "food": [
+     {
+      "name": "夜の見回りで寄る",
+      "cost": 2,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "nightgarden"
+     },
+     {
+      "name": "昼間の集まりに出る",
+      "cost": 3,
+      "tags": [
+       "昼のさわぎ"
+      ],
+      "spreads": [
+       "few",
+       "many"
+      ],
+      "art": "picnic"
+     },
+     {
+      "name": "森の掲示板を見る",
+      "cost": 2,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "noticeboard"
+     },
+     {
+      "name": "カラスに見張りを頼む",
+      "cost": 2,
+      "tags": [
+       "森の役に立つ",
+       "カラス"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "crowfeather"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "若鳥の店の夜市",
+      "cost": 7,
+      "tags": [
+       "若鳥"
+      ],
+      "spreads": [
+       "many"
+      ],
+      "art": "lantern"
+     },
+     {
+      "name": "灯台に名前を刻む",
+      "cost": 7,
+      "tags": [
+       "森の役に立つ"
+      ],
+      "spreads": [
+       "one",
+       "few"
+      ],
+      "art": "nameplate"
+     },
+     {
+      "name": "森の功労の大きな像",
+      "cost": 9,
+      "tags": [
+       "森の役に立つ",
+       "強い光"
+      ],
+      "spreads": [
+       "one"
+      ],
+      "art": "monument"
+     },
+     {
+      "name": "木の実のおすそわけ",
+      "cost": 2,
+      "tags": [],
+      "spreads": [
+       "one",
+       "few",
+       "many"
+      ],
+      "art": "goldwalnut"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t01",
+   "day": 1,
+   "time": "朝",
+   "clientId": "toru",
+   "visit": 1,
+   "lines": [
+    "商店街で八百屋をしています。閉まった店が増えてきてね。",
+    "とにかく人をたくさん呼んで、にぎやかにしたいんです。",
+    "昔は店先で、常連さんと世間話をするのが楽しみだったなあ。",
+    "予算は8万円。春のうちに始めたいんです。"
+   ],
+   "surfaceWish": "にぎわい",
+   "honneTags": [
+    "なじみ",
+    "おしゃべり"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 80000,
+    "unit": "円",
+    "season": "春"
+   },
+   "aftermath": {
+    "great": "店先で、昔の常連さんと話しこむ毎日です。商店街に笑い声が！",
+    "ok": "人はたくさん来ました。常連さんとは、ゆっくり話せなかったな。",
+    "poor": "人はたくさん来ました。…でも本当は、なじみのお客さんと話せる町にしたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "八百屋の店先",
+      "cost": 15000,
+      "tags": [
+       "なじみ",
+       "おしゃべり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "vegetables"
+     },
+     {
+      "name": "駅前の大きな広場",
+      "cost": 40000,
+      "tags": [
+       "にぎわい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "brightplaza"
+     },
+     {
+      "name": "空き店の休み処",
+      "cost": 25000,
+      "tags": [
+       "おしゃべり"
+      ],
+      "seasons": [
+       "春",
+       "秋"
+      ],
+      "art": "restspot"
+     },
+     {
+      "name": "河原の大きなテント",
+      "cost": 45000,
+      "tags": [
+       "にぎわい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋"
+      ],
+      "art": "tent"
+     }
+    ],
+    "activity": [
+     {
+      "name": "店先の朝市",
+      "cost": 15000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋"
+      ],
+      "art": "morningmarket"
+     },
+     {
+      "name": "有名な歌手を呼ぶ",
+      "cost": 50000,
+      "tags": [
+       "にぎわい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "music"
+     },
+     {
+      "name": "縁台で夕涼み話",
+      "cost": 8000,
+      "tags": [
+       "おしゃべり"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "bench"
+     },
+     {
+      "name": "大売り出しの福引き",
+      "cost": 20000,
+      "tags": [
+       "にぎわい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "lottery"
+     }
+    ],
+    "food": [
+     {
+      "name": "常連さんに手紙",
+      "cost": 5000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "テレビで宣伝",
+      "cost": 30000,
+      "tags": [
+       "にぎわい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "localtv"
+     },
+     {
+      "name": "店先の黒板に書く",
+      "cost": 2000,
+      "tags": [
+       "おしゃべり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "chalkboard"
+     },
+     {
+      "name": "町じゅうにチラシ",
+      "cost": 10000,
+      "tags": [
+       "にぎわい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "flyer"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "休み処の当番表",
+      "cost": 5000,
+      "tags": [
+       "おしゃべり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "毎週の大安売り",
+      "cost": 15000,
+      "tags": [
+       "にぎわい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "shopbags"
+     },
+     {
+      "name": "お客さんの名前帳",
+      "cost": 3000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "nametag"
+     },
+     {
+      "name": "冬のこたつ茶会",
+      "cost": 10000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "kotatsu"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t02",
+   "day": 1,
+   "time": "昼",
+   "clientId": "ayaka",
+   "visit": 1,
+   "lines": [
+    "都会から、生まれた町に帰ってきました。",
+    "おしゃれなカフェを開いて、町を明るくしたいな。",
+    "夏休みは昔の友だちが帰ってくるの。母校のプール、なつかしい。",
+    "予算は6万円。この夏にやってみたくて。"
+   ],
+   "surfaceWish": "おしゃれ",
+   "honneTags": [
+    "友だち",
+    "なつかしい"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 60000,
+    "unit": "円",
+    "season": "夏"
+   },
+   "aftermath": {
+    "great": "夜の校庭で、昔の友だちと花火をしました。また来年もって！",
+    "ok": "カフェはおしゃれにできました。友だちとは、少ししか会えなかったな。",
+    "poor": "おしゃれなお店でした。…でも本当は、昔の友だちとまた集まりたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "母校の校庭",
+      "cost": 10000,
+      "tags": [
+       "なつかしい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋"
+      ],
+      "art": "schoolyard"
+     },
+     {
+      "name": "駅前のおしゃれな店",
+      "cost": 44000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "trendshop"
+     },
+     {
+      "name": "友だちの家の縁側",
+      "cost": 8000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "夏",
+       "秋"
+      ],
+      "art": "engawa"
+     },
+     {
+      "name": "ガラス張りのカフェ",
+      "cost": 38000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "bookcafe"
+     }
+    ],
+    "activity": [
+     {
+      "name": "夜の校庭で花火",
+      "cost": 15000,
+      "tags": [
+       "友だち",
+       "なつかしい"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "fireworks"
+     },
+     {
+      "name": "流行りのパンケーキ",
+      "cost": 15000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "pancake"
+     },
+     {
+      "name": "雪のかまくら作り",
+      "cost": 12000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "kamakura"
+     },
+     {
+      "name": "写真映えの壁",
+      "cost": 19000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "artframe"
+     }
+    ],
+    "food": [
+     {
+      "name": "同級生に電話をかける",
+      "cost": 1000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "phonecall"
+     },
+     {
+      "name": "写真の投稿で宣伝",
+      "cost": 5000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "camera"
+     },
+     {
+      "name": "卒業アルバムで呼ぶ",
+      "cost": 2000,
+      "tags": [
+       "なつかしい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "album"
+     },
+     {
+      "name": "雑誌にのせてもらう",
+      "cost": 10000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "magazine"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "夏ごとの同窓の夕べ",
+      "cost": 5000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "lantern"
+     },
+     {
+      "name": "毎月の新メニュー",
+      "cost": 8000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "parfait"
+     },
+     {
+      "name": "店の落書き帳",
+      "cost": 4000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "季節の限定グッズ",
+      "cost": 7000,
+      "tags": [
+       "おしゃれ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "giftbox"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t03",
+   "day": 1,
+   "time": "夜",
+   "clientId": "sora",
+   "visit": 1,
+   "lines": [
+    "高校2年です。駅前がさびしくて、何かしたいんです。",
+    "どうせなら、ニュースになるくらい目立つことを！",
+    "美術部のみんなと、文化祭の看板を作るのは楽しかったな。",
+    "予算は3万円。秋の連休にやりたいです。"
+   ],
+   "surfaceWish": "目立つ",
+   "honneTags": [
+    "同級生",
+    "手づくり"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 30000,
+    "unit": "円",
+    "season": "秋"
+   },
+   "aftermath": {
+    "great": "部のみんなで描いた看板に、駅の人が足を止めてくれました！",
+    "ok": "派手で目立ちました。みんなで作る時間は、少なかったな。",
+    "poor": "すごく目立ちました。…でも本当は、同級生とみんなで何かを作りたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "駅前のベンチ通り",
+      "cost": 3000,
+      "tags": [
+       "同級生"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "localtrain"
+     },
+     {
+      "name": "駅ビルの大画面",
+      "cost": 15000,
+      "tags": [
+       "目立つ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "neon"
+     },
+     {
+      "name": "空き店の小さな部屋",
+      "cost": 5000,
+      "tags": [
+       "手づくり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "emptyshop"
+     },
+     {
+      "name": "駅前の大通り",
+      "cost": 12000,
+      "tags": [
+       "目立つ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "nightcity"
+     }
+    ],
+    "activity": [
+     {
+      "name": "みんなで描く大看板",
+      "cost": 6000,
+      "tags": [
+       "手づくり",
+       "同級生"
+      ],
+      "seasons": [
+       "春",
+       "秋"
+      ],
+      "art": "easel"
+     },
+     {
+      "name": "光で空に文字を書く",
+      "cost": 19000,
+      "tags": [
+       "目立つ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "drone"
+     },
+     {
+      "name": "手づくりの灯ろう",
+      "cost": 7000,
+      "tags": [
+       "手づくり"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "lantern"
+     },
+     {
+      "name": "有名人を呼ぶ",
+      "cost": 15000,
+      "tags": [
+       "目立つ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "music"
+     }
+    ],
+    "food": [
+     {
+      "name": "学校の掲示板に貼る",
+      "cost": 500,
+      "tags": [
+       "同級生"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "bulletin"
+     },
+     {
+      "name": "動画で目立つ宣伝",
+      "cost": 5000,
+      "tags": [
+       "目立つ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "videoletter"
+     },
+     {
+      "name": "手描きのポスター",
+      "cost": 1000,
+      "tags": [
+       "手づくり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "poster"
+     },
+     {
+      "name": "新聞社に売りこむ",
+      "cost": 4000,
+      "tags": [
+       "目立つ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "newspaper"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "部の後輩に引きつぐ",
+      "cost": 1000,
+      "tags": [
+       "同級生"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "handover"
+     },
+     {
+      "name": "毎年もっと派手に",
+      "cost": 7000,
+      "tags": [
+       "目立つ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "confetti"
+     },
+     {
+      "name": "有名人のサイン会",
+      "cost": 10000,
+      "tags": [
+       "目立つ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "autograph"
+     },
+     {
+      "name": "駅前のそうじ当番",
+      "cost": 2500,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t04",
+   "day": 2,
+   "time": "朝",
+   "clientId": "morio",
+   "visit": 1,
+   "lines": [
+    "森の長老、シカのもりおじゃ。森の仲間のまとめ役でな。",
+    "森に客を呼んで、にぎやかにしたいと若い者が言うんじゃ。",
+    "わしは、虫の声を聞く秋の夜がいちばん好きでのう。",
+    "予算はどんぐり50個。秋のうちに頼むよ。"
+   ],
+   "surfaceWish": "にぎやか",
+   "honneTags": [
+    "静けさ",
+    "虫の声"
+   ],
+   "dislikeTags": [
+    "大きな音",
+    "まぶしい",
+    "人ごみ"
+   ],
+   "budget": {
+    "amount": 50,
+    "unit": "どんぐり",
+    "season": "秋"
+   },
+   "aftermath": {
+    "great": "客も一緒に、黙って虫の声を聞いとった。いい秋の夜じゃった！",
+    "ok": "にぎやかになったのう。虫の声は、少し聞こえにくかったが。",
+    "poor": "森がにぎやかになった。…でも本当は、森の静けさも守りたかったんじゃよ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "森の奥の小道",
+      "cost": 10,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "forestpath"
+     },
+     {
+      "name": "森の入り口の広場",
+      "cost": 20,
+      "tags": [
+       "にぎやか",
+       "人ごみ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "meadow"
+     },
+     {
+      "name": "虫の鳴く草はら",
+      "cost": 8,
+      "tags": [
+       "虫の声"
+      ],
+      "seasons": [
+       "夏",
+       "秋"
+      ],
+      "art": "grassrun"
+     },
+     {
+      "name": "湖のほとりの舞台",
+      "cost": 25,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "lakestage"
+     }
+    ],
+    "activity": [
+     {
+      "name": "虫の声を聞く夕べ",
+      "cost": 10,
+      "tags": [
+       "虫の声"
+      ],
+      "seasons": [
+       "夏",
+       "秋"
+      ],
+      "art": "nightgarden"
+     },
+     {
+      "name": "太鼓の大演奏会",
+      "cost": 20,
+      "tags": [
+       "にぎやか",
+       "大きな音"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "drum"
+     },
+     {
+      "name": "静かな月見の散歩",
+      "cost": 8,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "moonhill"
+     },
+     {
+      "name": "光る大きな飾り",
+      "cost": 25,
+      "tags": [
+       "にぎやか",
+       "まぶしい"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "lightup"
+     }
+    ],
+    "food": [
+     {
+      "name": "木の葉の手紙で招く",
+      "cost": 3,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "大きな看板を立てる",
+      "cost": 10,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     },
+     {
+      "name": "静かに歩く約束",
+      "cost": 5,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "promiseboard"
+     },
+     {
+      "name": "ラッパで呼びこみ",
+      "cost": 8,
+      "tags": [
+       "にぎやか",
+       "大きな音"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "megaphone"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "夜は灯りを消す決まり",
+      "cost": 3,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "lightsout"
+     },
+     {
+      "name": "毎週のにぎやか市",
+      "cost": 15,
+      "tags": [
+       "にぎやか",
+       "人ごみ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "shopbags"
+     },
+     {
+      "name": "雪の夜の静かな会",
+      "cost": 8,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "snowpath"
+     },
+     {
+      "name": "森の見回り当番",
+      "cost": 5,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "patrol"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t05",
+   "day": 2,
+   "time": "昼",
+   "clientId": "ume",
+   "visit": 1,
+   "lines": [
+    "山あいの村で、村長をしております。",
+    "この村を、テレビに出るくらい有名にしたいんですよ。",
+    "村を出た若い子たちが、田植えだけは手伝いに来てくれてね。",
+    "予算は10万円。春の田植えのころにお願いします。"
+   ],
+   "surfaceWish": "有名",
+   "honneTags": [
+    "若い人",
+    "ふるさと"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 100000,
+    "unit": "円",
+    "season": "春"
+   },
+   "aftermath": {
+    "great": "田植えに来た子が「また来月も来るね」って。村に笑い声です！",
+    "ok": "村の名前は少し知られました。若い子の顔は、まだたまにです。",
+    "poor": "村が少し有名になりました。…でも本当は、若い子が帰りたくなる村にしたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "村の田んぼ",
+      "cost": 20000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋"
+      ],
+      "art": "farm"
+     },
+     {
+      "name": "山の上の展望台",
+      "cost": 67000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "tower"
+     },
+     {
+      "name": "古い分校",
+      "cost": 30000,
+      "tags": [
+       "若い人",
+       "ふるさと"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "oldschool"
+     },
+     {
+      "name": "雪の残る峠",
+      "cost": 28000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "mountain"
+     }
+    ],
+    "activity": [
+     {
+      "name": "みんなで田植え",
+      "cost": 10000,
+      "tags": [
+       "若い人",
+       "ふるさと"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "riceplanting"
+     },
+     {
+      "name": "有名人の講演会",
+      "cost": 45000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "lecture"
+     },
+     {
+      "name": "若い人の小さな店",
+      "cost": 20000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "localshop"
+     },
+     {
+      "name": "大きな記念碑",
+      "cost": 39000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "monument"
+     }
+    ],
+    "food": [
+     {
+      "name": "村を出た子に手紙",
+      "cost": 3000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "テレビ局に売りこむ",
+      "cost": 22000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "localtv"
+     },
+     {
+      "name": "村の写真の冊子",
+      "cost": 8000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "photobook"
+     },
+     {
+      "name": "有名人に紹介を頼む",
+      "cost": 28000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "autograph"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "空き家を若い人に貸す",
+      "cost": 15000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "rentalhouse"
+     },
+     {
+      "name": "毎年テレビの取材",
+      "cost": 34000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "projector"
+     },
+     {
+      "name": "夏の帰省の集まり",
+      "cost": 11000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "bbq"
+     },
+     {
+      "name": "村の記念品売り場",
+      "cost": 17000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "giftbox"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t06",
+   "day": 2,
+   "time": "夜",
+   "clientId": "gen",
+   "visit": 1,
+   "lines": [
+    "港町の漁師、げんです。町に人を呼ぼうって話になってね。",
+    "とれたての魚を、どーんと山盛りで出せば来るだろう。",
+    "朝4時の浜は、海が金色に光るんだ。あれは見せたいね。",
+    "予算は7万円。夏のうちにやりたいね。"
+   ],
+   "surfaceWish": "海の幸",
+   "honneTags": [
+    "朝の浜"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 70000,
+    "unit": "円",
+    "season": "夏"
+   },
+   "aftermath": {
+    "great": "朝の浜で、お客さんが「来てよかった」って。浜がにぎやかだ！",
+    "ok": "魚はよろこばれたよ。朝の浜は、まだ誰も見てないけどな。",
+    "poor": "魚はよろこばれたよ。…でも本当は、浜の朝の景色を見てほしかったんだ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "夜明けの浜",
+      "cost": 10000,
+      "tags": [
+       "朝の浜"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋"
+      ],
+      "art": "sunrise"
+     },
+     {
+      "name": "港の大きな食堂",
+      "cost": 43000,
+      "tags": [
+       "海の幸"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "fishmarket"
+     },
+     {
+      "name": "朝の船着き場",
+      "cost": 15000,
+      "tags": [
+       "朝の浜"
+      ],
+      "seasons": [
+       "夏",
+       "秋"
+      ],
+      "art": "port"
+     },
+     {
+      "name": "冬の岬の朝日",
+      "cost": 17000,
+      "tags": [
+       "朝の浜"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "seaview"
+     }
+    ],
+    "activity": [
+     {
+      "name": "漁船で朝日を見る",
+      "cost": 20000,
+      "tags": [
+       "朝の浜"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "boat"
+     },
+     {
+      "name": "魚の山盛り食べ放題",
+      "cost": 35000,
+      "tags": [
+       "海の幸"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "sushi"
+     },
+     {
+      "name": "浜の朝ごはん会",
+      "cost": 11000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "onigiri"
+     },
+     {
+      "name": "大きな魚の焼き場",
+      "cost": 21000,
+      "tags": [
+       "海の幸"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "grilledfish"
+     }
+    ],
+    "food": [
+     {
+      "name": "朝日の写真を貼る",
+      "cost": 3000,
+      "tags": [
+       "朝の浜"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "camera"
+     },
+     {
+      "name": "山盛りの魚の写真",
+      "cost": 6000,
+      "tags": [
+       "海の幸"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "seafoodbowl"
+     },
+     {
+      "name": "港の黒板に書く",
+      "cost": 4000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "chalkboard"
+     },
+     {
+      "name": "料理の本にのせる",
+      "cost": 13000,
+      "tags": [
+       "海の幸"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "recipebook"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "毎週の朝の浜歩き",
+      "cost": 5000,
+      "tags": [
+       "朝の浜"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "footprints"
+     },
+     {
+      "name": "毎月の大漁の市",
+      "cost": 21000,
+      "tags": [
+       "海の幸"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "fishmarket"
+     },
+     {
+      "name": "漁の道具の小屋",
+      "cost": 9000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "fishingrod"
+     },
+     {
+      "name": "魚の料理教室",
+      "cost": 11000,
+      "tags": [
+       "海の幸"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "knife"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t07",
+   "day": 3,
+   "time": "朝",
+   "clientId": "kerosuke",
+   "visit": 1,
+   "lines": [
+    "田んぼの町の世話役、カエルのけろすけです。",
+    "町に人が来ないので、大きな遊び場を作りたいケロ。",
+    "夜の田んぼでは、ホタルやメダカがきらきらしてるのに。",
+    "予算ははすの葉40枚。夏のうちにお願いしますケロ。"
+   ],
+   "surfaceWish": "遊び場",
+   "honneTags": [
+    "生きもの",
+    "田んぼ"
+   ],
+   "dislikeTags": [
+    "日照り",
+    "ヘビ",
+    "サギ"
+   ],
+   "budget": {
+    "amount": 40,
+    "unit": "はすの葉",
+    "season": "夏"
+   },
+   "aftermath": {
+    "great": "子どもたちが夜の田んぼで「ホタルだ！」って。町がにこにこケロ！",
+    "ok": "遊び場はにぎやかケロ。田んぼには、あまり人が来ないけど。",
+    "poor": "遊び場は楽しそうでした。…でも本当は、田んぼの生きものを知ってほしかったケロ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "夜の田んぼのあぜ道",
+      "cost": 10,
+      "tags": [
+       "田んぼ",
+       "生きもの"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "frogpond"
+     },
+     {
+      "name": "町はずれの遊び場",
+      "cost": 25,
+      "tags": [
+       "遊び場"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "ferriswheel"
+     },
+     {
+      "name": "水草の小川",
+      "cost": 8,
+      "tags": [
+       "生きもの"
+      ],
+      "seasons": [
+       "春",
+       "夏"
+      ],
+      "art": "brook"
+     },
+     {
+      "name": "冬の田んぼ",
+      "cost": 6,
+      "tags": [
+       "田んぼ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "winterfield"
+     }
+    ],
+    "activity": [
+     {
+      "name": "ホタルを見る夕べ",
+      "cost": 10,
+      "tags": [
+       "生きもの"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "firefly"
+     },
+     {
+      "name": "大きなすべり台",
+      "cost": 20,
+      "tags": [
+       "遊び場"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "slide"
+     },
+     {
+      "name": "メダカすくい",
+      "cost": 8,
+      "tags": [
+       "生きもの"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "aquarium"
+     },
+     {
+      "name": "水の大砲あそび",
+      "cost": 15,
+      "tags": [
+       "遊び場"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "splash"
+     }
+    ],
+    "food": [
+     {
+      "name": "生きもの図鑑を配る",
+      "cost": 5,
+      "tags": [
+       "生きもの"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "bugbook"
+     },
+     {
+      "name": "遊び場の大看板",
+      "cost": 10,
+      "tags": [
+       "遊び場"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     },
+     {
+      "name": "田んぼの案内地図",
+      "cost": 5,
+      "tags": [
+       "田んぼ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "treasuremap"
+     },
+     {
+      "name": "サギに配達を頼む",
+      "cost": 5,
+      "tags": [
+       "遊び場",
+       "サギ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "birdsong"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "子どもの生きもの係",
+      "cost": 5,
+      "tags": [
+       "生きもの"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "遊具を毎年ふやす",
+      "cost": 15,
+      "tags": [
+       "遊び場"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "sandbox"
+     },
+     {
+      "name": "水路のそうじ当番",
+      "cost": 5,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "brook"
+     },
+     {
+      "name": "秋の稲刈り体験",
+      "cost": 10,
+      "tags": [
+       "田んぼ"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "harvest"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t08",
+   "day": 3,
+   "time": "昼",
+   "clientId": "toru",
+   "visit": 2,
+   "regularId": "toru",
+   "bonusBudget": 15000,
+   "returnGreeting": {
+    "great": "あれから毎朝、店先で常連さんとしゃべってますよ！",
+    "ok": "どうも、お久しぶりです。前はありがとうございました。",
+    "poor": "今度こそ…。実はね、昔なじみがまた顔を出してくれたんですよ。"
+   },
+   "lines": [
+    "あれから、商店街にお客さんが少し戻ってきてね。",
+    "夏の夜に、流行りの屋台をずらっと並べたいんです。",
+    "夕方の店先で、なじみと将棋を指すのが楽しみでね。予算は9万円、夏に。"
+   ],
+   "surfaceWish": "流行り",
+   "honneTags": [
+    "なじみ",
+    "将棋"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 90000,
+    "unit": "円",
+    "season": "夏"
+   },
+   "aftermath": {
+    "great": "夕涼みの将棋に、見物の人だかり。昔なじみも毎晩来てますよ！",
+    "ok": "屋台はにぎわいました。将棋は、ちょっとお休み中です。",
+    "poor": "屋台は大にぎわいでした。…でも本当は、なじみと将棋を指せる町がよかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "店先の縁台",
+      "cost": 10000,
+      "tags": [
+       "なじみ",
+       "将棋"
+      ],
+      "seasons": [
+       "夏",
+       "秋"
+      ],
+      "art": "bench"
+     },
+     {
+      "name": "駅前の大通り",
+      "cost": 50000,
+      "tags": [
+       "流行り"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "nightcity"
+     },
+     {
+      "name": "商店街の空き店",
+      "cost": 25000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "emptyshop"
+     },
+     {
+      "name": "屋上の夜景広場",
+      "cost": 44000,
+      "tags": [
+       "流行り"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "rooftop"
+     }
+    ],
+    "activity": [
+     {
+      "name": "夕涼みの将棋大会",
+      "cost": 10000,
+      "tags": [
+       "将棋"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "goboard"
+     },
+     {
+      "name": "流行りの屋台ずらり",
+      "cost": 38000,
+      "tags": [
+       "流行り"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "skewer"
+     },
+     {
+      "name": "こたつで将棋の会",
+      "cost": 10000,
+      "tags": [
+       "将棋"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "kotatsu"
+     },
+     {
+      "name": "光る屋台の通り",
+      "cost": 31000,
+      "tags": [
+       "流行り"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "neon"
+     }
+    ],
+    "food": [
+     {
+      "name": "常連さんに声かけ",
+      "cost": 1000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "neighbortalk"
+     },
+     {
+      "name": "流行りの動画で宣伝",
+      "cost": 7000,
+      "tags": [
+       "流行り"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "videoletter"
+     },
+     {
+      "name": "店先の黒板",
+      "cost": 3000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "chalkboard"
+     },
+     {
+      "name": "雑誌にのせる",
+      "cost": 19000,
+      "tags": [
+       "流行り"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "magazine"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "毎週の縁台将棋",
+      "cost": 3000,
+      "tags": [
+       "将棋"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "goboard"
+     },
+     {
+      "name": "屋台を毎晩出す",
+      "cost": 25000,
+      "tags": [
+       "流行り"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "yakisoba"
+     },
+     {
+      "name": "打ち水の当番",
+      "cost": 4000,
+      "tags": [],
+      "seasons": [
+       "夏"
+      ],
+      "art": "uchimizu"
+     },
+     {
+      "name": "流行りの店を誘う",
+      "cost": 19000,
+      "tags": [
+       "流行り"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "trendshop"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t09",
+   "day": 3,
+   "time": "夜",
+   "clientId": "keiko",
+   "visit": 1,
+   "needs": "e02",
+   "crossGreeting": {
+    "great": "同窓会ではお世話になりました。あの夜から、みんな町の話ばかりよ。",
+    "ok": "同窓会のときはお世話になりました。あれから町の話になってね。",
+    "poor": "同窓会のあと、同級生と昔の通学路を歩いたの。それで町の話にね。"
+   },
+   "lines": [
+    "同窓会のときはお世話になりました。あれから町の話になってね。",
+    "ふるさとを元気にしたいの。大がかりな催しがいいかしら。",
+    "みんなで通った木造の校舎、まだ残ってるのよ。",
+    "予算は8万円。秋の運動会のころにやりたいわ。"
+   ],
+   "surfaceWish": "大がかり",
+   "honneTags": [
+    "なつかしい",
+    "同級生"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 80000,
+    "unit": "円",
+    "season": "秋"
+   },
+   "aftermath": {
+    "great": "校舎の廊下で、みんな子どもみたいに走ってたわ。町が笑顔よ！",
+    "ok": "立派な催しだったわ。同級生とは、あまり話せなかったけど。",
+    "poor": "立派な催しだったわ。…でも本当は、同級生となつかしい校舎に集まりたかったのよ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "木造の校舎",
+      "cost": 20000,
+      "tags": [
+       "なつかしい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "oldschool"
+     },
+     {
+      "name": "町の大きな会館",
+      "cost": 45000,
+      "tags": [
+       "大がかり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "hall"
+     },
+     {
+      "name": "母校の校庭",
+      "cost": 15000,
+      "tags": [
+       "同級生",
+       "なつかしい"
+      ],
+      "seasons": [
+       "春",
+       "秋"
+      ],
+      "art": "schoolyard"
+     },
+     {
+      "name": "夏の川原",
+      "cost": 11000,
+      "tags": [
+       "同級生"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "riverbank"
+     }
+    ],
+    "activity": [
+     {
+      "name": "大人の運動会",
+      "cost": 15000,
+      "tags": [
+       "同級生"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "undokai"
+     },
+     {
+      "name": "大きな花火大会",
+      "cost": 56000,
+      "tags": [
+       "大がかり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "fireworks"
+     },
+     {
+      "name": "昔の給食を食べる会",
+      "cost": 12000,
+      "tags": [
+       "なつかしい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "kyushoku"
+     },
+     {
+      "name": "有名な楽団を招く",
+      "cost": 45000,
+      "tags": [
+       "大がかり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "orchestra"
+     }
+    ],
+    "food": [
+     {
+      "name": "名簿で連絡を回す",
+      "cost": 2000,
+      "tags": [
+       "同級生"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "町じゅうに大看板",
+      "cost": 17000,
+      "tags": [
+       "大がかり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     },
+     {
+      "name": "卒業アルバムを配る",
+      "cost": 1000,
+      "tags": [
+       "なつかしい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "album"
+     },
+     {
+      "name": "テレビで宣伝",
+      "cost": 34000,
+      "tags": [
+       "大がかり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "localtv"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "毎年の大がかりな会",
+      "cost": 34000,
+      "tags": [
+       "大がかり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "kusudama"
+     },
+     {
+      "name": "校舎の掃除の会",
+      "cost": 4000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "寄せ書き帳を回す",
+      "cost": 2000,
+      "tags": [
+       "同級生"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "夏の夜の肝だめし",
+      "cost": 6000,
+      "tags": [
+       "なつかしい"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "nightschoolyard"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t10",
+   "day": 4,
+   "time": "朝",
+   "clientId": "yui",
+   "visit": 1,
+   "needs": "l02",
+   "crossGreeting": {
+    "great": "卒業のときはお世話になりました。地元の毎日、楽しいです。",
+    "ok": "卒業のときはお世話になりました。今は地元に戻ってます。",
+    "poor": "都会に出たけど戻りました。やっぱり幼なじみのそばがいい。"
+   },
+   "lines": [
+    "卒業のときはお世話になりました。今は地元に戻ってます。",
+    "この町を、都会みたいにおしゃれにしたくて。",
+    "幼なじみと川の土手でお花見するのが、毎年の楽しみなんです。",
+    "予算は7万円。春のうちにやりたいです。"
+   ],
+   "surfaceWish": "都会風",
+   "honneTags": [
+    "友だち",
+    "地元"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 70000,
+    "unit": "円",
+    "season": "春"
+   },
+   "aftermath": {
+    "great": "土手のお花見市に、町じゅうの人が！幼なじみと大笑いの一日です。",
+    "ok": "町が少しおしゃれになりました。幼なじみとは、たまにです。",
+    "poor": "おしゃれな町になりました。…でも本当は、地元で友だちと盛り上げたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "川の土手の桜並木",
+      "cost": 15000,
+      "tags": [
+       "地元",
+       "友だち"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "cherrybank"
+     },
+     {
+      "name": "駅前のガラスのビル",
+      "cost": 50000,
+      "tags": [
+       "都会風"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "tower"
+     },
+     {
+      "name": "幼なじみの実家の店",
+      "cost": 20000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "localshop"
+     },
+     {
+      "name": "秋の川原",
+      "cost": 12000,
+      "tags": [
+       "地元"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "riverbank"
+     }
+    ],
+    "activity": [
+     {
+      "name": "土手でお花見市",
+      "cost": 15000,
+      "tags": [
+       "地元",
+       "友だち"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "picnic"
+     },
+     {
+      "name": "夜のおしゃれな店",
+      "cost": 31000,
+      "tags": [
+       "都会風"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "neon"
+     },
+     {
+      "name": "幼なじみと手づくり市",
+      "cost": 12000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋"
+      ],
+      "art": "handmarket"
+     },
+     {
+      "name": "有名な店を呼ぶ",
+      "cost": 38000,
+      "tags": [
+       "都会風"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "trendshop"
+     }
+    ],
+    "food": [
+     {
+      "name": "幼なじみの口コミ",
+      "cost": 1000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "neighbortalk"
+     },
+     {
+      "name": "都会の雑誌にのせる",
+      "cost": 19000,
+      "tags": [
+       "都会風"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "magazine"
+     },
+     {
+      "name": "町の掲示板に貼る",
+      "cost": 1000,
+      "tags": [
+       "地元"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "bulletin"
+     },
+     {
+      "name": "駅の大きな広告",
+      "cost": 25000,
+      "tags": [
+       "都会風"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "poster"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "月1の集まりの日",
+      "cost": 3000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "livingroom"
+     },
+     {
+      "name": "都会の店を毎月呼ぶ",
+      "cost": 25000,
+      "tags": [
+       "都会風"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "shopbags"
+     },
+     {
+      "name": "土手のゴミ拾い",
+      "cost": 3000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "litterpick"
+     },
+     {
+      "name": "夏の夜の川辺カフェ",
+      "cost": 10000,
+      "tags": [
+       "友だち"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "nightriver"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t11",
+   "day": 4,
+   "time": "昼",
+   "clientId": "morio",
+   "visit": 2,
+   "regularId": "morio",
+   "bonusBudget": 10,
+   "returnGreeting": {
+    "great": "あれから秋の夜は、虫の声を聞きに来る客がおってな。",
+    "ok": "やあ、久しぶりじゃのう。前は世話になった。",
+    "poor": "今度こそ…。わしは、森が静かな夜も好きでのう。"
+   },
+   "lines": [
+    "あれから森に、静かに歩く客が来るようになってな。",
+    "冬も客を呼ぼうと、若い者が光る飾りを並べたがるんじゃ。",
+    "雪の夜は音がなくて、星がよう見える。予算はどんぐり60個、冬にな。"
+   ],
+   "surfaceWish": "にぎやか",
+   "honneTags": [
+    "静けさ",
+    "星空"
+   ],
+   "dislikeTags": [
+    "大きな音",
+    "まぶしい",
+    "人ごみ"
+   ],
+   "budget": {
+    "amount": 60,
+    "unit": "どんぐり",
+    "season": "冬"
+   },
+   "aftermath": {
+    "great": "雪の夜、客と並んで星を見たよ。若い者も、静かでええと言うとる！",
+    "ok": "冬の森もにぎやかになった。星は少し見えにくかったがのう。",
+    "poor": "森は明るくなった。…でも本当は、雪の夜の静けさと星空を守りたかったんじゃ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "雪の森の小道",
+      "cost": 10,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "snowpath"
+     },
+     {
+      "name": "森の大広場",
+      "cost": 28,
+      "tags": [
+       "にぎやか",
+       "人ごみ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "meadow"
+     },
+     {
+      "name": "星の見える丘",
+      "cost": 12,
+      "tags": [
+       "星空"
+      ],
+      "seasons": [
+       "秋",
+       "冬"
+      ],
+      "art": "observatory"
+     },
+     {
+      "name": "夏の湖のほとり",
+      "cost": 11,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "brook"
+     }
+    ],
+    "activity": [
+     {
+      "name": "雪の夜の星見の会",
+      "cost": 15,
+      "tags": [
+       "星空",
+       "静けさ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "telescope"
+     },
+     {
+      "name": "光る飾りの大行進",
+      "cost": 28,
+      "tags": [
+       "にぎやか",
+       "まぶしい"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "lightup"
+     },
+     {
+      "name": "雪の足あと探し",
+      "cost": 8,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "footprints"
+     },
+     {
+      "name": "森の大運動会",
+      "cost": 22,
+      "tags": [
+       "にぎやか",
+       "大きな音"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "undokai"
+     }
+    ],
+    "food": [
+     {
+      "name": "静かに歩く約束",
+      "cost": 5,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "promiseboard"
+     },
+     {
+      "name": "光る大きな看板",
+      "cost": 17,
+      "tags": [
+       "にぎやか",
+       "まぶしい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     },
+     {
+      "name": "星の地図を配る",
+      "cost": 5,
+      "tags": [
+       "星空"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "starchart"
+     },
+     {
+      "name": "鳥に大声で宣伝",
+      "cost": 6,
+      "tags": [
+       "にぎやか",
+       "大きな音"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "megaphone"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "夜は灯りを消す決まり",
+      "cost": 3,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "lightsout"
+     },
+     {
+      "name": "毎晩の光の飾り",
+      "cost": 22,
+      "tags": [
+       "にぎやか",
+       "まぶしい"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "lightup"
+     },
+     {
+      "name": "森の見回り当番",
+      "cost": 6,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "patrol"
+     },
+     {
+      "name": "春の花見の会",
+      "cost": 9,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "flowerfield"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t12",
+   "day": 4,
+   "time": "夜",
+   "clientId": "yukino",
+   "visit": 1,
+   "lines": [
+    "雪の多い町で、小さな宿をやっています。",
+    "冬の客寄せに、派手な雪の遊園地でもあれば…と思って。",
+    "雪が音を吸う夜、いろりで聞く昔話がお客さんに人気なんです。",
+    "予算は9万円。この冬にお願いします。"
+   ],
+   "surfaceWish": "派手",
+   "honneTags": [
+    "ぬくもり",
+    "静かな夜"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 90000,
+    "unit": "円",
+    "season": "冬"
+   },
+   "aftermath": {
+    "great": "いろりのそばで、お客さんが「また来ます」って。町の夜がやさしい！",
+    "ok": "派手で楽しい冬でした。静かな夜は、少し減っちゃったかな。",
+    "poor": "派手でにぎやかでした。…でも本当は、冬の静かな夜を楽しんでほしかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "いろりのある宿",
+      "cost": 20000,
+      "tags": [
+       "ぬくもり"
+      ],
+      "seasons": [
+       "秋",
+       "冬"
+      ],
+      "art": "irori"
+     },
+     {
+      "name": "雪の大遊園地",
+      "cost": 80000,
+      "tags": [
+       "派手"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "ferriswheel"
+     },
+     {
+      "name": "雪明かりの小道",
+      "cost": 10000,
+      "tags": [
+       "静かな夜"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "snowpath"
+     },
+     {
+      "name": "夏の川床",
+      "cost": 24000,
+      "tags": [
+       "静かな夜"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "nightriver"
+     }
+    ],
+    "activity": [
+     {
+      "name": "いろりで昔話",
+      "cost": 10000,
+      "tags": [
+       "ぬくもり",
+       "静かな夜"
+      ],
+      "seasons": [
+       "秋",
+       "冬"
+      ],
+      "art": "irori"
+     },
+     {
+      "name": "雪の夜の大花火",
+      "cost": 63000,
+      "tags": [
+       "派手"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "fireworks"
+     },
+     {
+      "name": "雪見のお茶会",
+      "cost": 8000,
+      "tags": [
+       "静かな夜"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "teahouse"
+     },
+     {
+      "name": "光る雪の大迷路",
+      "cost": 48000,
+      "tags": [
+       "派手"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "lightup"
+     }
+    ],
+    "food": [
+     {
+      "name": "宿の手紙で知らせる",
+      "cost": 2000,
+      "tags": [
+       "ぬくもり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "派手な動画広告",
+      "cost": 24000,
+      "tags": [
+       "派手"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "videoletter"
+     },
+     {
+      "name": "雪の夜の絵はがき",
+      "cost": 3000,
+      "tags": [
+       "静かな夜"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "snowpath"
+     },
+     {
+      "name": "大きな看板",
+      "cost": 19000,
+      "tags": [
+       "派手"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "昔話の語り手を育てる",
+      "cost": 5000,
+      "tags": [
+       "ぬくもり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "books"
+     },
+     {
+      "name": "毎年もっと派手に",
+      "cost": 31000,
+      "tags": [
+       "派手"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "confetti"
+     },
+     {
+      "name": "雪かき当番",
+      "cost": 7000,
+      "tags": [],
+      "seasons": [
+       "冬"
+      ],
+      "art": "snowshovel"
+     },
+     {
+      "name": "夏のほたる宿",
+      "cost": 12000,
+      "tags": [
+       "静かな夜"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "firefly"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t13",
+   "day": 5,
+   "time": "朝",
+   "clientId": "ume",
+   "visit": 2,
+   "regularId": "ume",
+   "bonusBudget": 20000,
+   "returnGreeting": {
+    "great": "あれから若い子が田植えに来て、村がにぎやかですよ！",
+    "ok": "ご無沙汰しております。前はありがとうございました。",
+    "poor": "今度こそ…。村を出た子たち、今も村の話をするそうでね。"
+   },
+   "lines": [
+    "あれから、村を出た子がひとり帰ってきてくれましてね。",
+    "秋は観光バスをたくさん呼んで、村を有名にしたいんです。",
+    "その子と稲刈りをしたら、昔の仲間も来たいって。予算は11万円、秋に。"
+   ],
+   "surfaceWish": "観光",
+   "honneTags": [
+    "若い人",
+    "ふるさと"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 110000,
+    "unit": "円",
+    "season": "秋"
+   },
+   "aftermath": {
+    "great": "稲刈りに、昔の仲間が十人も！田んぼに笑い声がひびきました。",
+    "ok": "バスのお客さんは来てくれました。若い子の顔は、まだ少しです。",
+    "poor": "バスのお客さんは来ました。…でも本当は、若い子が帰ってきたくなる村にしたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "黄金色の田んぼ",
+      "cost": 20000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "farm"
+     },
+     {
+      "name": "大きなバス乗り場",
+      "cost": 71000,
+      "tags": [
+       "観光"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "bus"
+     },
+     {
+      "name": "帰ってきた子の家",
+      "cost": 25000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "oldhouse"
+     },
+     {
+      "name": "春のれんげ畑",
+      "cost": 21000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "flowerfield"
+     }
+    ],
+    "activity": [
+     {
+      "name": "みんなで稲刈り",
+      "cost": 12000,
+      "tags": [
+       "若い人",
+       "ふるさと"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "harvest"
+     },
+     {
+      "name": "観光バスの大宴会",
+      "cost": 56000,
+      "tags": [
+       "観光"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "banquet"
+     },
+     {
+      "name": "若い人の手づくり市",
+      "cost": 15000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "handmarket"
+     },
+     {
+      "name": "有名人の講演",
+      "cost": 49000,
+      "tags": [
+       "観光"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "lecture"
+     }
+    ],
+    "food": [
+     {
+      "name": "昔の仲間に手紙",
+      "cost": 3000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "観光の大きな案内板",
+      "cost": 28000,
+      "tags": [
+       "観光"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     },
+     {
+      "name": "稲刈りの写真集",
+      "cost": 10000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "photobook"
+     },
+     {
+      "name": "旅行雑誌にのせる",
+      "cost": 28000,
+      "tags": [
+       "観光"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "magazine"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "若い人の住む家を直す",
+      "cost": 20000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "renovate"
+     },
+     {
+      "name": "バスを毎週呼ぶ",
+      "cost": 43000,
+      "tags": [
+       "観光"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "bus"
+     },
+     {
+      "name": "村の写真を飾る",
+      "cost": 8000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "artframe"
+     },
+     {
+      "name": "冬の雪かき手伝い",
+      "cost": 11000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "snowshovel"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t14",
+   "day": 5,
+   "time": "昼",
+   "clientId": "momiji",
+   "visit": 1,
+   "needs": "e06",
+   "crossGreeting": {
+    "great": "引っ越しの会のときは、ありがとう。となりの子たちと仲よしよ。",
+    "ok": "引っ越しの会のときは、ありがとう。森にもなじめたわ。",
+    "poor": "引っ越しの会のあと、木の上でそっと話しかけたら、仲よくなれたの。"
+   },
+   "lines": [
+    "引っ越しの会のときは、ありがとう。森にもなじめたわ。",
+    "この森の町を、もっとにぎやかにしたいの。",
+    "となりの子たちと、枝の上でくるみを割るのが楽しいのよ。",
+    "予算はくるみ70個。秋のうちにお願いね。"
+   ],
+   "surfaceWish": "にぎやか",
+   "honneTags": [
+    "木の上",
+    "となり"
+   ],
+   "dislikeTags": [
+    "ヘビ",
+    "カラス",
+    "ぬかるみ"
+   ],
+   "budget": {
+    "amount": 70,
+    "unit": "くるみ",
+    "season": "秋"
+   },
+   "aftermath": {
+    "great": "となりの子たちと、枝の上でくるみ割りの会。森じゅう笑顔よ！",
+    "ok": "にぎやかな森になったわ。となりの子とは、あまり話せなかったけど。",
+    "poor": "森がにぎやかになったわ。…でも本当は、となりの子たちと木の上で遊びたかったの"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "大きな木の枝の上",
+      "cost": 15,
+      "tags": [
+       "木の上"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "bigtree"
+     },
+     {
+      "name": "森の大広場",
+      "cost": 35,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "meadow"
+     },
+     {
+      "name": "となりの木のうろ",
+      "cost": 10,
+      "tags": [
+       "となり"
+      ],
+      "seasons": [
+       "秋",
+       "冬"
+      ],
+      "art": "treehollow"
+     },
+     {
+      "name": "水辺の広場",
+      "cost": 21,
+      "tags": [
+       "にぎやか",
+       "ぬかるみ"
+      ],
+      "seasons": [
+       "春",
+       "夏"
+      ],
+      "art": "swamp"
+     }
+    ],
+    "activity": [
+     {
+      "name": "枝の上のくるみ割り",
+      "cost": 10,
+      "tags": [
+       "木の上",
+       "となり"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "goldwalnut"
+     },
+     {
+      "name": "大きな音楽会",
+      "cost": 35,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "orchestra"
+     },
+     {
+      "name": "枝わたりの競走",
+      "cost": 17,
+      "tags": [
+       "木の上"
+      ],
+      "seasons": [
+       "春",
+       "夏"
+      ],
+      "art": "treeclimb"
+     },
+     {
+      "name": "カラスの空中ショー",
+      "cost": 28,
+      "tags": [
+       "にぎやか",
+       "カラス"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "crowfeather"
+     }
+    ],
+    "food": [
+     {
+      "name": "となりの子に手紙",
+      "cost": 3,
+      "tags": [
+       "となり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "森じゅうにふれ回る",
+      "cost": 11,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "megaphone"
+     },
+     {
+      "name": "枝に小旗をさげる",
+      "cost": 5,
+      "tags": [
+       "木の上"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "smallflag"
+     },
+     {
+      "name": "大きな看板",
+      "cost": 17,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "木の実を分け合う決まり",
+      "cost": 5,
+      "tags": [
+       "となり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "nutstore"
+     },
+     {
+      "name": "毎晩のにぎやかな会",
+      "cost": 21,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "balloons"
+     },
+     {
+      "name": "冬ごもりの見回り",
+      "cost": 8,
+      "tags": [],
+      "seasons": [
+       "冬"
+      ],
+      "art": "patrol"
+     },
+     {
+      "name": "夏の枝の夕涼み",
+      "cost": 11,
+      "tags": [
+       "木の上"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "leafshade"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t15",
+   "day": 5,
+   "time": "夜",
+   "clientId": "ponkichi",
+   "visit": 1,
+   "lines": [
+    "里山で小さな店をやってる、タヌキのぽんきちです。",
+    "里に人を呼ぶなら、大売り出しで目玉の品を並べようかと。",
+    "店に来る子らが、わしの腹つづみで笑うのが好きでなあ。",
+    "予算は木の葉50枚。秋の夜にお願いしますよ。"
+   ],
+   "surfaceWish": "大売り出し",
+   "honneTags": [
+    "子ども",
+    "笑い"
+   ],
+   "dislikeTags": [
+    "犬",
+    "まぶしい",
+    "強い雨"
+   ],
+   "budget": {
+    "amount": 50,
+    "unit": "木の葉",
+    "season": "秋"
+   },
+   "aftermath": {
+    "great": "子らが腹をかかえて笑って、里じゅうに笑い声。いい秋でした！",
+    "ok": "品はよく売れました。子らの笑う顔は、少なめでしたな。",
+    "poor": "品はよく売れました。…でも本当は、子どもたちをもっと笑わせたかったんですよ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "店の前の空き地",
+      "cost": 10,
+      "tags": [
+       "子ども"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "emptylot"
+     },
+     {
+      "name": "里の大きな売り場",
+      "cost": 28,
+      "tags": [
+       "大売り出し"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "cart"
+     },
+     {
+      "name": "月の見える原っぱ",
+      "cost": 12,
+      "tags": [
+       "笑い"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "moonhill"
+     },
+     {
+      "name": "夏の川あそび場",
+      "cost": 11,
+      "tags": [
+       "子ども"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "splash"
+     }
+    ],
+    "activity": [
+     {
+      "name": "腹つづみの演芸会",
+      "cost": 12,
+      "tags": [
+       "笑い",
+       "子ども"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "drum"
+     },
+     {
+      "name": "目玉の品の大安売り",
+      "cost": 22,
+      "tags": [
+       "大売り出し"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "lottery"
+     },
+     {
+      "name": "化け比べの大会",
+      "cost": 10,
+      "tags": [
+       "笑い"
+      ],
+      "seasons": [
+       "秋",
+       "冬"
+      ],
+      "art": "magic"
+     },
+     {
+      "name": "光る看板の店",
+      "cost": 22,
+      "tags": [
+       "大売り出し",
+       "まぶしい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "neon"
+     }
+    ],
+    "food": [
+     {
+      "name": "手書きの招待状",
+      "cost": 3,
+      "tags": [
+       "子ども"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "大売り出しのチラシ",
+      "cost": 9,
+      "tags": [
+       "大売り出し"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "flyer"
+     },
+     {
+      "name": "笑い話の紙しばい",
+      "cost": 5,
+      "tags": [
+       "笑い"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "kamishibai"
+     },
+     {
+      "name": "犬に宣伝を頼む",
+      "cost": 6,
+      "tags": [
+       "大売り出し",
+       "犬"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "megaphone"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "子らの出しもの係",
+      "cost": 5,
+      "tags": [
+       "子ども"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "毎週の大安売り",
+      "cost": 17,
+      "tags": [
+       "大売り出し"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "shopbags"
+     },
+     {
+      "name": "店の帳面つけ",
+      "cost": 4,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "春の花見の芸",
+      "cost": 9,
+      "tags": [
+       "笑い"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "flowerbed"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t16",
+   "day": 6,
+   "time": "朝",
+   "clientId": "toru",
+   "visit": 3,
+   "regularId": "toru",
+   "bonusBudget": 20000,
+   "becomesRegular": true,
+   "returnGreeting": {
+    "great": "あれから夕方は、店先で将棋の輪ができてますよ！",
+    "ok": "どうも、お久しぶりです。またお世話になります。",
+    "poor": "今度こそ…。なじみの人と、もっと話したいんですよ。"
+   },
+   "lines": [
+    "あれから閉まってた店が、2軒も開いたんですよ。",
+    "年の瀬は、商店街をぴかぴかの新しい通りにしたくてね。",
+    "店先のストーブに、なじみがあたりに来るんです。予算は10万円、冬に。"
+   ],
+   "surfaceWish": "新しさ",
+   "honneTags": [
+    "なじみ",
+    "おしゃべり"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 100000,
+    "unit": "円",
+    "season": "冬"
+   },
+   "aftermath": {
+    "great": "ストーブのまわりで、新しい店の人も昔なじみも大笑い。いい年の瀬です！",
+    "ok": "通りはぴかぴかになりました。店先の話の輪は、少し小さめかな。",
+    "poor": "通りはきれいになりました。…でも本当は、なじみとおしゃべりできる町にしたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "店先のストーブ前",
+      "cost": 15000,
+      "tags": [
+       "なじみ",
+       "おしゃべり"
+      ],
+      "seasons": [
+       "秋",
+       "冬"
+      ],
+      "art": "stove"
+     },
+     {
+      "name": "新しい大通り",
+      "cost": 90000,
+      "tags": [
+       "新しさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "nightcity"
+     },
+     {
+      "name": "空き店の茶の間",
+      "cost": 25000,
+      "tags": [
+       "おしゃべり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "livingroom"
+     },
+     {
+      "name": "夏の夜の縁台",
+      "cost": 17000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "bench"
+     }
+    ],
+    "activity": [
+     {
+      "name": "甘酒をふるまう会",
+      "cost": 10000,
+      "tags": [
+       "なじみ",
+       "おしゃべり"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "amazake"
+     },
+     {
+      "name": "ぴかぴかの光の通り",
+      "cost": 62000,
+      "tags": [
+       "新しさ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "lightup"
+     },
+     {
+      "name": "年の瀬の福引き",
+      "cost": 15000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "lottery"
+     },
+     {
+      "name": "最新の店を呼ぶ",
+      "cost": 54000,
+      "tags": [
+       "新しさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "trendshop"
+     }
+    ],
+    "food": [
+     {
+      "name": "常連さんに年賀状",
+      "cost": 3000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "新しい通りの動画",
+      "cost": 17000,
+      "tags": [
+       "新しさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "videoletter"
+     },
+     {
+      "name": "店先の立ち話で",
+      "cost": 1000,
+      "tags": [
+       "おしゃべり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "neighbortalk"
+     },
+     {
+      "name": "雑誌の特集にのせる",
+      "cost": 27000,
+      "tags": [
+       "新しさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "magazine"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "商店街の茶飲み当番",
+      "cost": 5000,
+      "tags": [
+       "おしゃべり"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "店を毎年新しく",
+      "cost": 54000,
+      "tags": [
+       "新しさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "renovate"
+     },
+     {
+      "name": "店主の寄り合い",
+      "cost": 8000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "kominkan"
+     },
+     {
+      "name": "春の店先の花見",
+      "cost": 13000,
+      "tags": [
+       "なじみ"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "cherrybank"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t17",
+   "day": 6,
+   "time": "昼",
+   "clientId": "penta",
+   "visit": 1,
+   "needs": "e19",
+   "crossGreeting": {
+    "great": "長老の会ではお世話になりました。長老は今も、氷の上で歌ってます。",
+    "ok": "長老の会のときはお世話になりました。長老は今も元気です。",
+    "poor": "長老の会のあと、氷の上でみんなで歌ったら、長老が笑ってくれて。"
+   },
+   "lines": [
+    "長老の会のときはお世話になりました。長老は今も元気です。",
+    "氷の浜の町に、冬のお客さんを呼びたいんです。",
+    "暖かい建物を作れば来るかな。氷の上の合唱は自慢ですけど。",
+    "予算は小魚250匹。冬のうちにお願いします。"
+   ],
+   "surfaceWish": "暖かい",
+   "honneTags": [
+    "氷",
+    "歌"
+   ],
+   "dislikeTags": [
+    "暑い",
+    "アザラシ",
+    "せまい場所"
+   ],
+   "budget": {
+    "amount": 250,
+    "unit": "小魚",
+    "season": "冬"
+   },
+   "aftermath": {
+    "great": "お客さんも氷の上で一緒に歌ってくれました。長老もにっこり！",
+    "ok": "暖かい建物は人気でした。みんな、ちょっと暑そうでしたけど。",
+    "poor": "暖かくて人気でした。…でも本当は、氷の上でみんなと歌う町にしたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "氷の浜",
+      "cost": 60,
+      "tags": [
+       "氷"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "iceshore"
+     },
+     {
+      "name": "暖かい大きな建物",
+      "cost": 150,
+      "tags": [
+       "暖かい",
+       "暑い"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "greenhouse"
+     },
+     {
+      "name": "流氷の上",
+      "cost": 80,
+      "tags": [
+       "氷"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "icefloe"
+     },
+     {
+      "name": "夏の岩場の舞台",
+      "cost": 63,
+      "tags": [
+       "歌"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "lakestage"
+     }
+    ],
+    "activity": [
+     {
+      "name": "氷の上の大合唱",
+      "cost": 60,
+      "tags": [
+       "歌",
+       "氷"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "penguinsong"
+     },
+     {
+      "name": "温泉の大浴場",
+      "cost": 125,
+      "tags": [
+       "暖かい",
+       "暑い"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "onsen"
+     },
+     {
+      "name": "氷のすべり台",
+      "cost": 40,
+      "tags": [
+       "氷"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "iceslide"
+     },
+     {
+      "name": "南国の踊りショー",
+      "cost": 101,
+      "tags": [
+       "暖かい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "palmbeach"
+     }
+    ],
+    "food": [
+     {
+      "name": "歌で呼びかける",
+      "cost": 20,
+      "tags": [
+       "歌"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "music"
+     },
+     {
+      "name": "暖かさのチラシ",
+      "cost": 25,
+      "tags": [
+       "暖かい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "flyer"
+     },
+     {
+      "name": "氷の彫刻の看板",
+      "cost": 30,
+      "tags": [
+       "氷"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "icesculpture"
+     },
+     {
+      "name": "大きな暖房の広告",
+      "cost": 38,
+      "tags": [
+       "暖かい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "poster"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "毎週の合唱の練習",
+      "cost": 20,
+      "tags": [
+       "歌"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "recorder"
+     },
+     {
+      "name": "暖房を毎年ふやす",
+      "cost": 63,
+      "tags": [
+       "暖かい",
+       "暑い"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "heater"
+     },
+     {
+      "name": "浜のそうじ当番",
+      "cost": 12,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "春の歌の会",
+      "cost": 25,
+      "tags": [
+       "歌"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "orchestra"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t18",
+   "day": 6,
+   "time": "夜",
+   "clientId": "hiroshi",
+   "visit": 1,
+   "lines": [
+    "小さな駅の駅長です。一日に電車は10本ほどでして。",
+    "遠くからの観光客で、駅をいっぱいにしたいんです。",
+    "待合室の古いピアノを、通学の子がときどき弾いてくれてね。",
+    "予算は8万円。桜のころ、春にお願いします。"
+   ],
+   "surfaceWish": "観光客",
+   "honneTags": [
+    "待合室",
+    "音楽"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 80000,
+    "unit": "円",
+    "season": "春"
+   },
+   "aftermath": {
+    "great": "待合室のピアノのまわりに、町の人の輪ができました。駅が笑顔です！",
+    "ok": "観光のお客さんが来てくれました。待合室は、少しさびしいままです。",
+    "poor": "観光のお客さんは来ました。…でも本当は、駅を町の人の集まる場所にしたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "駅の待合室",
+      "cost": 15000,
+      "tags": [
+       "待合室"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "waitingroom"
+     },
+     {
+      "name": "駅前の大きな駐車場",
+      "cost": 39000,
+      "tags": [
+       "観光客"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "bus"
+     },
+     {
+      "name": "冬のストーブ待合室",
+      "cost": 13000,
+      "tags": [
+       "待合室"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "stove"
+     },
+     {
+      "name": "観光案内の大きな館",
+      "cost": 45000,
+      "tags": [
+       "観光客"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "museum"
+     }
+    ],
+    "activity": [
+     {
+      "name": "待合室の小さな演奏会",
+      "cost": 10000,
+      "tags": [
+       "音楽",
+       "待合室"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "piano"
+     },
+     {
+      "name": "観光列車を走らせる",
+      "cost": 45000,
+      "tags": [
+       "観光客"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "diningcar"
+     },
+     {
+      "name": "ホームで花見の合唱",
+      "cost": 12000,
+      "tags": [
+       "音楽"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "cherrybank"
+     },
+     {
+      "name": "有名人の一日駅長",
+      "cost": 34000,
+      "tags": [
+       "観光客"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "autograph"
+     }
+    ],
+    "food": [
+     {
+      "name": "待合室の伝言ノート",
+      "cost": 1000,
+      "tags": [
+       "待合室"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "diary"
+     },
+     {
+      "name": "観光雑誌の特集",
+      "cost": 22000,
+      "tags": [
+       "観光客"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "magazine"
+     },
+     {
+      "name": "駅のピアノの貼り紙",
+      "cost": 1000,
+      "tags": [
+       "音楽"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "poster"
+     },
+     {
+      "name": "都会の駅に大広告",
+      "cost": 28000,
+      "tags": [
+       "観光客"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "月1の駅ピアノの日",
+      "cost": 3000,
+      "tags": [
+       "音楽"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "music"
+     },
+     {
+      "name": "毎週の観光ツアー",
+      "cost": 22000,
+      "tags": [
+       "観光客"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "trainticket"
+     },
+     {
+      "name": "駅のそうじ当番",
+      "cost": 3000,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "夏のホームの夕涼み",
+      "cost": 9000,
+      "tags": [
+       "待合室"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "nightbreeze"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t19",
+   "day": 7,
+   "time": "朝",
+   "clientId": "morio",
+   "visit": 3,
+   "regularId": "morio",
+   "bonusBudget": 15,
+   "becomesRegular": true,
+   "returnGreeting": {
+    "great": "あれから冬の森に、星を見に来る客がふえてのう。",
+    "ok": "やあ、もりおじゃ。また世話になるよ。",
+    "poor": "今度こそ…。森には、静かな朝が似合うと思うんじゃ。"
+   },
+   "lines": [
+    "あれから森には、冬も静かに星を見る客が来るようでな。",
+    "春は森をあげて、にぎやかな歓迎の会を開けと言われての。",
+    "わしは朝の森で、鳥の歌を聞くのが楽しみじゃ。予算はどんぐり70個、春に。"
+   ],
+   "surfaceWish": "にぎやか",
+   "honneTags": [
+    "静けさ",
+    "鳥の声"
+   ],
+   "dislikeTags": [
+    "大きな音",
+    "まぶしい",
+    "人ごみ"
+   ],
+   "budget": {
+    "amount": 70,
+    "unit": "どんぐり",
+    "season": "春"
+   },
+   "aftermath": {
+    "great": "春の朝、客も森の子らも、そっと鳥の歌を聞いとった。ええ森じゃ！",
+    "ok": "にぎやかな春になったのう。鳥たちは、少しおどろいとったが。",
+    "poor": "春の森がにぎやかになった。…でも本当は、朝の森の静けさを守りたかったんじゃ"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "朝もやの森",
+      "cost": 15,
+      "tags": [
+       "静けさ",
+       "鳥の声"
+      ],
+      "seasons": [
+       "春",
+       "夏"
+      ],
+      "art": "forestpath"
+     },
+     {
+      "name": "森の大広場",
+      "cost": 38,
+      "tags": [
+       "にぎやか",
+       "人ごみ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "meadow"
+     },
+     {
+      "name": "若葉の小川",
+      "cost": 12,
+      "tags": [
+       "鳥の声"
+      ],
+      "seasons": [
+       "春",
+       "夏"
+      ],
+      "art": "brook"
+     },
+     {
+      "name": "雪の森の小道",
+      "cost": 12,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "snowpath"
+     }
+    ],
+    "activity": [
+     {
+      "name": "朝の鳥の歌を聞く会",
+      "cost": 12,
+      "tags": [
+       "鳥の声"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "birdsong"
+     },
+     {
+      "name": "森じゅうの大宴会",
+      "cost": 38,
+      "tags": [
+       "にぎやか",
+       "大きな音"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "banquet"
+     },
+     {
+      "name": "静かな森歩き",
+      "cost": 8,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "footprints"
+     },
+     {
+      "name": "光の大パレード",
+      "cost": 31,
+      "tags": [
+       "にぎやか",
+       "まぶしい"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "lightup"
+     }
+    ],
+    "food": [
+     {
+      "name": "鳥の声の聞き方の本",
+      "cost": 5,
+      "tags": [
+       "鳥の声"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "books"
+     },
+     {
+      "name": "大太鼓で呼びこみ",
+      "cost": 12,
+      "tags": [
+       "にぎやか",
+       "大きな音"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "drum"
+     },
+     {
+      "name": "静かに歩く約束",
+      "cost": 5,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "promiseboard"
+     },
+     {
+      "name": "森の入り口の大看板",
+      "cost": 15,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "signboard"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "朝は声をひそめる決まり",
+      "cost": 3,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "whisper"
+     },
+     {
+      "name": "毎週のにぎやか会",
+      "cost": 19,
+      "tags": [
+       "にぎやか"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "balloons"
+     },
+     {
+      "name": "森の見回り当番",
+      "cost": 7,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "patrol"
+     },
+     {
+      "name": "秋の虫の声の夜",
+      "cost": 10,
+      "tags": [
+       "静けさ"
+      ],
+      "seasons": [
+       "秋"
+      ],
+      "art": "nightgarden"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t20",
+   "day": 7,
+   "time": "昼",
+   "clientId": "mira",
+   "visit": 1,
+   "lines": [
+    "地球の町に住みはじめた、ミラです。星から越してきました。",
+    "町の人に、星のすごい技術を見せたら仲良くなれるかしら。",
+    "夕方、となりのおばあさんが縁側でうちわをあおいでくれるの。",
+    "予算は星のかけら60個。この夏にお願いします。"
+   ],
+   "surfaceWish": "すごい技術",
+   "honneTags": [
+    "ご近所",
+    "夕涼み"
+   ],
+   "dislikeTags": [
+    "大声",
+    "ぬれる",
+    "とがった物"
+   ],
+   "budget": {
+    "amount": 60,
+    "unit": "星のかけら",
+    "season": "夏"
+   },
+   "aftermath": {
+    "great": "縁側の夕涼みに、町内のみんなが集まってくれました。地球って最高！",
+    "ok": "すごい技術に、みんなびっくりでした。お話は、まだ少しです。",
+    "poor": "みんな、びっくりしてくれました。…でも本当は、町の人と仲良くなりたかったのです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "となりの家の縁側",
+      "cost": 15,
+      "tags": [
+       "ご近所",
+       "夕涼み"
+      ],
+      "seasons": [
+       "夏",
+       "秋"
+      ],
+      "art": "engawa"
+     },
+     {
+      "name": "空に浮かぶ宇宙船",
+      "cost": 34,
+      "tags": [
+       "すごい技術"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "spaceship"
+     },
+     {
+      "name": "町内の小さな広場",
+      "cost": 12,
+      "tags": [
+       "ご近所"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "kominkan"
+     },
+     {
+      "name": "雪の日の集会所",
+      "cost": 11,
+      "tags": [
+       "ご近所"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "hall"
+     }
+    ],
+    "activity": [
+     {
+      "name": "うちわで夕涼みの会",
+      "cost": 10,
+      "tags": [
+       "夕涼み",
+       "ご近所"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "uchiwa"
+     },
+     {
+      "name": "星の光の大ショー",
+      "cost": 28,
+      "tags": [
+       "すごい技術"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "observatory"
+     },
+     {
+      "name": "みんなで打ち水",
+      "cost": 8,
+      "tags": [
+       "夕涼み",
+       "ぬれる"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "uchimizu"
+     },
+     {
+      "name": "空飛ぶ乗り物の体験",
+      "cost": 28,
+      "tags": [
+       "すごい技術"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "drone"
+     }
+    ],
+    "food": [
+     {
+      "name": "回覧板で知らせる",
+      "cost": 2,
+      "tags": [
+       "ご近所"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "kairanban"
+     },
+     {
+      "name": "宇宙の映像を空に",
+      "cost": 17,
+      "tags": [
+       "すごい技術"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "projector"
+     },
+     {
+      "name": "縁側の貼り紙",
+      "cost": 3,
+      "tags": [
+       "夕涼み"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "poster"
+     },
+     {
+      "name": "大声で呼びかけ",
+      "cost": 6,
+      "tags": [
+       "すごい技術",
+       "大声"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "megaphone"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "町内の夕涼み当番",
+      "cost": 5,
+      "tags": [
+       "ご近所"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "toban"
+     },
+     {
+      "name": "毎月の宇宙ショー",
+      "cost": 22,
+      "tags": [
+       "すごい技術"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "spaceship"
+     },
+     {
+      "name": "星の写真を配る",
+      "cost": 6,
+      "tags": [],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "starchart"
+     },
+     {
+      "name": "冬の焼きいもの会",
+      "cost": 9,
+      "tags": [
+       "ご近所"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "yakiimo"
+     }
+    ]
+   }
+  },
+  {
+   "company": "town",
+   "id": "t21",
+   "day": 7,
+   "time": "夜",
+   "clientId": "ume",
+   "visit": 3,
+   "regularId": "ume",
+   "bonusBudget": 20000,
+   "becomesRegular": true,
+   "returnGreeting": {
+    "great": "あれから稲刈りに、昔の仲間が十人も来たんですよ！",
+    "ok": "ご無沙汰しております。またお願いしますね。",
+    "poor": "今度こそ…。村に帰ってきた子が、まだひとりでしてね。"
+   },
+   "lines": [
+    "あれから若い子が3人、村に住みはじめたんですよ。",
+    "冬は雪の村を、大きなスキー場にして有名にしようかと。",
+    "若い子たちは、いろりで村の昔話を聞きたがってね。予算は12万円、冬に。"
+   ],
+   "surfaceWish": "有名",
+   "honneTags": [
+    "若い人",
+    "ふるさと"
+   ],
+   "dislikeTags": [],
+   "budget": {
+    "amount": 120000,
+    "unit": "円",
+    "season": "冬"
+   },
+   "aftermath": {
+    "great": "いろりのまわりに、若い子が十人。昔話の続きは来年の冬に、だそうです！",
+    "ok": "スキーのお客さんでにぎやかでした。若い子とは、少し話せました。",
+    "poor": "村の名前が知られました。…でも本当は、若い子がふるさとと思える村にしたかったんです"
+   },
+   "slots": {
+    "destination": [
+     {
+      "name": "いろりのある古民家",
+      "cost": 25000,
+      "tags": [
+       "ふるさと",
+       "若い人"
+      ],
+      "seasons": [
+       "秋",
+       "冬"
+      ],
+      "art": "irori"
+     },
+     {
+      "name": "大きなスキー場",
+      "cost": 109000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "mountain"
+     },
+     {
+      "name": "村の分校の教室",
+      "cost": 20000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "classroom"
+     },
+     {
+      "name": "夏の棚田",
+      "cost": 24000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "夏"
+      ],
+      "art": "farm"
+     }
+    ],
+    "activity": [
+     {
+      "name": "いろりで昔話の夜",
+      "cost": 10000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "秋",
+       "冬"
+      ],
+      "art": "teahouse"
+     },
+     {
+      "name": "有名人の雪の大会",
+      "cost": 63000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "snowball"
+     },
+     {
+      "name": "若い人の冬の手仕事",
+      "cost": 12000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "knitting"
+     },
+     {
+      "name": "大きな雪像づくり",
+      "cost": 48000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "冬"
+      ],
+      "art": "icesculpture"
+     }
+    ],
+    "food": [
+     {
+      "name": "帰ってきた子の便り",
+      "cost": 3000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "letter"
+     },
+     {
+      "name": "テレビで雪景色を",
+      "cost": 39000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "localtv"
+     },
+     {
+      "name": "昔話の絵本を作る",
+      "cost": 10000,
+      "tags": [
+       "ふるさと"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "books"
+     },
+     {
+      "name": "旅行雑誌の表紙",
+      "cost": 31000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "magazine"
+     }
+    ],
+    "surprise": [
+     {
+      "name": "若い人に昔話を語りつぐ",
+      "cost": 8000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "handover"
+     },
+     {
+      "name": "スキー場を毎年広げる",
+      "cost": 63000,
+      "tags": [
+       "有名"
+      ],
+      "seasons": [
+       "春",
+       "夏",
+       "秋",
+       "冬"
+      ],
+      "art": "monument"
+     },
+     {
+      "name": "雪かきの当番",
+      "cost": 9000,
+      "tags": [],
+      "seasons": [
+       "冬"
+      ],
+      "art": "snowshovel"
+     },
+     {
+      "name": "春の田植えの集まり",
+      "cost": 15000,
+      "tags": [
+       "若い人"
+      ],
+      "seasons": [
+       "春"
+      ],
+      "art": "riceplanting"
+     }
+    ]
+   }
   }
  ]
 };

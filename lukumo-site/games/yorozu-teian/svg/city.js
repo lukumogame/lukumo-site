@@ -14,7 +14,7 @@
   var CO = [
     ["travel", "#3f7fd6", "plane", 1],
     ["life", "#d9534a", "house", 0],
-    ["invest", "#e3a91c", "coin", 0],
+    ["invest", "#e3a91c", "sprout", 0], // 看板は芽（応援して育てる。2026-11-22 持ち主の指示で ¥ の硬貨から替えた）
     ["town", "#3f9a56", "flag", 0],
     ["event", "#8e5cc4", "balloon", 1]
   ];
@@ -391,9 +391,8 @@
     house: function (c) {
       return '<path d="M0-12L13 0H9V11H-9V0H-13Z"/><rect x="-3" y="3" width="6" height="8" fill="' + c + '"/>';
     },
-    coin: function (c) {
-      return '<ellipse cx="0" cy="7" rx="10" ry="4"/><rect x="-10" y="1" width="20" height="6"/><ellipse cx="0" cy="1" rx="10" ry="4" fill="' + c + '" stroke="#fff" stroke-width="1.5"/>' +
-        '<ellipse cx="0" cy="-4" rx="10" ry="4"/><rect x="-10" y="-10" width="20" height="6"/><ellipse cx="0" cy="-10" rx="10" ry="4" fill="#fff"/><ellipse cx="0" cy="-10" rx="5" ry="1.8" fill="' + c + '"/>';
+    sprout: function () {
+      return '<path d="M-1.6 12V-2h3.2V12Z"/><path d="M-1-1C-5-1-11-4-12-11C-5-12-1-7-1-1Z"/><path d="M1-3C1-9 5-14 12-13C12-6 7-3 1-3Z"/><ellipse cx="0" cy="12" rx="9" ry="2.5"/>';
     },
     flag: function () {
       return '<rect x="-8" y="-12" width="3" height="25" rx="1.5"/><path d="M-5-11Q2-14 11-9V2Q2-3-5 0Z"/>';

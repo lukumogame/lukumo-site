@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>よろず提案所（試作版）</title>
-  <meta name="description" content="旅行・デート、イベント、ライフプランの3社で、依頼者の話を聞いて、ぴったりの提案書をつくるゲームの試作版。">
+  <meta name="description" content="旅行・デート、イベント、ライフプラン、投資、町おこしの5社で、依頼者の話を聞いて、ぴったりの提案書をつくるゲームの試作版。">
   <meta name="theme-color" content="#e6eef2">
   <meta property="og:type" content="website">
   <meta property="og:title" content="よろず提案所（試作版）">
-  <meta property="og:description" content="人も、生き物も、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲームの試作版（旅行・デート、イベント、ライフプランの3社・依頼63件。会社を選んで遊べて、その後も続けて遊べる）。">
+  <meta property="og:description" content="人も、生き物も、相談にやってくる街。依頼者の話から「本音」を読み取って、ぴったりの提案書をつくる無料のブラウザゲームの試作版（旅行・デート、イベント、ライフプラン、投資、町おこしの5社・依頼105件。会社を選んで遊べて、その後も続けて遊べる）。">
   <!-- SNS で共有したときの画像（tools/make-og-image.js で作る）。公開先の URL で指す -->
   <meta property="og:image" content="https://lukumo-site.vercel.app/games/yorozu-teian/og-image.png">
   <meta property="og:image:width" content="1200">
@@ -45,7 +45,7 @@
         <small class="continue-info" id="continue-info" data-testid="continue-info"></small>
         <button class="btn primary title-start" id="start" data-testid="start">はじめる</button>
         <p class="save-note" id="save-note" data-testid="save-note" role="status" hidden></p>
-        <small class="title-note">試作版：3社・依頼63件</small>
+        <small class="title-note">試作版：5社・依頼105件</small>
       </div>
     </section>
 
@@ -159,8 +159,8 @@
         <div class="walker" id="walker" data-testid="walker" aria-hidden="true"></div>
         <button class="company c-travel" id="company-travel" data-company="travel" data-testid="company-travel"><span class="sign">✈</span><span class="cname">旅行・デート</span><span class="waiting" data-testid="waiting-travel" hidden></span><span class="count" data-testid="count-travel" hidden></span></button>
         <button class="company c-life" id="company-life" data-company="life" data-testid="company-life" disabled aria-disabled="true"><span class="sign">⌂</span><span class="cname">ライフプラン</span><span class="soon" data-testid="soon-life">3日目から</span><span class="waiting" data-testid="waiting-life" hidden></span><span class="count" data-testid="count-life" hidden></span></button>
-        <button class="company c-invest" data-company="invest" data-testid="company-invest" disabled aria-disabled="true"><span class="sign">¥</span><span class="cname">投資</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-invest" hidden></span></button>
-        <button class="company c-town" data-company="town" data-testid="company-town" disabled aria-disabled="true"><span class="sign">⚑</span><span class="cname">町おこし</span><span class="soon">準備中</span><span class="waiting" data-testid="waiting-town" hidden></span></button>
+        <button class="company c-invest" id="company-invest" data-company="invest" data-testid="company-invest" disabled aria-disabled="true"><span class="sign"><svg class="mk-svg" viewBox="-14 -14 28 28" aria-hidden="true" fill="currentColor"><path d="M-1.6 12V-2h3.2V12Z"/><path d="M-1-1C-5-1-11-4-12-11C-5-12-1-7-1-1Z"/><path d="M1-3C1-9 5-14 12-13C12-6 7-3 1-3Z"/><ellipse cx="0" cy="12" rx="9" ry="2.5"/></svg></span><span class="cname">投資</span><span class="soon" data-testid="soon-invest">4日目から</span><span class="waiting" data-testid="waiting-invest" hidden></span><span class="count" data-testid="count-invest" hidden></span></button>
+        <button class="company c-town" id="company-town" data-company="town" data-testid="company-town" disabled aria-disabled="true"><span class="sign">⚑</span><span class="cname">町おこし</span><span class="soon" data-testid="soon-town">5日目から</span><span class="waiting" data-testid="waiting-town" hidden></span><span class="count" data-testid="count-town" hidden></span></button>
         <!-- イベント：2日目から選べる（1日目は「2日目から」と出して押せない。js/game.js の goHome） -->
         <button class="company c-event" id="company-event" data-company="event" data-testid="company-event" disabled aria-disabled="true"><span class="sign">◎</span><span class="cname">イベント</span><span class="soon" data-testid="soon-event">2日目から</span><span class="waiting" data-testid="waiting-event" hidden></span><span class="count" data-testid="count-event" hidden></span></button>
       </div>
@@ -242,6 +242,8 @@
             <button class="tab" role="tab" data-co="travel" data-testid="deco-co-travel">旅行・デート</button>
             <button class="tab" role="tab" data-co="event" data-testid="deco-co-event">イベント</button>
             <button class="tab" role="tab" data-co="life" data-testid="deco-co-life">ライフプラン</button>
+            <button class="tab" role="tab" data-co="invest" data-testid="deco-co-invest">投資</button>
+            <button class="tab" role="tab" data-co="town" data-testid="deco-co-town">町おこし</button>
           </div>
           <div class="deco-scene" id="deco-scene" data-testid="deco-scene">
             <div class="deco-bg" id="deco-bg" aria-hidden="true"></div>
@@ -270,6 +272,8 @@
             <button class="tab" role="tab" data-co="travel" data-testid="zukan-co-travel">旅行・デート</button>
             <button class="tab" role="tab" data-co="event" data-testid="zukan-co-event">イベント</button>
             <button class="tab" role="tab" data-co="life" data-testid="zukan-co-life">ライフプラン</button>
+            <button class="tab" role="tab" data-co="invest" data-testid="zukan-co-invest">投資</button>
+            <button class="tab" role="tab" data-co="town" data-testid="zukan-co-town">町おこし</button>
           </div>
           <div class="tabs" role="tablist">
             <button class="tab" role="tab" data-tab="clients" id="tab-clients" data-testid="tab-clients">依頼者</button>
@@ -329,6 +333,8 @@
         <li>依頼者の苦手なものが入ったカード1枚ごとに5点減る。</li>
         <li id="help-people" data-testid="help-people" hidden>イベントでは、人数が入りきらない会場（名前の「〜10人」より多い会）は、本音に合わないカードになる。</li>
         <li id="help-period" data-testid="help-period" hidden>ライフプランでは、計画の期間に向いていないカード（名前の下の「1・5・10年」に、その期間がないもの）は、本音に合わないカードになる。</li>
+        <li id="help-spread" data-testid="help-spread" hidden>投資では、応援する相手の数に向いていないカード（名前の下の「1つ・2〜3・多く」に、その数がないもの）は、本音に合わないカードになる。</li>
+        <li id="help-season" data-testid="help-season" hidden>町おこしでは、季節に向いていないカード（名前の下の「春・夏・秋・冬」に、その季節がないもの）は、本音に合わないカードになる。</li>
         <li>80点以上で大喜び、50〜79点でまあまあ、49点以下でいまいち。</li>
       </ul>
       <div class="actions"><button class="btn blue" id="score-help-close" data-testid="score-help-close">閉じる</button></div>
@@ -365,6 +371,8 @@
   <script src="svg/cards-d.js"></script>
   <script src="svg/cards-e.js"></script>
   <script src="svg/cards-f.js"></script>
+  <script src="svg/cards-g.js"></script>
+  <script src="svg/cards-h.js"></script>
   <script src="svg/items.js"></script>
   <script src="svg/player.js"></script>
   <script src="js/score.js"></script>

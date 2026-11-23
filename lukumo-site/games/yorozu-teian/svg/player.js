@@ -388,9 +388,225 @@
       }
     }
   });
+
+  // ---- 投資の会社の品（第4段）・町おこしの会社の品（第5段）----
+  function wearFlower(x, y, R, f) {
+    var s = "", i, a;
+    for (i = 0; i < 5; i++) { a = i * 72 * Math.PI / 180 - Math.PI / 2; s += c(x + R * Math.cos(a), y + R * Math.sin(a), R * 0.72, f); }
+    return s + c(x, y, R * 0.55, GOLD);
+  }
+  Object.assign(WEAR, {
+    // 応援のはちまき：おでこに巻いて、右で結ぶ（頭の上はおおわないので帽子にはしない）
+    cheerband: {
+      part: "head", color: "#e2574c",
+      front: function (k) {
+        return p("M150,58 L174,46 L170,60Z", k) + p("M150,60 L172,76 L160,78Z", k) +
+          p("M50,52 Q100,30 150,52 L148,66 Q100,46 52,66Z", k) +
+          c(100, 47, 7, WHITE) + star(100, 47, 4.4, 2, GOLD) + c(150, 59, 6, light(k));
+      }
+    },
+    // 職人の手ぬぐい：頭をおおって、右で結ぶ
+    tenugui: {
+      part: "head", color: "#3d5a8a",
+      front: function (k) {
+        return p("M150,58 L176,48 L172,64Z", k) + p("M150,62 L172,80 L158,80Z", k) +
+          p("M46,66 C40,20 160,20 154,66 Q100,50 46,66Z", k) +
+          c(76, 42, 2.4, WHITE, NS) + c(96, 34, 2.4, WHITE, NS) + c(118, 38, 2.4, WHITE, NS) + c(134, 50, 2.4, WHITE, NS) + c(64, 56, 2.4, WHITE, NS) + c(86, 50, 2.4, WHITE, NS) + c(108, 48, 2.4, WHITE, NS) +
+          c(150, 60, 7, light(k));
+      }
+    },
+    // 花のたすき：左の肩から右の腰へかける帯と花
+    flowersash: {
+      part: "body", color: "#f6a8c8",
+      front: function (k) {
+        return shirt(true) + p("M68,150 L82,140 L136,198 L135,214Z", k) +
+          l("M76,148 L132,206", 2, WHITE, ' stroke-dasharray="3 5"') +
+          wearFlower(86, 160, 5.5, WHITE) + wearFlower(108, 182, 5.5, light(k)) + wearFlower(128, 204, 5, WHITE);
+      }
+    },
+    // 星のマフラー：首に巻いて、片方を前にたらす
+    starmuffler: {
+      part: "body", color: "#3d4f8a",
+      front: function (k) {
+        return shirt(true) + p("M106,150 L126,148 L130,198 L112,200Z", k) + l("M114,200 V206 M120,200 V206 M126,199 V205", 3) +
+          e(100, 147, 36, 11, k) + star(80, 147, 4.4, 2, GOLD) + star(100, 150, 4.4, 2, GOLD) + star(120, 147, 4.4, 2, GOLD) + star(120, 178, 4.4, 2, GOLD);
+      }
+    },
+    // お店の前かけ（つむぎさん）：腰の前かけとポケット
+    cafeapron: {
+      part: "body", color: "#5a8a6a",
+      front: function (k) {
+        return shirt(true) + T("M64,186 L136,186", k, 5) +
+          p("M70,188 L130,188 L133,228 L67,228Z", k) + r(84, 198, 32, 16, light(k), 3) + l("M100,198 V214", 2.5) + T("M92,197 L90,188", RED, 3);
+      }
+    },
+    // 応援の小旗：右手で持つ三角の旗
+    cheerflag: {
+      part: "hand", color: "#e3a91c",
+      front: function (k) {
+        return T("M150,206 L162,104", DARKWOOD, 5) + c(162, 102, 5, GOLD) +
+          p("M161,110 L198,124 L158,140Z", k) + star(172, 125, 7, 3, WHITE);
+      }
+    },
+    // 羽根のペン（ほうさん）：右手で持つ大きな羽根
+    featherpen: {
+      part: "hand", color: "#c9a070",
+      front: function (k) {
+        return p("M156,186 Q150,140 190,112 Q196,150 162,186Z", k) + l("M154,200 L176,140 L188,116", 3) +
+          l("M168,166 L182,160 M172,152 L186,142 M164,178 L176,176", 2, light(k)) + T("M150,204 L156,188", "#8a96a8", 3.5);
+      }
+    },
+    // 祭りのはっぴ：広いそでと、白いえり、すそのしま
+    happi: {
+      part: "body", color: "#3a6fb8",
+      front: function (k) {
+        return T(armPath(-1, 0, 0.55), k, ARM_W + 9) + T(armPath(1, 0, 0.55), k, ARM_W + 9) +
+          p("M64,218 L68,156 Q70,140 100,140 Q130,140 132,156 L136,218Z", k) +
+          T("M84,141 L100,178 L116,141", WHITE, 6) +
+          r(64, 206, 72, 6, WHITE) + l("M74,212 V218 M86,212 V218 M100,212 V218 M114,212 V218 M126,212 V218", 2.5, WHITE) +
+          c(118, 186, 8, WHITE) + c(118, 186, 3.4, RED, NS);
+      }
+    },
+    // 花の髪かざり：頭の右上の横（耳の上に出す）
+    flowerclip: {
+      part: "head", color: "#f6a8c8", overEars: true,
+      front: function (k) {
+        return r(122, 56, 34, 7, "#6b7a8f", 3.5, rot(-40, 139, 59.5)) + e(150, 66, 9, 4.5, "#6cbf5a", rot(30, 150, 66)) +
+          wearFlower(140, 50, 9, k) + wearFlower(125, 40, 6, light(k));
+      }
+    },
+    // どんぐりの笛：右手で持つ
+    acornflute: {
+      part: "hand", color: "#a0683c",
+      front: function (k) {
+        return e(164, 176, 15, 17, k) + p("M147,172 Q147,152 164,152 Q181,152 181,172Z", DARKWOOD) + l("M153,164 L159,160 M163,166 L167,158 M172,164 L176,160", 2, WOOD) +
+          T("M164,152 V144", DARKWOOD, 3.5) + c(160, 182, 2.6, INK, NS) + c(168, 186, 2.6, INK, NS) +
+          l("M186,150 Q192,144 189,138 M190,166 Q198,164 198,156", 3);
+      }
+    },
+    // 星のうちわ：右手で持つ丸いうちわ
+    staruchiwa: {
+      part: "hand", color: "#4a8fd8",
+      front: function (k) {
+        return T("M150,204 L160,172", WOOD, 5) + c(166, 150, 23, k) + c(166, 150, 17, light(k)) + star(166, 150, 10, 4.4, GOLD) + star(180, 134, 3.4, 1.4, WHITE);
+      }
+    },
+    // 八百屋の前かけ（とおるさん）：胸まである前かけと大きなポケット
+    grocerapron: {
+      part: "body", color: "#2b4a7a",
+      front: function (k) {
+        return shirt(true) + l("M84,152 L88,141 M116,152 L112,141", 3.5) +
+          p("M82,150 L118,150 L118,180 Q134,182 136,232 L64,232 Q66,182 82,180Z", k) + T("M66,184 L134,184", k, 4) +
+          r(80, 192, 40, 22, light(k), 3) + p("M96,196 Q104,196 106,208 Q98,210 96,196Z", WHITE) + p("M98,196 Q95,189 100,191 Q103,187 103,195Z", "#6cbf5a");
+      }
+    },
+    // すげがさ（うめさん）：とがった笠
+    sugegasa: {
+      part: "head", color: "#d8b468",
+      front: function (k) {
+        return p("M18,60 L100,2 L182,60 Q100,74 18,60Z", k) +
+          l("M100,4 L40,62 M100,4 L70,66 M100,4 V68 M100,4 L130,66 M100,4 L160,62", 2, dark(k)) + c(100, 4, 5, dark(k));
+      }
+    },
+    // 紅葉のかんむり（もりおさん）：つるに紅葉
+    maplecrown: {
+      part: "head", color: "#e2574c",
+      front: function (k) {
+        var lf = function (x, y, sc, a, f) { return '<g transform="translate(' + x + " " + y + ") rotate(" + a + ") scale(" + sc + ')" stroke-width="' + n(LW / sc) + '">' + p(MAPLE, f) + l("M0 4V-9M0 1L8 -2M0 1L-8 -2", 1.6) + "</g>"; };
+        return T("M56,50 Q100,30 144,50", DARKWOOD, 5) + lf(66, 40, 1, -22, light(k)) + lf(134, 40, 1, 22, light(k)) + lf(100, 28, 1.4, 0, k) +
+          c(83, 38, 3.4, GOLD) + c(117, 38, 3.4, GOLD);
+      }
+    }
+  });
+  // ---- ライフプランの品（第3段）----
+  Object.assign(WEAR, {
+    // あみかけの帽子：頭をおおうニット帽。折り返しのふちと、ぽんぽん、ささったままの編み棒
+    knithat: {
+      part: "head", color: "#e2574c",
+      front: function (k) {
+        return T("M90,30 L77,-2", WOOD, 3.5) + c(76.5, -3, 4, GOLD) +
+          p("M48,62 Q44,16 100,14 Q156,16 152,62Z", k) +
+          l("M62,34 L68,40 L74,34 L80,40 L86,34 L92,40 L98,34 L104,40 L110,34 L116,40 L122,34 L128,40 L134,34 L140,40" +
+            "M54,48 L60,54 L66,48 L72,54 L78,48 L84,54 L90,48 L96,54 L102,48 L108,54 L114,48 L120,54 L126,48 L132,54 L138,48 L144,54", 2, dark(k)) +
+          p("M42,56 Q100,70 158,56 L158,70 Q100,84 42,70Z", light(k)) +
+          l("M56,62 V74 M70,65 V78 M85,67 V80 M100,68 V81 M115,67 V80 M130,65 V78 M144,62 V74", 2, dark(k)) +
+          c(100, 12, 10, light(k)) + l("M158,66 Q168,74 162,84 Q157,92 166,98", 3, k);
+      }
+    },
+    // 大工の帽子（ばん太さん）：かたいヘルメット。まん中のすじ、葉っぱのしるし、横にはさんだえんぴつ
+    carpenterhat: {
+      part: "head", color: "#f2c94c",
+      front: function (k) {
+        return '<g transform="rotate(-6 150 50)">' + r(134, 46, 34, 7, GOLD, 1.5) + p("M168,46 L176,49.5 L168,53Z", "#f4d9bf") + "</g>" +
+          p("M52,58 Q50,10 100,10 Q150,10 148,58Z", k) +
+          r(92, 9, 16, 50, light(k), 6) +
+          e(74, 45, 7, 4, "#6cbf5a", rot(-35, 74, 45) + ' stroke-width="2.5"') +
+          p("M38,54 Q100,70 162,54 L160,66 Q100,82 40,66Z", light(k));
+      }
+    },
+    // 星のバッジ：頭の右上に付ける、リボンつきの小さな丸いバッジ（髪かざりと同じく耳の上に出す）
+    starbadge: {
+      part: "head", color: "#4a8fd8", overEars: true,
+      front: function (k) {
+        return p("M134,58 L128,76 L134,73 L137,78 L141,62Z", RED) + p("M146,58 L152,76 L146,73 L143,78 L139,62Z", RED) +
+          c(140, 50, 13, k) + c(140, 50, 9, light(k), ' stroke-width="2"') + star(140, 50, 6.5, 2.8, GOLD);
+      }
+    },
+    // 葉っぱのマント：背中に葉っぱを重ねたマント、首元に葉の留め具と花
+    leafmantle: {
+      part: "body", color: "#5cb87a",
+      back: function (k) {
+        return p("M70,142 Q100,134 130,142 L166,214 Q158,222 150,216 Q142,226 132,218 L68,218 Q58,226 50,216 Q42,222 34,214Z", k) +
+          l("M46,196 Q52,204 50,214 M154,196 Q148,204 150,214", 2, dark(k));
+      },
+      front: function (k) {
+        // とがった葉っぱ（先が下）。x,y は葉の付け根
+        var lf = function (x, y, a) {
+          return '<g transform="translate(' + x + " " + y + ") rotate(" + a + ')">' + p("M0,0 Q11,9 0,24 Q-11,9 0,0Z", light(k)) + l("M0,3 V19", 1.8, dark(k)) + "</g>";
+        };
+        return shirt(true) +
+          p("M80,140 L120,140 Q140,146 146,164 Q100,176 54,164 Q60,146 80,140Z", k) +
+          lf(60, 156, 28) + lf(140, 156, -28) + lf(78, 164, 12) + lf(122, 164, -12) + lf(100, 166, 0) +
+          p("M100,148 L78,140 Q72,152 84,157Z", "#8fcf6a") + p("M100,148 L122,140 Q128,152 116,157Z", "#8fcf6a") +
+          c(95, 146, 4.5, "#f6a8c8") + c(105, 146, 4.5, "#f6a8c8") + c(100, 152, 4.5, "#f6a8c8") + c(100, 148, 3, GOLD, NS);
+      }
+    },
+    // よだれかけ（めぐみさん）：首元から胸の前にさげる、ハートの刺しゅう
+    bib: {
+      part: "body", color: "#f6c8d0",
+      front: function (k) {
+        // 下の服はクリーム色（水色のよだれかけがふだんの水色のシャツにまぎれないように）
+        return T(armPath(-1, 0, 0.42), "#fff1c8", ARM_W + 3) + T(armPath(1, 0, 0.42), "#fff1c8", ARM_W + 3) + p(SHIRT_D, "#fff1c8") +
+          l("M80,146 Q72,142 70,150 M120,146 Q128,142 130,150", 3) +
+          p("M100,152 A12,12 0 0 1 88,141 Q74,144 74,166 Q74,194 100,196 Q126,194 126,166 Q126,144 112,141 A12,12 0 0 1 100,152Z", k) +
+          l("M80,182 Q100,194 120,182", 2, WHITE, ' stroke-dasharray="3 4"') +
+          p("M100,180 C90,172 88,163 95,162 Q99,162 100,166 Q101,162 105,162 C112,163 110,172 100,180Z", WHITE, ' stroke-width="2.5"');
+      }
+    },
+    // 木のつえ：右手でにぎる、曲がった持ち手のつえ。先は地面に、芽が一つ
+    woodcane: {
+      part: "hand", color: "#a0683c",
+      front: function (k) {
+        return T("M162,250 L148,182 Q144,162 158,160 Q172,160 170,174", k, 6) +
+          c(162, 250, 4, DARKWOOD) + r(150, 214, 12, 6, GOLD, 2, rot(-12, 156, 217)) +
+          p("M154,230 Q166,222 176,228 Q166,238 154,230Z", "#6cbf5a") + l("M156,230 L172,228", 1.6);
+      }
+    },
+    // ギターのピック（そうたさん）：右手の指先でつまむ小さなピック
+    guitarpick: {
+      part: "hand", color: "#e2574c",
+      front: function (k) {
+        var pick = p("M0,25C-12,13 -24,-3 -22,-15Q-20,-25 0,-25Q20,-25 22,-15C24,-3 12,13 0,25Z", k) +
+          e(-9, -14, 7, 3.6, WHITE, NS + ' opacity="0.55"' + rot(-20, -9, -14));
+        return g(166, 178, 0.5, pick, 25) + l("M182,152 V138 L192,135 V149", 2.5) + c(179, 153, 3.5, INK, NS) + c(189, 150, 3.5, INK, NS);
+      }
+    }
+  });
   var WEAR_ARTS = Object.keys(WEAR);
   // 頭の上をおおう品（耳・触角・アンテナを帽子の外へずらす）
-  var HATS = { strawhat: 1, acornhat: 1, partyhat: 1, cookhat: 1, dewcrown: 1 };
+  var HATS = { strawhat: 1, acornhat: 1, partyhat: 1, cookhat: 1, dewcrown: 1, tenugui: 1, sugegasa: 1, maplecrown: 1, knithat: 1, carpenterhat: 1 };
+  // 頭の上にうかぶ品：耳・触角はずらさないが、人の逆立った髪は帽子のときと同じ丸い形にする（とがった毛先が品に刺さって見えないように）
+  var FLOATS = { halo: 1 };
 
   function wear(art, color, layer) {
     var w = WEAR[art];
@@ -449,13 +665,13 @@
   //   ears=耳・触角・アンテナ。頭の品がないときは頭の円の直前、頭の品があるときは品より手前に描く（帽子の上に出す）
   //   帽子（hat）のときは、帽子の形は変えずに耳・触角の位置を少し上・外へずらす
   // hairColor：人の髪と、宇宙人のアンテナの先・ひれ・おでこの模様の色（null のときは前の決まり：人は肌の色に合わせた色）
-  function species(body, k, style, hat, hairColor) {
+  function species(body, k, style, hat, hairColor, hairCover) {
     var o = { back: "", head: "", ears: "", front: "", face: { ey: 6, my: 20 }, faceSkin: k }, IN = light(k), D = dark(k);
     if (body === "human") {
       var h = HUMAN_HAIR[style] || HUMAN_HAIR.short;
       if (h.back) o.back += p(h.back, hairColor);
       else o.head += c(47, 98, 9, k) + c(153, 98, 9, k);
-      o.front += p(hat && h.hat ? h.hat : h.front, hairColor);
+      o.front += p((hat || hairCover) && h.hat ? h.hat : h.front, hairColor);
     } else if (body === "animal") {
       o.face = { ey: 2, my: 22, cx: 36 };
       if (style === "long") {
@@ -541,7 +757,7 @@
     // 髪の色：選んだ色（人・宇宙人）。選んでいない古い保存データは、前の決まり（人は肌の色に合わせた色）
     var hc = PLAYER_OPTIONS.hairColors[bodyKey] && pl.hairColor != null ? pick(PLAYER_OPTIONS.hairColors[bodyKey], pl.hairColor) : null;
     if (!hc && bodyKey === "human") hc = pick(HAIR_COLORS, PLAYER_OPTIONS.colors[bodyKey].indexOf(k));
-    var sp = species(bodyKey, k, style, hat, hc), s = "";
+    var sp = species(bodyKey, k, style, hat, hc, !!(head && FLOATS[head.art])), s = "";
     // うしろ → 体 → 服 → 手 → 頭 → 顔 → 前髪・模様 → 頭の品 → 手の品
     if (bodyW) s += wear(bodyW.art, bodyW.color, "back");
     s += sp.back;
@@ -564,7 +780,8 @@
 
   function player(pl, mood) {
     if (mood !== "great") mood = "normal";
-    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" aria-hidden="true">' +
+    // 枠からはみ出す所（うさぎの耳の先・帽子のてっぺん）を切らずに描く（2026-11-21 持ち主の指摘「頭が変」の調べで見つけた）
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 260" overflow="visible" aria-hidden="true">' +
       '<g stroke="' + INK + '" stroke-width="' + LW + '" stroke-linejoin="round" stroke-linecap="round">' +
       figure(pl, mood) + "</g>" + (mood === "great" ? joy() : "") + "</svg>";
   }

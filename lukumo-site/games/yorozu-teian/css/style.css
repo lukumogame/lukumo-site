@@ -4,6 +4,12 @@
   --green: #5cb87a; --red: #e2574c; --ink: #34414f; --sub: #7a8794;
   --line: #cfd9e1; --paper: #fbfcfc; --cream: #fff7e8; --bg: #e6eef2;
   --radius: 16px; --tap: 44px;
+  /* 動きの長さ（1か所の設定）。早送りや動きを減らす設定のときは、ここを変えるだけで全体に反映する */
+  --motion-stagger-item: .3s;  /* 結果の「選んだカード」1行が出るまで */
+  --motion-stagger-gap: .08s;  /* 行と行の出はじめの間 */
+  --motion-zk-item: .3s;       /* 図鑑のカード1枚が出るまで */
+  --motion-zk-gap: .04s;       /* カードとカードの出はじめの間 */
+  --motion-zk-cap: 12;         /* ずらすのは最初の何枚までか（それより後は最後の1枚と同時に出る） */
   --font: "M PLUS Rounded 1c", "Noto Sans JP", system-ui, sans-serif;
 }
 * { box-sizing: border-box; }
@@ -274,6 +280,10 @@ button:focus-visible { outline: 3px solid var(--blue); outline-offset: 2px; }
 .score-ring { width: 120px; height: 120px; padding-top: 30px; border-width: 7px; }
 .score-ring span { font-size: 38px; }
 .city.has-art .company .cname { margin-bottom: -26px; }
+/* 5社がそろうと（第5段）、スマホでは旅行・デートの名札に町おこしの顔が、ライフプランの名札に投資・イベントの丸数字がかかる。
+   この2社の名札だけ建物の足もとまで上げる（PC の街は広いので、今のまま。tests/accept45.spec.js の幅360pxの確かめ） */
+.city.has-art:not([data-view="pc"]) .c-life .cname { margin-bottom: 0; }
+.city.has-art:not([data-view="pc"]) .c-travel .cname { margin-bottom: 10px; }
 /* PC横（高さが足りない画面）でも街が1画面に収まるよう、高さに合わせて幅を縮める */
 .city { width: min(100%, calc((100dvh - 330px) * 0.75)); min-width: 260px; margin: 0 auto; }
 
@@ -395,6 +405,24 @@ body[data-screen="screen-title"] .topbar { display: none; }
 .picks-panel { display: flex; flex-direction: column; gap: 8px; }
 .result-picks { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
 .result-picks li { display: flex; align-items: center; gap: 10px; padding: 7px 12px; background: #fff; border: 2px solid var(--line); border-radius: 12px; }
+/* Motion: stagger animation. 結果が開いたとき、選んだカードの行が上から1行ずつ少し遅れて出る（--i は行の番号。js/game.js） */
+.result-picks li { animation: pick-in var(--motion-stagger-item) ease-out both; animation-delay: calc(var(--i, 0) * var(--motion-stagger-gap)); }
+/* Motion: stagger animation. 図鑑を開いたとき・タブや会社を切り替えたとき、一覧のカードが並び順に少しずつずれて出る（--i は並び順。js/game.js） */
+.zk-anim { animation: pick-in var(--motion-zk-item) ease-out both; animation-delay: calc(min(var(--i, 0), var(--motion-zk-cap) - 1) * var(--motion-zk-gap)); }
+/* 出し終わったカード（.in）と、依頼者の記録から戻ったときのカードは動かさない */
+.zk-anim.in { animation: none !important; }
+@media (prefers-reduced-motion: reduce) {
+  .zk-anim { animation: pick-fade var(--motion-zk-item) ease-out both !important; animation-delay: calc(min(var(--i, 0), var(--motion-zk-cap) - 1) * var(--motion-zk-gap)) !important; }
+  .zk-anim.in { animation: none !important; }
+}
+/* 出し終わった行（.in）は、ほかの画面から結果へ戻ったときにもう一度動かさない */
+.result-picks li.in { animation: none !important; }
+@keyframes pick-in { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@keyframes pick-fade { from { opacity: 0; } to { opacity: 1; } }
+/* 動きを減らす設定がオンのとき：移動をやめて、透明度の変化だけにする（全体の animation: none より強くするため !important） */
+@media (prefers-reduced-motion: reduce) {
+  .result-picks li { animation: pick-fade var(--motion-stagger-item) ease-out both !important; animation-delay: calc(var(--i, 0) * var(--motion-stagger-gap)) !important; }
+}
 .result-picks li.m-hit { border-color: #9fd6b0; background: #f1faf4; }
 .result-picks li.m-bad { border-color: #f0b0aa; background: #fdf2f1; }
 .pk-slot { font-size: 12px; color: var(--sub); min-width: 4.5em; }
@@ -747,6 +775,12 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
 .city.has-art .c-life .cname { background: #c8453c; color: #fff; border-color: #fff; }
 .city.has-art .c-life:disabled .cname { background: #fff; color: var(--sub); border-color: var(--line); }
 .c-life .waiting.face { border-color: #c8453c; }
+/* 投資（金色）・町おこし（緑）：建物の色に合わせた名札（白い文字が読める濃さ） */
+.city.has-art .c-invest .cname { background: #a8790c; color: #fff; border-color: #fff; }
+.city.has-art .c-invest:disabled .cname, .city.has-art .c-town:disabled .cname { background: #fff; color: var(--sub); border-color: var(--line); }
+.c-invest .waiting.face { border-color: #a8790c; }
+.city.has-art .c-town .cname { background: #2f8a48; color: #fff; border-color: #fff; }
+.c-town .waiting.face { border-color: #2f8a48; }
 [data-company="life"] > .co-mark, .co-mark[data-company="life"], li[data-company="life"] .co-mark, .co-row[data-company="life"] .co-mark { background: #c8453c; }
 .co-row[data-company="life"] { border-color: #ecb9b4; }
 .wear-head[data-company="life"] { color: #a8352d; }
@@ -754,3 +788,9 @@ body.tut-lock::before { content: ""; position: fixed; inset: 0; z-index: 60; bac
 .co-tabs .tab[data-co="life"].on { background: #c8453c; color: #fff; }
 /* カードの向いている期間（名前の下の1行） */
 .card-name .per { color: #a8352d; }
+
+/* 投資の印（芽）の小さな絵：文字の印（✈・◎など）と同じ大きさ */
+.mk-svg { width: 1em; height: 1em; vertical-align: -0.12em; display: inline-block; }
+/* 投資（金色）・町おこし（緑）の会社の印の丸 */
+[data-company="invest"] > .co-mark, .co-mark[data-company="invest"], li[data-company="invest"] .co-mark, .co-row[data-company="invest"] .co-mark { background: #a8790c; }
+[data-company="town"] > .co-mark, .co-mark[data-company="town"], li[data-company="town"] .co-mark, .co-row[data-company="town"] .co-mark { background: #2f8a48; }

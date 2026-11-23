@@ -244,5 +244,24 @@
     logo: logo, icon: icon, slotIcon: slotIcon, cardArt: cardArt,
     star: star, check: check, timeIcon: timeIcon, joy: joy, gloom: gloom
   };
-  root.YorozuArt = Object.assign(root.YorozuArt || {}, { ui: ui });
+
+  /* ---------- 欄のアイコン（第4段・第5段 設計6-3）：js/game.js の LIFE_ICON と同じ形（24×24・線の太さ2・currentColor） ---------- */
+  function lineIcon(body) {
+    return '<svg viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + body + "</g></svg>";
+  }
+  // 投資：応援先＝日よけのある店／お金の分け方＝3つに分かれる線／見守り方＝目／お礼＝ハートの手紙
+  var SLOT_ICONS_INVEST = {
+    destination: lineIcon('<path d="M3.5 9h17l-1.5-4.5h-14z"/><path d="M3.5 9a2.8 2.8 0 0 0 5.7 0a2.8 2.8 0 0 0 5.6 0a2.8 2.8 0 0 0 5.7 0"/><path d="M5 11.5V20h14v-8.5"/><path d="M10 20v-4.5h4V20"/>'),
+    activity: lineIcon('<path d="M12 21v-8"/><path d="M12 13c0-3.5-6.5-4-6.5-8M12 13V6M12 13c0-3.5 6.5-4 6.5-8"/><circle cx="5.5" cy="3.8" r="1.3"/><circle cx="12" cy="4.6" r="1.3"/><circle cx="18.5" cy="3.8" r="1.3"/>'),
+    food: lineIcon('<path d="M2.5 12S6 5.5 12 5.5S21.5 12 21.5 12S18 18.5 12 18.5S2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/>'),
+    surprise: lineIcon('<rect x="3" y="5.5" width="18" height="13" rx="2"/><path d="M3.5 6.5l8.5 4.5l8.5-4.5"/><path d="M12 17.6c-2.2-1.4-3-2.6-2.3-3.5c.6-.6 1.6-.4 2.3.5c.7-.9 1.7-1.1 2.3-.5c.7.9-.1 2.1-2.3 3.5z"/>')
+  };
+  // 町おこし：場所＝地図のピン／呼びもの＝ちょうちん／広め方＝メガホン／つづけ方＝輪になった矢印
+  var SLOT_ICONS_TOWN = {
+    destination: lineIcon('<path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>'),
+    activity: lineIcon('<path d="M9 3.5h6M9 20.5h6M12 2v1.5M12 20.5V22"/><path d="M9.5 5.5C5.5 6.5 5 9 5 12s.5 5.5 4.5 6.5h5c4-1 4.5-3.5 4.5-6.5s-.5-5.5-4.5-6.5z"/><path d="M5.3 9.5h13.4M5.3 14.5h13.4"/>'),
+    food: lineIcon('<path d="M4 9.5h3l9-5v15l-9-5H4z"/><path d="M7 14.5l1.5 5h3l-1.2-4"/><path d="M19 9.5q1.5 2.5 0 5"/>'),
+    surprise: lineIcon('<path d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3"/><path d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3"/><path d="M17.5 3v3.7h-3.7M6.5 21v-3.7h3.7"/>')
+  };
+  root.YorozuArt = Object.assign(root.YorozuArt || {}, { ui: ui, SLOT_ICONS_INVEST: SLOT_ICONS_INVEST, SLOT_ICONS_TOWN: SLOT_ICONS_TOWN });
 })(typeof globalThis !== "undefined" ? globalThis : this);
