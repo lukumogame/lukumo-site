@@ -363,7 +363,7 @@ window.YOROZU_DATA = {
   "tsumugi": {
    "name": "つむぎさん",
    "kind": "人",
-   "profile": "30代の会社員。はじめてのボーナスで、町の誰かを応援したい",
+   "profile": "30代の会社員。ボーナスで町の誰かを応援したい",
    "species": "human",
    "unusual": false,
    "memo": [],

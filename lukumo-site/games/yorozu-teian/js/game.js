@@ -363,7 +363,8 @@
       const b = $("company-" + co);
       b.disabled = !isOpen(co);
       b.setAttribute("aria-disabled", String(b.disabled));
-      b.querySelector(".soon").textContent = `${OPEN_FROM[co]}日目から`;
+      // 開いた会社は文字も空にする（画面では隠れていても、ページを読み取る道具には「○日目から」が残って見えた。2026-11-23 試遊第10回）
+      b.querySelector(".soon").textContent = b.disabled ? `${OPEN_FROM[co]}日目から` : "";
       b.querySelector(".soon").hidden = !b.disabled;
     });
     // 依頼者が来ている会社の上に、次に来る依頼者の小さな顔（その会社の順番待ちの次の1件）と人数の札（①②③）
